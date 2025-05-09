@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
   langToggle.addEventListener('click', () => {
     lang = lang === 'en' ? 'sr' : 'en';
     setLanguage(lang);
+  location.reload();
   });
 
   // Scroll fade-in
@@ -201,3 +202,68 @@ document.querySelectorAll('.nav-link').forEach(link => {
   updateThemeIcon(lang);
   window.dispatchEvent(new Event('scroll'));
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const imagePaths = [
+    "assets/project-photos/djc-diy/001.png",
+    "assets/project-photos/djc-diy/002.png",
+    "assets/project-photos/djc-diy/003.png",
+    "assets/project-photos/djc-diy/004.png",
+    "assets/project-photos/djc-diy/005.png",
+    "assets/project-photos/djc-diy/006.png",
+    "assets/project-photos/djc-diy/007.png"
+  ];
+
+  let currentIndex = 0;
+  const slideshowImages = document.querySelectorAll(".project-slideshow");
+
+  if (slideshowImages.length > 0) {
+    setInterval(() => {
+      currentIndex = (currentIndex + 1) % imagePaths.length;
+      slideshowImages.forEach(img => {
+        img.style.opacity = 0;
+        setTimeout(() => {
+          img.src = imagePaths[currentIndex];
+          img.style.opacity = 1;
+        }, 300);
+      });
+    }, 4000);
+  }
+});
+
+function enforceAspectRatio(containerSelector, ratioWidth, ratioHeight) {
+  const containers = document.querySelectorAll(containerSelector);
+  containers.forEach(container => {
+    const width = container.offsetWidth;
+    const height = width * (ratioHeight / ratioWidth);
+    container.style.height = `${height}px`;
+  });
+}
+
+// Prvi poziv kad se učita stranica
+document.addEventListener("DOMContentLoaded", () => {
+  enforceAspectRatio('.project-image-container', 16, 9);
+});
+
+// Ponovno podešavanje pri promeni veličine prozora
+window.addEventListener("resize", () => {
+  enforceAspectRatio('.project-image-container', 16, 9);
+});
+
+function startSlideshow() {
+  document.querySelectorAll(".project-slideshow").forEach(slideshow => {
+    const base = slideshow.dataset.base;
+    const count = parseInt(slideshow.dataset.count || "1");
+    let index = 1;
+
+    if (slideshow.dataset.intervalId) return; // prevent duplicate intervals
+
+    const intervalId = setInterval(() => {
+      index = (index % count) + 1;
+      slideshow.src = `${base}${String(index).padStart(3, '0')}.png`;
+    }, 4000);
+
+    slideshow.dataset.intervalId = intervalId;
+  });
+}

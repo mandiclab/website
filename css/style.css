@@ -1,0 +1,374 @@
+
+:root[data-theme='light'] {
+  --background: #ffffff;
+  --text: #111111;
+  --icon-filter: invert(0%);
+  --footer-border: #111111;
+}
+
+:root[data-theme='dark'] {
+  --background: #000000;
+  --text: #ffffff;
+  --icon-filter: invert(100%);
+  --footer-border: #ffffff;
+}
+
+
+:root {
+  --bg-color: #000;
+  --text-color: #fff;
+  --accent-color: #fff;
+}
+
+/* Stil selekcije za tamnu temu */
+:root ::selection {
+  background: #fff;     
+  color: #000;          
+}
+
+/* Stil selekcije za svetlu temu */
+[data-theme='light'] ::selection {
+  background: #000;    
+  color: #fff;         
+}
+
+[data-theme='light'] {
+  --bg-color: #fff;
+  --text-color: #000;
+  --accent-color: #000;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 1s ease, color 1s ease;
+}
+
+section {
+  scroll-margin-top: 80px;
+}
+
+a {
+  color: var(--text-color);
+}
+
+a::after {
+  width: 0;
+  height: 1px;
+  bottom: -3px;
+  left: 50%;
+  background-color: var(--accent-color);
+  transition: width 0.5s ease, left 0.5s ease;
+}
+
+a:hover::after {
+  width: 100%;
+  left: 0;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  background-color: var(--bg-color);
+  z-index: 1000;
+  transition: top 0.4s;
+  font-size: 1rem;
+  border-bottom: 1px solid var(--accent-color);
+}
+
+
+.nav-link.active {
+  font-weight: bold;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+}
+
+.brand-text .title {
+  font-size: 1.4rem;
+}
+
+.brand-text .subtitle {
+  font-size: 0.7rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  padding-left: 1.5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-buttons {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.icon-button {
+  
+  background: none;
+  border: 0;
+  border-radius: 5px;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.2rem;
+  cursor: pointer;
+  color: var(--text-color);
+  font-family: inherit;
+}
+
+.icon-button:hover {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+}
+
+.icon-button:active {
+  transform: scale(0.96);
+}
+
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.hamburger span {
+  height: 3px;
+  width: 25px;
+  background: var(--text-color);
+}
+
+.fade-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  padding: 3rem 2rem;
+}
+
+.fade-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .logo-container {
+    justify-content: center;
+    gap: 1rem;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .brand-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .nav-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+  }
+
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  .nav-links.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+}
+
+/* === FOOTER === */
+#footer {
+  padding: 2rem 1.5rem;
+  background-color: var(--background);
+  color: var(--text);
+  border-top: 1px solid var(--footer-border);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+.footer-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.footer-logo {
+  width: 40px;
+  height: 40px;
+  filter: var(--icon-filter);
+}
+
+.footer-texts {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-brand {
+  font-weight: 400;
+  font-size: 1.1rem;
+}
+
+.footer-slogan {
+  font-weight: 700;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.footer-right {
+  display: flex;
+  gap: 1rem;
+}
+
+.footer-icon:active img {
+  transform: scale(0.95);
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  color: var(--text);
+}
+
+.footer-icon img {
+  width: 24px;
+  height: 24px;
+  filter: var(--icon-filter);
+  transition: transform 0.2s ease;
+}
+
+.footer-icon:hover img {
+  transform: scale(1.15);
+}
+
+.footer-icon:active img {
+  transform: scale(0.95);
+}
+
+.footer-contact {
+  font-size: 0.85rem;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.footer-email:hover {
+  opacity: 0.75;
+}
+
+.nav-link {
+  position: relative;
+  text-decoration: none;
+  color: var(--text);
+  display: inline-block;
+}
+
+.nav-link::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  width: 0;
+  height: 1px;
+  background-color: currentColor;
+  transform: translateX(-50%);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::before,
+.nav-link.active::before {
+  width: 100%;
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-left,
+  .footer-right {
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+.socials img {
+  width: 32px;
+  height: 32px;
+  margin: 0 8px;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+}
+
+.socials img:hover {
+  transform: scale(1.15);
+}
+
+.socials img:active {
+  transform: scale(0.9);
+}
+
+/* Osnovno podešavanje */
+.socials img {
+  width: 28px;
+  height: 28px;
+  margin: 0 8px;
+  transition: transform 0.2s ease, filter 0.2s ease;
+  cursor: pointer;
+  filter: invert(0%); /* podrazumevano crne ikonice */
+}
+
+/* Kad je dark tema aktivna */
+[data-theme="dark"] .socials img {
+  filter: invert(100%);
+}

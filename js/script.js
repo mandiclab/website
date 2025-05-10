@@ -12,23 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   root.setAttribute('data-theme', theme);
 
-  function setFavicon(theme) {
-    const faviconPath = theme === "light"
-      ? "assets/favicon/favicon-dark.ico"
-      : "assets/favicon/favicon-light.ico";
 
-    // ukloni stare favicone
-    const existing = document.querySelectorAll("link[rel='icon']");
-    existing.forEach(el => el.remove());
-
-    // dodaj novi favicon
-    const link = document.createElement("link");
-    link.rel = "icon";
-    link.href = faviconPath;
-    document.head.appendChild(link);
-  }
-
-  setFavicon(theme); // inicijalno postavi favicon
 
   const translations = {
     en: {
@@ -95,7 +79,6 @@ document.addEventListener('DOMContentLoaded', () => {
     theme = theme === 'dark' ? 'light' : 'dark';
     root.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
-    setFavicon(theme);
     updateThemeIcon(lang);
   });
 

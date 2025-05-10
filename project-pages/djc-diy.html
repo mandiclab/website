@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DJC-DIY Project</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <script defer src="../js/script.js"></script>
+</head>
+<body>
+    <div class="project-page">
+        <div class="back-button-holder">
+            <button class="icon-button action-button back-button" onclick="goBack()">Back</button>
+        </div>
+    </div>
+            <div class="slideshow-container">
+    <div class="main-image">
+        <img id="mainImage" src="" alt="Project Image">
+        <div class="arrow left" onclick="prevImage()">&#10094;</div>
+        <div class="arrow right" onclick="nextImage()">&#10095;</div>
+    </div>
+    <div class="thumbnails" id="thumbnails"></div>
+</div>
+
+    <script>
+        // Uklopi temu i jezik sa glavne strane
+        document.addEventListener("DOMContentLoaded", () => {
+            const theme = localStorage.getItem("theme");
+            if (theme) document.documentElement.setAttribute("data-theme", theme);
+
+            const lang = localStorage.getItem("language");
+            if (lang) document.documentElement.setAttribute("data-language", lang);
+        });
+
+        // Dugme za povratak
+        function goBack() {
+            window.location.href = "../../index.html";
+        }
+    </script>
+</body>
+</html>

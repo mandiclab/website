@@ -427,21 +427,3 @@ a:hover::after {
 .show-more-btn {
   align-self: flex-end;
 }
-
-
-
-.project-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    background-color: var(--background-color);
-}
-
-.back-button {
-    /* koristi postojeću klasu action-button */
-    font-size: 1.2rem;
-}
-
-.back-button-holder {
-}

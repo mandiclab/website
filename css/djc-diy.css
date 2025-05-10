@@ -1,0 +1,85 @@
+
+:root[data-theme='light'] {
+  --background: #ffffff;
+  --text: #111111;
+  --icon-filter: invert(0%);
+  --footer-border: #111111;
+}
+
+:root[data-theme='dark'] {
+  --background: #000000;
+  --text: #ffffff;
+  --icon-filter: invert(100%);
+  --footer-border: #ffffff;
+}
+
+
+:root {
+  --bg-color: #000;
+  --text-color: #fff;
+  --accent-color: #fff;
+}
+
+/* Stil selekcije za tamnu temu */
+:root ::selection {
+  background: #fff;     
+  color: #000;          
+}
+
+/* Stil selekcije za svetlu temu */
+[data-theme='light'] ::selection {
+  background: #000;    
+  color: #fff;         
+}
+
+[data-theme='light'] {
+  --bg-color: #fff;
+  --text-color: #000;
+  --accent-color: #000;
+}
+
+body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 1s ease, color 1s ease;
+}
+
+
+.icon-button {
+  
+  background: none;
+  border: 0;
+  border-radius: 5px;
+  padding-left: 0.25rem;
+  padding-right: 0.25rem;
+  padding-top: 0.1rem;
+  padding-bottom: 0.2rem;
+  cursor: pointer;
+  color: var(--text-color);
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.icon-button:hover {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+}
+
+.icon-button:active {
+  transform: scale(0.96);
+}
+
+.project-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: var(--background-color);
+}
+
+.back-button {
+    /* koristi postojeću klasu action-button */
+    font-size: 1rem;
+}

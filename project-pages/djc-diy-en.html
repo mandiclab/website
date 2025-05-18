@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700;900&display=swap" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DJC-DIY Project</title>
     <link rel="stylesheet" href="../css/djc-diy.css">
@@ -11,7 +14,7 @@
     <div class="back-button-holder">
         <button class="icon-button action-button back-button" onclick="goBack()">Back</button>
     </div>
-    <div class="project-header">
+    <div class="project-header fade-in">
         <h1 class="project-title">THE WORLD'S FIRST DIY DJ CONTROLLER</h1>
         <h2 class="project-subtitle">DJC-DIY</h2>
     </div>
@@ -26,7 +29,7 @@
                 <!-- Thumbnails će JS ubaciti automatski -->
             </div>
         </div>
-        <div class="project-buttons">
+        <div class="project-buttons fade-in">
     <button class="icon-button">Download Files</button>
     <button class="icon-button">Support Project</button>
 
@@ -39,7 +42,7 @@
 </div>
     </div>
 
-<div class="project-tabs">
+<div class="project-tabs fade-in">
     <button class="icon-button tab-button active" onclick="showTab('info', event)">Info</button>
     <button class="icon-button tab-button" onclick="showTab('specs', event)">Specs</button>
     <button class="icon-button tab-button" onclick="showTab('parts', event)">Parts List</button>
@@ -48,7 +51,7 @@
     <button class="icon-button tab-button" onclick="showTab('changelog', event)">Changelog</button>
 </div>
 
-<div class="tab-contents">
+<div class="tab-contents fade-in">
     <div class="tab-section" data-tab="info">
         <p>This is basic project information.</p>
     </div>

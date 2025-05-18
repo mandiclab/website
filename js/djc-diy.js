@@ -86,3 +86,15 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelector(".next").addEventListener("click", () => stopSlideshow());
   document.querySelector(".prev").addEventListener("click", () => stopSlideshow());
 });
+
+
+function showTab(tab, event) {
+  // Aktiviraj dugme
+  document.querySelectorAll(".tab-button").forEach(btn => btn.classList.remove("active"));
+  event.target.classList.add("active");
+
+  // Prikaži odgovarajući .tab-section
+  document.querySelectorAll(".tab-section").forEach(section => {
+    section.classList.toggle("hidden", section.dataset.tab !== tab);
+  });
+}

@@ -39,6 +39,36 @@
 </div>
     </div>
 
+<div class="project-tabs">
+    <button class="icon-button tab-button active" onclick="showTab('info', event)">Info</button>
+    <button class="icon-button tab-button" onclick="showTab('specs', event)">Specs</button>
+    <button class="icon-button tab-button" onclick="showTab('parts', event)">Parts List</button>
+    <button class="icon-button tab-button" onclick="showTab('manual', event)">Manual</button>
+    <button class="icon-button tab-button" onclick="showTab('faq', event)">FAQ</button>
+    <button class="icon-button tab-button" onclick="showTab('changelog', event)">Changelog</button>
+</div>
+
+<div class="tab-contents">
+    <div class="tab-section" data-tab="info">
+        <p>This is basic project information.</p>
+    </div>
+    <div class="tab-section hidden" data-tab="specs">
+        <ul><li>Size: 300x200x50mm</li><li>Power: USB-C</li><li>Output: MIDI via USB</li></ul>
+    </div>
+    <div class="tab-section hidden" data-tab="parts">
+        <ul><li>Arduino Pro Micro</li><li>Rotary Encoders x2</li><li>Potentiometers x6</li><li>Push Buttons x12</li></ul>
+    </div>
+    <div class="tab-section hidden" data-tab="manual">
+        <p>To use the controller, plug it via USB and map it inside your DJ software (Mixxx, Traktor, etc).</p>
+    </div>
+    <div class="tab-section hidden" data-tab="faq">
+        <ul><li><strong>Q:</strong> Does it work on Mac?<br><strong>A:</strong> Yes, it's MIDI class-compliant.</li><li><strong>Q:</strong> Can I use other software?<br><strong>A:</strong> Yes, any that supports MIDI mapping.</li></ul>
+    </div>
+    <div class="tab-section hidden" data-tab="changelog">
+        <ul><li><strong>v1.0</strong> – Initial release</li><li><strong>v1.1</strong> – Added rotary encoder support</li><li><strong>v1.2</strong> – Optimized USB MIDI performance</li></ul>
+    </div>
+</div>
+
     <script>
         document.addEventListener("DOMContentLoaded", () => {
             const theme = localStorage.getItem("theme");

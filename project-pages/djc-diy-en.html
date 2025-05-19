@@ -20,11 +20,13 @@
     </div>
     <div class="project-content">
         <div class="project-gallery fade-in">
-            <div class="image-wrapper">
-                <button class="icon-button nav-button prev" onclick="prevImage()">‹</button>
-                <img id="main-image" src="../../assets/project-photos/djc-diy/001.png" alt="DJC-DIY image" class="main-image">
-                <button class="icon-button nav-button next" onclick="nextImage()">›</button>
-            </div>
+<div class="slideshow-wrapper">
+  <button class="icon-button nav-button prev" onclick="prevImage()">‹</button>
+  <div class="image-wrapper">
+    <img id="main-image" src="../../assets/project-photos/djc-diy/001.png" class="main-image">
+  </div>
+  <button class="icon-button nav-button next" onclick="nextImage()">›</button>
+</div>
             <div class="thumbnail-container" id="thumbnail-container">
                 <!-- Thumbnails će JS ubaciti automatski -->
             </div>

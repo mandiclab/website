@@ -9,6 +9,15 @@
     <title>DJC-DIY</title>
     <link rel="stylesheet" href="../css/djc-diy.css">
     <script defer src="../js/djc-diy.js"></script>
+    <link id="favicon" rel="icon" href="../assets/favicon/favicon-dark.ico" type="image/x-icon">
+<script>
+  const favicon = document.getElementById("favicon");
+  const theme = localStorage.getItem("theme") || "dark";
+  const isLight = theme === "light";
+  favicon.href = isLight
+    ? "../assets/favicon/favicon-dark.ico"
+    : "../assets/favicon/favicon-light.ico";
+</script>
 </head>
 <body>
     <div class="back-button-holder">

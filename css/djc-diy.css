@@ -164,7 +164,7 @@ body {
     max-width: 600px;
     height: auto;
     border: 1px solid var(--accent-color);
-    border-radius: 0.5rem;
+    border-radius: 5px;
 }
 
 .nav-button {
@@ -200,13 +200,13 @@ body {
   width: 60px;
   height: auto;
   flex-shrink: 0;
-  border: 1px solid white;
+  border: 1px solid var(--accent-color);
   border-radius: 5px;
 }
 
 .thumbnail-container img.selected {
     border-color: var(--accent-color);
-    border: 2px solid white;
+    border: 2px solid var(--accent-color);
 }
 
 @media (min-width: 768px) {
@@ -242,7 +242,7 @@ body {
   height: auto;
   display: block;
   object-fit: contain;
-  border-radius: 0.5rem;
+  border-radius: 5px;
   transition: opacity 0.5s ease;
 }
 
@@ -254,7 +254,7 @@ body {
   right: 0;
   bottom: 0;
   border: 1px solid var(--accent-color);
-  border-radius: 0.5rem;
+  border-radius: 5px;
   pointer-events: none;
   z-index: 2;
 }
@@ -295,8 +295,8 @@ body {
 .fullscreen-image {
     max-width: 90vw;
     max-height: 90vh;
-    border-radius: 10px;
-    border: 2px solid var(--accent-color);
+    border-radius: 5px;
+    border: 1px solid var(--accent-color);
 }
 
 
@@ -323,7 +323,7 @@ body {
     font-size: 1rem;
     font-weight: 600;
     border: 1px solid var(--accent-color);
-    border-radius: 0.5rem;
+    border-radius: 5px;
 }
 
 .project-info {

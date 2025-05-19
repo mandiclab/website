@@ -124,7 +124,7 @@ a:hover::after {
 .icon-button {
   
   background: none;
-  border: 0;
+  border: none;
   border-radius: 5px;
   padding-left: 0.25rem;
   padding-right: 0.25rem;
@@ -426,4 +426,5 @@ a:hover::after {
 
 .show-more-btn {
   align-self: flex-end;
+  border: 1px solid var(--accent-color);
 }

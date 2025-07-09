@@ -1,8 +1,8 @@
-
 :root[data-theme='light'] {
   --background: #ffffff;
   --text: #111111;
   --icon-filter: invert(0%);
+  --icon-filter-hover: invert(100%);
   --footer-border: #111111;
 }
 
@@ -12,7 +12,6 @@
   --icon-filter: invert(100%);
   --footer-border: #ffffff;
 }
-
 
 :root {
   --bg-color: #000;
@@ -60,7 +59,24 @@ body {
   color: var(--text-color);
   font-family: inherit;
   transition: all 0.3s ease;
+  text-decoration: none;
 }
+
+.button-icon {
+  width: 1.2em;
+  height: 1.2em;
+  margin-right: 0.5em;
+  vertical-align: middle;
+  filter: var(--icon-filter);
+  transition: filter 0.3s ease;
+}
+
+/* Promena ikonice na hover */
+.icon-button:hover .button-icon {
+  filter: var(--icon-filter-hover);
+}
+
+
 
 .icon-button:hover {
   background-color: var(--accent-color);

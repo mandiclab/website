@@ -11,6 +11,10 @@
     <script defer src="../js/djc-diy.js"></script>
     <link id="favicon" rel="icon" href="../assets/favicon/favicon-dark.ico" type="image/x-icon">
 <script>
+  document.documentElement.setAttribute(
+    "data-theme",
+    localStorage.getItem("theme") || "dark"
+  );
   const favicon = document.getElementById("favicon");
   const theme = localStorage.getItem("theme") || "dark";
   const isLight = theme === "light";

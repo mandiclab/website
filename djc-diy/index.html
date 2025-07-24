@@ -36,7 +36,7 @@
 <div class="slideshow-wrapper">
   <button class="icon-button nav-button prev" onclick="prevImage()">‹</button>
   <div class="image-wrapper">
-    <img id="main-image" src="../../assets/project-photos/djc-diy/001.png" class="main-image">
+    <img id="main-image" src="../../assets/project-photos/djc-diy/001.webp" class="main-image">
   </div>
   <button class="icon-button nav-button next" onclick="nextImage()">›</button>
 </div>
@@ -51,15 +51,25 @@
 </a>
 
 <a class="icon-button" href="https://ko-fi.com/mandiclab">
-  <img src="../../assets/socials/ko-fi.svg" class="button-icon" alt="ko-fi">
+  <img src="../../assets/socials/ko-fi.svg" class="button-icon" alt="Ko-fi">
   <span>Support</span>
+</a>
+
+<a class="icon-button" href="https://www.youtube.com/watch?v=gbPC8Bg0U9I">
+  <img src="../../assets/socials/youtube.svg" class="button-icon" alt="YouTube">
+  <span>Review</span>
+</a>
+
+<a class="icon-button" href="https://ko-fi.com/mandiclab">
+  <img src="../../assets/socials/youtube.svg" class="button-icon" alt="YouTube">
+  <span>Tutorial (Coming Soon)</span>
 </a>
 
 
     <div class="project-info">
         <p>Difficulty: Normal</p>
         <p>Print Time: 12h</p>
-        <p>Assembly Time: 2h</p>
+        <p>Assembly Time: 3h</p>
         <!-- Dodaj dalje po potrebi -->
     </div>
 </div>
@@ -76,22 +86,66 @@
 
 <div class="tab-contents fade-in">
     <div class="tab-section" data-tab="info">
-        <p>blah blah blah, this will bee filled soon...</p>
+        <p>DJC-DIY is the world's first open-source DIY DJ controller you can build yourself. No custom PCB, no special tools, no advanced skills. 
+            Just some time and patience.</p>
+
+        <p></p>
     </div>
     <div class="tab-section hidden" data-tab="specs">
-        <p>very good specs</p>
+
+        <p>Deck A, Deck B, Mixer</p>
+
+        
+        <ul>Deck
+            <li>Jog Wheel - Only for pitch bend, no scratching for now.</li>
+            <li>Play/Pause</li>
+            <li>Cue</li>
+            <li>2x Performance Pads</li>
+        </ul>
+        
+        <ul>Mixer
+            <li>Low EQ</li>
+            <li>FX/EQ/Volume</li>
+            <li>Crossfader</li>
+        </ul>
     </div>
     <div class="tab-section hidden" data-tab="parts">
-        <p>currently on github, will be here soon...</p>
+          <ul class="parts-list">
+            <li>1 x Arduino Pro Micro - ATmega32U4 5V</li>
+            <li>8 x Push Button - B3F-4055 - 12x12x7.3mm</li>
+            <li>4 x Rotary Potentiometer - B103 - RV09 - D Shaft - 23mm</li>
+            <li>3 x Slider Potentiometer - B103 - 60mm - </li>
+            <li>2 x Rotary Encoder - EC11 - D Shaft - 15mm - No push button recommended</li>
+            <li>24AWG Wire - Red, Black, Blue, Green, Yellow</li>
+        </ul>
     </div>
     <div class="tab-section hidden" data-tab="manual">
-        <p>currently on github, soon tutorial on yt and maybe fancy pdf tutorial</p>
+
     </div>
     <div class="tab-section hidden" data-tab="faq">
-        <p>no questions asked</p>
+<div class="faq-entry">
+    <p><strong>Q:</strong> Does it work with Virtual DJ, Traktor, or Rekordbox?</p>
+    <p><strong>A:</strong> It currently works out of the box only with Mixxx, but the controller sends standard MIDI messages, so it can be manually mapped to other DJ software.</p>
+  </div>
+</br>
+  <div class="faq-entry">
+    <p><strong>Q:</strong> Is it for sale?</p>
+    <p><strong>A:</strong> For now, we’re not selling the device or any DIY kits.</p>
+  </div>
+</br>
+  <div class="faq-entry">
+    <p><strong>Q:</strong> How much does it cost?</p>
+    <p><strong>A:</strong> If you have access to a 3D printer (or a friend who can print for you), the whole build can cost as little as $15 — plastic included.</p>
+  </div>
+</br>
+  <div class="faq-entry">
+    <p><strong>Q:</strong> Can I add more features (buttons, lights, screen...)?</p>
+    <p><strong>A:</strong> This is just the first version. We’ll try to expand it to the hardware limits in future iterations — and you're welcome to modify it too!</p>
+  </div>
     </div>
+
     <div class="tab-section hidden" data-tab="changelog">
-        <p>nothing changed</p>
+        <p><strong>V1.0</strong> - July 8th 2025</p>
     </div>
 </div>
 

@@ -206,13 +206,13 @@ document.querySelectorAll('.nav-link').forEach(link => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const imagePaths = [
-    "assets/project-photos/djc-diy/001.png",
-    "assets/project-photos/djc-diy/002.png",
-    "assets/project-photos/djc-diy/003.png",
-    "assets/project-photos/djc-diy/004.png",
-    "assets/project-photos/djc-diy/005.png",
-    "assets/project-photos/djc-diy/006.png",
-    "assets/project-photos/djc-diy/007.png"
+    "assets/project-photos/djc-diy/001.webp",
+    "assets/project-photos/djc-diy/002.webp",
+    "assets/project-photos/djc-diy/003.webp",
+    "assets/project-photos/djc-diy/004.webp",
+    "assets/project-photos/djc-diy/005.webp",
+    "assets/project-photos/djc-diy/006.webp",
+    "assets/project-photos/djc-diy/007.webp",
   ];
 
   let currentIndex = 0;

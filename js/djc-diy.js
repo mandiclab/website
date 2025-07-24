@@ -5,7 +5,6 @@ const imagePaths = [
   "../../assets/project-photos/djc-diy/004.webp",
   "../../assets/project-photos/djc-diy/005.webp",
   "../../assets/project-photos/djc-diy/006.webp",
-  "../../assets/project-photos/djc-diy/007.webp",
 ];
 
 let currentIndex = 0;

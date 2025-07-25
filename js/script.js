@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
         setTimeout(() => {
           img.src = imagePaths[currentIndex];
           img.style.opacity = 1;
-        }, 300);
+        }, 400);
       });
     }, 4000);
   }

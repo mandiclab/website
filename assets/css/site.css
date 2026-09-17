@@ -1126,7 +1126,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   justify-content: center;
   padding: clamp(16px,2vh,32px) clamp(16px,1.6vw,24px);
   box-sizing: border-box;
-  background: rgba(11,11,12,0.34);
+  background: rgba(11,11,12,0.55);
   backdrop-filter: blur(14px) saturate(118%);
   -webkit-backdrop-filter: blur(14px) saturate(118%);
   opacity: 0;
@@ -1172,11 +1172,13 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .lb-close:hover .lb-x { opacity: 0.9; }
 .lb-x span { position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: var(--text-1); transform: rotate(45deg); }
 .lb-x span + span { transform: rotate(-45deg); }
+/* The text column starts level with the top edge of the photo. */
 .lb-info {
   flex: 0 1 auto;
+  align-self: stretch;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   gap: clamp(24px,2.4vh,32px);
   max-width: 100%;
   max-height: 100%;
@@ -1199,12 +1201,15 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   color: var(--text-2);
   transition: color var(--dur-base) var(--ease);
 }
+.lb-links > *:first-child { padding-top: 0; }
+/* Without any text under them the last handle needs no line either. */
+.lb-links:last-child > *:last-child { border-bottom: 0; }
 .lb-links a:hover { color: var(--text-1); }
 .lb-link-icon {
   display: block;
   flex: 0 0 auto;
-  width: 19px;
-  height: 19px;
+  width: 22px;
+  height: 22px;
   background: currentColor;
   -webkit-mask: var(--icon) center / contain no-repeat;
   mask: var(--icon) center / contain no-repeat;

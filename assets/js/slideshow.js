@@ -29,7 +29,7 @@
     // `paused` is the visitor's standing choice from the button; hover, focus
     // and a hidden tab are temporary holds that release on their own.
     // Keep them separate (docs/odluke.md).
-    var state = { idx: 0, prev: null, paused: false, hover: false, focus: false, hidden: false };
+    var state = { idx: 0, prev: null, dir: 1, paused: false, hover: false, focus: false, hidden: false };
     var timer = null, prevTimer = null;
     var dots = [], thumbs = [], playBtn = null;
 
@@ -43,9 +43,24 @@
       timer = setTimeout(function () { go((state.idx + 1) % count, false); }, delay);
     }
 
-    function go(n, manual) {
+    // The slides travel sideways, so the direction has to be set before the
+    // classes change: the waiting slides jump to the side they come in from,
+    // and only then does the new one slide in.
+    function setDir(d) {
+      if (state.dir === d) return;
+      state.dir = d;
+      shell.setAttribute('data-dir', String(d));
+      void shell.offsetWidth;
+    }
+
+    function go(n, manual, dir) {
       if (n === state.idx) { if (manual) schedule(base * 2); return; }
       clearTimeout(prevTimer);
+      if (!dir) {
+        var ahead = (n - state.idx + count) % count;
+        dir = ahead <= count - ahead ? 1 : -1;
+      }
+      setDir(dir);
       state.prev = state.idx;
       state.idx = n;
       render();
@@ -55,7 +70,7 @@
 
     function step(dir) {
       if (count < 2) return;
-      go(((state.idx + dir) % count + count) % count, true);
+      go(((state.idx + dir) % count + count) % count, true, dir);
     }
 
     function setHold(key, val) {
@@ -181,6 +196,7 @@
 
     document.addEventListener('visibilitychange', function () { setHold('hidden', !!document.hidden); });
 
+    shell.setAttribute('data-dir', '1');
     shell.setAttribute('data-ready', '');
     render();
     schedule(base);

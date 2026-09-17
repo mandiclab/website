@@ -317,11 +317,16 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .slideshow:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
 
 .slide, .slide-empty { position: absolute; inset: 0; overflow: hidden; }
-.slide { opacity: 0; z-index: 0; transition: none; pointer-events: none; }
-.slide.is-active { opacity: 1; z-index: 2; transition: opacity var(--dur-slow) var(--ease); pointer-events: auto; }
-.slide.is-prev { z-index: 1; transition: opacity var(--dur-slow) var(--ease); }
+/* The images move as one strip: the new one pushes the old one out, quick at
+   the start and settling at the end. data-dir is the direction of travel. */
+.slide { transform: translateX(100%); z-index: 0; transition: none; pointer-events: none; }
+.slide.is-prev { transform: translateX(-100%); z-index: 1; transition: transform var(--dur-slow) var(--ease); }
+.slide.is-active { transform: none; z-index: 2; transition: transform var(--dur-slow) var(--ease); pointer-events: auto; }
+.slideshow[data-dir="-1"] .slide { transform: translateX(-100%); }
+.slideshow[data-dir="-1"] .slide.is-prev { transform: translateX(100%); }
+.slideshow[data-dir="-1"] .slide.is-active { transform: none; }
 /* Before the script runs (or without it) the first slide shows. */
-.slideshow:not([data-ready]) .slide:first-child { opacity: 1; z-index: 2; }
+.slideshow:not([data-ready]) .slide:first-child { transform: none; z-index: 2; }
 .slide img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 /* Empty frame while there are no images yet. */
 .slide-empty { background: var(--surface-1); }

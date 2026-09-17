@@ -83,6 +83,12 @@ Ostale slike su 16:9, osim galerije, gde svaka slika zadržava svoje proporcije.
 ih posvetlilo, ali ga poništava stil upisan direktno na element, pa se u
 konceptu ništa ne menja. Preneto je tako kako se vidi.
 
+**Demo i Tutorial video na DJC-DIY su ispravljeni u odnosu na koncept.**
+Koncept je zamenio YouTube adrese: `Z4C7toXesU8` je tutorijal („How To Make
+A DIY DJ Controller - Detailed Tutorial"), a `WDb8kAIuzXc` demo („PRO DJ vs
+DIY DJ Controller"). Ispravljeno je i na dugmadima i u linkovima u tekstu —
+ne vraćaj adrese iz koncepta.
+
 **Godina u footeru se menja sama** (`assets/js/site.js`), kao u konceptu. U
 HTML-u stoji rezervna godina za posetioce bez JavaScript-a.
 

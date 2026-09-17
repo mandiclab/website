@@ -66,10 +66,15 @@
 
     function render() {
       slides.forEach(function (s, i) {
-        s.classList.toggle('is-active', i === state.idx);
-        s.classList.toggle('is-prev', i !== state.idx && i === state.prev);
+        var on = i === state.idx;
+        s.classList.toggle('is-active', on);
+        s.classList.toggle('is-prev', !on && i === state.prev);
+        // Links on a slide that is not shown stay out of the tab order.
+        Array.prototype.forEach.call(s.querySelectorAll('a[href]'), function (a) {
+          if (on) a.removeAttribute('tabindex');
+          else a.setAttribute('tabindex', '-1');
+        });
       });
-      shell.classList.toggle('is-past-first', state.idx !== 0);
       dots.forEach(function (d, i) {
         if (i === state.idx) d.setAttribute('aria-current', 'true');
         else d.removeAttribute('aria-current');

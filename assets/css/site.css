@@ -446,14 +446,13 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   background: linear-gradient(180deg,rgba(11,11,12,0.5) 0%,rgba(11,11,12,0) 100%);
 }
 
-/* The headline shows over the first slide only. */
+/* Text over a hero image: it sits inside its slide, so it fades in and out
+   with that image and a slide without text shows only the photo. */
 .hero-gradient {
   position: absolute;
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  opacity: 1;
-  transition: opacity var(--dur-base) var(--ease);
   background: linear-gradient(to right, rgba(11,11,12,0.72) 0%, rgba(11,11,12,0.45) 40%, transparent 70%);
 }
 .hero-text {
@@ -468,12 +467,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   flex-direction: column;
   align-items: flex-start;
   text-align: left;
-  opacity: 1;
-  pointer-events: auto;
-  transition: opacity var(--dur-base) var(--ease);
 }
-.slideshow.is-past-first .hero-gradient, .slideshow.is-past-first .hero-text { opacity: 0; }
-.slideshow.is-past-first .hero-text { pointer-events: none; }
 .hero-title {
   margin: 0;
   font-size: var(--fs-display);
@@ -495,6 +489,11 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   text-wrap: pretty;
 }
 .hero-text .btn { margin-top: 32px; white-space: nowrap; }
+/* Someone else's handles under a hero description, each with its own icon. */
+.hero-social { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 16px; }
+.hero-social a { display: inline-flex; align-items: center; gap: 8px; min-height: 24px; font-size: var(--fs-body); font-weight: 300; color: var(--text-1); }
+.hero-social a > span:last-child { border-bottom: 1px solid var(--line-3); transition: border-color var(--dur-base) var(--ease); }
+.hero-social a:hover > span:last-child { border-color: var(--text-2); }
 
 .news {
   position: relative;

@@ -143,11 +143,14 @@ Kada se projekat objavljuje:
    `<meta name="robots" content="noindex">` ispod njega;
 3. vrati adresu stranice u `sitemap.xml`.
 
-**Tekst preko Home hero-a je o DJC-DIY** (na zahtev vlasnika, umesto teksta iz
-koncepta): H1 „DJC-DIY", ispod njega manjim slovima „an open-source DIY DJ
-controller" (za čitače ekrana i pretraživače spojeno crtom), opis sa istim
-linkovima kao na DJC-DIY stranici i dugme „See project". Kao i u konceptu,
-tekst stoji samo preko prve slike; ostale hero slike su bez teksta.
+**Tekst preko Home hero-a stoji unutar svoje slike.** U konceptu tekst je bio
+jedan i prikazivao se samo preko prve slike. Sada svaka slika može imati svoj
+`.hero-gradient` i `.hero-text`, pa tekst bledi zajedno sa tom slikom, a slika
+bez teksta prikazuje samo fotografiju. Naslov prve slike je `<h1>` stranice,
+ostale slike koriste `<h2>`. Linkovi na slici koja se ne vidi ispadaju iz
+redosleda tabulatora (slideshow.js), da fokus ne ode na nevidljivo dugme.
+Prva slika je o DJC-DIY, druga o demou DJ Tweety-ja (njegovi nalozi i dugme
+„See demo" ka YouTube demou).
 
 **Slika u „What's new" kartici može imati više fotografija** (nije u konceptu,
 na zahtev vlasnika). Koristi isti slideshow kao hero (`data-indicator="none"`):

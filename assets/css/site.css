@@ -1148,15 +1148,17 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   transition: opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
 }
 .lightbox.is-visible .lb-comp { opacity: 1; transform: translate(0,0) scale(1); transition-duration: var(--dur-slow); }
+/* Moving between photos: the content fades out and back in while the photo and
+   its text are swapped; the arrows and the close mark stay where they are. */
+.lightbox.is-visible.is-fading .lb-comp { opacity: 0; transform: translate(0,0) scale(1); transition-duration: var(--dur-base); }
 .lb-stage { position: relative; flex: 0 0 auto; line-height: 0; }
-.lb-sizer { display: block; visibility: hidden; object-fit: contain; }
-.lb-layer { position: absolute; top: 50%; left: 50%; z-index: 1; line-height: 0; }
-.lb-layer img { display: block; object-fit: contain; pointer-events: auto; }
+.lb-photo { display: block; object-fit: contain; pointer-events: auto; }
+/* Fixed in the top corner, in line with the arrow below it. */
 .lb-close {
   position: absolute;
-  bottom: 100%;
-  left: 100%;
-  z-index: 3;
+  top: clamp(16px,2vh,32px);
+  right: calc(clamp(58px,8vw,120px) / 2 - 17px);
+  z-index: 7;
   width: 34px;
   height: 34px;
   display: flex;

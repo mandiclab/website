@@ -1,12 +1,13 @@
-// Gallery lightbox (DJC-DIY). Ported from the concept:
+// Gallery lightbox (DJC-DIY, drivepad). Ported from the concept:
 // - role="dialog" + aria-modal; everything behind it is hidden from assistive
 //   tech while it is open; Tab and Shift+Tab stay inside it
 // - focus goes to the close button on open and back to the tile it was
 //   opened from on close
 // - Escape closes, Left/Right and swipe move between photos, clicking the
 //   backdrop closes
-// - photos cross-fade between two layers; clicking again mid-fade shortens the
-//   running fade and queues the next one, which then runs faster
+// - moving between photos fades the whole content — photo and the text beside
+//   it — out and back in; the arrows and the close mark stay put, and the new
+//   photo takes its size while nothing is showing, so no shape jumps
 // Only tiles that contain an image take part.
 
 (function () {
@@ -14,7 +15,7 @@
   if (!grid) return;
   var host = grid.closest('.gallery') || grid.parentNode;
   var tiles = Array.prototype.slice.call(grid.querySelectorAll('.shot'));
-  var EASE = 'cubic-bezier(.16,1,.3,1)';
+  var FADE_MS = 300;   // --dur-base, the time the content takes to fade
 
   function el(tag, className, attrs) {
     var node = document.createElement(tag);
@@ -22,8 +23,6 @@
     for (var k in attrs || {}) node.setAttribute(k, attrs[k]);
     return node;
   }
-
-  function raf2(fn) { requestAnimationFrame(function () { requestAnimationFrame(fn); }); }
 
   function shots() {
     return tiles.map(function (btn) {
@@ -34,7 +33,7 @@
         src: img.currentSrc || img.src,
         alt: img.getAttribute('alt') || '',
         w: img.naturalWidth || Number(img.getAttribute('width')) || 0,
-        h: img.naturalHeight || Number(img.getAttribute('height')) || 0,
+        h: img.naturalHeight || Number(img.getAttribute('height')) || 0
       };
     }).filter(Boolean);
   }
@@ -104,8 +103,7 @@
   var dom = null;         // lightbox elements while mounted
   var returnTo = null;
   var closing = false;
-  var closeTimer = null, swapTimer = null;
-  var swapping = false, swapAt = 0, queue = [], fromSlot = null;
+  var closeTimer = null, fadeTimer = null;
   var hiddenBehind = [];
   var touchX = null;
 
@@ -116,14 +114,13 @@
     var dialog = el('div', 'lightbox', { role: 'dialog', 'aria-modal': 'true', tabindex: '-1' });
     var comp = el('div', 'lb-comp');
     var stage = el('div', 'lb-stage');
-    var sizer = el('img', 'lb-sizer', { alt: '' });
+    var photo = el('img', 'lb-photo', { alt: '' });
     var closeBtn = el('button', 'lb-close', { type: 'button', 'aria-label': 'Close' });
     var x = el('span', 'lb-x');
     x.appendChild(el('span'));
     x.appendChild(el('span'));
     closeBtn.appendChild(x);
-    stage.appendChild(sizer);
-    stage.appendChild(closeBtn);
+    stage.appendChild(photo);
     comp.appendChild(stage);
     var prev = el('button', 'lb-edge lb-prev', { type: 'button', 'aria-label': 'Previous image' });
     prev.appendChild(el('span'));
@@ -132,12 +129,13 @@
     dialog.appendChild(comp);
     dialog.appendChild(prev);
     dialog.appendChild(next);
+    dialog.appendChild(closeBtn);
 
-    dom = { dialog: dialog, comp: comp, stage: stage, sizer: sizer, closeBtn: closeBtn, prev: prev, next: next, layerA: null, layerB: null, info: null, infoKey: null, ro: null };
+    dom = { dialog: dialog, comp: comp, stage: stage, photo: photo, closeBtn: closeBtn, prev: prev, next: next, info: null, infoKey: null };
 
     dialog.addEventListener('click', function (e) { e.preventDefault(); close(); });
     stage.addEventListener('click', function (e) { e.stopPropagation(); });
-    closeBtn.addEventListener('click', function (e) { e.preventDefault(); close(); });
+    closeBtn.addEventListener('click', function (e) { e.stopPropagation(); close(); });
     prev.addEventListener('click', function (e) { e.stopPropagation(); step(-1); });
     next.addEventListener('click', function (e) { e.stopPropagation(); step(1); });
     dialog.addEventListener('keydown', trapTab);
@@ -151,11 +149,6 @@
       touchX = null;
       if (Math.abs(dx) > 48) { e.stopPropagation(); step(dx > 0 ? -1 : 1); }
     });
-    sizer.addEventListener('load', measure);
-    if (typeof ResizeObserver !== 'undefined') {
-      dom.ro = new ResizeObserver(measure);
-      dom.ro.observe(sizer);
-    }
 
     host.appendChild(dialog);
     hideBehind(dialog);
@@ -164,7 +157,6 @@
 
   function unmount() {
     if (!dom) return;
-    if (dom.ro) dom.ro.disconnect();
     showBehind();
     dom.dialog.remove();
     dom = null;
@@ -210,24 +202,25 @@
     var list = shots();
     if (!list.length) return;
     clearTimeout(closeTimer);
+    clearTimeout(fadeTimer);
     closing = false;
     returnTo = fromTile || null;
     document.body.style.overflow = 'hidden';
-    st = { lb: at, vis: false, slot: 'a', srcA: list[at].src, phaseA: 'rest', dirA: 1, srcB: null, phaseB: null, dirB: 1, durT: 1000, durO: 760, iw: 0, ih: 0 };
-    queue = [];
-    swapping = false;
-    clearTimeout(swapTimer);
-    if (dom) { removeLayer('A'); removeLayer('B'); hideBehind(dom.dialog); }
+    st = { lb: at, vis: false, fading: false };
     mount();
+    dom.dialog.classList.remove('is-fading');
     preload(list, at);
     ensureNote(list[at].src, function () { if (st && !closing) render(); });
     render();
-    raf2(function () { if (st && !closing) { st.vis = true; render(); } });
+    requestAnimationFrame(function () {
+      requestAnimationFrame(function () { if (st && !closing) { st.vis = true; render(); } });
+    });
   }
 
   function close() {
     if (!st || closing) return;
     closing = true;
+    clearTimeout(fadeTimer);
     document.body.style.overflow = '';
     showBehind();
     var back = returnTo;
@@ -251,89 +244,34 @@
   }
 
   // ── Moving between photos ───────────────────────────────────────────────
-  // The outgoing layer drifts against the direction of travel and fades while
-  // the incoming one slides in from the other side. A click mid-slide shortens
-  // the running slide and queues the next step, which runs faster the deeper
-  // the queue gets.
+  // The content fades out, the next photo and its text take its place while
+  // nothing is showing, and it all fades back in. Clicking again during the
+  // fade just moves on further, so a burst of clicks lands on the right photo.
 
   function step(dir) {
     if (!st || closing) return;
     var list = shots();
-    if (!list.length) return;
-    // Never let a lost transition wedge navigation shut.
-    if (swapping && Date.now() - swapAt > 1600) { clearTimeout(swapTimer); finishSwap(); }
-    if (swapping) {
-      if (queue.length < 6) queue.push(dir);
-      var accel = 170;
-      st.durT = accel;
-      st.durO = accel;
-      render();
-      clearTimeout(swapTimer);
-      swapTimer = setTimeout(finishSwap, accel + 30);
-      return;
-    }
-    beginSwap(dir, list);
-  }
+    if (list.length < 2) return;
+    st.lb = ((st.lb + dir) % list.length + list.length) % list.length;
+    ensureNote(list[st.lb].src, function () { if (st && !closing && !st.fading) render(); });
+    preload(list, st.lb);
+    if (st.fading) return;    // already on its way out; it will pick this up
 
-  function beginSwap(dir, list) {
-    var len = list.length;
-    if (len < 2) return;
-    var cur = ((Number(st.lb) || 0) % len + len) % len;
-    var next = (cur + dir + len) % len;
-    swapAt = Date.now();
-    var depth = queue.length;
-    var durT = Math.max(280, Math.round(1000 / (1 + depth * 0.9)));
-    var durO = Math.round(durT * 0.76);
-    swapping = true;
-    var F = st.slot === 'b' ? 'B' : 'A';
-    var T = F === 'A' ? 'B' : 'A';
-    fromSlot = F;
-    st.lb = next;
-    st.slot = T.toLowerCase();
-    st.durT = durT;
-    st.durO = durO;
-    st['src' + T] = list[next].src;
-    st['phase' + T] = 'enter';
-    st['dir' + T] = dir;
-    st['phase' + F] = 'out';
-    st['dir' + F] = dir;
-    render();
-    preload(list, next);
-    raf2(function () {
-      if (!st) return;
-      st['phase' + T] = 'rest';
-      render();
-    });
-    clearTimeout(swapTimer);
-    swapTimer = setTimeout(finishSwap, durT + 40);
-  }
-
-  function finishSwap() {
-    if (!st) { swapping = false; return; }
-    var F = fromSlot;
-    if (F) {
-      st['src' + F] = null;
-      st['phase' + F] = null;
-      render();
-    }
-    swapping = false;
-    if (queue.length) beginSwap(queue.shift(), shots());
-    else { st.durT = 1000; st.durO = 760; render(); }
+    st.fading = true;
+    dom.dialog.classList.add('is-fading');
+    clearTimeout(fadeTimer);
+    fadeTimer = setTimeout(function () {
+      if (!st || closing) return;
+      render();               // swap photo and text while nothing is showing
+      st.fading = false;
+      // A breath, so the new photo is painted before it fades back in.
+      fadeTimer = setTimeout(function () {
+        if (st && !closing && dom) dom.dialog.classList.remove('is-fading');
+      }, 20);
+    }, FADE_MS);
   }
 
   // ── Render ──────────────────────────────────────────────────────────────
-
-  function measure() {
-    if (!dom || !st) return;
-    var w = dom.sizer.offsetWidth, h = dom.sizer.offsetHeight;
-    if (!w || !h) return;
-    if (st.iw !== w || st.ih !== h) { st.iw = w; st.ih = h; render(); }
-  }
-
-  function removeLayer(S) {
-    var key = 'layer' + S;
-    if (dom && dom[key]) { dom[key].remove(); dom[key] = null; }
-  }
 
   function render() {
     if (!dom || !st) return;
@@ -351,77 +289,22 @@
     // The photo keeps air around it instead of filling the screen, and on a
     // large monitor it stops growing at these caps.
     var maxW = Math.min(vw * (narrow ? 0.88 : 0.80), 1440);
-    var maxH = Math.min(vh * (narrow ? 0.68 : 0.76), 900);
+    var maxH = Math.min(vh * (narrow ? 0.68 : 0.78), 900);
     var availW = hasInfo && !narrow ? Math.min(maxW, vw * 0.92 - infoPx - gapPx) : maxW;
     var availH = hasInfo && narrow ? Math.min(maxH, vh * 0.86 - 200 - gapPx) : maxH;
-    var maxW = Math.round(availW) + 'px', maxH = Math.round(availH) + 'px';
-
-    function entryOf(src) { return src ? list.filter(function (s) { return s.src === src; })[0] : null; }
-    function fitOf(src) {
-      var e = entryOf(src);
-      if (!e || !e.w || !e.h) return { w: 'auto', h: 'auto' };
-      var k = Math.min(availW / e.w, availH / e.h);
-      return { w: Math.round(e.w * k) + 'px', h: Math.round(e.h * k) + 'px' };
-    }
 
     dom.dialog.setAttribute('aria-label', 'Gallery image ' + (idx + 1) + ' of ' + n);
     dom.dialog.classList.toggle('is-visible', st.vis);
 
-    var fit = fitOf(entry.src);
-    if (dom.sizer.getAttribute('src') !== entry.src) dom.sizer.setAttribute('src', entry.src);
-    dom.sizer.alt = entry.alt;
-    // The frame holds the size of the photo on show, and eases to the next
-    // one's size while the two cross-fade.
-    setStyle(dom.sizer, {
-      width: fit.w, height: fit.h, maxWidth: maxW, maxHeight: maxH,
-      transition: 'width ' + st.durT + 'ms ' + EASE + ', height ' + st.durT + 'ms ' + EASE
+    var k = entry.w && entry.h ? Math.min(availW / entry.w, availH / entry.h) : 0;
+    if (dom.photo.getAttribute('src') !== entry.src) dom.photo.setAttribute('src', entry.src);
+    dom.photo.alt = entry.alt;
+    setStyle(dom.photo, {
+      width: k ? Math.round(entry.w * k) + 'px' : 'auto',
+      height: k ? Math.round(entry.h * k) + 'px' : 'auto',
+      maxWidth: Math.round(availW) + 'px',
+      maxHeight: Math.round(availH) + 'px'
     });
-
-    ['A', 'B'].forEach(function (S) {
-      var src = st['src' + S];
-      var key = 'layer' + S;
-      if (!src) { removeLayer(S); return; }
-      // Photos cross-fade: they come in all shapes, and sliding them made the
-      // frame jump whenever the next one was a different size.
-      var phase = st['phase' + S];
-      var style = {
-        opacity: phase === 'rest' ? '1' : '0',
-        transform: 'translate(-50%, -50%)',
-        transition: 'opacity ' + st.durO + 'ms ' + EASE
-      };
-      var layer = dom[key];
-      if (!layer) {
-        // A fresh layer, so its starting offset and transparency are a real
-        // first paint and the slide-in animates from there.
-        layer = el('div', 'lb-layer');
-        var img = el('img');
-        img.addEventListener('click', function (e) { e.stopPropagation(); });
-        layer.appendChild(img);
-        setStyle(layer, style);
-        var before = S === 'A' && dom.layerB ? dom.layerB : dom.closeBtn;
-        dom.stage.insertBefore(layer, before);
-        dom[key] = layer;
-      } else {
-        setStyle(layer, style);
-      }
-      var li = layer.firstChild;
-      if (li.getAttribute('src') !== src) li.setAttribute('src', src);
-      var e = entryOf(src);
-      li.alt = e ? e.alt : '';
-      // A photo on its way out keeps the size it had, so it fades as it was.
-      if (phase !== 'out' || !li.style.width) {
-        var f = fitOf(src);
-        setStyle(li, { width: f.w, height: f.h, maxWidth: maxW, maxHeight: maxH });
-      }
-    });
-
-    // The close mark sits on a short extension of the image's
-    // bottom-left → top-right diagonal.
-    var iw = st.iw || 0, ih = st.ih || 0;
-    var diag = Math.sqrt(iw * iw + ih * ih) || 1;
-    var cdx = iw ? 22 * iw / diag : 15.5;
-    var cdy = ih ? 22 * ih / diag : 15.5;
-    dom.closeBtn.style.transform = 'translate(calc(-50% + ' + cdx.toFixed(1) + 'px), calc(50% - ' + cdy.toFixed(1) + 'px))';
 
     if (hasInfo) {
       if (!dom.info) {
@@ -429,9 +312,8 @@
         dom.info.addEventListener('click', function (e) { e.stopPropagation(); });
         dom.comp.appendChild(dom.info);
       }
-      var infoKey = entry.src;
-      if (dom.infoKey !== infoKey) {
-        dom.infoKey = infoKey;
+      if (dom.infoKey !== entry.src) {
+        dom.infoKey = entry.src;
         dom.info.textContent = '';
         if (meta.links.length) {
           var links = el('div', 'lb-links');

@@ -88,7 +88,7 @@
   --dur-base:300ms;
   --dur-slow:500ms;
   /* Slideshow slides travel further, so they need longer than --dur-slow. */
-  --dur-slide:900ms;
+  --dur-slide:1000ms;
   --ease:cubic-bezier(.16,1,.3,1);
 }
 

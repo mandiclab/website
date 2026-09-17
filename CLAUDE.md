@@ -91,7 +91,7 @@ boje, veličine ni trajanja animacija bez pitanja.
 --dur-fast:160ms;
 --dur-base:300ms;
 --dur-slow:500ms;
---dur-slide:900ms;   /* smenjivanje slika u slideshow-u */
+--dur-slide:1000ms;  /* smenjivanje slika u slideshow-u */
 --ease:cubic-bezier(.16,1,.3,1);
 ```
 

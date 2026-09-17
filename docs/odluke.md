@@ -203,8 +203,9 @@ bez teksta prikazuje samo fotografiju. Naslov prve slike je `<h1>` stranice,
 ostale slike koriste `<h2>`. Linkovi na slici koja se ne vidi ispadaju iz
 redosleda tabulatora (slideshow.js), da fokus ne ode na nevidljivo dugme.
 Prva slika je o DJC-DIY, druga o demou DJ Tweety-ja (njegovi nalozi i dugme
-„See demo" ka YouTube demou), treća je poziv da se zaprati MandićLab (YouTube,
-Instagram, Discord) uz rečenicu o podršci na Ko-fi-ju.
+„See demo" ka YouTube demou), treća je „Stay tuned" (YouTube,
+Instagram, Discord zajednica) uz istu rečenicu o podršci na Ko-fi-ju kao na
+DJC-DIY stranici.
 
 **Slika u „What's new" kartici može imati više fotografija** (nije u konceptu,
 na zahtev vlasnika). Koristi isti slideshow kao hero (`data-indicator="none"`):

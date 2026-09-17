@@ -357,7 +357,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .slide-arrow.is-prev span { border-left: 1px solid currentColor; border-bottom: 1px solid currentColor; margin-left: 4px; }
 .slide-arrow.is-next span { border-right: 1px solid currentColor; border-top: 1px solid currentColor; margin-right: 4px; }
 @media (hover: hover) { .slideshow:hover .slide-arrow { opacity: 1; } }
-@media (hover: none) { .slide-arrow { opacity: 1; background: rgba(11,11,12,0.38); } }
+/* On touch there is no hover, so the arrows stay visible — the bare arrow,
+   with no plate behind it (the concept had one). */
+@media (hover: none) { .slide-arrow { opacity: 1; } }
 .slide-arrow:focus-visible { opacity: 1; outline: 2px solid var(--accent-blue); outline-offset: 2px; }
 .slideshow:focus-visible .slide-arrow { opacity: 1; }
 

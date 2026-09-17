@@ -39,6 +39,10 @@ u footeru: ikonica 16×16px unutar `<a>` od 24×24px sa `margin:-4px`.
 Negativna margina održava razmak na ekranu nepromenjenim. Ne „sređuj"
 dimenzije na jednu vrednost — izgubio bi dodirnu metu.
 
+**Strelice nemaju podlogu ni na dodirnim ekranima.** Koncept im na telefonu
+daje tamni kvadratić (`background: rgba(11,11,12,0.38)`); sada je samo
+strelica, na svim uređajima. Na dodiru ostaju stalno vidljive, jer nema hover-a.
+
 **Pauza slideshow-a ima dva odvojena mehanizma.** `paused` je trajna odluka
 korisnika preko dugmeta. `hover`, `focus` i `hidden` su privremene pauze koje
 se same otpuštaju. Ne spajaj ih u jedan flag.
@@ -172,8 +176,9 @@ Prva slika je o DJC-DIY, druga o demou DJ Tweety-ja (njegovi nalozi i dugme
 
 **Slika u „What's new" kartici može imati više fotografija** (nije u konceptu,
 na zahtev vlasnika). Koristi isti slideshow kao hero (`data-indicator="none"`):
-fotografije se same smenjuju istim prelazom, bez strelica i tačkica, jer je
-kartica vest, a detalji su na stranici projekta. Staje dok je miš preko slike
+fotografije se same smenjuju istim prelazom, bez tačkica, jer je
+kartica vest, a detalji su na stranici projekta; strelice postoje svuda gde ima
+više slika. Staje dok je miš preko slike
 ili tab nije aktivan, a uz `prefers-reduced-motion` stoji na prvoj fotografiji.
 
 **Home hero je visok `100svh`, ne `100vh`.** Na telefonu `100vh` računa visinu

@@ -3,7 +3,7 @@
 //   data-autoplay          advance on its own (never with reduced motion)
 //   data-indicator="dots"  play/pause button and dots over the image (default)
 //   data-indicator="thumbs" thumbnail strip below the slideshow
-//   data-indicator="none"  no arrows, dots or thumbnails (news images)
+//   data-indicator="none"  no dots or thumbnails, arrows only (news images)
 //   data-interval="6000"   milliseconds between slides
 //   data-hover-pause="off" keep playing while the pointer is over it (the hero
 //                          fills the screen, and it has its own pause button)
@@ -110,7 +110,9 @@
       }
     }
 
-    if (count > 1 && indicator !== 'none') {
+    if (count > 1) {
+      // Arrows on every slideshow with more than one image; only the dots and
+      // the thumbnails depend on data-indicator.
       var prevBtn = el('button', 'slide-arrow is-prev', { type: 'button', 'aria-label': 'Previous slide' });
       prevBtn.appendChild(el('span'));
       prevBtn.addEventListener('click', function () { step(-1); });

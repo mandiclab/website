@@ -12,6 +12,7 @@
 <script src="/assets/js/site.js" defer></script>
 <script src="/assets/js/slideshow.js" defer></script>
 <script src="/assets/js/product.js" defer></script>
+<script src="/assets/js/lightbox.js" defer></script>
 </head>
 <body>
 <div class="page">
@@ -176,6 +177,34 @@
                     Support
                   </a>
                 </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Shown together with the Overview tab. -->
+          <div class="gallery" data-with-panel="djc-panel-Overview">
+            <div class="gallery-inner">
+              <div class="gallery-head">
+                <div class="gallery-line"></div>
+                <h2 class="label">Gallery</h2>
+                <div class="gallery-line"></div>
+              </div>
+              <!-- One .shot per photo, any proportions. Put the image inside the button:
+                   <button type="button" class="shot"><img src="/assets/images/djc-diy/gallery/1.webp" alt="…" width="…" height="…" loading="lazy" decoding="async"></button>
+                   Optional credit and description for the lightbox go in a <template class="shot-info"> inside the button (see the second tile).
+                   Empty tiles are placeholders and do not open the lightbox. -->
+              <div class="gallery-grid">
+                <button type="button" class="shot"></button>
+                <button type="button" class="shot">
+                  <template class="shot-info">
+                    <a href="https://instagram.com/djtweety" data-platform="instagram">@djtweety</a>
+                    <p>This is temporary placeholder text showing how a community build description will appear.</p>
+                  </template>
+                </button>
+                <button type="button" class="shot"></button>
+                <button type="button" class="shot"></button>
+                <button type="button" class="shot"></button>
+                <button type="button" class="shot"></button>
               </div>
             </div>
           </div>

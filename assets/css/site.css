@@ -1010,6 +1010,146 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   mask: var(--icon) center / contain no-repeat;
 }
 
+/* Gallery (under Overview). Each .shot holds one image at its own proportions;
+   empty tiles use the concept's placeholder proportions. */
+.gallery { width: 100%; }
+.gallery-inner { margin-top: clamp(96px,10vh,128px); padding: clamp(48px,5.5vh,64px) 0 clamp(96px,12vh,128px); }
+.gallery-head { display: flex; align-items: center; gap: clamp(16px,2vw,32px); }
+.gallery-line { flex: 1 1 auto; height: 1px; background: var(--line-1); }
+.gallery-head .label { flex: 0 0 auto; }
+.gallery-grid { column-width: clamp(150px,12vw,210px); column-gap: clamp(12px,1.1vw,16px); margin-top: clamp(32px,3.6vh,48px); }
+.shot {
+  display: block;
+  position: relative;
+  width: 100%;
+  margin: 0 0 clamp(12px,1.1vw,16px);
+  break-inside: avoid;
+  overflow: hidden;
+  background: var(--surface-1);
+  border: 1px solid var(--line-1);
+  cursor: pointer;
+  transition: transform var(--dur-base) var(--ease);
+}
+.shot:hover { transform: scale(1.02); }
+.shot img { display: block; width: 100%; height: auto; }
+.shot:not(:has(img)):nth-child(6n+1) { aspect-ratio: 4 / 3; }
+.shot:not(:has(img)):nth-child(6n+2) { aspect-ratio: 3 / 4; }
+.shot:not(:has(img)):nth-child(6n+3) { aspect-ratio: 1 / 1; }
+.shot:not(:has(img)):nth-child(6n+4) { aspect-ratio: 3 / 2; }
+.shot:not(:has(img)):nth-child(6n+5) { aspect-ratio: 4 / 5; }
+.shot:not(:has(img)):nth-child(6n+6) { aspect-ratio: 16 / 9; }
+
+/* Lightbox (assets/js/lightbox.js). Sizes that depend on the image and the
+   window are set by the script; everything else lives here. */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(16px,2vh,32px) clamp(16px,1.6vw,24px);
+  box-sizing: border-box;
+  background: rgba(11,11,12,0.34);
+  backdrop-filter: blur(14px) saturate(118%);
+  -webkit-backdrop-filter: blur(14px) saturate(118%);
+  opacity: 0;
+  transition: opacity var(--dur-base) var(--ease);
+}
+.lightbox.is-visible { opacity: 1; }
+.lb-comp {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(24px,3vw,48px);
+  max-width: 100%;
+  max-height: 100%;
+  opacity: 0;
+  transform: translateY(6px) scale(0.976);
+  transition: opacity var(--dur-fast) var(--ease), transform var(--dur-fast) var(--ease);
+}
+.lightbox.is-visible .lb-comp { opacity: 1; transform: translate(0,0) scale(1); transition-duration: var(--dur-slow); }
+.lb-stage { position: relative; flex: 0 0 auto; line-height: 0; }
+.lb-sizer { display: block; visibility: hidden; object-fit: contain; }
+.lb-layer { position: absolute; top: 50%; left: 50%; z-index: 1; line-height: 0; }
+.lb-layer img { display: block; object-fit: contain; pointer-events: auto; }
+.lb-close {
+  position: absolute;
+  bottom: 100%;
+  left: 100%;
+  z-index: 3;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  pointer-events: auto;
+  cursor: pointer;
+}
+.lb-x { position: relative; display: block; width: 15px; height: 15px; opacity: 0.22; transition: opacity var(--dur-slow) var(--ease); }
+.lb-close:hover .lb-x { opacity: 0.9; }
+.lb-x span { position: absolute; top: 50%; left: 0; width: 100%; height: 1px; background: var(--text-1); transform: rotate(45deg); }
+.lb-x span + span { transform: rotate(-45deg); }
+.lb-info {
+  flex: 0 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(24px,2.4vh,32px);
+  max-width: 100%;
+  max-height: 100%;
+  box-sizing: border-box;
+  overflow-y: auto;
+  opacity: 0;
+  transition: opacity var(--dur-slow) var(--ease);
+}
+.lightbox.is-visible .lb-info { opacity: 1; }
+.lb-links { display: flex; flex-direction: column; gap: 4px; }
+.lb-links a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line-1);
+  font-size: var(--fs-small);
+  font-weight: 300;
+  letter-spacing: 0;
+  color: var(--text-2);
+  transition: color var(--dur-base) var(--ease);
+}
+.lb-links a:hover { color: var(--text-1); }
+.lb-link-icon {
+  display: block;
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  background: var(--text-2);
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+.lb-desc { margin: 0; max-width: var(--measure-narrow); font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); text-wrap: pretty; }
+.lb-edge {
+  position: absolute;
+  z-index: 6;
+  top: 0;
+  bottom: 0;
+  width: clamp(58px,8vw,120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.lb-prev { left: 0; }
+.lb-next { right: 0; }
+.lb-edge span { display: block; width: 13px; height: 13px; opacity: 0.22; transition: opacity var(--dur-slow) var(--ease); }
+.lb-prev span { border-left: 1px solid var(--text-1); border-top: 1px solid var(--text-1); transform: rotate(-45deg); }
+.lb-next span { border-right: 1px solid var(--text-1); border-top: 1px solid var(--text-1); transform: rotate(45deg); }
+.lb-edge:hover span { opacity: 0.92; }
+
 /* Parts */
 .parts-group { margin-top: clamp(48px,5vh,64px); }
 .parts-group.is-last { margin-top: clamp(64px,7vh,96px); }
@@ -1285,6 +1425,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 /* The concept switches the Overview to one column below 820px viewport width. */
 @media (max-width: 819px) {
   .overview-grid { grid-template-columns: minmax(0,1fr); }
+  .lb-comp { flex-direction: column; }
 }
 
 @media (max-width: 900px) {
@@ -1321,6 +1462,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .info-grid { grid-template-columns: minmax(0,1fr); gap: 32px; }
   .repo-actions { flex-direction: column; flex-wrap: wrap; align-items: stretch; gap: 12px; }
   .repo-actions > a { flex: 1 1 auto; justify-content: center; }
+  .lb-close { width: 44px; height: 44px; }
 }
 
 /* ── Reduced motion ────────────────────────────────────────────────────── */

@@ -46,9 +46,11 @@ Sort „Newest" ga zato stavlja iznad DJC-DIY. Tako treba.
 **`drivepad` ima svoju stranicu** (`/projects/drivepad/`), iako je u konceptu
 nema (`page: null`) — dodata na zahtev vlasnika. Strukturno je identična
 DJC-DIY stranici (slideshow, Ko-fi obaveštenje, isti tabovi, galerija,
-lightbox); razlikuju se samo naslov, opis, adresa, nazivi za čitače ekrana i
-ID-jevi tabova. Tekst i sadržaj su privremeno preuzeti sa DJC-DIY (vidi
-otvorene stavke). „Show more" na drivepad kartici vodi na nju.
+lightbox); tekst je drivepad-ov. „Show more" na drivepad kartici vodi na nju.
+Dok linkovi ne budu spremni, dugmad za video nemaju `data-video` (okvir je
+prazan), a GitHub Repo, Download i PCBWay dugmad su `<a>` bez `href` —
+izgledaju isto, ali ne vode nigde i ne dobijaju fokus. Tabela 3D štampanih
+delova i koraci sklapanja su namerno prazni.
 
 ---
 
@@ -110,6 +112,11 @@ slovima (boje „In development" taga, sjaj kao kod bundle kartica); sama poruka
 je običnim slovima da bi se lako čitala. Ton je namerno blag — obaveštenje,
 ne molba.
 
+**DJC-DIY tekst izmenjen u odnosu na koncept, na zahtev vlasnika.** Opis
+mikrokontrolera i žice u tabeli elektronskih komponenti usklađen je sa
+easyrace delovima (`Pro Micro - ATmega32U4 - USB Type-C`, `≥ 24 AWG`), a iz
+rečenice o PCBWay-u je izbačen deo „where you can also see the whole project".
+
 **Godina u footeru se menja sama** (`assets/js/site.js`), kao u konceptu. U
 HTML-u stoji rezervna godina za posetioce bez JavaScript-a.
 
@@ -170,9 +177,8 @@ Sadržaj koji popunjava vlasnik projekta, ne ti:
 - `FAQ` i `Terms` tabovi na easyrace stranici — postoje, kompletno su
   ožičeni, ali su prazni
 - sve slike i njihovi `alt` tekstovi
-- drivepad stranica: sav tekst je još DJC-DIY sadržaj — takođe YouTube
-  video ID-jevi, GitHub/Download/PCBWay linkovi, tabele delova, koraci
-  sklapanja i njihove slike (sada DJC-DIY SVG-ovi), FAQ i licence
+- drivepad stranica: YouTube video snimci i linkovi ka njima, GitHub/Download
+  i PCBWay linkovi, tabela 3D štampanih delova i koraci sklapanja
 
 Pred lansiranje easyrace-a:
 

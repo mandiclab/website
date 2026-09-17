@@ -1,4 +1,4 @@
-// Product pages (DJC-DIY, easyrace): section tabs, the scroll fade on
+// Product pages (DJC-DIY, drivepad, easyrace): section tabs, the scroll fade on
 // sideways-scrolling bars, the video picker and the FAQ accordion.
 // Ported from the concept's logic.
 
@@ -150,7 +150,9 @@
             later(function () { if (id === switchId) frame.classList.remove('is-switching'); }, SETTLE_MS);
           }
           iframe.addEventListener('load', reveal, { once: true });
-          iframe.src = 'https://www.youtube.com/embed/' + btn.getAttribute('data-video');
+          // A button whose video isn't out yet (no data-video) shows an empty frame.
+          var video = btn.getAttribute('data-video');
+          iframe.src = video ? 'https://www.youtube.com/embed/' + video : 'about:blank';
           later(reveal, LOAD_TIMEOUT_MS);
         }, reducedMotion.matches ? 0 : FADE_OUT_MS);
       });

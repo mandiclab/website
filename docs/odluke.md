@@ -89,6 +89,12 @@ A DIY DJ Controller - Detailed Tutorial"), a `WDb8kAIuzXc` demo („PRO DJ vs
 DIY DJ Controller"). Ispravljeno je i na dugmadima i u linkovima u tekstu —
 ne vraćaj adrese iz koncepta.
 
+**Promena videa na DJC-DIY: bez pomeranja, i čeka učitavanje.** U konceptu
+okvir se pomeri ulevo i vrati posle 0,2s, pa se vidi kako novi YouTube plejer
+„iskače" dok se učitava. Sada okvir stoji, stari video izbledi, novi se učitava
+skriven i pojavljuje se tek kada ga YouTube javi kao učitanog (plus kratka
+pauza da plejer iscrta sliku). Dugme se obeležava odmah na klik.
+
 **Godina u footeru se menja sama** (`assets/js/site.js`), kao u konceptu. U
 HTML-u stoji rezervna godina za posetioce bez JavaScript-a.
 

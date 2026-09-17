@@ -953,12 +953,20 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   border: 1px solid var(--line-1);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
 }
-.video-frame.is-switching { opacity: 0; transform: translateX(-6px); }
-.video-frame iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; }
+/* Switching videos: the frame stays, the old video fades out, and the new one
+   fades in only once YouTube has loaded it (docs/odluke.md). */
+.video-frame iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  opacity: 1;
+  transition: opacity var(--dur-slow) var(--ease);
+}
+.video-frame.is-switching iframe { opacity: 0; transition-duration: var(--dur-base); }
 
 .info-intro { margin: 24px 0 0; font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); text-wrap: pretty; }
 .info-grid {

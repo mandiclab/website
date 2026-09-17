@@ -78,28 +78,48 @@
   updateFades();
 
   // ── Video picker ────────────────────────────────────────────────────────
-  // The player fades out, switches video and fades back in.
+  // The old video fades out, the new one loads while hidden, and it fades in
+  // only once the player has loaded, so the switch never shows a half-loaded
+  // player (docs/odluke.md).
+
+  var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  var FADE_OUT_MS = 300;   // --dur-base
+  var SETTLE_MS = 200;     // lets the player draw its first frame after load
+  var LOAD_TIMEOUT_MS = 4000;
 
   Array.prototype.forEach.call(document.querySelectorAll('.video-tabs'), function (group) {
     var buttons = Array.prototype.slice.call(group.querySelectorAll('.video-tab'));
     var frame = group.parentNode.querySelector('.video-frame');
     var iframe = frame && frame.querySelector('iframe');
     if (!iframe) return;
-    // The video that is actually showing; it changes only after the fade-out.
-    var showing = (buttons.filter(function (b) { return b.classList.contains('is-active'); })[0] || buttons[0]);
-    var timer = null;
+    var selected = (buttons.filter(function (b) { return b.classList.contains('is-active'); })[0] || buttons[0]);
+    var switchId = 0;
+    var timers = [];
+
+    function later(fn, ms) { timers.push(setTimeout(fn, ms)); }
 
     buttons.forEach(function (btn) {
       btn.addEventListener('click', function () {
-        if (btn === showing) return;
+        if (btn === selected) return;
+        selected = btn;
+        buttons.forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+        // A newer click cancels everything still pending from an older one.
+        var id = ++switchId;
+        timers.forEach(clearTimeout);
+        timers = [];
         frame.classList.add('is-switching');
-        clearTimeout(timer);
-        timer = setTimeout(function () {
-          showing = btn;
-          buttons.forEach(function (b) { b.classList.toggle('is-active', b === btn); });
+
+        later(function () {
+          var shown = false;
+          function reveal() {
+            if (shown || id !== switchId) return;
+            shown = true;
+            later(function () { if (id === switchId) frame.classList.remove('is-switching'); }, SETTLE_MS);
+          }
+          iframe.addEventListener('load', reveal, { once: true });
           iframe.src = 'https://www.youtube.com/embed/' + btn.getAttribute('data-video');
-          frame.classList.remove('is-switching');
-        }, 200);
+          later(reveal, LOAD_TIMEOUT_MS);
+        }, reducedMotion.matches ? 0 : FADE_OUT_MS);
       });
     });
   });

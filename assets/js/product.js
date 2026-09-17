@@ -8,12 +8,16 @@
   // A bar that scrolls sideways shows a fade on its right edge while there is
   // more to scroll to.
 
+  var FADE_PAIRS = [['.tabbar-wrap', '.tabbar'], ['.bundles-wrap', '.bundles-scroll']];
+
   function updateFades() {
-    Array.prototype.forEach.call(document.querySelectorAll('.tabbar-wrap'), function (wrap) {
-      var bar = wrap.querySelector('.tabbar');
-      if (!bar) return;
-      var more = bar.scrollWidth - bar.clientWidth - bar.scrollLeft > 4;
-      wrap.setAttribute('data-fade', more ? '1' : '0');
+    FADE_PAIRS.forEach(function (pair) {
+      Array.prototype.forEach.call(document.querySelectorAll(pair[0]), function (wrap) {
+        var bar = wrap.querySelector(pair[1]);
+        if (!bar) return;
+        var more = bar.scrollWidth - bar.clientWidth - bar.scrollLeft > 4;
+        wrap.setAttribute('data-fade', more ? '1' : '0');
+      });
     });
   }
 
@@ -49,15 +53,44 @@
         var on = t === tab;
         t.setAttribute('aria-selected', on ? 'true' : 'false');
         t.tabIndex = on ? 0 : -1;
-        var panel = document.getElementById(t.getAttribute('aria-controls'));
-        if (panel) panel.hidden = !on;
-        // Content that belongs to a panel but sits outside it follows it.
-        Array.prototype.forEach.call(document.querySelectorAll('[data-with-panel="' + t.getAttribute('aria-controls') + '"]'), function (el) {
+        var id = t.getAttribute('aria-controls');
+        var parts = [document.getElementById(id)].concat(
+          // Content that belongs to a panel but sits outside it follows it.
+          Array.prototype.slice.call(document.querySelectorAll('[data-with-panel="' + id + '"]'))
+        );
+        parts.forEach(function (el) {
+          if (!el) return;
+          var wasHidden = el.hidden;
           el.hidden = !on;
+          if (on && wasHidden) panelShown(el);
+          if (!on && !wasHidden) panelHidden(el);
         });
       });
       if (moveFocus) tab.focus();
       revealTab(tab);
+    }
+
+    // In the concept a panel is rebuilt each time its tab opens. Match that:
+    // a hidden panel stops its video (so it doesn't keep playing unseen), and
+    // a panel that opens again starts with its tables scrolled back.
+    function panelHidden(el) {
+      Array.prototype.forEach.call(el.querySelectorAll('iframe'), function (f) {
+        var src = f.getAttribute('src');
+        if (src && src !== 'about:blank') {
+          f.setAttribute('data-src', src);
+          f.setAttribute('src', 'about:blank');
+        }
+      });
+    }
+
+    function panelShown(el) {
+      Array.prototype.forEach.call(el.querySelectorAll('iframe[data-src]'), function (f) {
+        f.setAttribute('src', f.getAttribute('data-src'));
+        f.removeAttribute('data-src');
+      });
+      Array.prototype.forEach.call(el.querySelectorAll('.bundles-scroll, .parts-scroll'), function (s) {
+        s.scrollLeft = 0;
+      });
     }
 
     tabs.forEach(function (tab, i) {

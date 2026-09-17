@@ -10,6 +10,7 @@
 <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/product.js" defer></script>
 </head>
 <body>
 <div class="page">
@@ -27,6 +28,557 @@
   </header>
 
   <main>
+
+    <section class="product">
+      <!-- Hero image (5120×2160):
+           <img src="/assets/images/easyrace/hero.webp" alt="…" width="5120" height="2160" loading="eager" fetchpriority="high" decoding="async"> -->
+      <div class="er-hero"></div>
+
+      <div class="product-body">
+        <div class="product-inner">
+
+          <!-- Thumbnails under the hero; each takes one <img> like the hero, with loading="lazy". -->
+          <div class="er-thumbs">
+            <div class="er-thumb"></div>
+            <div class="er-thumb"></div>
+            <div class="er-thumb"></div>
+          </div>
+
+          <h1 class="product-title">easyrace</h1>
+          <div class="product-tags">
+            <span class="pill pill-rose">Digital product</span>
+          </div>
+
+          <div class="er-lead">
+            <div class="er-intro">
+              <p class="pretty">Easyrace is a fully 3D printable DIY sim racing setup that you can make at home without special tools, skill or knowledge.</p>
+              <p>Easyrace consists of:<br><span>easysteer</span> — steering wheel<br><span>easydrive</span> — pedals<br><span>easyshift</span> — H-pattern and sequential shifter<br><span>easydrift</span> — handbrake</p>
+              <p class="pretty">Unlike any other DIY sim racing equipment, everything here is 3D printed. No screws, nuts, springs, sliders, shafts, bearings or similar mechanical parts are needed.</p>
+              <p class="pretty">The electronics are reduced to the minimum, chosen to be affordable and reliable, and easy to source anywhere.</p>
+              <p class="pretty">The building process is very simple. Everything has its own place, the amount of parts is reduced to a minimum, no special tools are required and everything is well explained in a video tutorial.</p>
+            </div>
+            <div class="er-video-col">
+              <div class="er-video"></div>
+            </div>
+          </div>
+
+          <div class="tabbar-wrap" data-fade="0">
+            <div class="tabbar" role="tablist" aria-label="easyrace sections">
+              <button type="button" class="tab" role="tab" id="er-tab-Bundles" aria-controls="er-panel-Bundles" aria-selected="true" tabindex="0">Bundles</button>
+              <button type="button" class="tab" role="tab" id="er-tab-easysteer" aria-controls="er-panel-easysteer" aria-selected="false" tabindex="-1">easysteer</button>
+              <button type="button" class="tab" role="tab" id="er-tab-easydrive" aria-controls="er-panel-easydrive" aria-selected="false" tabindex="-1">easydrive</button>
+              <button type="button" class="tab" role="tab" id="er-tab-easyshift" aria-controls="er-panel-easyshift" aria-selected="false" tabindex="-1">easyshift</button>
+              <button type="button" class="tab" role="tab" id="er-tab-easydrift" aria-controls="er-panel-easydrift" aria-selected="false" tabindex="-1">easydrift</button>
+              <button type="button" class="tab" role="tab" id="er-tab-FAQ" aria-controls="er-panel-FAQ" aria-selected="false" tabindex="-1">FAQ</button>
+              <button type="button" class="tab" role="tab" id="er-tab-Terms" aria-controls="er-panel-Terms" aria-selected="false" tabindex="-1">Terms</button>
+            </div>
+          </div>
+
+          <!-- ── Bundles ───────────────────────────────────────────────── -->
+          <div class="bundles" role="tabpanel" id="er-panel-Bundles" aria-labelledby="er-tab-Bundles">
+            <div class="bundles-wrap" data-fade="0">
+              <div class="bundles-scroll">
+                <div>
+                  <div class="bundles-grid">
+                    <div></div>
+                    <div class="bundle is-green">
+                      <div class="bundle-name">Starter</div>
+                      <div class="bundle-was">$40</div>
+                      <div class="bundle-price">$35</div>
+                      <div class="bundle-save"><span>SAVE 13%</span></div>
+                      <button type="button" class="bundle-buy">BUY</button>
+                    </div>
+                    <div class="bundle is-blue">
+                      <div class="bundle-name">Core</div>
+                      <div class="bundle-was">$60</div>
+                      <div class="bundle-price">$50</div>
+                      <div class="bundle-save"><span>SAVE 17%</span></div>
+                      <button type="button" class="bundle-buy">BUY</button>
+                    </div>
+                    <div class="bundle is-rose">
+                      <div class="bundle-name">Pro</div>
+                      <div class="bundle-was">$95</div>
+                      <div class="bundle-price">$69</div>
+                      <div class="bundle-save"><span>SAVE 27%</span></div>
+                      <button type="button" class="bundle-buy">BUY</button>
+                    </div>
+                  </div>
+
+                  <!-- What each bundle includes: is-on marks an included item (Starter, Core, Pro). -->
+                  <div class="bundles-grid">
+                    <div class="bundle-row">
+                      <div class="bundle-feature"><span>easysteer</span> — steering wheel</div>
+                      <div class="bundle-check is-on"><div><div></div></div></div>
+                      <div class="bundle-check is-on"><div><div></div></div></div>
+                      <div class="bundle-check is-on"><div><div></div></div></div>
+                    </div>
+                    <div class="bundle-row">
+                      <div class="bundle-feature"><span>easydrive</span> — pedals</div>
+                      <div class="bundle-check is-on"><div><div></div></div></div>
+                      <div class="bundle-check is-on"><div><div></div></div></div>
+                      <div class="bundle-check is-on"><div><div></div></div></div>
+                    </div>
+                    <div class="bundle-row">
+                      <div class="bundle-feature"><span>easyshift</span> — H-pattern shifter</div>
+                      <div class="bundle-check"><div><div></div></div></div>
+                      <div class="bundle-check is-on"><div><div></div></div></div>
+                      <div class="bundle-check is-on"><div><div></div></div></div>
+                    </div>
+                    <div class="bundle-row">
+                      <div class="bundle-feature"><span>easyshift</span> — sequential shifter</div>
+                      <div class="bundle-check"><div><div></div></div></div>
+                      <div class="bundle-check"><div><div></div></div></div>
+                      <div class="bundle-check is-on"><div><div></div></div></div>
+                    </div>
+                    <div class="bundle-row">
+                      <div class="bundle-feature"><span>easydrift</span> — classic handbrake</div>
+                      <div class="bundle-check"><div><div></div></div></div>
+                      <div class="bundle-check"><div><div></div></div></div>
+                      <div class="bundle-check is-on"><div><div></div></div></div>
+                    </div>
+                    <div class="bundle-row">
+                      <div class="bundle-feature"><span>easydrift</span> — hydraulic handbrake</div>
+                      <div class="bundle-check"><div><div></div></div></div>
+                      <div class="bundle-check"><div><div></div></div></div>
+                      <div class="bundle-check is-on"><div><div></div></div></div>
+                    </div>
+                    <div class="bundle-row">
+                      <div class="bundle-feature"><span>Lifetime Free Updates</span></div>
+                      <div class="bundle-check is-on"><div><div></div></div></div>
+                      <div class="bundle-check is-on"><div><div></div></div></div>
+                      <div class="bundle-check is-on"><div><div></div></div></div>
+                    </div>
+                  </div>
+
+                  <div class="bundles-grid is-head">
+                    <div class="label">What you need</div>
+                  </div>
+                  <div class="bundles-grid is-matrix">
+                    <div class="matrix-title">Parts</div>
+                    <div></div>
+                    <div class="matrix-sep"></div>
+                    <div class="matrix-sep"></div>
+                    <div class="bundle-row">
+                      <div class="matrix-name">3D printing filament</div>
+                      <div class="matrix-qty">X g</div>
+                      <div class="matrix-qty">X g</div>
+                      <div class="matrix-qty">X g</div>
+                    </div>
+                    <div class="bundle-row">
+                      <div class="matrix-name">Pro Micro<div class="spec">ATmega32U4 — USB Type-C</div></div>
+                      <div class="matrix-qty">2x</div>
+                      <div class="matrix-qty">3x</div>
+                      <div class="matrix-qty">6x</div>
+                    </div>
+                    <div class="bundle-row">
+                      <div class="matrix-name">Potentiometer<div class="spec">WH148 10k Linear</div></div>
+                      <div class="matrix-qty">4x</div>
+                      <div class="matrix-qty">6x</div>
+                      <div class="matrix-qty">8x</div>
+                    </div>
+                    <div class="bundle-row">
+                      <div class="matrix-name">Switch<div class="spec">KW11-3Z-B</div></div>
+                      <div class="matrix-qty">2x</div>
+                      <div class="matrix-qty">2x</div>
+                      <div class="matrix-qty">4x</div>
+                    </div>
+                    <div class="bundle-row">
+                      <div class="matrix-name">Wire<div class="spec">≥ 24 AWG</div></div>
+                      <div class="matrix-qty">X m</div>
+                      <div class="matrix-qty">X m</div>
+                      <div class="matrix-qty">X m</div>
+                    </div>
+                  </div>
+                  <div class="bundles-grid is-tools">
+                    <div class="tools-title">Tools</div>
+                    <div class="tools-list">
+                      <div>3D printer<div class="spec">minimum 200 × 200 mm build plate</div></div>
+                      <div>Soldering iron</div>
+                      <div>Super glue</div>
+                      <div><a class="soft-link" href="https://www.arduino.cc/en/software" target="_blank" rel="noopener noreferrer">Arduino IDE</a></div>
+                    </div>
+                  </div>
+                  <div class="bundles-grid is-head">
+                    <div class="label">Compatibility</div>
+                    <div class="bundles-note">Works with most racing games.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- FAQ and Terms are wired up but still empty (content to come). -->
+          <div class="er-panel" role="tabpanel" id="er-panel-FAQ" aria-labelledby="er-tab-FAQ" hidden></div>
+          <div class="er-panel" role="tabpanel" id="er-panel-Terms" aria-labelledby="er-tab-Terms" hidden></div>
+
+          <!-- ── easysteer ─────────────────────────────────────────────── -->
+          <div class="er-panel er-sections" role="tabpanel" id="er-panel-easysteer" aria-labelledby="er-tab-easysteer" hidden>
+            <div>
+              <h2 class="er-title">steering wheel</h2>
+              <div class="er-block">
+                <div class="er-block-video"><div class="er-video"></div></div>
+                <div class="er-block-text">
+                  <div>
+                    <div class="label">Overview</div>
+                    <p>Overview information will be added here.</p>
+                  </div>
+                  <div>
+                    <div class="label">Specs</div>
+                    <div class="er-lines">
+                      <div>900° steering rotation</div>
+                      <div>300 mm wheel diameter</div>
+                      <div>Paddle shifters</div>
+                      <div>Horn button</div>
+                      <div>No force feedback</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label">What you get</div>
+                    <div class="er-lines">
+                      <div>3D models for 3D printing</div>
+                      <div>Pro Micro firmware</div>
+                      <div>Step by step video assembly tutorial</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label pad">What you need</div>
+                    <div class="er-need">
+                      <div class="er-need-parts">
+                        <div class="er-need-title">Parts</div>
+                        <div class="er-need-list">
+                          <div class="er-part"><div class="er-part-name">3D printing filament</div><div class="er-part-qty">X g</div></div>
+                          <div class="er-part"><div class="er-part-name">Pro Micro<div class="spec">ATmega32U4 — USB Type-C</div></div><div class="er-part-qty">1x</div></div>
+                          <div class="er-part"><div class="er-part-name">Potentiometer<div class="spec">WH148 10k Linear</div></div><div class="er-part-qty">1x</div></div>
+                          <div class="er-part"><div class="er-part-name">Switch<div class="spec">KW11-3Z-B</div></div><div class="er-part-qty">2x</div></div>
+                          <div class="er-part"><div class="er-part-name">Wire<div class="spec">≥ 24 AWG</div></div><div class="er-part-qty">X m</div></div>
+                        </div>
+                      </div>
+                      <div class="er-need-tools">
+                        <div class="er-need-title">Tools</div>
+                        <div class="er-need-list">
+                          <div class="er-tool">3D printer<div class="spec">minimum 200 × 200 mm build plate</div></div>
+                          <div class="er-tool">Soldering iron</div>
+                          <div class="er-tool">Super glue</div>
+                          <div class="er-tool"><a class="text-link" href="https://www.arduino.cc/en/software" target="_blank" rel="noopener noreferrer">Arduino IDE</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label pad">Compatibility</div>
+                    <p>Works with most racing games.</p>
+                  </div>
+                  <div>
+                    <div class="er-price">$20</div>
+                    <div class="er-buy-row"><button type="button" class="er-buy">Buy</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── easydrive ─────────────────────────────────────────────── -->
+          <div class="er-panel er-sections" role="tabpanel" id="er-panel-easydrive" aria-labelledby="er-tab-easydrive" hidden>
+            <div>
+              <h2 class="er-title">pedals</h2>
+              <div class="er-block">
+                <div class="er-block-video"><div class="er-video"></div></div>
+                <div class="er-block-text">
+                  <div>
+                    <div class="label">Overview</div>
+                    <p>Overview information will be added here.</p>
+                  </div>
+                  <div>
+                    <div class="label">Specs</div>
+                    <div class="er-lines">
+                      <div>Throttle, brake and clutch pedals</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label">What you get</div>
+                    <div class="er-lines">
+                      <div>3D models for 3D printing</div>
+                      <div>Pro Micro firmware</div>
+                      <div>Step by step video assembly tutorial</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label pad">What you need</div>
+                    <div class="er-need">
+                      <div class="er-need-parts">
+                        <div class="er-need-title">Parts</div>
+                        <div class="er-need-list">
+                          <div class="er-part"><div class="er-part-name">3D printing filament</div><div class="er-part-qty">X g</div></div>
+                          <div class="er-part"><div class="er-part-name">Pro Micro<div class="spec">ATmega32U4 — USB Type-C</div></div><div class="er-part-qty">1x</div></div>
+                          <div class="er-part"><div class="er-part-name">Potentiometer<div class="spec">WH148 10k Linear</div></div><div class="er-part-qty">3x</div></div>
+                          <div class="er-part"><div class="er-part-name">Wire<div class="spec">≥ 24 AWG</div></div><div class="er-part-qty">X m</div></div>
+                        </div>
+                      </div>
+                      <div class="er-need-tools">
+                        <div class="er-need-title">Tools</div>
+                        <div class="er-need-list">
+                          <div class="er-tool">3D printer<div class="spec">minimum 200 × 200 mm build plate</div></div>
+                          <div class="er-tool">Soldering iron</div>
+                          <div class="er-tool">Super glue</div>
+                          <div class="er-tool"><a class="text-link" href="https://www.arduino.cc/en/software" target="_blank" rel="noopener noreferrer">Arduino IDE</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label pad">Compatibility</div>
+                    <p>Works with most racing games.</p>
+                  </div>
+                  <div>
+                    <div class="er-price">$20</div>
+                    <div class="er-buy-row"><button type="button" class="er-buy">Buy</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── easyshift ─────────────────────────────────────────────── -->
+          <div class="er-panel er-sections" role="tabpanel" id="er-panel-easyshift" aria-labelledby="er-tab-easyshift" hidden>
+            <div>
+              <h2 class="er-title">h-pattern shifter</h2>
+              <div class="er-block">
+                <div class="er-block-video"><div class="er-video"></div></div>
+                <div class="er-block-text">
+                  <div>
+                    <div class="label">Overview</div>
+                    <p>Overview information will be added here.</p>
+                  </div>
+                  <div>
+                    <div class="label">Specs</div>
+                    <div class="er-lines">
+                      <div>7 gears and reverse</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label">What you get</div>
+                    <div class="er-lines">
+                      <div>3D models for 3D printing</div>
+                      <div>Pro Micro firmware</div>
+                      <div>Step by step video assembly tutorial</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label pad">What you need</div>
+                    <div class="er-need">
+                      <div class="er-need-parts">
+                        <div class="er-need-title">Parts</div>
+                        <div class="er-need-list">
+                          <div class="er-part"><div class="er-part-name">3D printing filament</div><div class="er-part-qty">X g</div></div>
+                          <div class="er-part"><div class="er-part-name">Pro Micro<div class="spec">ATmega32U4 — USB Type-C</div></div><div class="er-part-qty">1x</div></div>
+                          <div class="er-part"><div class="er-part-name">Potentiometer<div class="spec">WH148 10k Linear</div></div><div class="er-part-qty">2x</div></div>
+                          <div class="er-part"><div class="er-part-name">Wire<div class="spec">≥ 24 AWG</div></div><div class="er-part-qty">X m</div></div>
+                        </div>
+                      </div>
+                      <div class="er-need-tools">
+                        <div class="er-need-title">Tools</div>
+                        <div class="er-need-list">
+                          <div class="er-tool">3D printer<div class="spec">minimum 200 × 200 mm build plate</div></div>
+                          <div class="er-tool">Soldering iron</div>
+                          <div class="er-tool">Super glue</div>
+                          <div class="er-tool"><a class="text-link" href="https://www.arduino.cc/en/software" target="_blank" rel="noopener noreferrer">Arduino IDE</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label pad">Compatibility</div>
+                    <p>Works with most racing games.</p>
+                  </div>
+                  <div>
+                    <div class="er-price">$20</div>
+                    <div class="er-buy-row"><button type="button" class="er-buy">Buy</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="er-divider"></div>
+              <h2 class="er-title">sequential shifter</h2>
+              <div class="er-block">
+                <div class="er-block-text">
+                  <div>
+                    <div class="label">Overview</div>
+                    <p>Overview information will be added here.</p>
+                  </div>
+                  <div>
+                    <div class="label">Specs</div>
+                    <div class="er-lines">
+                      <div>Sequential upshift and downshift</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label">What you get</div>
+                    <div class="er-lines">
+                      <div>3D models for 3D printing</div>
+                      <div>Pro Micro firmware</div>
+                      <div>Step by step video assembly tutorial</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label pad">What you need</div>
+                    <div class="er-need">
+                      <div class="er-need-parts">
+                        <div class="er-need-title">Parts</div>
+                        <div class="er-need-list">
+                          <div class="er-part"><div class="er-part-name">3D printing filament</div><div class="er-part-qty">X g</div></div>
+                          <div class="er-part"><div class="er-part-name">Pro Micro<div class="spec">ATmega32U4 — USB Type-C</div></div><div class="er-part-qty">1x</div></div>
+                          <div class="er-part"><div class="er-part-name">Switch<div class="spec">KW11-3Z-B</div></div><div class="er-part-qty">2x</div></div>
+                          <div class="er-part"><div class="er-part-name">Wire<div class="spec">≥ 24 AWG</div></div><div class="er-part-qty">X m</div></div>
+                        </div>
+                      </div>
+                      <div class="er-need-tools">
+                        <div class="er-need-title">Tools</div>
+                        <div class="er-need-list">
+                          <div class="er-tool">3D printer<div class="spec">minimum 200 × 200 mm build plate</div></div>
+                          <div class="er-tool">Soldering iron</div>
+                          <div class="er-tool">Super glue</div>
+                          <div class="er-tool"><a class="text-link" href="https://www.arduino.cc/en/software" target="_blank" rel="noopener noreferrer">Arduino IDE</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label pad">Compatibility</div>
+                    <p>Works with most racing games.</p>
+                  </div>
+                  <div>
+                    <div class="er-price">$10</div>
+                    <div class="er-buy-row"><button type="button" class="er-buy">Buy</button></div>
+                  </div>
+                </div>
+                <div class="er-block-video"><div class="er-video"></div></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- ── easydrift ─────────────────────────────────────────────── -->
+          <div class="er-panel er-sections" role="tabpanel" id="er-panel-easydrift" aria-labelledby="er-tab-easydrift" hidden>
+            <div>
+              <h2 class="er-title">classic handbrake</h2>
+              <div class="er-block">
+                <div class="er-block-video"><div class="er-video"></div></div>
+                <div class="er-block-text">
+                  <div>
+                    <div class="label">Overview</div>
+                    <p>Overview information will be added here.</p>
+                  </div>
+                  <div>
+                    <div class="label">Specs</div>
+                    <div class="er-lines">
+                      <div>Ratchet locking mechanism</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label">What you get</div>
+                    <div class="er-lines">
+                      <div>3D models for 3D printing</div>
+                      <div>Pro Micro firmware</div>
+                      <div>Step by step video assembly tutorial</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label pad">What you need</div>
+                    <div class="er-need">
+                      <div class="er-need-parts">
+                        <div class="er-need-title">Parts</div>
+                        <div class="er-need-list">
+                          <div class="er-part"><div class="er-part-name">3D printing filament</div><div class="er-part-qty">X g</div></div>
+                          <div class="er-part"><div class="er-part-name">Pro Micro<div class="spec">ATmega32U4 — USB Type-C</div></div><div class="er-part-qty">1x</div></div>
+                          <div class="er-part"><div class="er-part-name">Potentiometer<div class="spec">WH148 10k Linear</div></div><div class="er-part-qty">1x</div></div>
+                          <div class="er-part"><div class="er-part-name">Wire<div class="spec">≥ 24 AWG</div></div><div class="er-part-qty">X m</div></div>
+                        </div>
+                      </div>
+                      <div class="er-need-tools">
+                        <div class="er-need-title">Tools</div>
+                        <div class="er-need-list">
+                          <div class="er-tool">3D printer<div class="spec">minimum 200 × 200 mm build plate</div></div>
+                          <div class="er-tool">Soldering iron</div>
+                          <div class="er-tool">Super glue</div>
+                          <div class="er-tool"><a class="text-link" href="https://www.arduino.cc/en/software" target="_blank" rel="noopener noreferrer">Arduino IDE</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label pad">Compatibility</div>
+                    <p>Works with most racing games.</p>
+                  </div>
+                  <div>
+                    <div class="er-price">$15</div>
+                    <div class="er-buy-row"><button type="button" class="er-buy">Buy</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div>
+              <div class="er-divider"></div>
+              <h2 class="er-title">hydraulic handbrake</h2>
+              <div class="er-block">
+                <div class="er-block-text">
+                  <div>
+                    <div class="label">Overview</div>
+                    <p>Overview information will be added here.</p>
+                  </div>
+                  <div>
+                    <div class="label">Specs</div>
+                    <div class="er-lines">
+                      <div>Specification TBD</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label">What you get</div>
+                    <div class="er-lines">
+                      <div>3D models for 3D printing</div>
+                      <div>Pro Micro firmware</div>
+                      <div>Step by step video assembly tutorial</div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label pad">What you need</div>
+                    <div class="er-need">
+                      <div class="er-need-parts">
+                        <div class="er-need-title">Parts</div>
+                        <div class="er-need-list">
+                          <div class="er-part"><div class="er-part-name">3D printing filament</div><div class="er-part-qty">X g</div></div>
+                          <div class="er-part"><div class="er-part-name">Pro Micro<div class="spec">ATmega32U4 — USB Type-C</div></div><div class="er-part-qty">1x</div></div>
+                          <div class="er-part"><div class="er-part-name">Potentiometer<div class="spec">WH148 10k Linear</div></div><div class="er-part-qty">1x</div></div>
+                          <div class="er-part"><div class="er-part-name">Wire<div class="spec">≥ 24 AWG</div></div><div class="er-part-qty">X m</div></div>
+                        </div>
+                      </div>
+                      <div class="er-need-tools">
+                        <div class="er-need-title">Tools</div>
+                        <div class="er-need-list">
+                          <div class="er-tool">3D printer<div class="spec">minimum 200 × 200 mm build plate</div></div>
+                          <div class="er-tool">Soldering iron</div>
+                          <div class="er-tool">Super glue</div>
+                          <div class="er-tool"><a class="text-link" href="https://www.arduino.cc/en/software" target="_blank" rel="noopener noreferrer">Arduino IDE</a></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div>
+                    <div class="label pad">Compatibility</div>
+                    <p>Works with most racing games.</p>
+                  </div>
+                  <div>
+                    <div class="er-price">$10</div>
+                    <div class="er-buy-row"><button type="button" class="er-buy">Buy</button></div>
+                  </div>
+                </div>
+                <div class="er-block-video"><div class="er-video"></div></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
 
     <footer class="footer">
       <div class="footer-brand">

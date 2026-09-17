@@ -43,6 +43,14 @@ dimenzije na jednu vrednost — izgubio bi dodirnu metu.
 korisnika preko dugmeta. `hover`, `focus` i `hidden` su privremene pauze koje
 se same otpuštaju. Ne spajaj ih u jedan flag.
 
+**Home hero se ne zaustavlja na hover** (`data-hover-pause="off"`) jer prekriva
+ceo ekran, pa bi miš stalno stajao preko njega; ima svoje dugme za pauzu, a
+pauza na fokus i na neaktivan tab ostaje. Interval mu je 9s umesto 6s. Vesti
+na home stranici i dalje staju na hover, jer nemaju dugme za pauzu.
+
+**Dugme play/pause nema okvir** — znak je viši od kvadratića (10px) i deblji
+(crte 2px), da se jasno vidi preko slike. Dodirna meta ostaje 24×24px.
+
 **easyrace ima datum `2026-10-28`, u budućnosti.** Planirani datum izlaska.
 Sort „Newest" ga zato stavlja iznad DJC-DIY. Tako treba.
 

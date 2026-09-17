@@ -393,18 +393,19 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   transition: background var(--dur-fast) var(--ease);
 }
 .slide-dot[aria-current="true"] span { background: var(--text-1); }
+/* The play/pause mark stands on its own, a little taller than a dot and with
+   thicker strokes, so it reads at a glance without a box around it. */
 .slide-play > span {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 2px;
-  width: 8px;
-  height: 8px;
+  gap: 3px;
+  width: 12px;
+  height: 12px;
   box-sizing: border-box;
-  border: 1px solid var(--line-2);
 }
-.slide-play .bar { display: block; width: 1px; height: 4px; background: var(--text-1); }
-.slide-play .tri { display: block; width: 0; height: 0; border-left: 4px solid var(--text-1); border-top: 2px solid transparent; border-bottom: 2px solid transparent; }
+.slide-play .bar { display: block; width: 2px; height: 10px; background: var(--text-1); }
+.slide-play .tri { display: block; width: 0; height: 0; border-left: 8px solid var(--text-1); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
 
 .slide-thumbs-outer { padding: 0 clamp(24px,4vw,64px); }
 .slide-thumbs-inner { max-width: var(--container); margin: 0 auto; }

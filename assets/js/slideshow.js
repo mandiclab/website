@@ -5,6 +5,8 @@
 //   data-indicator="thumbs" thumbnail strip below the slideshow
 //   data-indicator="none"  no arrows, dots or thumbnails (news images)
 //   data-interval="6000"   milliseconds between slides
+//   data-hover-pause="off" keep playing while the pointer is over it (the hero
+//                          fills the screen, and it has its own pause button)
 // Ported from the concept's HeroSlideshow component.
 
 (function () {
@@ -150,8 +152,10 @@
       if (e.key === 'ArrowLeft') { e.preventDefault(); step(-1); }
       else if (e.key === 'ArrowRight') { e.preventDefault(); step(1); }
     });
-    shell.addEventListener('mouseenter', function () { setHold('hover', true); });
-    shell.addEventListener('mouseleave', function () { setHold('hover', false); });
+    if (shell.getAttribute('data-hover-pause') !== 'off') {
+      shell.addEventListener('mouseenter', function () { setHold('hover', true); });
+      shell.addEventListener('mouseleave', function () { setHold('hover', false); });
+    }
     shell.addEventListener('focusin', function () { setHold('focus', true); });
     shell.addEventListener('focusout', function (e) {
       if (e.relatedTarget && shell.contains(e.relatedTarget)) return;

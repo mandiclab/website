@@ -87,6 +87,8 @@
   --dur-fast:160ms;
   --dur-base:300ms;
   --dur-slow:500ms;
+  /* Slideshow slides travel further, so they need longer than --dur-slow. */
+  --dur-slide:900ms;
   --ease:cubic-bezier(.16,1,.3,1);
 }
 
@@ -320,8 +322,8 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 /* The images move as one strip: the new one pushes the old one out, quick at
    the start and settling at the end. data-dir is the direction of travel. */
 .slide { transform: translateX(100%); z-index: 0; transition: none; pointer-events: none; }
-.slide.is-prev { transform: translateX(-100%); z-index: 1; transition: transform var(--dur-slow) var(--ease); }
-.slide.is-active { transform: none; z-index: 2; transition: transform var(--dur-slow) var(--ease); pointer-events: auto; }
+.slide.is-prev { transform: translateX(-100%); z-index: 1; transition: transform var(--dur-slide) var(--ease); }
+.slide.is-active { transform: none; z-index: 2; transition: transform var(--dur-slide) var(--ease); pointer-events: auto; }
 .slideshow[data-dir="-1"] .slide { transform: translateX(-100%); }
 .slideshow[data-dir="-1"] .slide.is-prev { transform: translateX(100%); }
 .slideshow[data-dir="-1"] .slide.is-active { transform: none; }

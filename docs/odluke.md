@@ -47,7 +47,8 @@ se same otpuštaju. Ne spajaj ih u jedan flag.
 pretapanje; sada nova slika gura staru, kao da su povezane u traku. Smer je u
 `data-dir` na slideshow-u, a slike koje čekaju stoje sa one strane sa koje
 ulaze — zato JS postavi smer i tek onda menja klase (`slideshow.js`). Trajanje
-je `--dur-slow`, kriva `--ease` (brz start, meko sleganje). Važi za sve
+je `--dur-slide` (900ms, novi token jer slika putuje celom širinom), kriva
+`--ease` (brz start, meko sleganje). Važi za sve
 slideshow-e: hero, hero na stranicama projekata i slike u vestima.
 
 **Home hero se ne zaustavlja na hover** (`data-hover-pause="off"`) jer prekriva

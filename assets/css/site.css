@@ -430,7 +430,10 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 
 /* ── Home ──────────────────────────────────────────────────────────────── */
 
-.hero { position: relative; height: 100vh; min-height: 620px; width: 100%; overflow: hidden; }
+/* 100svh is the height visible with the browser bars shown, so on phones the
+   bottom of the hero (text and button) is not hidden under the address bar.
+   100vh stays as the fallback for older browsers. */
+.hero { position: relative; height: 100vh; height: 100svh; min-height: 620px; width: 100%; overflow: hidden; }
 .hero-slideshow { position: absolute; inset: 0; }
 .hero-fade {
   position: absolute;
@@ -1698,7 +1701,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 
 @media (max-width: 640px) {
-  .hero { min-height: 70vh; max-height: 100vh; }
+  .hero { min-height: 70vh; min-height: 70svh; max-height: 100vh; max-height: 100svh; }
   .header { padding-left: 16px; padding-right: 16px; }
   .header-logo { margin-right: 16px; }
   .nav { gap: 20px; }

@@ -155,6 +155,12 @@ fotografije se same smenjuju istim prelazom, bez strelica i tačkica, jer je
 kartica vest, a detalji su na stranici projekta. Staje dok je miš preko slike
 ili tab nije aktivan, a uz `prefers-reduced-motion` stoji na prvoj fotografiji.
 
+**Home hero je visok `100svh`, ne `100vh`.** Na telefonu `100vh` računa visinu
+kao da je traka sa adresom sakrivena, pa je donji deo hero-a (tekst i dugme)
+bio ispod ekrana dok je traka vidljiva. `100svh` je visina sa vidljivom
+trakom; `100vh` ostaje ispred kao rezerva za starije pregledače. Ne vraćaj na
+samo `100vh`.
+
 **Godina u footeru se menja sama** (`assets/js/site.js`), kao u konceptu. U
 HTML-u stoji rezervna godina za posetioce bez JavaScript-a.
 

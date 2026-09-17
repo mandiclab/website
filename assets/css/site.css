@@ -1018,6 +1018,10 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .info-note { margin: 24px 0 0; font-size: var(--fs-small); font-weight: 300; line-height: 1.65; color: var(--text-3); text-wrap: pretty; }
 .info-links { margin: clamp(32px,4vh,48px) 0 0; font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); text-wrap: pretty; }
 .info-links + .info-links { margin-top: 24px; }
+/* Info heading between the specs and the links text: it takes the gap the
+   text had, and the text sits under it like the specs under theirs. */
+.info-title { margin-top: clamp(32px,4vh,48px); }
+.info-title + .info-links { margin-top: 24px; }
 
 .repo-actions { display: flex; flex-wrap: nowrap; gap: 12px; margin-top: clamp(32px,4.5vh,48px); }
 .repo-actions a {

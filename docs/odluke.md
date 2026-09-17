@@ -116,6 +116,8 @@ ne molba.
 mikrokontrolera i žice u tabeli elektronskih komponenti usklađen je sa
 easyrace delovima (`Pro Micro - ATmega32U4 - USB Type-C`, `≥ 24 AWG`), a iz
 rečenice o PCBWay-u je izbačen deo „where you can also see the whole project".
+Naslov „Info" u Overview-u sada glasi „Specs", a novi naslov „Info" stoji iznad
+rečenica o videima i PCBWay-u (isto i na drivepad-u).
 
 **Godina u footeru se menja sama** (`assets/js/site.js`), kao u konceptu. U
 HTML-u stoji rezervna godina za posetioce bez JavaScript-a.

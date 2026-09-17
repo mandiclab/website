@@ -5,8 +5,8 @@
 //   opened from on close
 // - Escape closes, Left/Right and swipe move between photos, clicking the
 //   backdrop closes
-// - photos slide between two layers; clicking again mid-slide shortens the
-//   running slide and queues the next one, which then runs faster
+// - photos cross-fade between two layers; clicking again mid-fade shortens the
+//   running fade and queues the next one, which then runs faster
 // Only tiles that contain an image take part.
 
 (function () {
@@ -370,18 +370,24 @@
     var fit = fitOf(entry.src);
     if (dom.sizer.getAttribute('src') !== entry.src) dom.sizer.setAttribute('src', entry.src);
     dom.sizer.alt = entry.alt;
-    setStyle(dom.sizer, { width: fit.w, height: fit.h, maxWidth: maxW, maxHeight: maxH });
+    // The frame holds the size of the photo on show, and eases to the next
+    // one's size while the two cross-fade.
+    setStyle(dom.sizer, {
+      width: fit.w, height: fit.h, maxWidth: maxW, maxHeight: maxH,
+      transition: 'width ' + st.durT + 'ms ' + EASE + ', height ' + st.durT + 'ms ' + EASE
+    });
 
     ['A', 'B'].forEach(function (S) {
       var src = st['src' + S];
       var key = 'layer' + S;
       if (!src) { removeLayer(S); return; }
-      var phase = st['phase' + S], dir = st['dir' + S] || 1;
-      var dx = phase === 'enter' ? 18 * dir : phase === 'out' ? -17 * dir : 0;
+      // Photos cross-fade: they come in all shapes, and sliding them made the
+      // frame jump whenever the next one was a different size.
+      var phase = st['phase' + S];
       var style = {
         opacity: phase === 'rest' ? '1' : '0',
-        transform: 'translate(calc(-50% + ' + dx + 'px), -50%)',
-        transition: 'opacity ' + st.durO + 'ms ' + EASE + ', transform ' + st.durT + 'ms ' + EASE
+        transform: 'translate(-50%, -50%)',
+        transition: 'opacity ' + st.durO + 'ms ' + EASE
       };
       var layer = dom[key];
       if (!layer) {
@@ -402,8 +408,11 @@
       if (li.getAttribute('src') !== src) li.setAttribute('src', src);
       var e = entryOf(src);
       li.alt = e ? e.alt : '';
-      var f = fitOf(src);
-      setStyle(li, { width: f.w, height: f.h, maxWidth: maxW, maxHeight: maxH });
+      // A photo on its way out keeps the size it had, so it fades as it was.
+      if (phase !== 'out' || !li.style.width) {
+        var f = fitOf(src);
+        setStyle(li, { width: f.w, height: f.h, maxWidth: maxW, maxHeight: maxH });
+      }
     });
 
     // The close mark sits on a short extension of the image's

@@ -29,9 +29,9 @@
     // `paused` is the visitor's standing choice from the button; hover, focus
     // and a hidden tab are temporary holds that release on their own.
     // Keep them separate (docs/odluke.md).
-    var state = { idx: 0, prev: null, dir: 1, paused: false, hover: false, focus: false, hidden: false };
+    var state = { idx: 0, prev: null, paused: false, hover: false, focus: false, hidden: false };
     var timer = null, moveTimer = null;
-    var moving = false, lastMoveAt = 0, ghosts = [];
+    var moving = false;
     var dots = [], thumbs = [], playBtn = null;
 
     function held() { return state.paused || state.hover || state.focus || state.hidden; }
@@ -47,47 +47,55 @@
       }, delay);
     }
 
-    // The calm pace from the stylesheet (--dur-slide). While clicks come in
-    // faster than that, the script overrides the value on the slideshow itself.
+    // The calm pace for one step, from the stylesheet (--dur-slide). A step
+    // that interrupts another covers more ground in that same time.
     var baseMs = (function () {
       var v = getComputedStyle(shell).getPropertyValue('--dur-slide').trim();
       var n = parseFloat(v) || 1500;
       return /ms$/.test(v) ? n : n * 1000;
     })();
 
-    // The slides travel sideways, so the direction has to be set before the
-    // classes change: the waiting slides jump to the side they come in from,
-    // and only then does the new one slide in.
-    function setDir(d) {
-      if (state.dir === d) return;
-      state.dir = d;
-      shell.setAttribute('data-dir', String(d));
-      void shell.offsetWidth;
-    }
-
     function easing() {
       return getComputedStyle(shell).getPropertyValue('--ease').trim() || 'ease';
     }
 
-    // Keeps a copy moving to its target at the new pace, starting from wherever
-    // it is right now, so nothing lags behind the rest of the strip.
-    function retime(node, dir, ms) {
-      node.style.transition = 'none';
-      node.style.transform = getComputedStyle(node).transform;
-      void node.offsetWidth;
-      node.style.transition = 'transform ' + ms + 'ms ' + easing();
-      node.style.transform = 'translateX(' + (dir > 0 ? -100 : 100) + '%)';
-      clearTimeout(node._drop);
-      node._drop = setTimeout(function () { node.remove(); ghosts.splice(ghosts.indexOf(node), 1); }, ms + 80);
+    // Everything on screen belongs to one strip: images sit exactly one frame
+    // apart and a step moves the whole strip by one frame, from wherever it is.
+    // Positions are percentages of the frame, 0 meaning on screen. A step that
+    // interrupts another therefore travels further in the same time — the strip
+    // speeds up, but it never breaks apart and never turns around.
+    var strip = count ? [{ node: slides[0], pos: 0 }] : [];
+
+    function livePos(node) {
+      var t = getComputedStyle(node).transform, x = 0;
+      if (t && t !== 'none') {
+        var parts = t.slice(t.indexOf('(') + 1, -1).split(',');
+        x = parseFloat(parts.length === 16 ? parts[12] : parts[4]) || 0;
+      }
+      return shell.offsetWidth ? x / shell.offsetWidth * 100 : 0;
     }
 
-    // A quick second click asks for the image that is still on its way out —
-    // with two images, always. The strip keeps going the way it was clicked:
-    // a copy of that image carries on out of the frame, while the image itself
-    // jumps (off screen) to the far side and slides back in behind it.
-    function carryOut(node, dir, ms) {
+    function place(node, pos) {
+      node.style.transition = 'none';
+      node.style.transform = 'translateX(' + pos + '%)';
+    }
+
+    function glide(node, pos, ms) {
+      node.style.transition = 'transform ' + ms + 'ms ' + easing();
+      node.style.transform = 'translateX(' + pos + '%)';
+    }
+
+    function drop(member) {
+      if (member.node.classList.contains('is-ghost')) member.node.remove();
+      else { member.node.style.transition = ''; member.node.style.transform = ''; }
+    }
+
+    // The image asked for next can still be on screen on its way out (with two
+    // images that is every quick second click). A copy takes its place in the
+    // strip and finishes leaving, so the image itself is free to come back in.
+    function copyOf(node) {
       var copy = node.cloneNode(true);
-      copy.classList.remove('is-active', 'is-prev');
+      copy.classList.remove('is-active');
       copy.classList.add('is-ghost');
       copy.setAttribute('aria-hidden', 'true');
       // A copy of a heading or a link must not count as a second one.
@@ -98,20 +106,8 @@
         h.parentNode.replaceChild(plain, h);
       });
       Array.prototype.forEach.call(copy.querySelectorAll('a[href]'), function (a) { a.removeAttribute('href'); });
-      copy.style.transition = 'none';
-      copy.style.transform = getComputedStyle(node).transform;
       shell.insertBefore(copy, node);
-      ghosts.push(copy);
-      retime(copy, dir, ms);
-    }
-
-    function parkOnFarSide(node, dir) {
-      node.classList.remove('is-prev');
-      node.style.transition = 'none';
-      node.style.transform = 'translateX(' + (dir > 0 ? 100 : -100) + '%)';
-      void node.offsetWidth;
-      node.style.transition = '';
-      node.style.transform = '';
+      return copy;
     }
 
     function go(n, manual, dir) {
@@ -120,34 +116,47 @@
         var ahead = (n - state.idx + count) % count;
         dir = ahead <= count - ahead ? 1 : -1;
       }
-      // Clicking faster than the strip moves speeds the whole strip up to that
-      // pace — the images already travelling included — instead of leaving the
-      // older one to finish at its own, slower speed.
-      var ms = baseMs;
-      if (moving) {
-        ms = Math.max(220, Math.min(baseMs, Date.now() - lastMoveAt));
-        shell.style.setProperty('--dur-slide', ms + 'ms');
-      }
-      lastMoveAt = Date.now();
-      var wrapping = moving && n === state.prev && !reducedMotion.matches;
-      setDir(dir);
-      ghosts.forEach(function (g) { retime(g, dir, ms); });
-      if (wrapping) {
-        carryOut(slides[n], dir, ms);
-        parkOnFarSide(slides[n], dir);
-      }
+      var entering = slides[n];
+      var ms = reducedMotion.matches ? 0 : baseMs;
+      // Freeze the strip where it is and hang the new image on its end.
+      strip.forEach(function (m) {
+        // Read where it is while it is still moving, then hand that spot to
+        // the copy if this is the image that has to come back in.
+        var at = livePos(m.node);
+        if (m.node === entering) m.node = copyOf(entering);
+        m.pos = at;
+        place(m.node, at);
+      });
+      var from = strip.length ? strip[0].pos + 100 * dir : 100 * dir;
+      place(entering, from);
+      void shell.offsetWidth;
+
+      // Move it all by the same step; whatever ends up off screen is let go.
+      var shift = -from;
+      var keep = [];
+      strip.forEach(function (m) {
+        var to = m.pos + shift;
+        if (Math.abs(m.pos) < 99.9 || Math.abs(to) < 99.9) { m.pos = to; keep.push(m); glide(m.node, to, ms); }
+        else drop(m);
+      });
+      strip = [{ node: entering, pos: 0 }].concat(keep);
+      glide(entering, 0, ms);
+
       state.prev = state.idx;
       state.idx = n;
       moving = true;
       render();
       clearTimeout(moveTimer);
-      // Outlasts the slide itself, or the leaving one would jump to its parked
-      // side while still moving.
       moveTimer = setTimeout(function () {
         moving = false;
         state.prev = null;
+        // Once still, only the image on screen is left standing.
+        strip = strip.filter(function (m) {
+          if (Math.abs(m.pos) < 99.9) return true;
+          drop(m);
+          return false;
+        });
         render();
-        shell.style.removeProperty('--dur-slide');   // back to the calm pace
       }, ms + 60);
       schedule(manual ? base * 2 : base);
     }
@@ -169,7 +178,6 @@
       slides.forEach(function (s, i) {
         var on = i === state.idx;
         s.classList.toggle('is-active', on);
-        s.classList.toggle('is-prev', !on && i === state.prev);
         // Links on a slide that is not shown stay out of the tab order.
         Array.prototype.forEach.call(s.querySelectorAll('a[href]'), function (a) {
           if (on) a.removeAttribute('tabindex');
@@ -282,7 +290,7 @@
 
     document.addEventListener('visibilitychange', function () { setHold('hidden', !!document.hidden); });
 
-    shell.setAttribute('data-dir', '1');
+    if (count) slides[0].style.transform = 'translateX(0%)';
     shell.setAttribute('data-ready', '');
     render();
     schedule(base);

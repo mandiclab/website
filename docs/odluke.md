@@ -61,19 +61,16 @@ strelica, na svim uređajima. Na dodiru ostaju stalno vidljive, jer nema hover-a
 korisnika preko dugmeta. `hover`, `focus` i `hidden` su privremene pauze koje
 se same otpuštaju. Ne spajaj ih u jedan flag.
 
-**Slike u slideshow-u se pomeraju u stranu, ne pretapaju.** U konceptu je bilo
-pretapanje; sada nova slika gura staru, kao da su povezane u traku. Smer je u
-`data-dir` na slideshow-u, a slike koje čekaju stoje sa one strane sa koje
-ulaze — zato JS postavi smer i tek onda menja klase (`slideshow.js`). Trajanje
-je `--dur-slide` (1,5s, novi token jer slika putuje celom širinom), kriva
-`--ease` (brz start, meko sleganje). Traka uvek ide u smeru u kom se klikće.
-Brzi drugi klik traži sliku koja još izlazi (kod dve slike uvek): tada njena
-kopija (`.is-ghost`) nastavi da izlazi, a sama slika preskoči van ekrana na
-suprotnu stranu i uđe odatle, pa se preskok ne vidi. Dok klikovi stižu brže od
-prelaza, ceo prelaz (i kopije koje već putuju) ubrza se na tempo klikanja, pa
-nijedna slika ne zaostaje; kad se stane, vraća se mirno vreme iz CSS-a.
-Kopija nema naslov kao
-naslov ni linkove, da se ne broje dvaput. Važi za sve
+**Slike u slideshow-u su jedna traka.** U konceptu je bilo pretapanje; sada su
+slike na traci: svaka stoji tačno jednu širinu od sledeće, a korak pomeri celu
+traku za jednu širinu, odatle gde se zatekne (`slideshow.js` upisuje položaje
+i trajanja direktno na slike). Zato klik usred prelaza ne prekida traku: sve
+se pomeri za isti iznos, pa razmaci ostaju isti, a pošto put bude duži u istom
+vremenu, traka se prirodno ubrza. Slika koja se traži a još izlazi (kod dve
+slike svaki brzi drugi klik) dobija kopiju (`.is-ghost`) koja nastavi da
+izlazi umesto nje, pa ona može da uđe sa suprotne strane; kopija nema naslov
+kao naslov ni linkove, da se ne broje dvaput. Trajanje jednog koraka je
+`--dur-slide` (1,5s), kriva `--ease` (brz start, meko sleganje). Važi za sve
 slideshow-e: hero, hero na stranicama projekata i slike u vestima.
 
 **Home hero se ne zaustavlja na hover** (`data-hover-pause="off"`) jer prekriva

@@ -1115,6 +1115,13 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .shot:not(:has(img)):nth-child(6n+5) { aspect-ratio: 4 / 5; }
 .shot:not(:has(img)):nth-child(6n+6) { aspect-ratio: 16 / 9; }
 
+/* Under the gallery: how someone's own photo gets in there. */
+.gallery-note { max-width: var(--measure); margin: clamp(48px,5vh,64px) auto 0; text-align: center; }
+.gallery-note p { margin: 0; font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); text-wrap: pretty; }
+.gallery-note p + p { margin-top: 16px; }
+.gallery-channel { color: var(--text-1); }
+.gallery-terms { font-size: var(--fs-small); color: var(--text-3); }
+
 /* Lightbox (assets/js/lightbox.js). Sizes that depend on the image and the
    window are set by the script; everything else lives here. */
 .lightbox {

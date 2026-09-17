@@ -57,6 +57,12 @@ visine prozora (na telefonu 88% i 68%), a najviše 1440×900px, pa ostaje vazduh
 oko nje i na velikom monitoru. Kada ima teksta sa strane, širina se dodatno
 umanjuje za tu kolonu.
 
+
+**Ispod galerije stoji poziv da se pošalje svoja slika** (nije u konceptu, na
+zahtev vlasnika): slika se šalje u Discord zajednicu, u kanal `#🖼️lab-gallery`,
+uz opcione naloge na mrežama i poruku. Ispod toga, sitnijim slovima, stoje
+uslovi tog kanala (MandićLab sme slobodno da koristi poslate slike i snimke).
+Isti tekst stoji na DJC-DIY i na drivepad stranici.
 **Tekst uz sliku u galeriji dolazi iz `.md` fajla pored slike.** Slika
 `1.webp` čita `1.md` iz istog foldera (`lightbox.js` ga uzme tek kad se slika
 otvori, sa našeg domena). Redovi oblika `instagram: ime` postaju link sa

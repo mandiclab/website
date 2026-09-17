@@ -141,7 +141,8 @@ Kada se projekat objavljuje:
 3. vrati adresu stranice u `sitemap.xml`.
 
 **Tekst preko Home hero-a je o DJC-DIY** (na zahtev vlasnika, umesto teksta iz
-koncepta): H1 „DJC-DIY — an open-source DIY DJ controller", opis sa istim
+koncepta): H1 „DJC-DIY", ispod njega manjim slovima „an open-source DIY DJ
+controller" (za čitače ekrana i pretraživače spojeno crtom), opis sa istim
 linkovima kao na DJC-DIY stranici i dugme „See project". Kao i u konceptu,
 tekst stoji samo preko prve slike; ostale hero slike su bez teksta.
 

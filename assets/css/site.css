@@ -480,6 +480,8 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   color: var(--text-1);
   text-wrap: pretty;
 }
+/* Second line of the headline, under the project name and smaller. */
+.hero-tagline { display: block; margin-top: 8px; font-size: var(--fs-h1); }
 .hero-sub {
   margin: 16px 0 0;
   max-width: var(--measure-narrow);
@@ -1686,6 +1688,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .hero-gradient { background: linear-gradient(to top, rgba(11,11,12,0.78) 0%, rgba(11,11,12,0.45) 45%, transparent 80%); }
   .hero-text { top: auto; bottom: 64px; transform: none; left: var(--gutter); right: var(--gutter); max-width: none; }
   .hero-title { font-size: clamp(26px,6vw,34px); }
+  .hero-tagline { font-size: var(--fs-h2); }
   .header { display: flex; align-items: center; justify-content: center; gap: 0; }
   .header > :last-child { display: none; }
   .header-logo { justify-self: auto; margin-right: 24px; flex: 0 0 auto; }

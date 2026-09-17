@@ -1011,7 +1011,10 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   margin-top: clamp(32px,3.4vh,48px);
 }
 .info-list { margin-top: 12px; border-top: 1px solid var(--line-1); }
-.info-list div { padding: 8px 0; font-size: var(--fs-body); font-weight: 300; color: var(--text-2); }
+.info-list > div { padding: 8px 0; font-size: var(--fs-body); font-weight: 300; color: var(--text-2); }
+/* drivepad: one list straight under the Info heading, details in small text
+   below an item. 24px puts its top line about level with the video frame. */
+.overview-info > .info-list { margin-top: 24px; max-width: var(--measure-narrow); }
 .info-note { margin: 24px 0 0; font-size: var(--fs-small); font-weight: 300; line-height: 1.65; color: var(--text-3); text-wrap: pretty; }
 .info-links { margin: clamp(32px,4vh,48px) 0 0; font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); text-wrap: pretty; }
 .info-links + .info-links { margin-top: 24px; }

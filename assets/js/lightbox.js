@@ -253,21 +253,38 @@
     var list = shots();
     if (list.length < 2) return;
     st.lb = ((st.lb + dir) % list.length + list.length) % list.length;
-    ensureNote(list[st.lb].src, function () { if (st && !closing && !st.fading) render(); });
     preload(list, st.lb);
-    if (st.fading) return;    // already on its way out; it will pick this up
+    var next = list[st.lb].src;
+    if (st.fading) {          // already on its way out; it will pick this up
+      ensureNote(next);
+      return;
+    }
 
+    // The fade has to be under way before anything else can redraw, or a note
+    // that is already at hand would swap the photo in on the spot.
     st.fading = true;
     dom.dialog.classList.add('is-fading');
+    ensureNote(next, function () { if (st && !closing && !st.fading) render(); });
     clearTimeout(fadeTimer);
     fadeTimer = setTimeout(function () {
       if (!st || closing) return;
       render();               // swap photo and text while nothing is showing
       st.fading = false;
-      // A breath, so the new photo is painted before it fades back in.
-      fadeTimer = setTimeout(function () {
+
+      // Fade back in only once the new photo can actually be drawn. Until then
+      // the <img> still shows the old one, which looked like the two flickering
+      // over each other.
+      var photo = dom.photo, shown = false;
+      function fadeIn() {
+        if (shown) return;
+        shown = true;
+        clearTimeout(fadeTimer);
         if (st && !closing && dom) dom.dialog.classList.remove('is-fading');
-      }, 20);
+      }
+      fadeTimer = setTimeout(fadeIn, 600);      // never wait for ever
+      if (photo.decode) photo.decode().then(fadeIn, fadeIn);
+      else if (photo.complete && photo.naturalWidth) fadeIn();
+      else photo.addEventListener('load', fadeIn, { once: true });
     }, FADE_MS);
   }
 

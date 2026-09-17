@@ -69,7 +69,10 @@ je `--dur-slide` (1,5s, novi token jer slika putuje celom širinom), kriva
 `--ease` (brz start, meko sleganje). Traka uvek ide u smeru u kom se klikće.
 Brzi drugi klik traži sliku koja još izlazi (kod dve slike uvek): tada njena
 kopija (`.is-ghost`) nastavi da izlazi, a sama slika preskoči van ekrana na
-suprotnu stranu i uđe odatle, pa se preskok ne vidi. Kopija nema naslov kao
+suprotnu stranu i uđe odatle, pa se preskok ne vidi. Dok klikovi stižu brže od
+prelaza, ceo prelaz (i kopije koje već putuju) ubrza se na tempo klikanja, pa
+nijedna slika ne zaostaje; kad se stane, vraća se mirno vreme iz CSS-a.
+Kopija nema naslov kao
 naslov ni linkove, da se ne broje dvaput. Važi za sve
 slideshow-e: hero, hero na stranicama projekata i slike u vestima.
 

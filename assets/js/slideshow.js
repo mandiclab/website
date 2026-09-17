@@ -31,7 +31,7 @@
     // Keep them separate (docs/odluke.md).
     var state = { idx: 0, prev: null, dir: 1, paused: false, hover: false, focus: false, hidden: false };
     var timer = null, moveTimer = null;
-    var moving = false;
+    var moving = false, lastMoveAt = 0, ghosts = [];
     var dots = [], thumbs = [], playBtn = null;
 
     function held() { return state.paused || state.hover || state.focus || state.hidden; }
@@ -47,11 +47,13 @@
       }, delay);
     }
 
-    function slideMs() {
+    // The calm pace from the stylesheet (--dur-slide). While clicks come in
+    // faster than that, the script overrides the value on the slideshow itself.
+    var baseMs = (function () {
       var v = getComputedStyle(shell).getPropertyValue('--dur-slide').trim();
       var n = parseFloat(v) || 1500;
       return /ms$/.test(v) ? n : n * 1000;
-    }
+    })();
 
     // The slides travel sideways, so the direction has to be set before the
     // classes change: the waiting slides jump to the side they come in from,
@@ -61,6 +63,22 @@
       state.dir = d;
       shell.setAttribute('data-dir', String(d));
       void shell.offsetWidth;
+    }
+
+    function easing() {
+      return getComputedStyle(shell).getPropertyValue('--ease').trim() || 'ease';
+    }
+
+    // Keeps a copy moving to its target at the new pace, starting from wherever
+    // it is right now, so nothing lags behind the rest of the strip.
+    function retime(node, dir, ms) {
+      node.style.transition = 'none';
+      node.style.transform = getComputedStyle(node).transform;
+      void node.offsetWidth;
+      node.style.transition = 'transform ' + ms + 'ms ' + easing();
+      node.style.transform = 'translateX(' + (dir > 0 ? -100 : 100) + '%)';
+      clearTimeout(node._drop);
+      node._drop = setTimeout(function () { node.remove(); ghosts.splice(ghosts.indexOf(node), 1); }, ms + 80);
     }
 
     // A quick second click asks for the image that is still on its way out —
@@ -80,14 +98,11 @@
         h.parentNode.replaceChild(plain, h);
       });
       Array.prototype.forEach.call(copy.querySelectorAll('a[href]'), function (a) { a.removeAttribute('href'); });
-      var ease = getComputedStyle(shell).getPropertyValue('--ease').trim() || 'ease';
       copy.style.transition = 'none';
       copy.style.transform = getComputedStyle(node).transform;
       shell.insertBefore(copy, node);
-      void copy.offsetWidth;
-      copy.style.transition = 'transform ' + ms + 'ms ' + ease;
-      copy.style.transform = 'translateX(' + (dir > 0 ? -100 : 100) + '%)';
-      setTimeout(function () { copy.remove(); }, ms + 80);
+      ghosts.push(copy);
+      retime(copy, dir, ms);
     }
 
     function parkOnFarSide(node, dir) {
@@ -105,10 +120,20 @@
         var ahead = (n - state.idx + count) % count;
         dir = ahead <= count - ahead ? 1 : -1;
       }
+      // Clicking faster than the strip moves speeds the whole strip up to that
+      // pace — the images already travelling included — instead of leaving the
+      // older one to finish at its own, slower speed.
+      var ms = baseMs;
+      if (moving) {
+        ms = Math.max(220, Math.min(baseMs, Date.now() - lastMoveAt));
+        shell.style.setProperty('--dur-slide', ms + 'ms');
+      }
+      lastMoveAt = Date.now();
       var wrapping = moving && n === state.prev && !reducedMotion.matches;
       setDir(dir);
+      ghosts.forEach(function (g) { retime(g, dir, ms); });
       if (wrapping) {
-        carryOut(slides[n], dir, slideMs());
+        carryOut(slides[n], dir, ms);
         parkOnFarSide(slides[n], dir);
       }
       state.prev = state.idx;
@@ -122,7 +147,8 @@
         moving = false;
         state.prev = null;
         render();
-      }, slideMs() + 60);
+        shell.style.removeProperty('--dur-slide');   // back to the calm pace
+      }, ms + 60);
       schedule(manual ? base * 2 : base);
     }
 

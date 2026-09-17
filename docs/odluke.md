@@ -39,6 +39,15 @@ u footeru: ikonica 16×16px unutar `<a>` od 24×24px sa `margin:-4px`.
 Negativna margina održava razmak na ekranu nepromenjenim. Ne „sređuj"
 dimenzije na jednu vrednost — izgubio bi dodirnu metu.
 
+**Tekst uz sliku u galeriji dolazi iz `.md` fajla pored slike.** Slika
+`1.webp` čita `1.md` iz istog foldera (`lightbox.js` ga uzme tek kad se slika
+otvori, sa našeg domena). Redovi oblika `instagram: ime` postaju link sa
+ikonicom te mreže (`instagram`, `youtube`, `tiktok`, `github`, `ko-fi`,
+`discord`); ako je vrednost puna adresa, koristi se ona. Discord nema javni
+profil, pa se bez adrese prikaže samo ikonica i ime, bez linka. Sve ostalo
+postaje pasusi, prazan red razdvaja pasuse. Nema fajla ili je prazan — slika
+se otvara sama, po sredini. Tekst se ubacuje kao čist tekst, ne kao HTML.
+
 **Strelice nemaju podlogu ni na dodirnim ekranima.** Koncept im na telefonu
 daje tamni kvadratić (`background: rgba(11,11,12,0.38)`); sada je samo
 strelica, na svim uređajima. Na dodiru ostaju stalno vidljive, jer nema hover-a.
@@ -241,7 +250,7 @@ animacije i tranzicije, plus `:focus-visible` outline definisan svuda.
 Sadržaj koji popunjava vlasnik projekta, ne ti:
 
 - slike za DJC-DIY v1.1.0 vest na home stranici
-- opis slike `ml-gal-2` u galeriji
+- slike za galeriju na DJC-DIY (i opcioni `.md` uz njih)
 - specifikacija hidrauličke ručne na easyrace-u (sada `Specification TBD`)
 - količine filamenta i žice na easyrace bundle-ovima (sada `X g`, `X m`)
 - `FAQ` i `Terms` tabovi na easyrace stranici — postoje, kompletno su

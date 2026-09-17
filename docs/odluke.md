@@ -46,6 +46,8 @@ slika i tekst pored nje — izbledi, slika i tekst se zamene dok se ništa ne vi
 pa se sve vrati. Strelice levo i desno i X stoje na mestu i ne blede; X je
 fiksan u gornjem desnom uglu, poravnat sa desnom strelicom. Brzi klikovi samo
 pomeraju cilj, pa se stigne na tačnu sliku.
+
+**Slika u lightbox-u ne ide preko celog ekrana.** Najviše 80% širine i 76%
 visine prozora (na telefonu 88% i 68%), a najviše 1440×900px, pa ostaje vazduha
 oko nje i na velikom monitoru. Kada ima teksta sa strane, širina se dodatno
 umanjuje za tu kolonu.

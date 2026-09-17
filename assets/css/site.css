@@ -1203,8 +1203,8 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .lb-link-icon {
   display: block;
   flex: 0 0 auto;
-  width: 15px;
-  height: 15px;
+  width: 19px;
+  height: 19px;
   background: currentColor;
   -webkit-mask: var(--icon) center / contain no-repeat;
   mask: var(--icon) center / contain no-repeat;

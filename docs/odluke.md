@@ -66,12 +66,11 @@ pretapanje; sada nova slika gura staru, kao da su povezane u traku. Smer je u
 `data-dir` na slideshow-u, a slike koje čekaju stoje sa one strane sa koje
 ulaze — zato JS postavi smer i tek onda menja klase (`slideshow.js`). Trajanje
 je `--dur-slide` (1,5s, novi token jer slika putuje celom širinom), kriva
-`--ease` (brz start, meko sleganje). Klik koji stigne usred prelaza odmah
-pokreće sledeći, ali slika koja upravo izlazi ne može da se vrati sa druge
-strane bez preskoka preko ekrana — a baš nju traži svaki drugi brzi klik kada
-ima samo dve slike. Zato se u tom slučaju traka okrene i vrati je odatle gde
-jeste. Kod tri i više slika sledeća već čeka van ekrana, pa se ništa ne
-preskače. Važi za sve
+`--ease` (brz start, meko sleganje). Traka uvek ide u smeru u kom se klikće.
+Brzi drugi klik traži sliku koja još izlazi (kod dve slike uvek): tada njena
+kopija (`.is-ghost`) nastavi da izlazi, a sama slika preskoči van ekrana na
+suprotnu stranu i uđe odatle, pa se preskok ne vidi. Kopija nema naslov kao
+naslov ni linkove, da se ne broje dvaput. Važi za sve
 slideshow-e: hero, hero na stranicama projekata i slike u vestima.
 
 **Home hero se ne zaustavlja na hover** (`data-hover-pause="off"`) jer prekriva

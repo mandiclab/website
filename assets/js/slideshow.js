@@ -63,18 +63,54 @@
       void shell.offsetWidth;
     }
 
+    // A quick second click asks for the image that is still on its way out —
+    // with two images, always. The strip keeps going the way it was clicked:
+    // a copy of that image carries on out of the frame, while the image itself
+    // jumps (off screen) to the far side and slides back in behind it.
+    function carryOut(node, dir, ms) {
+      var copy = node.cloneNode(true);
+      copy.classList.remove('is-active', 'is-prev');
+      copy.classList.add('is-ghost');
+      copy.setAttribute('aria-hidden', 'true');
+      // A copy of a heading or a link must not count as a second one.
+      Array.prototype.forEach.call(copy.querySelectorAll('h1,h2,h3,h4'), function (h) {
+        var plain = document.createElement('div');
+        plain.className = h.className;
+        plain.innerHTML = h.innerHTML;
+        h.parentNode.replaceChild(plain, h);
+      });
+      Array.prototype.forEach.call(copy.querySelectorAll('a[href]'), function (a) { a.removeAttribute('href'); });
+      var ease = getComputedStyle(shell).getPropertyValue('--ease').trim() || 'ease';
+      copy.style.transition = 'none';
+      copy.style.transform = getComputedStyle(node).transform;
+      shell.insertBefore(copy, node);
+      void copy.offsetWidth;
+      copy.style.transition = 'transform ' + ms + 'ms ' + ease;
+      copy.style.transform = 'translateX(' + (dir > 0 ? -100 : 100) + '%)';
+      setTimeout(function () { copy.remove(); }, ms + 80);
+    }
+
+    function parkOnFarSide(node, dir) {
+      node.classList.remove('is-prev');
+      node.style.transition = 'none';
+      node.style.transform = 'translateX(' + (dir > 0 ? 100 : -100) + '%)';
+      void node.offsetWidth;
+      node.style.transition = '';
+      node.style.transform = '';
+    }
+
     function go(n, manual, dir) {
       if (count < 2 || n === state.idx) { if (manual) schedule(base * 2); return; }
       if (!dir) {
         var ahead = (n - state.idx + count) % count;
         dir = ahead <= count - ahead ? 1 : -1;
       }
-      // The image on its way out is still on screen, so it cannot come back in
-      // from the other side without jumping across. When it is the one asked
-      // for — which with two images is every quick second click — the strip
-      // turns around instead and carries it back from where it is.
-      if (moving && n === state.prev) dir = -state.dir;
+      var wrapping = moving && n === state.prev && !reducedMotion.matches;
       setDir(dir);
+      if (wrapping) {
+        carryOut(slides[n], dir, slideMs());
+        parkOnFarSide(slides[n], dir);
+      }
       state.prev = state.idx;
       state.idx = n;
       moving = true;

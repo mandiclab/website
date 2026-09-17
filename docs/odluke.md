@@ -39,7 +39,6 @@ u footeru: ikonica 16×16px unutar `<a>` od 24×24px sa `margin:-4px`.
 Negativna margina održava razmak na ekranu nepromenjenim. Ne „sređuj"
 dimenzije na jednu vrednost — izgubio bi dodirnu metu.
 
-
 **Promena slike u galeriji je obično pretapanje celog sadržaja.** Fotografije
 su raznih oblika, pa je klizanje (i pomeranje okvira) seklo. Sada ceo sadržaj —
 slika i tekst pored nje — izbledi, slika i tekst se zamene dok se ništa ne vidi,
@@ -47,11 +46,11 @@ pa se sve vrati. Strelice levo i desno i X stoje na mestu i ne blede; X je
 fiksan u gornjem desnom uglu, poravnat sa desnom strelicom. Brzi klikovi samo
 pomeraju cilj, pa se stigne na tačnu sliku.
 
-
 **Pozadina iza lightbox-a je tamnija nego u konceptu** (`rgba(11,11,12,0.55)`
 umesto `0.34`), uz isti blur: stranica se i dalje nazire, ali tekst pored slike
 ima dovoljan kontrast. Tagovi pored slike počinju u visini gornje ivice slike,
 a ako u `.md` nema teksta ispod njih, poslednji tag nema ni liniju.
+
 **Slika u lightbox-u ne ide preko celog ekrana.** Najviše 80% širine i 76%
 visine prozora (na telefonu 88% i 68%), a najviše 1440×900px, pa ostaje vazduha
 oko nje i na velikom monitoru. Kada ima teksta sa strane, širina se dodatno

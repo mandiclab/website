@@ -1201,7 +1201,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   color: var(--text-2);
   transition: color var(--dur-base) var(--ease);
 }
-.lb-links > *:first-child { padding-top: 0; }
+/* The first tag sits a touch below the top edge of the photo, so the icon
+   does not read as sticking out above it. */
+.lb-links > *:first-child { padding-top: 8px; }
 /* Without any text under them the last handle needs no line either. */
 .lb-links:last-child > *:last-child { border-bottom: 0; }
 .lb-links a:hover { color: var(--text-1); }

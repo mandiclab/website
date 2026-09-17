@@ -49,7 +49,8 @@ pomeraju cilj, pa se stigne na tačnu sliku.
 **Pozadina iza lightbox-a je tamnija nego u konceptu** (`rgba(11,11,12,0.55)`
 umesto `0.34`), uz isti blur: stranica se i dalje nazire, ali tekst pored slike
 ima dovoljan kontrast. Tagovi pored slike počinju u visini gornje ivice slike,
-a ako u `.md` nema teksta ispod njih, poslednji tag nema ni liniju.
+a ako u `.md` nema teksta ispod njih, poslednji tag nema ni liniju. Prvi tag
+je spušten 8px ispod te ivice, da ikonica ne deluje kao da viri iznad slike.
 
 **Slika u lightbox-u ne ide preko celog ekrana.** Najviše 80% širine i 76%
 visine prozora (na telefonu 88% i 68%), a najviše 1440×900px, pa ostaje vazduha

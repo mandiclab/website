@@ -497,11 +497,21 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   text-wrap: pretty;
 }
 .hero-text .btn { margin-top: 32px; white-space: nowrap; }
-/* Someone else's handles under a hero description, each with its own icon. */
+/* Someone else's handles under a hero description: icon plus handle, no
+   underline, and the whole pair lights up on hover. */
 .hero-social { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 16px; }
-.hero-social a { display: inline-flex; align-items: center; gap: 8px; min-height: 24px; font-size: var(--fs-body); font-weight: 300; color: var(--text-1); }
-.hero-social a > span:last-child { border-bottom: 1px solid var(--line-3); transition: border-color var(--dur-base) var(--ease); }
-.hero-social a:hover > span:last-child { border-color: var(--text-2); }
+.hero-social a {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 24px;
+  font-size: var(--fs-body);
+  font-weight: 300;
+  color: var(--text-2);
+  transition: color var(--dur-base) var(--ease);
+}
+.hero-social a:hover { color: var(--text-1); }
+.hero-social .repo-icon { width: 18px; height: 18px; background: currentColor; }
 
 .news {
   position: relative;

@@ -140,6 +140,11 @@ Kada se projekat objavljuje:
    `<meta name="robots" content="noindex">` ispod njega;
 3. vrati adresu stranice u `sitemap.xml`.
 
+**Tekst preko Home hero-a je o DJC-DIY** (na zahtev vlasnika, umesto teksta iz
+koncepta): H1 „DJC-DIY — an open-source DIY DJ controller", opis sa istim
+linkovima kao na DJC-DIY stranici i dugme „See project". Kao i u konceptu,
+tekst stoji samo preko prve slike; ostale hero slike su bez teksta.
+
 **Godina u footeru se menja sama** (`assets/js/site.js`), kao u konceptu. U
 HTML-u stoji rezervna godina za posetioce bez JavaScript-a.
 

@@ -65,9 +65,12 @@ prelaz trenutan — to je prihvaćeno, ne dodaji JS zamenu.
 GitHub Pages preusmerava www na njega.
 
 **Slike na karticama Projects stranice su uvek 16:9.** Svesno odstupanje od
-koncepta, gde je slika na desktopu oko 3:2, a na užim ekranima 16:10. Visina
-kartice i poravnanje sa pozadinskom mrežom ostaju; na desktopu se kolona sa
-slikom širi, a kolona sa tekstom sužava.
+koncepta, gde je slika na desktopu oko 3:2, a na užim ekranima 16:10. Da tekst
+ne bi ostao pretesan, kartica na širokim ekranima je 24 kvadratića mreže
+umesto 21 (visina ostaje 7): slika je ~570px, tekst ~532px — tekst uži od
+slike, ali što bliži njoj (25 kvadratića bi ga učinilo širim). Kartice se
+slažu jedna ispod druge čim puna širina od 24 kvadratića ne staje (ispod
+1170px umesto 1060px), pa uska kolona teksta ne može da se pojavi.
 
 **Assembly slike na DJC-DIY su SVG u A4 položenom formatu**, pa njihovi okviri
 dobijaju A4 proporcije umesto 16:9 iz placeholder-a u konceptu. Ivica i

@@ -277,7 +277,7 @@
     var g = parseFloat(getComputedStyle(section).getPropertyValue('--g')) || 46;
     if (inner.clientWidth) {
       var cw = Math.floor(inner.clientWidth / g) * g;
-      if (cw > 21 * g) cw = 21 * g;
+      if (cw > 24 * g) cw = 24 * g;
       if (cw < 3 * g) cw = 3 * g;
       section.style.setProperty('--cw', cw + 'px');
     }
@@ -286,7 +286,7 @@
     section.style.setProperty('--tbh', (wrapped ? 3 * g : 2 * g) + 'px');
     // Stacked cards have no fixed height, so round their natural height up to
     // a whole grid unit.
-    var stacked = window.matchMedia('(max-width: 1060px)').matches;
+    var stacked = window.matchMedia('(max-width: 1170px)').matches;
     mountedCards().forEach(function (p) {
       var card = p.el.querySelector('.pcard');
       card.style.minHeight = '';

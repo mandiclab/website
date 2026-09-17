@@ -302,7 +302,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 
 .projects {
   --g: 46px;
-  --cw: calc(var(--g) * 21);
+  --cw: calc(var(--g) * 24);
   position: relative;
   overflow: hidden;
   padding: calc(var(--g) * 3) calc(var(--g) / 2);
@@ -508,15 +508,17 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 .pcard:hover { transform: scale(1.02); }
 
-/* Card images are always 16:9 (docs/odluke.md). On wide screens the image
-   column takes the width that makes the fixed-height image 16:9. */
+/* Card images are always 16:9 (docs/odluke.md). On wide screens the card is
+   24 grid units wide and 7 tall; the image column takes the width that makes
+   the image 16:9 and the text gets the rest (533px vs 569px for the image). */
 .pcard-grid {
   position: relative;
   display: grid;
-  grid-template-columns: calc((var(--g) * 7 - 2px) * 16 / 9) minmax(0,1fr);
+  grid-template-columns: auto minmax(0,1fr);
+  grid-template-rows: 100%;
   height: 100%;
 }
-.pcard-img { position: relative; overflow: hidden; background: var(--surface-1); }
+.pcard-img { position: relative; overflow: hidden; height: 100%; aspect-ratio: 16 / 9; background: var(--surface-1); }
 .pcard-img img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 
 .pcard-body {
@@ -667,9 +669,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 
 /* ── Responsive ────────────────────────────────────────────────────────── */
 
-/* Cards stack as soon as they leave their full 21-unit width, so the image
-   frame never changes proportions. */
-@media (max-width: 1060px) {
+/* Cards stack as soon as they leave their full 24-unit width, so the text
+   column beside the 16:9 image never gets narrower (docs/odluke.md). */
+@media (max-width: 1170px) {
   .pcard { display: flex; flex-direction: column; height: auto; }
   .pcard-grid { grid-template-columns: minmax(0,1fr); grid-template-rows: auto 1fr; height: auto; flex: 1 1 auto; }
   .pcard-img { aspect-ratio: 16 / 9; height: auto; }

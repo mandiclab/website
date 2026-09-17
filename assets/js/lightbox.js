@@ -260,15 +260,37 @@
     st.fading = true;
     dom.dialog.classList.add('is-fading');
     clearTimeout(fadeTimer);
-    fadeTimer = setTimeout(function () {
-      if (!st || closing) return;
-      render();               // swap photo and text while nothing is showing
+
+    // Wait for the fade itself to end, not for a guessed length: the swap has
+    // to happen when the old photo is truly gone, or the two overlap.
+    var comp = dom.comp;
+    var swapped = false;
+    function swap(e) {
+      if (e && e.propertyName !== 'opacity') return;
+      if (swapped) return;
+      swapped = true;
+      comp.removeEventListener('transitionend', swap);
+      clearTimeout(fadeTimer);
+      if (!st || closing || !dom) return;
+      render();               // photo and text change while nothing is showing
       st.fading = false;
-      // A breath, so the new photo is painted before it fades back in.
-      fadeTimer = setTimeout(function () {
-        if (st && !closing && dom) dom.dialog.classList.remove('is-fading');
-      }, 20);
-    }, FADE_MS);
+      // Fade back in only once the new photo is actually there — an <img> keeps
+      // showing the old one until the new file has loaded.
+      var show = function () {
+        clearTimeout(fadeTimer);
+        fadeTimer = setTimeout(function () {
+          if (st && !closing && dom) dom.dialog.classList.remove('is-fading');
+        }, 60);
+      };
+      if (dom.photo.complete && dom.photo.naturalWidth) show();
+      else {
+        dom.photo.addEventListener('load', show, { once: true });
+        dom.photo.addEventListener('error', show, { once: true });
+        fadeTimer = setTimeout(show, 700);   // never wait for ever
+      }
+    }
+    comp.addEventListener('transitionend', swap);
+    fadeTimer = setTimeout(swap, FADE_MS + 150);   // in case the event is missed
   }
 
   // ── Render ──────────────────────────────────────────────────────────────

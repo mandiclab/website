@@ -1,8 +1,9 @@
-// Slideshow for the Home hero and the product page heroes.
+// Slideshow for the Home hero, the Home news images and the product page heroes.
 // Markup: [data-slideshow] containing one .slide per image. Options:
 //   data-autoplay          advance on its own (never with reduced motion)
 //   data-indicator="dots"  play/pause button and dots over the image (default)
 //   data-indicator="thumbs" thumbnail strip below the slideshow
+//   data-indicator="none"  no arrows, dots or thumbnails (news images)
 //   data-interval="6000"   milliseconds between slides
 // Ported from the concept's HeroSlideshow component.
 
@@ -85,7 +86,7 @@
       }
     }
 
-    if (count > 1) {
+    if (count > 1 && indicator !== 'none') {
       var prevBtn = el('button', 'slide-arrow is-prev', { type: 'button', 'aria-label': 'Previous slide' });
       prevBtn.appendChild(el('span'));
       prevBtn.addEventListener('click', function () { step(-1); });

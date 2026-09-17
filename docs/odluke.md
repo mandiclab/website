@@ -146,6 +146,12 @@ controller" (za čitače ekrana i pretraživače spojeno crtom), opis sa istim
 linkovima kao na DJC-DIY stranici i dugme „See project". Kao i u konceptu,
 tekst stoji samo preko prve slike; ostale hero slike su bez teksta.
 
+**Slika u „What's new" kartici može imati više fotografija** (nije u konceptu,
+na zahtev vlasnika). Koristi isti slideshow kao hero (`data-indicator="none"`):
+fotografije se same smenjuju istim prelazom, bez strelica i tačkica, jer je
+kartica vest, a detalji su na stranici projekta. Staje dok je miš preko slike
+ili tab nije aktivan, a uz `prefers-reduced-motion` stoji na prvoj fotografiji.
+
 **Godina u footeru se menja sama** (`assets/js/site.js`), kao u konceptu. U
 HTML-u stoji rezervna godina za posetioce bez JavaScript-a.
 
@@ -199,7 +205,8 @@ animacije i tranzicije, plus `:focus-visible` outline definisan svuda.
 
 Sadržaj koji popunjava vlasnik projekta, ne ti:
 
-- dva news bloka na home stranici — naslov, tekst i odredište CTA dugmeta
+- drugi news blok na home stranici — naslov, tekst i odredište CTA dugmeta;
+  slike za oba news bloka
 - opis slike `ml-gal-2` u galeriji
 - specifikacija hidrauličke ručne na easyrace-u (sada `Specification TBD`)
 - količine filamenta i žice na easyrace bundle-ovima (sada `X g`, `X m`)

@@ -99,6 +99,13 @@ pauza da plejer iscrta sliku). Dugme se obeležava odmah na klik.
 se objavljuje tek kada je easyrace završen. „In development" ostaje samo na
 drivepad-u, pa filter „In development" prikazuje samo njega.
 
+**DJC-DIY ima obaveštenje o podršci na Ko-fi-ju** (nije u konceptu, dodato na
+zahtev vlasnika). Stoji ispod uvodnog pasusa i iznad trake sa tabovima, od
+ivice do ivice kao traka. Zlatni okvir sa blagim sjajem i zlatni naslov velikim
+slovima (boje „In development" taga, sjaj kao kod bundle kartica); sama poruka
+je običnim slovima da bi se lako čitala. Ton je namerno blag — obaveštenje,
+ne molba.
+
 **Godina u footeru se menja sama** (`assets/js/site.js`), kao u konceptu. U
 HTML-u stoji rezervna godina za posetioce bez JavaScript-a.
 

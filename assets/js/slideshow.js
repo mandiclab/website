@@ -30,7 +30,8 @@
     // and a hidden tab are temporary holds that release on their own.
     // Keep them separate (docs/odluke.md).
     var state = { idx: 0, prev: null, dir: 1, paused: false, hover: false, focus: false, hidden: false };
-    var timer = null, prevTimer = null;
+    var timer = null, moveTimer = null;
+    var moving = false, queue = [];
     var dots = [], thumbs = [], playBtn = null;
 
     function held() { return state.paused || state.hover || state.focus || state.hidden; }
@@ -40,7 +41,16 @@
     function schedule(delay) {
       clearTimeout(timer);
       if (!autoplay || count < 2 || reducedMotion.matches || held()) return;
-      timer = setTimeout(function () { go((state.idx + 1) % count, false); }, delay);
+      timer = setTimeout(function () {
+        if (moving) { schedule(600); return; }
+        advance(1, false);
+      }, delay);
+    }
+
+    function slideMs() {
+      var v = getComputedStyle(shell).getPropertyValue('--dur-slide').trim();
+      var n = parseFloat(v) || 1500;
+      return /ms$/.test(v) ? n : n * 1000;
     }
 
     // The slides travel sideways, so the direction has to be set before the
@@ -53,26 +63,47 @@
       void shell.offsetWidth;
     }
 
-    function go(n, manual, dir) {
-      if (n === state.idx) { if (manual) schedule(base * 2); return; }
-      clearTimeout(prevTimer);
-      if (!dir) {
-        var ahead = (n - state.idx + count) % count;
-        dir = ahead <= count - ahead ? 1 : -1;
-      }
+    // One step of the strip. A step that arrives while another is running is
+    // queued instead of cutting it short: with only two images the leaving one
+    // would have to jump across to come back in, and that shows. Queued steps
+    // run at the shorter --dur-slide from .is-quick, so a burst of clicks keeps
+    // up without ever breaking the strip.
+    function advance(dir, manual) {
+      var next = ((state.idx + dir) % count + count) % count;
       setDir(dir);
       state.prev = state.idx;
-      state.idx = n;
+      state.idx = next;
+      moving = true;
       render();
-      // Must outlast the slide transition (--dur-slide), or the leaving slide
-      // would jump to its parked side while it is still moving.
-      prevTimer = setTimeout(function () { state.prev = null; render(); }, 1700);
+      clearTimeout(moveTimer);
+      // Outlasts the slide itself, or the leaving one would jump to its parked
+      // side while still moving.
+      moveTimer = setTimeout(function () {
+        moving = false;
+        state.prev = null;
+        render();
+        if (queue.length) { shell.classList.add('is-quick'); advance(queue.shift(), true); }
+        else shell.classList.remove('is-quick');
+      }, slideMs() + 60);
       schedule(manual ? base * 2 : base);
     }
 
     function step(dir) {
       if (count < 2) return;
-      go(((state.idx + dir) % count + count) % count, true, dir);
+      if (moving) { if (queue.length < 4) queue.push(dir); return; }
+      advance(dir, true);
+    }
+
+    // Jumping to a given image (a dot or a thumbnail) travels there one step at
+    // a time, the short way round, so it stays one strip.
+    function go(n) {
+      if (count < 2) return;
+      var from = queue.reduce(function (i, d) { return ((i + d) % count + count) % count; }, state.idx);
+      if (n === from) return;
+      var ahead = (n - from + count) % count;
+      var dir = ahead <= count - ahead ? 1 : -1;
+      var steps = dir === 1 ? ahead : count - ahead;
+      for (var i = 0; i < steps; i++) step(dir);
     }
 
     function setHold(key, val) {
@@ -140,7 +171,7 @@
         slides.forEach(function (s, i) {
           var d = el('button', 'slide-dot', { type: 'button', 'aria-label': 'Go to slide ' + (i + 1) });
           d.appendChild(el('span'));
-          d.addEventListener('click', function () { go(i, true); });
+          d.addEventListener('click', function () { go(i); });
           bar.appendChild(d);
           dots.push(d);
         });
@@ -161,7 +192,7 @@
             copy.setAttribute('loading', 'lazy');
             t.appendChild(copy);
           }
-          t.addEventListener('click', function () { go(i, true); });
+          t.addEventListener('click', function () { go(i); });
           strip.appendChild(t);
           thumbs.push(t);
         });

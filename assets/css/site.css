@@ -1023,7 +1023,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .info-title { margin-top: clamp(32px,4vh,48px); }
 .info-title + .info-links { margin-top: 24px; }
 
-.repo-actions { display: flex; flex-wrap: nowrap; gap: 12px; margin-top: clamp(32px,4.5vh,48px); }
+.repo-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(32px,4.5vh,48px); }
 .repo-actions a {
   display: inline-flex;
   flex: 0 0 auto;
@@ -1708,8 +1708,6 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .parts-row > div:nth-child(3) { grid-column: 1 / -1; font-size: 13px; color: var(--text-3); }
   .parts-table, .parts-table.parts-wide { min-width: 0; }
   .info-grid { grid-template-columns: minmax(0,1fr); gap: 32px; }
-  .repo-actions { flex-direction: column; flex-wrap: wrap; align-items: stretch; gap: 12px; }
-  .repo-actions > a { flex: 1 1 auto; justify-content: center; }
   .lb-close { width: 44px; height: 44px; }
 }
 

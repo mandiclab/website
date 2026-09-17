@@ -119,6 +119,11 @@ rečenice o PCBWay-u je izbačen deo „where you can also see the whole project
 Naslov „Info" u Overview-u sada glasi „Specs", a novi naslov „Info" stoji iznad
 rečenica o videima i PCBWay-u (isto i na drivepad-u).
 
+**Dugmad GitHub Repo / Download / Support zadržavaju svoju širinu.** U konceptu
+na srednjim širinama ne prelaze u novi red pa poslednje ispadne van kolone, a
+ispod 640px se razvuku preko cele širine. Sada su uvek svoje prirodne širine i
+prelaze u sledeći red kada nema mesta.
+
 **Godina u footeru se menja sama** (`assets/js/site.js`), kao u konceptu. U
 HTML-u stoji rezervna godina za posetioce bez JavaScript-a.
 

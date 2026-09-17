@@ -1576,11 +1576,14 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 
 /* ── Contact ───────────────────────────────────────────────────────────── */
 
-.contact {
+/* The 404 page uses the same layout as Contact. */
+.contact, .notfound {
   padding: clamp(128px,18vh,192px) clamp(24px,4vw,64px) clamp(96px,12vh,128px);
   min-height: 100vh;
   box-sizing: border-box;
 }
+
+.notfound-actions { display: flex; justify-content: center; margin-top: clamp(32px,3.6vh,48px); }
 
 .contact-rows {
   display: flex;
@@ -1657,7 +1660,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   main section:not(.hero):not(.projects) { padding-left: 16px; padding-right: 16px; }
   .community { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 16px; row-gap: 24px; justify-items: center; }
   .contact-rows { flex-direction: column; align-items: center; row-gap: 24px; }
-  .contact .statement { font-size: clamp(20px,5vw,26px); }
+  .contact .statement, .notfound .statement { font-size: clamp(20px,5vw,26px); }
   .tab { padding: 16px 12px; }
   .parts-head { display: none; }
   .parts-row, .parts-wide .parts-row { grid-template-columns: auto minmax(0,1fr); gap: 4px 16px; padding: 16px 4px; }

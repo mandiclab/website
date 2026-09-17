@@ -95,6 +95,10 @@ okvir se pomeri ulevo i vrati posle 0,2s, pa se vidi kako novi YouTube plejer
 skriven i pojavljuje se tek kada ga YouTube javi kao učitanog (plus kratka
 pauza da plejer iscrta sliku). Dugme se obeležava odmah na klik.
 
+**easyrace kartica nema „In development" tag.** U konceptu ga ima, ali sajt
+se objavljuje tek kada je easyrace završen. „In development" ostaje samo na
+drivepad-u, pa filter „In development" prikazuje samo njega.
+
 **Godina u footeru se menja sama** (`assets/js/site.js`), kao u konceptu. U
 HTML-u stoji rezervna godina za posetioce bez JavaScript-a.
 

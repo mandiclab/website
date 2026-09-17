@@ -60,6 +60,29 @@ pri promeni jer je sve jedna stranica; na statičkom sajtu isti efekat daje
 CSS `@view-transition`, bez JavaScript-a. Firefox ga ne podržava i tamo je
 prelaz trenutan — to je prihvaćeno, ne dodaji JS zamenu.
 
+**Domen je `mandiclab.com`, bez www.** Stari sajt je bio na
+`www.mandiclab.com`; od novog sajta CNAME sadrži samo `mandiclab.com`, a
+GitHub Pages preusmerava www na njega.
+
+**Slike na karticama Projects stranice su uvek 16:9.** Svesno odstupanje od
+koncepta, gde je slika na desktopu oko 3:2, a na užim ekranima 16:10. Visina
+kartice i poravnanje sa pozadinskom mrežom ostaju; na desktopu se kolona sa
+slikom širi, a kolona sa tekstom sužava.
+
+**Assembly slike na DJC-DIY su SVG u A4 položenom formatu**, pa njihovi okviri
+dobijaju A4 proporcije umesto 16:9 iz placeholder-a u konceptu. Ivica i
+pozadina okvira ostaju iste.
+
+**Hero slike su 5120×2160.** Važi za Home slideshow i hero slike projekata.
+Ostale slike su 16:9, osim galerije, gde svaka slika zadržava svoje proporcije.
+
+**Ikonice u footeru ne menjaju boju na hover.** Koncept ima pravilo koje bi
+ih posvetlilo, ali ga poništava stil upisan direktno na element, pa se u
+konceptu ništa ne menja. Preneto je tako kako se vidi.
+
+**Godina u footeru se menja sama** (`assets/js/site.js`), kao u konceptu. U
+HTML-u stoji rezervna godina za posetioce bez JavaScript-a.
+
 ---
 
 ## Jedna stvar koja se NE prenosi

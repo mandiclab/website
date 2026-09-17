@@ -35,22 +35,69 @@
         alt: img.getAttribute('alt') || '',
         w: img.naturalWidth || Number(img.getAttribute('width')) || 0,
         h: img.naturalHeight || Number(img.getAttribute('height')) || 0,
-        info: btn.querySelector('template.shot-info')
       };
     }).filter(Boolean);
   }
 
-  // Optional credit links and description for a photo.
-  function infoOf(entry) {
-    var out = { links: [], desc: '' };
-    if (!entry || !entry.info) return out;
-    var frag = entry.info.content;
-    out.links = Array.prototype.map.call(frag.querySelectorAll('a'), function (a) {
-      return { href: a.getAttribute('href'), handle: a.textContent.trim(), platform: a.getAttribute('data-platform') };
+  // ── Photo notes (.md next to the photo) ─────────────────────────────────
+  // A photo can have a text file with the same name (1.webp → 1.md). Lines
+  // like "instagram: name" become a link with that platform's icon, and the
+  // rest of the file becomes paragraphs. No file, or an empty one, means no
+  // text beside the photo and the photo sits in the middle instead.
+
+  var PLATFORMS = {
+    instagram: 'https://www.instagram.com/{h}/',
+    youtube: 'https://www.youtube.com/@{h}',
+    tiktok: 'https://www.tiktok.com/@{h}',
+    github: 'https://github.com/{h}',
+    'ko-fi': 'https://ko-fi.com/{h}',
+    discord: ''    // a username has no page; only a link is used as given
+  };
+
+  var notes = {};   // src → { links: [], paras: [] } once loaded
+
+  function noteUrl(src) {
+    return src.split('#')[0].split('?')[0].replace(/\.[a-z0-9]+$/i, '.md');
+  }
+
+  function parseNote(text) {
+    var out = { links: [], paras: [] }, rest = [];
+    text.split(/\r?\n/).forEach(function (line) {
+      var m = /^\s*([a-z][a-z-]*)\s*:\s*(.+?)\s*$/i.exec(line);
+      var key = m ? m[1].toLowerCase().replace('kofi', 'ko-fi') : null;
+      if (!m || !(key in PLATFORMS)) { rest.push(line); return; }
+      var value = m[2], href = '', handle = value;
+      if (/^https?:\/\//i.test(value)) {
+        href = value;
+        handle = value.replace(/^https?:\/\/(www\.)?/i, '').replace(/\/$/, '');
+      } else {
+        handle = '@' + value.replace(/^@/, '');
+        if (PLATFORMS[key]) href = PLATFORMS[key].replace('{h}', encodeURIComponent(value.replace(/^@/, '')));
+      }
+      out.links.push({ platform: key, href: href, handle: handle });
     });
-    var p = frag.querySelector('p');
-    out.desc = p ? p.textContent.trim() : '';
+    rest.join('\n').split(/\n\s*\n/).forEach(function (block) {
+      var p = block.replace(/\s*\n\s*/g, ' ').trim();
+      if (p) out.paras.push(p);
+    });
     return out;
+  }
+
+  function ensureNote(src, done) {
+    if (!src || notes[src]) { if (done) done(); return; }
+    notes[src] = { links: [], paras: [] };   // nothing until the file answers
+    if (typeof fetch !== 'function') { if (done) done(); return; }
+    fetch(noteUrl(src), { cache: 'no-cache' })
+      .then(function (res) { return res.ok ? res.text() : ''; })
+      .catch(function () { return ''; })
+      .then(function (text) {
+        if (text) notes[src] = parseNote(text);
+        if (done) done();
+      });
+  }
+
+  function infoOf(entry) {
+    return (entry && notes[entry.src]) || { links: [], paras: [] };
   }
 
   var st = null;          // open state, null when closed
@@ -173,6 +220,7 @@
     if (dom) { removeLayer('A'); removeLayer('B'); hideBehind(dom.dialog); }
     mount();
     preload(list, at);
+    ensureNote(list[at].src, function () { if (st && !closing) render(); });
     render();
     raf2(function () { if (st && !closing) { st.vis = true; render(); } });
   }
@@ -198,7 +246,7 @@
   function preload(list, i) {
     [-1, 1].forEach(function (d) {
       var e = list[(i + d + list.length) % list.length];
-      if (e && e.src) { var im = new Image(); im.src = e.src; }
+      if (e && e.src) { var im = new Image(); im.src = e.src; ensureNote(e.src); }
     });
   }
 
@@ -295,7 +343,7 @@
     var idx = ((Number(st.lb) || 0) % n + n) % n;
     var entry = list[idx];
     var meta = infoOf(entry);
-    var hasInfo = !!(meta.links.length || meta.desc);
+    var hasInfo = !!(meta.links.length || meta.paras.length);
     var vw = window.innerWidth, vh = window.innerHeight;
     var narrow = vw < 820;
     var infoPx = Math.round(Math.min(380, Math.max(320, vw * 0.26)));
@@ -375,7 +423,8 @@
         if (meta.links.length) {
           var links = el('div', 'lb-links');
           meta.links.forEach(function (l) {
-            var a = el('a', null, { href: l.href, target: '_blank', rel: 'noopener noreferrer' });
+            // Without an address it is just the icon and the name, not a link.
+            var a = el(l.href ? 'a' : 'div', null, l.href ? { href: l.href, target: '_blank', rel: 'noopener noreferrer' } : null);
             var icon = el('span', 'lb-link-icon');
             if (l.platform) icon.style.setProperty('--icon', "url('/assets/socials/" + l.platform + ".svg')");
             a.appendChild(icon);
@@ -384,11 +433,11 @@
           });
           dom.info.appendChild(links);
         }
-        if (meta.desc) {
+        meta.paras.forEach(function (text) {
           var p = el('p', 'lb-desc');
-          p.textContent = meta.desc;
+          p.textContent = text;
           dom.info.appendChild(p);
-        }
+        });
       }
       dom.info.style.width = narrow ? 'min(100%,480px)' : infoPx + 'px';
     } else if (dom.info) {

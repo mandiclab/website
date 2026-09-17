@@ -1186,7 +1186,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 .lightbox.is-visible .lb-info { opacity: 1; }
 .lb-links { display: flex; flex-direction: column; gap: 4px; }
-.lb-links a {
+.lb-links > * {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -1204,11 +1204,12 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   flex: 0 0 auto;
   width: 15px;
   height: 15px;
-  background: var(--text-2);
+  background: currentColor;
   -webkit-mask: var(--icon) center / contain no-repeat;
   mask: var(--icon) center / contain no-repeat;
 }
 .lb-desc { margin: 0; max-width: var(--measure-narrow); font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); text-wrap: pretty; }
+.lb-desc + .lb-desc { margin-top: 16px; }
 .lb-edge {
   position: absolute;
   z-index: 6;

@@ -215,11 +215,12 @@
               </div>
               <!-- One .shot per photo, any proportions. Put the image inside the button:
                    <button type="button" class="shot"><img src="/assets/images/drivepad/gallery/1.webp" alt="…" width="…" height="…" loading="lazy" decoding="async"></button>
-                   Optional credit and description for the lightbox go in a template inside the button, after the image:
-                   <template class="shot-info">
-                     <a href="https://instagram.com/…" data-platform="instagram">@…</a>
-                     <p>Description of the build.</p>
-                   </template>
+                   Text beside a photo in the lightbox comes from a file with the same name
+                   (1.webp → 1.md) in the same folder, so no markup is needed for it:
+                     instagram: name      → icon and @name, linking to instagram.com/name
+                                            (also youtube, tiktok, github, ko-fi, discord)
+                     everything else      → paragraphs, blank line between them
+                   No file, or an empty one, means the photo opens on its own, centred.
                    Empty tiles are placeholders and do not open the lightbox. -->
               <div class="gallery-grid">
                 <button type="button" class="shot"></button>

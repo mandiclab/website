@@ -461,7 +461,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   inset: 0;
   z-index: 3;
   pointer-events: none;
-  background: linear-gradient(to right, rgba(11,11,12,0.72) 0%, rgba(11,11,12,0.45) 40%, transparent 70%);
+  background: linear-gradient(to right, rgba(11,11,12,0.52) 0%, rgba(11,11,12,0.28) 40%, transparent 70%);
 }
 .hero-text {
   position: absolute;

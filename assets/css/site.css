@@ -318,6 +318,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 .slideshow:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
 
+.slide, .slide-empty { position: absolute; inset: 0; overflow: hidden; }
 /* The images travel as one strip; the script sets each one's position and
    timing (assets/js/slideshow.js). A waiting image rests off to the side. */
 .slide { transform: translateX(100%); z-index: 1; pointer-events: none; }

@@ -222,6 +222,126 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   transition: background var(--dur-base) var(--ease);
 }
 
+/* ── Shared layout ─────────────────────────────────────────────────────── */
+
+.container { max-width: var(--container); margin: 0 auto; }
+
+/* Centered display-size statement used as the About and Contact headline. */
+.statement {
+  margin: 0;
+  text-align: center;
+  font-size: var(--fs-display);
+  font-weight: 200;
+  line-height: 1.55;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
+}
+
+.rule { margin-top: clamp(32px,3.6vh,48px); height: 1px; background: var(--line-1); }
+
+/* ── About ─────────────────────────────────────────────────────────────── */
+
+.about {
+  padding: clamp(128px,18vh,192px) clamp(24px,4vw,64px);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.about-text { max-width: var(--measure); margin: clamp(32px,3.6vh,48px) auto 0; text-align: center; }
+.about-text p {
+  margin: 0;
+  font-size: var(--fs-body);
+  font-weight: 300;
+  line-height: 1.65;
+  color: var(--text-2);
+  text-wrap: pretty;
+}
+.about-text p + p { margin-top: clamp(24px,3vh,32px); }
+
+.about-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(260px,1fr));
+  gap: clamp(32px,5vw,96px);
+  margin-top: clamp(32px,3.6vh,48px);
+  padding-top: clamp(32px,4vw,48px);
+  border-top: 1px solid var(--line-1);
+}
+
+.about-heading {
+  text-align: center;
+  font-size: var(--fs-h2);
+  font-weight: 300;
+  line-height: 1.4;
+  color: var(--text-1);
+}
+
+.community {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  column-gap: clamp(32px,4.4vw,64px);
+  row-gap: clamp(24px,2.4vw,32px);
+  margin-top: clamp(32px,3vw,48px);
+}
+.community a {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: var(--fs-body);
+  font-weight: 300;
+  color: var(--text-2);
+  opacity: 0.88;
+  transition: opacity var(--dur-base) cubic-bezier(0.22,1,0.36,1), color var(--dur-base) cubic-bezier(0.22,1,0.36,1), filter var(--dur-base) cubic-bezier(0.22,1,0.36,1);
+}
+.community a:hover { opacity: 1; color: var(--text-1); filter: drop-shadow(0 0 10px var(--line-2)); }
+.community-name { display: inline-flex; align-items: center; gap: 12px; }
+.community-icon {
+  display: block;
+  width: 26px;
+  height: 26px;
+  background: currentColor;
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+}
+.community-sub {
+  font-size: var(--fs-label);
+  font-weight: 300;
+  letter-spacing: 0;
+  line-height: 1.4;
+  text-align: center;
+  color: var(--text-3);
+}
+
+/* ── Contact ───────────────────────────────────────────────────────────── */
+
+.contact {
+  padding: clamp(128px,18vh,192px) clamp(24px,4vw,64px) clamp(96px,12vh,128px);
+  min-height: 100vh;
+  box-sizing: border-box;
+}
+
+.contact-rows {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: center;
+  column-gap: clamp(64px,10vw,128px);
+  row-gap: clamp(32px,4vh,48px);
+  margin-top: clamp(32px,3.6vh,48px);
+}
+.contact-item { display: flex; flex-direction: column; align-items: center; gap: clamp(16px,1.6vw,24px); }
+.contact-label { font-size: var(--fs-small); font-weight: 400; line-height: 1.55; color: var(--text-3); }
+.contact-link {
+  font-size: var(--fs-h2);
+  font-weight: 200;
+  letter-spacing: -0.01em;
+  color: var(--text-1);
+  transition: color var(--dur-base) cubic-bezier(0.22,1,0.36,1), filter var(--dur-base) cubic-bezier(0.22,1,0.36,1);
+}
+.contact-link:hover { color: var(--text-1); filter: drop-shadow(0 0 10px var(--line-2)); }
+
 /* ── Page transition ───────────────────────────────────────────────────── */
 /* The concept fades the page out, swaps it after 220ms and fades the new one
    in over 300ms ease-out, while the header stays put. */
@@ -250,6 +370,10 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .footer-brand { justify-content: center; }
   .footer-meta { flex-direction: column; flex-wrap: nowrap; align-items: center; justify-content: center; gap: 12px; }
   .footer-social { justify-content: center; }
+  main section:not(.hero):not(.projects) { padding-left: 16px; padding-right: 16px; }
+  .community { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 16px; row-gap: 24px; justify-items: center; }
+  .contact-rows { flex-direction: column; align-items: center; row-gap: 24px; }
+  .contact .statement { font-size: clamp(20px,5vw,26px); }
 }
 
 /* ── Reduced motion ────────────────────────────────────────────────────── */

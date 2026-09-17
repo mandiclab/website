@@ -10,6 +10,7 @@
 <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/slideshow.js" defer></script>
 </head>
 <body>
 <div class="page">
@@ -27,6 +28,53 @@
   </header>
 
   <main>
+
+    <section class="hero">
+      <div class="hero-slideshow">
+        <div class="slideshow-wrap">
+          <div class="slideshow" data-slideshow data-autoplay data-indicator="dots" tabindex="0" role="region" aria-label="Home slideshow">
+            <!-- One .slide per image (5120×2160), for example:
+                 <div class="slide"><img src="/assets/images/home/hero-1.webp" alt="…" width="5120" height="2160" loading="eager" fetchpriority="high" decoding="async"></div>
+                 The first slide loads eagerly; the others use loading="lazy". -->
+            <div class="slide-empty"></div>
+            <div class="hero-gradient"></div>
+            <div class="hero-text">
+              <h1 class="hero-title">A one man project.<br>Built between a bedroom and a workshop.</h1>
+              <p class="hero-sub">3D printable DJ controllers and sim racing gear you can make at home — without special tools, skill or knowledge.</p>
+              <a class="btn" href="/projects/">View projects</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-fade"></div>
+    </section>
+
+    <section class="news">
+      <div class="news-grid-mask"><div class="news-grid"></div></div>
+      <div class="news-inner">
+        <h2 class="news-heading">What’s new</h2>
+        <div class="news-list">
+          <div class="news-row">
+            <div class="news-img"></div>
+            <div class="news-body">
+              <div class="news-kicker">Update</div>
+              <h3 class="news-title">Placeholder update title</h3>
+              <p class="news-text">Short placeholder description for this update. Two to four lines of text describing what changed.</p>
+              <a class="news-cta" href="/projects/djc-diy/">View project</a>
+            </div>
+          </div>
+          <div class="news-row">
+            <div class="news-img"></div>
+            <div class="news-body">
+              <div class="news-kicker">In development</div>
+              <h3 class="news-title">Placeholder update title</h3>
+              <p class="news-text">Short placeholder description for this update. Two to four lines of text describing what changed.</p>
+              <a class="news-cta" href="/projects/easyrace/">Learn more</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
 
     <footer class="footer">
       <div class="footer-brand">

@@ -66,7 +66,7 @@
       render();
       // Must outlast the slide transition (--dur-slide), or the leaving slide
       // would jump to its parked side while it is still moving.
-      prevTimer = setTimeout(function () { state.prev = null; render(); }, 1200);
+      prevTimer = setTimeout(function () { state.prev = null; render(); }, 1700);
       schedule(manual ? base * 2 : base);
     }
 

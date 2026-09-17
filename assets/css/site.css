@@ -103,6 +103,9 @@ button { display: inline-block; background: none; border: 0; margin: 0; padding:
 :focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
 input:focus-visible, textarea:focus-visible { outline: none; border-color: var(--text-2); transition: border-color var(--dur-fast) var(--ease); }
 [hidden] { display: none !important; }
+/* Unreleased content (data-draft) is hidden unless the site is opened
+   locally, where site.js shows it (docs/odluke.md). */
+:root:not([data-show-drafts]) [data-draft] { display: none !important; }
 
 .visually-hidden {
   position: absolute;

@@ -89,7 +89,10 @@
 
         <!-- Cards are listed in "Newest" order. data-order is the base order the
              sort works from; data-date drives Newest/Oldest (no date keeps its place). -->
-        <div class="pcard-wrap" data-key="easyrace" data-order="1" data-date="2026-10-28">
+        <!-- data-draft hides a card on the live site until the project is released;
+             it still shows when the site is opened locally. To release, delete
+             data-draft (steps in docs/odluke.md). -->
+        <div class="pcard-wrap" data-key="easyrace" data-order="1" data-date="2026-10-28" data-draft>
           <div class="pcard">
             <div class="pcard-grid">
               <div class="pcard-img"></div>
@@ -129,7 +132,7 @@
           </div>
         </div>
 
-        <div class="pcard-wrap" data-key="drivepad" data-order="2">
+        <div class="pcard-wrap" data-key="drivepad" data-order="2" data-draft>
           <div class="pcard">
             <div class="pcard-grid">
               <div class="pcard-img"></div>

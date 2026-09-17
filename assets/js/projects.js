@@ -17,7 +17,12 @@
   var state = { query: '', sort: 'Newest', filter: 'All', menu: null, menuOut: null };
 
   // Card data is read from the HTML, so the markup stays the single source.
-  var cards = Array.prototype.map.call(section.querySelectorAll('.pcard-wrap'), function (el) {
+  // Unreleased projects (data-draft) are left out of search, sort and filter
+  // unless drafts are shown (site.js).
+  var showDrafts = document.documentElement.hasAttribute('data-show-drafts');
+  var cards = Array.prototype.filter.call(section.querySelectorAll('.pcard-wrap'), function (el) {
+    return showDrafts || !el.hasAttribute('data-draft');
+  }).map(function (el) {
     return {
       key: el.getAttribute('data-key'),
       el: el,

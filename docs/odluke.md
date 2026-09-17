@@ -124,6 +124,22 @@ na srednjim širinama ne prelaze u novi red pa poslednje ispadne van kolone, a
 ispod 640px se razvuku preko cele širine. Sada su uvek svoje prirodne širine i
 prelaze u sledeći red kada nema mesta.
 
+**Neobjavljeni projekti se skrivaju oznakom `data-draft`.** Sve što nosi
+`data-draft` (sada kartice easyrace i drivepad na Projects stranici) ne vidi
+se na pravom sajtu, a vidi se kada se sajt otvori lokalno (`localhost` ili
+`127.0.0.1`), pa se pre objave može pregledati bez ikakvog prebacivanja pred
+push. Na pravom sajtu takva kartica ne učestvuje ni u pretrazi, sortiranju i
+filteru. Same stranice neobjavljenih projekata i dalje postoje na svojoj
+adresi (i u javnom repozitorijumu), ali nisu u `sitemap.xml` i imaju
+`noindex`, pa ih pretraživači ne prikazuju.
+
+Kada se projekat objavljuje:
+
+1. u `projects/index.html` obriši `data-draft` sa kartice projekta;
+2. na stranici projekta obriši komentar „Unreleased" i red
+   `<meta name="robots" content="noindex">` ispod njega;
+3. vrati adresu stranice u `sitemap.xml`.
+
 **Godina u footeru se menja sama** (`assets/js/site.js`), kao u konceptu. U
 HTML-u stoji rezervna godina za posetioce bez JavaScript-a.
 

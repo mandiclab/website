@@ -43,8 +43,12 @@ se same otpuštaju. Ne spajaj ih u jedan flag.
 **easyrace ima datum `2026-10-28`, u budućnosti.** Planirani datum izlaska.
 Sort „Newest" ga zato stavlja iznad DJC-DIY. Tako treba.
 
-**`drivepad` nema svoju stranicu** (`page: null`). Namerno dok projekat ne
-sazri. Kartica na Projects stranici postoji, klik ne vodi nigde.
+**`drivepad` ima svoju stranicu** (`/projects/drivepad/`), iako je u konceptu
+nema (`page: null`) — dodata na zahtev vlasnika. Strukturno je identična
+DJC-DIY stranici (slideshow, Ko-fi obaveštenje, isti tabovi, galerija,
+lightbox); razlikuju se samo naslov, opis, adresa, nazivi za čitače ekrana i
+ID-jevi tabova. Tekst i sadržaj su privremeno preuzeti sa DJC-DIY (vidi
+otvorene stavke). „Show more" na drivepad kartici vodi na nju.
 
 ---
 
@@ -166,6 +170,9 @@ Sadržaj koji popunjava vlasnik projekta, ne ti:
 - `FAQ` i `Terms` tabovi na easyrace stranici — postoje, kompletno su
   ožičeni, ali su prazni
 - sve slike i njihovi `alt` tekstovi
+- drivepad stranica: sav tekst je još DJC-DIY sadržaj — takođe YouTube
+  video ID-jevi, GitHub/Download/PCBWay linkovi, tabele delova, koraci
+  sklapanja i njihove slike (sada DJC-DIY SVG-ovi), FAQ i licence
 
 Pred lansiranje easyrace-a:
 

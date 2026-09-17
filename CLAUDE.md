@@ -36,6 +36,7 @@ Da bi se pročitao, mora se raspakovati — u privremeni folder, ne u repozitori
 /projects/index.html             →  mandiclab.com/projects/
 /projects/djc-diy/index.html     →  mandiclab.com/projects/djc-diy/
 /projects/easyrace/index.html    →  mandiclab.com/projects/easyrace/
+/projects/drivepad/index.html    →  mandiclab.com/projects/drivepad/
 /about/index.html                →  mandiclab.com/about/
 /contact/index.html              →  mandiclab.com/contact/
 ```
@@ -122,6 +123,7 @@ nivoa. Trenutno stanje koncepta je ispravno i prenosi se kako jeste:
 | Projects | „Projects", vizuelno skriven |
 | DJC-DIY | „DJC-DIY" |
 | easyrace | „easyrace" |
+| drivepad | „drivepad" (stranica nije u konceptu, vidi `docs/odluke.md`) |
 | About | „A one man project." |
 | Contact | „Have a question?" |
 

@@ -264,11 +264,6 @@
     closeMenu();
   });
 
-  // drivepad has no page yet: its "Show more" does nothing.
-  Array.prototype.forEach.call(section.querySelectorAll('a[href="#"]'), function (a) {
-    a.addEventListener('click', function (e) { e.preventDefault(); });
-  });
-
   // ── Grid alignment ──────────────────────────────────────────────────────
   // The background grid is anchored to the card column, so the column width
   // and every block above it must land on whole grid units at any width.

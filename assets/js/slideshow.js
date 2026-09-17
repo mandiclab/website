@@ -111,6 +111,10 @@
           playBtn.addEventListener('click', function (e) {
             e.stopPropagation();
             setHold('paused', !state.paused);
+            // Restart the swap animation on every click.
+            playBtn.classList.remove('is-toggled');
+            void playBtn.offsetWidth;
+            playBtn.classList.add('is-toggled');
           });
           bar.appendChild(playBtn);
         }

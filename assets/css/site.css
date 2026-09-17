@@ -399,13 +399,22 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3px;
-  width: 12px;
-  height: 12px;
+  gap: 4px;
+  width: 14px;
+  height: 14px;
   box-sizing: border-box;
 }
-.slide-play .bar { display: block; width: 2px; height: 10px; background: var(--text-1); }
-.slide-play .tri { display: block; width: 0; height: 0; border-left: 8px solid var(--text-1); border-top: 5px solid transparent; border-bottom: 5px solid transparent; }
+.slide-play .bar { display: block; width: 2px; height: 12px; background: var(--text-1); }
+.slide-play .tri { display: block; width: 0; height: 0; border-left: 10px solid var(--text-1); border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
+/* It grows a little and glows on hover, dips on click, and the new mark
+   (play or pause) grows into place when the two swap. */
+.slide-play { transition: transform var(--dur-base) var(--ease); }
+.slide-play > span { transition: filter var(--dur-base) var(--ease); }
+.slide-play:hover { transform: scale(1.12); }
+.slide-play:hover > span { filter: drop-shadow(0 0 10px rgba(242,242,240,0.45)); }
+.slide-play:active { transform: scale(0.9); transition-duration: var(--dur-fast); }
+@keyframes mlPlayPop { from { transform: scale(0.72); opacity: 0.35; } to { transform: scale(1); opacity: 1; } }
+.slide-play.is-toggled > span { animation: mlPlayPop var(--dur-base) var(--ease); }
 
 .slide-thumbs-outer { padding: 0 clamp(24px,4vw,64px); }
 .slide-thumbs-inner { max-width: var(--container); margin: 0 auto; }

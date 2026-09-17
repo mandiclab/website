@@ -31,7 +31,7 @@
     // Keep them separate (docs/odluke.md).
     var state = { idx: 0, prev: null, dir: 1, paused: false, hover: false, focus: false, hidden: false };
     var timer = null, moveTimer = null;
-    var moving = false, queue = [];
+    var moving = false;
     var dots = [], thumbs = [], playBtn = null;
 
     function held() { return state.paused || state.hover || state.focus || state.hidden; }
@@ -43,7 +43,7 @@
       if (!autoplay || count < 2 || reducedMotion.matches || held()) return;
       timer = setTimeout(function () {
         if (moving) { schedule(600); return; }
-        advance(1, false);
+        go((state.idx + 1) % count, false, 1);
       }, delay);
     }
 
@@ -63,16 +63,20 @@
       void shell.offsetWidth;
     }
 
-    // One step of the strip. A step that arrives while another is running is
-    // queued instead of cutting it short: with only two images the leaving one
-    // would have to jump across to come back in, and that shows. Queued steps
-    // run at the shorter --dur-slide from .is-quick, so a burst of clicks keeps
-    // up without ever breaking the strip.
-    function advance(dir, manual) {
-      var next = ((state.idx + dir) % count + count) % count;
+    function go(n, manual, dir) {
+      if (count < 2 || n === state.idx) { if (manual) schedule(base * 2); return; }
+      if (!dir) {
+        var ahead = (n - state.idx + count) % count;
+        dir = ahead <= count - ahead ? 1 : -1;
+      }
+      // The image on its way out is still on screen, so it cannot come back in
+      // from the other side without jumping across. When it is the one asked
+      // for — which with two images is every quick second click — the strip
+      // turns around instead and carries it back from where it is.
+      if (moving && n === state.prev) dir = -state.dir;
       setDir(dir);
       state.prev = state.idx;
-      state.idx = next;
+      state.idx = n;
       moving = true;
       render();
       clearTimeout(moveTimer);
@@ -82,28 +86,13 @@
         moving = false;
         state.prev = null;
         render();
-        if (queue.length) { shell.classList.add('is-quick'); advance(queue.shift(), true); }
-        else shell.classList.remove('is-quick');
       }, slideMs() + 60);
       schedule(manual ? base * 2 : base);
     }
 
     function step(dir) {
       if (count < 2) return;
-      if (moving) { if (queue.length < 4) queue.push(dir); return; }
-      advance(dir, true);
-    }
-
-    // Jumping to a given image (a dot or a thumbnail) travels there one step at
-    // a time, the short way round, so it stays one strip.
-    function go(n) {
-      if (count < 2) return;
-      var from = queue.reduce(function (i, d) { return ((i + d) % count + count) % count; }, state.idx);
-      if (n === from) return;
-      var ahead = (n - from + count) % count;
-      var dir = ahead <= count - ahead ? 1 : -1;
-      var steps = dir === 1 ? ahead : count - ahead;
-      for (var i = 0; i < steps; i++) step(dir);
+      go(((state.idx + dir) % count + count) % count, true, dir);
     }
 
     function setHold(key, val) {
@@ -171,7 +160,7 @@
         slides.forEach(function (s, i) {
           var d = el('button', 'slide-dot', { type: 'button', 'aria-label': 'Go to slide ' + (i + 1) });
           d.appendChild(el('span'));
-          d.addEventListener('click', function () { go(i); });
+          d.addEventListener('click', function () { go(i, true); });
           bar.appendChild(d);
           dots.push(d);
         });
@@ -192,7 +181,7 @@
             copy.setAttribute('loading', 'lazy');
             t.appendChild(copy);
           }
-          t.addEventListener('click', function () { go(i); });
+          t.addEventListener('click', function () { go(i, true); });
           strip.appendChild(t);
           thumbs.push(t);
         });

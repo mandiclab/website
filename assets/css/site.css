@@ -322,8 +322,6 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 /* The images move as one strip: the new one pushes the old one out, quick at
    the start and settling at the end. data-dir is the direction of travel. */
 .slide { transform: translateX(100%); z-index: 0; transition: none; pointer-events: none; }
-/* Catching up with a burst of clicks: the queued steps run shorter. */
-.slideshow.is-quick { --dur-slide: var(--dur-slow); }
 .slide.is-prev { transform: translateX(-100%); z-index: 1; transition: transform var(--dur-slide) var(--ease); }
 .slide.is-active { transform: none; z-index: 2; transition: transform var(--dur-slide) var(--ease); pointer-events: auto; }
 .slideshow[data-dir="-1"] .slide { transform: translateX(-100%); }

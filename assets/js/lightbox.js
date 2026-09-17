@@ -348,8 +348,12 @@
     var narrow = vw < 820;
     var infoPx = Math.round(Math.min(380, Math.max(320, vw * 0.26)));
     var gapPx = Math.round(Math.min(54, Math.max(24, vw * 0.03)));
-    var availW = Math.min(hasInfo && !narrow ? vw * 0.94 - infoPx - gapPx : vw * 0.90, vw * 0.90);
-    var availH = Math.min(hasInfo && narrow ? vh * 0.88 - 200 - gapPx : (hasInfo ? vh * 0.86 : vh * 0.88), narrow ? vh * 0.80 : vh * 0.88);
+    // The photo keeps air around it instead of filling the screen, and on a
+    // large monitor it stops growing at these caps.
+    var maxW = Math.min(vw * (narrow ? 0.88 : 0.80), 1440);
+    var maxH = Math.min(vh * (narrow ? 0.68 : 0.76), 900);
+    var availW = hasInfo && !narrow ? Math.min(maxW, vw * 0.92 - infoPx - gapPx) : maxW;
+    var availH = hasInfo && narrow ? Math.min(maxH, vh * 0.86 - 200 - gapPx) : maxH;
     var maxW = Math.round(availW) + 'px', maxH = Math.round(availH) + 'px';
 
     function entryOf(src) { return src ? list.filter(function (s) { return s.src === src; })[0] : null; }

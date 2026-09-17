@@ -39,6 +39,11 @@ u footeru: ikonica 16×16px unutar `<a>` od 24×24px sa `margin:-4px`.
 Negativna margina održava razmak na ekranu nepromenjenim. Ne „sređuj"
 dimenzije na jednu vrednost — izgubio bi dodirnu metu.
 
+**Slika u lightbox-u ne ide preko celog ekrana.** Najviše 80% širine i 76%
+visine prozora (na telefonu 88% i 68%), a najviše 1440×900px, pa ostaje vazduha
+oko nje i na velikom monitoru. Kada ima teksta sa strane, širina se dodatno
+umanjuje za tu kolonu.
+
 **Tekst uz sliku u galeriji dolazi iz `.md` fajla pored slike.** Slika
 `1.webp` čita `1.md` iz istog foldera (`lightbox.js` ga uzme tek kad se slika
 otvori, sa našeg domena). Redovi oblika `instagram: ime` postaju link sa
@@ -250,7 +255,7 @@ animacije i tranzicije, plus `:focus-visible` outline definisan svuda.
 Sadržaj koji popunjava vlasnik projekta, ne ti:
 
 - slike za DJC-DIY v1.1.0 vest na home stranici
-- slike za galeriju na DJC-DIY (i opcioni `.md` uz njih)
+- opcioni `.md` fajlovi uz slike u galeriji (kredit i opis)
 - specifikacija hidrauličke ručne na easyrace-u (sada `Specification TBD`)
 - količine filamenta i žice na easyrace bundle-ovima (sada `X g`, `X m`)
 - `FAQ` i `Terms` tabovi na easyrace stranici — postoje, kompletno su

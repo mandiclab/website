@@ -28,7 +28,10 @@ za pill tagove. Drugde 11px ostaje zabranjen.
 
 **News redovi koriste `direction: rtl`.** To je trik za naizmenični raspored
 slika i teksta. Oba deteta imaju `direction: ltr` reset, pa tekst ne curi u
-RTL. Nije bag.
+RTL. Nije bag. Strane zavise od položaja reda (svaki drugi je obrnut), pa se
+nova vest samo doda **iznad** postojećih, kopiranjem postojećeg reda kao
+šablona — ostale se same prebace na suprotnu stranu. Najnovija vest je uvek
+prva, sa slikom levo.
 
 **Dodirne mete su veće od onoga što se vidi.** Tačkice slideshow-a: vidljiv
 kvadratić 8×8px unutar `<button>` od 24×24px sa `margin:-8px`. Social ikonice
@@ -205,8 +208,7 @@ animacije i tranzicije, plus `:focus-visible` outline definisan svuda.
 
 Sadržaj koji popunjava vlasnik projekta, ne ti:
 
-- drugi news blok na home stranici — naslov, tekst i odredište CTA dugmeta;
-  slike za oba news bloka
+- slike za DJC-DIY v1.1.0 vest na home stranici
 - opis slike `ml-gal-2` u galeriji
 - specifikacija hidrauličke ručne na easyrace-u (sada `Specification TBD`)
 - količine filamenta i žice na easyrace bundle-ovima (sada `X g`, `X m`)

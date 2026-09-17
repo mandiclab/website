@@ -1,0 +1,265 @@
+/* MandićLab — shared styles for every page.
+   Values come from concept/standalone.html. Where a value matches a design
+   token exactly, the token is used; where it does not, the concept value is
+   copied as-is, because rounding it to the nearest token would change the look. */
+
+/* ── Fonts ─────────────────────────────────────────────────────────────── */
+/* One variable file per script covers weights 200–500. The browser downloads
+   a file only when the page contains characters from its unicode-range. */
+
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 200 500;
+  font-display: swap;
+  src: url("/assets/fonts/montserrat-cyrillic-ext.woff2") format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C8A, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 200 500;
+  font-display: swap;
+  src: url("/assets/fonts/montserrat-cyrillic.woff2") format('woff2');
+  unicode-range: U+0301, U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 200 500;
+  font-display: swap;
+  src: url("/assets/fonts/montserrat-vietnamese.woff2") format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+0128-0129, U+0168-0169, U+01A0-01A1, U+01AF-01B0, U+0300-0301, U+0303-0304, U+0308-0309, U+0323, U+0329, U+1EA0-1EF9, U+20AB;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 200 500;
+  font-display: swap;
+  src: url("/assets/fonts/montserrat-latin-ext.woff2") format('woff2');
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 200 500;
+  font-display: swap;
+  src: url("/assets/fonts/montserrat-latin.woff2") format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+/* ── Tokens ────────────────────────────────────────────────────────────── */
+
+:root {
+  --bg:#0B0B0C;
+  --surface-1:rgba(242,242,240,0.04);
+  --surface-2:rgba(242,242,240,0.08);
+  --overlay-header:rgba(11,11,12,0.55);
+
+  --text-1:#F2F2F0;
+  --text-2:rgba(242,242,240,0.78);
+  --text-3:rgba(242,242,240,0.58);
+  --text-disabled:rgba(242,242,240,0.38);
+
+  --line-1:rgba(242,242,240,0.08);
+  --line-2:rgba(242,242,240,0.16);
+  --line-3:rgba(242,242,240,0.28);
+
+  --accent-rose:#E89189;
+  --accent-green:#9FE3C1;
+  --accent-blue:#9CC2EE;
+  --accent-gold:#E8C98C;
+
+  --fs-display:clamp(34px,4vw,56px);
+  --fs-h1:clamp(26px,2.8vw,38px);
+  --fs-h2:clamp(20px,1.9vw,24px);
+  --fs-h3:17px;
+  --fs-body:15px;
+  --fs-small:13px;
+  --fs-label:12px;
+
+  --section-y:clamp(64px,9vh,128px);
+  --gutter:clamp(20px,4vw,48px);
+  --container:1280px;
+  --measure:66ch;
+  --measure-narrow:46ch;
+
+  --dur-fast:160ms;
+  --dur-base:300ms;
+  --dur-slow:500ms;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+/* ── Base ──────────────────────────────────────────────────────────────── */
+
+html, body { margin: 0; padding: 0; background: var(--bg); }
+body { font-family: Montserrat, system-ui, sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: var(--text-1); text-decoration: none; }
+/* In the concept every link sets its own colour inline, which beats this rule.
+   :where() keeps this rule weaker than any component rule to match that. */
+a:where(:hover) { color: var(--text-1); }
+button { display: inline-block; background: none; border: 0; margin: 0; padding: 0; font: inherit; color: inherit; text-align: inherit; letter-spacing: inherit; -webkit-appearance: none; appearance: none; cursor: pointer; }
+::selection { background: var(--line-2); }
+:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+input:focus-visible, textarea:focus-visible { outline: none; border-color: var(--text-2); transition: border-color var(--dur-fast) var(--ease); }
+
+.page {
+  background: var(--bg);
+  color: var(--text-1);
+  font-family: Montserrat, system-ui, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ── Header ────────────────────────────────────────────────────────────── */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 60;
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto minmax(0,1fr);
+  align-items: center;
+  height: 56px;
+  padding: 0 clamp(24px,4vw,64px);
+  background: var(--overlay-header);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  border-bottom: 1px solid var(--surface-1);
+  view-transition-name: site-header;
+}
+
+.header-logo {
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  padding: 8px 4px;
+  margin-right: clamp(34px,4vw,68px);
+}
+
+.nav {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(32px,3.2vw,48px);
+}
+
+.nav a {
+  display: block;
+  padding: 16px 4px;
+  font-size: var(--fs-label);
+  font-weight: 400;
+  letter-spacing: 0.18em;
+  color: var(--text-3);
+  text-shadow: 0 0 0 rgba(242,242,240,0);
+  transition: color var(--dur-base) var(--ease), text-shadow var(--dur-base) var(--ease);
+}
+.nav a:hover { text-shadow: 0 0 16px var(--text-disabled); }
+.nav a[aria-current] { color: var(--text-1); }
+
+/* ── Footer ────────────────────────────────────────────────────────────── */
+
+.footer {
+  display: grid;
+  grid-template-columns: auto minmax(0,1fr) auto;
+  align-items: center;
+  gap: clamp(24px,3vw,48px);
+  padding: clamp(32px,3vw,48px) clamp(24px,4vw,64px);
+  border-top: 1px solid var(--line-1);
+}
+
+.footer-brand { display: flex; align-items: center; gap: 16px; }
+.footer-brand span {
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1.4;
+  color: var(--text-3);
+}
+
+.footer-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(16px,2vw,32px);
+  font-size: var(--fs-label);
+  font-weight: 300;
+  letter-spacing: 0;
+  color: var(--text-3);
+}
+.footer-meta a { color: var(--text-3); }
+
+/* 24×24 touch target around a 16×16 icon; the negative margins keep the
+   on-screen spacing unchanged. See docs/odluke.md. */
+.footer-social {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: clamp(12px,1.6vw,24px);
+  margin: -4px;
+  padding: 4px;
+}
+.footer-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin: -4px;
+}
+.footer-social span {
+  display: block;
+  width: 16px;
+  height: 16px;
+  background: var(--text-3);
+  -webkit-mask: var(--icon) center / contain no-repeat;
+  mask: var(--icon) center / contain no-repeat;
+  transition: background var(--dur-base) var(--ease);
+}
+
+/* ── Page transition ───────────────────────────────────────────────────── */
+/* The concept fades the page out, swaps it after 220ms and fades the new one
+   in over 300ms ease-out, while the header stays put. */
+
+@view-transition { navigation: auto; }
+::view-transition-old(root) { animation: var(--dur-base) ease-out both ml-page-out; }
+::view-transition-new(root) { animation: var(--dur-base) ease-out 220ms both ml-page-in; }
+::view-transition-group(site-header) { animation-duration: var(--dur-base); animation-timing-function: var(--ease); }
+@keyframes ml-page-out { to { opacity: 0; } }
+@keyframes ml-page-in { from { opacity: 0; } }
+
+/* ── Responsive ────────────────────────────────────────────────────────── */
+
+@media (max-width: 900px) {
+  .header { display: flex; align-items: center; justify-content: center; gap: 0; }
+  .header > :last-child { display: none; }
+  .header-logo { justify-self: auto; margin-right: 24px; flex: 0 0 auto; }
+  .nav { flex: 0 0 auto; }
+}
+
+@media (max-width: 640px) {
+  .header { padding-left: 16px; padding-right: 16px; }
+  .header-logo { margin-right: 16px; }
+  .nav { gap: 20px; }
+  .footer { grid-template-columns: minmax(0,1fr); justify-items: center; text-align: center; row-gap: 24px; padding-left: 16px; padding-right: 16px; }
+  .footer-brand { justify-content: center; }
+  .footer-meta { flex-direction: column; flex-wrap: nowrap; align-items: center; justify-content: center; gap: 12px; }
+  .footer-social { justify-content: center; }
+}
+
+/* ── Reduced motion ────────────────────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  @view-transition { navigation: none; }
+}

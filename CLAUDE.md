@@ -4,9 +4,13 @@ Statički sajt za MandićLab, jednočlani projekat koji pravi 3D-štampiv
 open-source DIY hardver: DJC-DIY (DJ kontroler), easyrace i drivepad
 (sim racing oprema).
 
-Dizajn je završen i odobren. Izvorni koncept je `concept/MandicLab_Concept_v18.html`
+Dizajn je završen i odobren. Izvorni koncept je `concept/standalone.html`
 — jedan fajl koji sadrži svih šest stranica. Posao u ovom repozitorijumu je da se
 taj koncept pretvori u statički sajt, **bez menjanja izgleda**.
+
+Koncept je zapakovana arhiva iz Claude Design-a: šablon stranica, logika,
+slideshow komponenta, fontovi i ikonice su u njemu kodirani (base64 + gzip).
+Da bi se pročitao, mora se raspakovati — u privremeni folder, ne u repozitorijum.
 
 ---
 
@@ -20,6 +24,7 @@ taj koncept pretvori u statički sajt, **bez menjanja izgleda**.
 - **Bez eksternih zavisnosti.** Nema CDN-ova, nema Google Fonts linkova,
   nema analytics-a. Fontovi se self-hostuju iz repozitorijuma.
   Ako nešto traži mrežni poziv van našeg domena, ne ide.
+  Jedini dogovoreni izuzetak: ugrađen YouTube video (vidi `docs/odluke.md`).
 - **Čisti URL-ovi, bez `.html`.** Svaka stranica je `index.html` u svom folderu.
 
 ---

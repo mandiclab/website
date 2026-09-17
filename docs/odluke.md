@@ -48,6 +48,20 @@ sazri. Kartica na Projects stranici postoji, klik ne vodi nigde.
 
 ---
 
+## Dogovoreno pri prelasku na statički sajt
+
+**YouTube video na DJC-DIY je ugrađen direktno** (`<iframe>`), iako CLAUDE.md
+inače zabranjuje mrežne pozive van našeg domena. Odluka vlasnika
+(2026-09-17): ugrađen plejer izgleda lepše od slike sa play dugmetom.
+Ne zamenjuj ga „fasadom" koja učitava YouTube tek na klik.
+
+**Prelaz između stranica je CSS view transition.** U konceptu stranica bledi
+pri promeni jer je sve jedna stranica; na statičkom sajtu isti efekat daje
+CSS `@view-transition`, bez JavaScript-a. Firefox ga ne podržava i tamo je
+prelaz trenutan — to je prihvaćeno, ne dodaji JS zamenu.
+
+---
+
 ## Jedna stvar koja se NE prenosi
 
 `_reassertTabFocus` — petlja koja 900ms posle pritiska strelice vraća fokus
@@ -94,14 +108,6 @@ animacije i tranzicije, plus `:focus-visible` outline definisan svuda.
 
 ## Otvorene stavke
 
-Dve tehničke, koje nisu stigle u Design:
-
-- `searchBorder` u neaktivnom stanju je `rgba(242,242,240,0.28)` → kontrast
-  2.28:1, ispod praga od 3:1 za granice UI komponenti. Treba `0.38`
-  (daje 3.26:1, i već je postojeća vrednost u paleti kao `--text-disabled`).
-- `[data-ml="proj-search"]` treba `overflow:hidden`, jer je layout box
-  skaliranog inputa širi od kontejnera.
-
 Sadržaj koji popunjava vlasnik projekta, ne ti:
 
 - dva news bloka na home stranici — naslov, tekst i odredište CTA dugmeta
@@ -116,8 +122,3 @@ Pred lansiranje easyrace-a:
 
 - Privacy Policy stranica. `Terms` tab za sam proizvod već postoji na
   easyrace stranici, ali Privacy Policy nema gde da stoji.
-
-Sitnica za doslednost:
-
-- Arduino IDE se linkuje na tri mesta bez kose crte
-  (`https://www.arduino.cc/en/software`) i na jednom sa njom. Ujednači.

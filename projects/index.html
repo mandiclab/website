@@ -10,6 +10,7 @@
 <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/projects.js" defer></script>
 </head>
 <body>
 <div class="page">
@@ -27,6 +28,120 @@
   </header>
 
   <main>
+
+    <section class="projects">
+      <div class="projects-grid"></div>
+      <div class="projects-inner">
+        <h1 class="visually-hidden">Projects</h1>
+
+        <div class="projects-toolbar">
+          <div class="search-slot">
+            <div class="search">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="rgba(242,242,240,0.38)" stroke-width="1.7" stroke-linecap="round">
+                <circle cx="10.2" cy="10.2" r="6.4"></circle>
+                <line x1="15.2" y1="15.2" x2="20.6" y2="20.6"></line>
+              </svg>
+              <input type="search" id="search-projects" name="q" aria-label="Search projects" placeholder="Search projects">
+            </div>
+          </div>
+          <div class="controls-slot">
+            <div class="projects-controls">
+              <div class="menu" data-menu="sort">
+                <button type="button" class="menu-toggle" aria-haspopup="menu" aria-expanded="false">
+                  Sort
+                  <span class="caret"></span>
+                </button>
+                <div class="menu-panel" role="menu" aria-label="Sort projects" hidden>
+                  <button type="button" role="menuitem" class="sort-opt is-selected" data-value="Newest">Newest</button>
+                  <button type="button" role="menuitem" class="sort-opt" data-value="Oldest">Oldest</button>
+                  <button type="button" role="menuitem" class="sort-opt" data-value="Name">Name</button>
+                </div>
+              </div>
+              <div class="menu" data-menu="filter">
+                <button type="button" class="menu-toggle" aria-haspopup="menu" aria-expanded="false">
+                  Filter
+                  <span class="filter-dot" hidden></span>
+                  <span class="caret"></span>
+                </button>
+                <div class="menu-panel" role="menu" aria-label="Filter projects" hidden>
+                  <button type="button" role="menuitem" class="filter-opt is-selected" data-kind="all" data-value="All">All</button>
+                  <button type="button" role="menuitem" class="filter-opt" data-kind="g" data-value="Open source">Open source</button>
+                  <button type="button" role="menuitem" class="filter-opt" data-kind="r" data-value="Digital product">Digital product</button>
+                  <button type="button" role="menuitem" class="filter-opt" data-kind="y" data-value="In development">In development</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Cards are listed in "Newest" order. data-order is the base order the
+             sort works from; data-date drives Newest/Oldest (no date keeps its place). -->
+        <div class="pcard-wrap" data-key="easyrace" data-order="1" data-date="2026-10-28">
+          <div class="pcard">
+            <div class="pcard-grid">
+              <div class="pcard-img"></div>
+              <div class="pcard-body">
+                <div>
+                  <h2 class="pcard-title">easyrace</h2>
+                  <p class="pcard-desc">Easyrace is a fully 3D printable DIY sim racing setup that you can make at home without special tools, skill or knowledge.</p>
+                </div>
+                <div class="pcard-foot">
+                  <div class="pcard-tags">
+                    <span class="pill pill-rose">Digital product</span>
+                    <span class="pill pill-gold">In development</span>
+                  </div>
+                  <a class="btn" href="/projects/easyrace/">Show more</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pcard-wrap" data-key="djc" data-order="0" data-date="2025-08-01">
+          <div class="pcard">
+            <div class="pcard-grid">
+              <div class="pcard-img"></div>
+              <div class="pcard-body">
+                <div>
+                  <h2 class="pcard-title">DJC-DIY</h2>
+                  <p class="pcard-desc">DJC-DIY is an open-source DJ controller that you can make at home without special tools, skill or knowledge. It works with Mixxx, open-source DJ software.</p>
+                </div>
+                <div class="pcard-foot">
+                  <div class="pcard-tags">
+                    <span class="pill pill-green">Open source</span>
+                  </div>
+                  <a class="btn" href="/projects/djc-diy/">Show more</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- drivepad has no page yet on purpose (docs/odluke.md): the button goes nowhere. -->
+        <div class="pcard-wrap" data-key="drivepad" data-order="2">
+          <div class="pcard">
+            <div class="pcard-grid">
+              <div class="pcard-img"></div>
+              <div class="pcard-body">
+                <div>
+                  <h2 class="pcard-title">drivepad</h2>
+                  <p class="pcard-desc">The world’s first handheld sim racing device.</p>
+                </div>
+                <div class="pcard-foot">
+                  <div class="pcard-tags">
+                    <span class="pill pill-green">Open source</span>
+                    <span class="pill pill-gold">In development</span>
+                  </div>
+                  <a class="btn" href="#">Show more</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="projects-empty" hidden>No projects match the current search and filter.</div>
+      </div>
+    </section>
 
     <footer class="footer">
       <div class="footer-brand">

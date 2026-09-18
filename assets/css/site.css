@@ -1344,7 +1344,8 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .license a { color: var(--text-1); border-bottom: 1px solid var(--line-2); }
 
 /* FAQ accordion. The answer is visibility: hidden while closed, otherwise
-   screen readers read it despite max-height: 0 (docs/odluke.md). */
+   screen readers read it despite max-height: 0 (docs/odluke.md).
+   --faq-h is each answer's own height, measured by product.js at the click. */
 .faq { margin-top: clamp(32px,4.5vh,64px); border-top: 1px solid var(--line-1); }
 .faq-item { border-bottom: 1px solid var(--line-1); }
 .faq-q {
@@ -1375,7 +1376,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 .faq-q[aria-expanded="true"] + .faq-a {
   visibility: visible;
-  max-height: 200px;
+  max-height: var(--faq-h, 200px);
   opacity: 1;
   transition: max-height var(--dur-slow) var(--ease), opacity var(--dur-base) ease-out, visibility 0s linear 0s;
 }

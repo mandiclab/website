@@ -272,6 +272,15 @@ Home/End.
 `role="region"` sa `aria-labelledby`, i `visibility:hidden` kad je zatvoren
 (inače ga screen reader čita uprkos `max-height:0`).
 
+**Otvoreni odgovor ide do svoje visine, ne do fiksne.** `max-height` je
+`var(--faq-h)`, a `product.js` je izmeri (`scrollHeight`) na klik i upiše na
+sam odgovor. Ranije je stajalo fiksnih `200px`: pošto je odgovor visok 60–130px,
+expo krivulja je vidljivi deo pređe za ~50ms a preostalih 450ms je trošila na
+prazan hod, pa je otvaranje izgledalo kao da škljocne dok je zatvaranje
+izgledalo mekano. Meri se na klik, a ne pri učitavanju, jer FAQ stoji u
+skrivenom tabu — skriven element se meri kao nula. Otvoren odgovor se premeri
+i pri promeni veličine prozora, jer se tekst tad prelama u drugu visinu.
+
 **Lightbox** — `role="dialog"`, `aria-modal="true"`, fokus se pri otvaranju
 prebacuje na dugme za zatvaranje, Tab i Shift+Tab kruže unutar modala,
 pozadina dobija `aria-hidden` dok je otvoren, i fokus se pri zatvaranju vraća

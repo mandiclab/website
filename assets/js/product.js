@@ -161,10 +161,43 @@
 
   // ── FAQ ─────────────────────────────────────────────────────────────────
   // Each question toggles its own answer; the look follows aria-expanded.
+  // The answer opens to its own height, measured here: a fixed max-height
+  // leaves empty slack that the easing races through, so the opening looked
+  // like a snap next to the closing (docs/odluke.md). Measured at the click
+  // rather than on load, because the FAQ sits in a hidden tab panel until
+  // its tab is picked, and a hidden element measures zero.
 
-  Array.prototype.forEach.call(document.querySelectorAll('.faq-q'), function (btn) {
+  var faqButtons = document.querySelectorAll('.faq-q');
+
+  function faqHeight(panel) {
+    // Lift the cap first: with room to spare, scrollHeight reports the box,
+    // not the text inside it.
+    panel.style.transition = 'none';
+    panel.style.maxHeight = 'none';
+    var h = panel.scrollHeight;
+    panel.style.maxHeight = '';
+    panel.style.setProperty('--faq-h', h + 'px');
+    void panel.offsetHeight;
+    panel.style.transition = '';
+  }
+
+  Array.prototype.forEach.call(faqButtons, function (btn) {
     btn.addEventListener('click', function () {
-      btn.setAttribute('aria-expanded', btn.getAttribute('aria-expanded') === 'true' ? 'false' : 'true');
+      var open = btn.getAttribute('aria-expanded') === 'true';
+      if (!open && btn.nextElementSibling) faqHeight(btn.nextElementSibling);
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
     });
+  });
+
+  // An answer left open while the window resizes rewraps to a new height.
+
+  var faqTimer;
+  window.addEventListener('resize', function () {
+    clearTimeout(faqTimer);
+    faqTimer = setTimeout(function () {
+      Array.prototype.forEach.call(faqButtons, function (btn) {
+        if (btn.getAttribute('aria-expanded') === 'true' && btn.nextElementSibling) faqHeight(btn.nextElementSibling);
+      });
+    }, 150);
   });
 })();

@@ -1205,7 +1205,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   padding: 12px 0;
   border-bottom: 1px solid var(--line-1);
   font-size: var(--fs-small);
-  font-weight: 300;
+  font-weight: 400;
   letter-spacing: 0;
   color: var(--text-2);
   transition: color var(--dur-base) var(--ease);

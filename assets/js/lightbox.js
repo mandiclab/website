@@ -305,7 +305,10 @@
     var gapPx = Math.round(Math.min(54, Math.max(24, vw * 0.03)));
     // The photo keeps air around it instead of filling the screen, and on a
     // large monitor it stops growing at these caps.
-    var maxW = Math.min(vw * (narrow ? 0.88 : 0.80), 1440);
+    // The arrow columns are clamp(58px,8vw,120px) wide (site.css); the photo
+    // keeps clear of them with a little air, so it never runs up to an arrow.
+    var edgePx = Math.min(120, Math.max(58, vw * 0.08)) + 12;
+    var maxW = Math.min(vw * (narrow ? 0.88 : 0.80), vw - 2 * edgePx, 1440);
     var maxH = Math.min(vh * (narrow ? 0.68 : 0.78), 900);
     var availW = hasInfo && !narrow ? Math.min(maxW, vw * 0.92 - infoPx - gapPx) : maxW;
     var availH = hasInfo && narrow ? Math.min(maxH, vh * 0.86 - 200 - gapPx) : maxH;

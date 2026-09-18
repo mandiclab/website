@@ -65,7 +65,8 @@ strana, a na Home stranici je nema.
 **Slika u lightbox-u ne ide preko celog ekrana.** Najviše 80% širine i 76%
 visine prozora (na telefonu 88% i 68%), a najviše 1440×900px, pa ostaje vazduha
 oko nje i na velikom monitoru. Kada ima teksta sa strane, širina se dodatno
-umanjuje za tu kolonu.
+umanjuje za tu kolonu. Na telefonu se dodatno drži dalje od strelica, da ne
+ide do njih.
 
 
 **Ispod galerije stoji poziv da se pošalje svoja slika** (nije u konceptu, na

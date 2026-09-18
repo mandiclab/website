@@ -243,6 +243,13 @@ bio ispod ekrana dok je traka vidljiva. `100svh` je visina sa vidljivom
 trakom; `100vh` ostaje ispred kao rezerva za starije pregledače. Ne vraćaj na
 samo `100vh`.
 
+**Header više ne stoji preko fotografije.** Ostaje fiksiran na vrhu, ali
+stranice koje počinju slikom sada ispod njega ostavljaju mesto: hero na
+naslovnoj ima `margin-top: var(--header-h)`, a `.product` toliki `padding-top`.
+Visina hero-a je zato `100svh - var(--header-h)` — header i slika zajedno čine
+tačno jedan ekran, pa se slika i dalje proteže do dna, samo je više ne seče.
+`--header-h` je 56px, ista vrednost koju header i inače ima.
+
 **Okvir fotografije nikad nije uži od 3:2.** Slike su 5120×2160, a `cover` ih
 seče na oblik okvira: na 3:2 se još vidi sve bitno, ispod toga se seče u sam
 predmet — na telefonu je ostajala samo traka iz sredine. Zato i hero i

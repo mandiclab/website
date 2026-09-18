@@ -424,7 +424,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 
 .slide-thumbs-outer { padding: 0 clamp(24px,4vw,64px); }
 .slide-thumbs-inner { max-width: var(--container); margin: 0 auto; }
-.slide-thumbs { display: flex; gap: 12px; margin-top: 12px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; padding-bottom: 4px; }
+/* 2px of room around the row, pulled back by the margin, so the hover scale of
+   a thumbnail is not clipped at the top. */
+.slide-thumbs { display: flex; gap: 12px; margin: 10px -2px 0; padding: 2px 2px 4px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
 .slide-thumb {
   position: relative;
   flex: 0 0 auto;

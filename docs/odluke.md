@@ -252,12 +252,19 @@ na uspravnom prozoru hero prestane malo pre dna ekrana.
 
 **Na telefonu hero menja oblik: fotografija gore, tekst ispod.** Okvir od 3:2
 je na telefonu previsok za tekst preko slike, pa fotografija zauzima traku
-preko vrha hero-a (`--band`), a tekst se centrira u prostoru ispod nje.
-Prelazi se na to ispod 640px širine i samo kad je ekran uži od 3:2 — iznad
-toga tekst i dalje stoji preko fotografije, kao u konceptu. Ispod fotografije
-se rezerviše mesto za najduži tekst koji neki slajd nosi; rezerva se smanjuje
-kako ekran postaje širi (`clamp`), a na niskom ekranu hero pređe preko dna
-ekrana — bolje da se malo skroluje nego da se rečenica preseče.
+preko vrha hero-a (`--band`), a tekst počinje odmah ispod nje, 24px niže
+(`--hero-gap`). Prelazi se na to ispod 640px širine i samo kad je ekran uži od
+3:2 — iznad toga tekst i dalje stoji preko fotografije, kao u konceptu.
+
+**Tu hero nije visok koliko i ekran, nego koliko mu treba.** Visina je traka +
+razmak + tekst + mesto za kvadratiće. `--hero-text` je visina najdužeg teksta
+koji neki slajd nosi; meri je `assets/js/site.js` i postavlja je na hero, pa
+svi slajdovi dele istu visinu i kvadratići i dugme play/pause ne skaču pri
+smeni slika. Kraći tekstovi zato ostavljaju prazninu pri dnu, ne oko sebe.
+Meri se ponovo kad stignu fontovi i kad se hero promeni po širini
+(`ResizeObserver`, uz `resize` kao rezervu). U CSS-u stoji rezervna vrednost
+za posetioce bez JavaScript-a. Na malom i niskom telefonu hero može da pređe
+preko dna ekrana — bolje da se malo skroluje nego da se rečenica preseče.
 
 Traka koristi `aspect-ratio: 3/2`, a ne `--band`, jer `vw` računa i traku za
 skrolovanje pa bi na desktopu okvir bio nekoliko piksela niži od 3:2.

@@ -1784,11 +1784,18 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
    See docs/odluke.md. */
 
 @media (max-width: 640px) and (max-aspect-ratio: 3/2) {
-  /* The reserve under the photo is room for the longest text a slide carries;
-     it shrinks as the screen widens, because wider lines wrap less. On a short
-     screen it pushes the hero past the fold — better a little scrolling than a
-     sentence cut in half. */
-  .hero { --band: 66.667vw; height: 100vh; height: 100svh; min-height: calc(var(--band) + clamp(460px,636px - 30vw,540px)); }
+  /* The hero is only as tall as it needs to be — photo, a breath, the text,
+     and room for the dots. --hero-text is the tallest text any slide carries,
+     measured by site.js so the dots stay put as the slides change; the value
+     here is the fallback used until it does (and without JavaScript). */
+  .hero {
+    --band: 66.667vw;
+    --hero-gap: 24px;
+    --hero-text: 420px;
+    height: calc(var(--band) + var(--hero-gap) + var(--hero-text) + 56px);
+    min-height: 0;
+    max-height: none;
+  }
   /* aspect-ratio, not --band, so the frame is 3:2 against the real width of the
      page — on a desktop window --band counts the scrollbar in and would fall a
      few pixels short. */
@@ -1799,11 +1806,14 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
     height: var(--band);
     background: linear-gradient(to top, rgba(11,11,12,0.95) 0%, rgba(11,11,12,0.4) 8%, transparent 18%);
   }
+  /* Every slide's text starts right under the photo, so the shorter ones leave
+     their spare room at the bottom instead of floating in the middle. */
   .hero-text {
-    top: calc(var(--band) + 24px);
+    top: calc(var(--band) + var(--hero-gap));
     bottom: 56px;
-    justify-content: center;
+    justify-content: flex-start;
   }
+  .hero-text > * { flex: 0 0 auto; }
   /* The arrows belong to the photo, so they sit on its middle, not the hero's. */
   .hero .slide-arrow { top: calc(var(--band) / 2); }
 }

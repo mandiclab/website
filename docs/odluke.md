@@ -113,6 +113,12 @@ na home stranici i dalje staju na hover, jer nemaju dugme za pauzu.
 klik se stisne, a novi znak (play ili pause) naraste na mesto. Dodirna meta
 ostaje 24×24px.
 
+**Po sredini se centriraju kvadratići, ne ceo red.** Dugme play/pause stoji
+levo od njih, ali se u centriranju ne računa: `.slide-dots` na desnoj strani
+dobija prazan protivteg iste širine (`::after`, 8px), pa kvadratići padaju
+tačno na sredinu okvira. Pravilo je pod `:has(.slide-play)` — gde dugmeta nema,
+nema ni protivtega.
+
 **easyrace ima datum `2026-10-28`, u budućnosti.** Planirani datum izlaska.
 Sort „Newest" ga zato stavlja iznad DJC-DIY. Tako treba.
 

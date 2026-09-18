@@ -376,6 +376,10 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   padding: 0 16px;
   box-sizing: border-box;
 }
+/* The dots are centred on the frame, not on the row: the play button stands to
+   their left, and an empty counterweight of the same width on the right keeps
+   it from pushing them off centre. See docs/odluke.md. */
+.slide-dots:has(.slide-play)::after { content: ""; width: 8px; height: 0; }
 /* 24×24 touch target around an 8×8 dot; the negative margin keeps the
    on-screen gap at 8px. See docs/odluke.md. */
 .slide-dot, .slide-play {

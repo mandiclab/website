@@ -53,6 +53,11 @@ a ako u `.md` nema teksta ispod njih, poslednji tag nema ni liniju. Prvi tag
 je spušten 8px ispod te ivice, da ikonica ne deluje kao da viri iznad slike.
 
 
+
+**easyrace hero je isti slideshow kao na druge dve stranice.** U konceptu je
+bila jedna slika sa tri ukrasne sličice ispod, koje ništa ne rade; sada je
+`.product-slideshow` sa sličicama koje se same prave od slika i prebacuju
+sliku, kao na DJC-DIY i drivepad-u. Stari `.er-hero` i `.er-thumbs` su obrisani.
 **Hero na stranicama projekata ide od ivice do ivice i na telefonu.** Pravilo
 koje ispod 640px daje sekcijama 16px sa strana preskače `.product`, jer taj
 razmak već nosi `.product-body`; inače bi hero fotografija imala belinu sa
@@ -290,7 +295,8 @@ Sadržaj koji popunjava vlasnik projekta, ne ti:
 - količine filamenta i žice na easyrace bundle-ovima (sada `X g`, `X m`)
 - `FAQ` i `Terms` tabovi na easyrace stranici — postoje, kompletno su
   ožičeni, ali su prazni
-- sve slike i njihovi `alt` tekstovi
+- sve slike i njihovi `alt` tekstovi (easyrace hero sada prima više slika, kao
+  DJC-DIY)
 - drivepad stranica: YouTube video snimci i linkovi ka njima, GitHub/Download
   i PCBWay linkovi, tabela 3D štampanih delova i koraci sklapanja
 

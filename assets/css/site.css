@@ -1390,11 +1390,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 
 /* ── easyrace ──────────────────────────────────────────────────────────── */
 
-/* Hero: one image with three thumbnails under it (not a slideshow). */
-.er-hero { position: relative; width: 100%; height: min(74vh,760px); min-height: 440px; background: var(--surface-1); }
-.er-hero img, .er-thumb img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.er-thumbs { display: flex; gap: 12px; margin-top: 12px; }
-.er-thumb { position: relative; width: clamp(96px,10vw,148px); height: clamp(62px,6.4vw,94px); overflow: hidden; background: var(--surface-1); }
+/* The hero is the shared slideshow (see the Slideshow section above). */
 
 .er-lead { display: flex; flex-wrap: wrap; align-items: flex-start; gap: clamp(32px,4vw,64px); }
 .er-intro {

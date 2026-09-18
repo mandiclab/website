@@ -37,6 +37,7 @@
 <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/site.js" defer></script>
+<script src="/assets/js/slideshow.js" defer></script>
 <script src="/assets/js/product.js" defer></script>
 </head>
 <body>
@@ -57,19 +58,20 @@
   <main>
 
     <section class="product">
-      <!-- Hero image (5120×2160):
-           <img src="/assets/images/easyrace/hero.webp" alt="…" width="5120" height="2160" loading="eager" fetchpriority="high" decoding="async"> -->
-      <div class="er-hero"></div>
+      <div class="product-slideshow">
+        <div class="slideshow-wrap">
+          <div class="slideshow" data-slideshow data-indicator="thumbs" tabindex="0" role="region" aria-label="easyrace slideshow">
+            <!-- One .slide per image (5120×2160), for example:
+                 <div class="slide"><img src="/assets/images/easyrace/hero-1.webp" alt="…" width="5120" height="2160" loading="eager" fetchpriority="high" decoding="async"></div>
+                 The first slide loads eagerly; the others use loading="lazy".
+                 Thumbnails below are made from these images automatically. -->
+            <div class="slide-empty"></div>
+          </div>
+        </div>
+      </div>
 
       <div class="product-body">
         <div class="product-inner">
-
-          <!-- Thumbnails under the hero; each takes one <img> like the hero, with loading="lazy". -->
-          <div class="er-thumbs">
-            <div class="er-thumb"></div>
-            <div class="er-thumb"></div>
-            <div class="er-thumb"></div>
-          </div>
 
           <h1 class="product-title">easyrace</h1>
           <div class="product-tags">

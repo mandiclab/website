@@ -240,7 +240,7 @@
       if (indicator === 'thumbs') {
         var outer = el('div', 'slide-thumbs-outer');
         var inner = el('div', 'slide-thumbs-inner');
-        var strip = el('div', 'slide-thumbs');
+        var thumbRow = el('div', 'slide-thumbs');
         slides.forEach(function (s, i) {
           var t = el('button', 'slide-thumb', { type: 'button', 'aria-label': 'Show slide ' + (i + 1) });
           var img = s.querySelector('img');
@@ -252,10 +252,10 @@
             t.appendChild(copy);
           }
           t.addEventListener('click', function () { go(i, true); });
-          strip.appendChild(t);
+          thumbRow.appendChild(t);
           thumbs.push(t);
         });
-        inner.appendChild(strip);
+        inner.appendChild(thumbRow);
         outer.appendChild(inner);
         shell.parentNode.appendChild(outer);
       }

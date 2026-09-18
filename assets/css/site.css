@@ -455,7 +455,11 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 /* 100svh is the height visible with the browser bars shown, so on phones the
    bottom of the hero (text and button) is not hidden under the address bar.
    100vh stays as the fallback for older browsers. */
-.hero { position: relative; height: 100vh; height: 100svh; min-height: 620px; width: 100%; overflow: hidden; }
+/* 66.667vw is width ÷ 1.5, so the frame never gets narrower than 3:2: below
+   that the crop starts eating into the subject. On a window taller than it is
+   wide the hero therefore stops short of the fold, and on a phone it changes
+   shape altogether — see the block near the end of this file (docs/odluke.md). */
+.hero { position: relative; height: min(100vh,66.667vw); height: min(100svh,66.667vw); min-height: min(620px,66.667vw); width: 100%; overflow: hidden; }
 .hero-slideshow { position: absolute; inset: 0; }
 .hero-fade {
   position: absolute;
@@ -867,7 +871,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 /* ── Product pages (DJC-DIY, easyrace) ─────────────────────────────────── */
 
 .product { padding-bottom: clamp(96px,10vh,128px); }
-.product .slideshow { height: min(74vh,760px); min-height: 440px; }
+/* 66.667vw is width ÷ 1.5, so the frame never gets narrower than 3:2 — on a
+   phone it shrinks instead of cropping into the photo (docs/odluke.md). */
+.product .slideshow { height: min(74vh,760px,66.667vw); min-height: min(440px,66.667vw); }
 .product-body { padding: 0 clamp(24px,4vw,64px); }
 .product-inner { max-width: var(--container); margin: 0 auto; }
 .product-title {
@@ -1767,6 +1773,39 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .parts-table, .parts-table.parts-wide { min-width: 0; }
   .info-grid { grid-template-columns: minmax(0,1fr); gap: 32px; }
   .lb-close { width: 44px; height: 44px; }
+}
+
+/* ── Hero on a phone ───────────────────────────────────────────────────── */
+/* Wider screens only need the 3:2 cap on the hero's height (see .hero above):
+   the text still fits over the photo. On a phone a 3:2 frame is too short to
+   hold the text as well, so the photo takes a band across the top and the text
+   moves under it. --band is that band's height, the viewport width ÷ 1.5, and
+   the hero grows past the fold rather than let the text be cut off.
+   See docs/odluke.md. */
+
+@media (max-width: 640px) and (max-aspect-ratio: 3/2) {
+  /* The reserve under the photo is room for the longest text a slide carries;
+     it shrinks as the screen widens, because wider lines wrap less. On a short
+     screen it pushes the hero past the fold — better a little scrolling than a
+     sentence cut in half. */
+  .hero { --band: 66.667vw; height: 100vh; height: 100svh; min-height: calc(var(--band) + clamp(460px,636px - 30vw,540px)); }
+  /* aspect-ratio, not --band, so the frame is 3:2 against the real width of the
+     page — on a desktop window --band counts the scrollbar in and would fall a
+     few pixels short. */
+  .hero .slide img, .hero .slide-empty { bottom: auto; height: auto; aspect-ratio: 3 / 2; }
+  /* The photo melts into the page below it instead of ending on a hard line. */
+  .hero-gradient {
+    bottom: auto;
+    height: var(--band);
+    background: linear-gradient(to top, rgba(11,11,12,0.95) 0%, rgba(11,11,12,0.4) 8%, transparent 18%);
+  }
+  .hero-text {
+    top: calc(var(--band) + 24px);
+    bottom: 56px;
+    justify-content: center;
+  }
+  /* The arrows belong to the photo, so they sit on its middle, not the hero's. */
+  .hero .slide-arrow { top: calc(var(--band) / 2); }
 }
 
 /* ── Reduced motion ────────────────────────────────────────────────────── */

@@ -243,6 +243,25 @@ bio ispod ekrana dok je traka vidljiva. `100svh` je visina sa vidljivom
 trakom; `100vh` ostaje ispred kao rezerva za starije pregledače. Ne vraćaj na
 samo `100vh`.
 
+**Okvir fotografije nikad nije uži od 3:2.** Slike su 5120×2160, a `cover` ih
+seče na oblik okvira: na 3:2 se još vidi sve bitno, ispod toga se seče u sam
+predmet — na telefonu je ostajala samo traka iz sredine. Zato i hero i
+slideshow na stranicama projekata imaju `66.667vw` (to je širina ÷ 1.5) kao
+gornju granicu visine. Na širokom ekranu granica ne stiže ni da se primeni;
+na uspravnom prozoru hero prestane malo pre dna ekrana.
+
+**Na telefonu hero menja oblik: fotografija gore, tekst ispod.** Okvir od 3:2
+je na telefonu previsok za tekst preko slike, pa fotografija zauzima traku
+preko vrha hero-a (`--band`), a tekst se centrira u prostoru ispod nje.
+Prelazi se na to ispod 640px širine i samo kad je ekran uži od 3:2 — iznad
+toga tekst i dalje stoji preko fotografije, kao u konceptu. Ispod fotografije
+se rezerviše mesto za najduži tekst koji neki slajd nosi; rezerva se smanjuje
+kako ekran postaje širi (`clamp`), a na niskom ekranu hero pređe preko dna
+ekrana — bolje da se malo skroluje nego da se rečenica preseče.
+
+Traka koristi `aspect-ratio: 3/2`, a ne `--band`, jer `vw` računa i traku za
+skrolovanje pa bi na desktopu okvir bio nekoliko piksela niži od 3:2.
+
 **Godina u footeru se menja sama** (`assets/js/site.js`), kao u konceptu. U
 HTML-u stoji rezervna godina za posetioce bez JavaScript-a.
 

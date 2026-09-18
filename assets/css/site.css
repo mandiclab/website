@@ -1751,7 +1751,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .footer-brand { justify-content: center; }
   .footer-meta { flex-direction: column; flex-wrap: nowrap; align-items: center; justify-content: center; gap: 12px; }
   .footer-social { justify-content: center; }
-  main section:not(.hero):not(.projects) { padding-left: 16px; padding-right: 16px; }
+  /* .product keeps its own padding on .product-body, so its hero photo can run
+     from edge to edge like the one on the home page. */
+  main section:not(.hero):not(.projects):not(.product) { padding-left: 16px; padding-right: 16px; }
   .community { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); column-gap: 16px; row-gap: 24px; justify-items: center; }
   .contact-rows { flex-direction: column; align-items: center; row-gap: 24px; }
   .contact .statement, .notfound .statement { font-size: clamp(20px,5vw,26px); }

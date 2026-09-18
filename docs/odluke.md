@@ -52,6 +52,11 @@ ima dovoljan kontrast. Tagovi pored slike počinju u visini gornje ivice slike,
 a ako u `.md` nema teksta ispod njih, poslednji tag nema ni liniju. Prvi tag
 je spušten 8px ispod te ivice, da ikonica ne deluje kao da viri iznad slike.
 
+
+**Hero na stranicama projekata ide od ivice do ivice i na telefonu.** Pravilo
+koje ispod 640px daje sekcijama 16px sa strana preskače `.product`, jer taj
+razmak već nosi `.product-body`; inače bi hero fotografija imala belinu sa
+strana, a na Home stranici je nema.
 **Slika u lightbox-u ne ide preko celog ekrana.** Najviše 80% širine i 76%
 visine prozora (na telefonu 88% i 68%), a najviše 1440×900px, pa ostaje vazduha
 oko nje i na velikom monitoru. Kada ima teksta sa strane, širina se dodatno

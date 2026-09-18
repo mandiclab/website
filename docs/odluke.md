@@ -109,7 +109,7 @@ pauza na fokus i na neaktivan tab ostaje. Interval mu je 9s umesto 6s. Vesti
 na home stranici i dalje staju na hover, jer nemaju dugme za pauzu.
 
 **Dugme play/pause nema okvir** — znak je viši od kvadratića (12px) i deblji
-(crte 2px), da se jasno vidi preko slike. Na hover blago naraste, bez sjaja, na
+(crte pauze 3px), da se jasno vidi preko slike. Na hover blago naraste, bez sjaja, na
 klik se stisne, a novi znak (play ili pause) naraste na mesto. Dodirna meta
 ostaje 24×24px.
 

@@ -412,7 +412,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   height: 14px;
   box-sizing: border-box;
 }
-.slide-play .bar { display: block; width: 2px; height: 12px; background: var(--text-1); }
+.slide-play .bar { display: block; width: 3px; height: 12px; background: var(--text-1); }
 .slide-play .tri { display: block; width: 0; height: 0; border-left: 10px solid var(--text-1); border-top: 6px solid transparent; border-bottom: 6px solid transparent; }
 /* It grows a little on hover, dips on click, and the new mark (play or pause)
    grows into place when the two swap. */

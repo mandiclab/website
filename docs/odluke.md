@@ -212,6 +212,16 @@ filteru. Same stranice neobjavljenih projekata i dalje postoje na svojoj
 adresi (i u javnom repozitorijumu), ali nisu u `sitemap.xml` i imaju
 `noindex`, pa ih pretraživači ne prikazuju.
 
+**Istom oznakom je na easyrace stranici zadržan deo ponude** (odluka vlasnika,
+oktobar 2026: prvo izlazi samo Core bundle, ostalo u decembru). `data-draft`
+nose: Pro bundle i njegova kolona u tabeli, redovi za sequential shifter i obe
+ručne, odeljak sequential shifter-a u tabu easyshift, i ceo tab easydrift (u
+njemu su samo ručne, pa bi ostao prazan). Dok je Pro skriven, `.bundles-grid`
+ima dve kolone umesto tri, a `product.js` izostavlja skrivene tabove da strelice
+ne bi šetale po nevidljivom tabu. U decembru je dovoljno skinuti `data-draft`.
+Cene su već postavljene na decembarske: sequential shifter i hidraulična ručna
+$15, klasična ručna $20, pa Pro sabira $110.
+
 Kada se projekat objavljuje:
 
 1. u `projects/index.html` obriši `data-draft` sa kartice projekta;

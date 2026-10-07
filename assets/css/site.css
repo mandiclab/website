@@ -1440,7 +1440,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   pointer-events: none;
 }
 .er-intro p { margin: 0; max-width: var(--measure); font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); }
-.er-intro p span { font-weight: 500; color: var(--text-1); }
+/* The product names are the bold part; a [data-draft] wrapper around a line
+   that is held back is not. */
+.er-intro p span:not([data-draft]) { font-weight: 500; color: var(--text-1); }
 .er-video-col { flex: 1 1 380px; min-width: 0; margin-top: clamp(48px,4.4vw,64px); }
 /* Empty 16:9 frame reserved for a video. */
 .er-video {
@@ -1481,6 +1483,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   max-width: var(--container);
   margin: 0 auto;
 }
+/* A bundle held back (data-draft) takes its whole column with it, so the table
+   is one column narrower while it is hidden. */
+:root:not([data-show-drafts]) .bundles-grid { grid-template-columns: minmax(240px,1fr) repeat(2,minmax(150px,190px)); }
 .bundles-grid.is-head { margin: clamp(32px,3.8vh,48px) auto 0; }
 .bundles-grid.is-matrix { margin-top: clamp(24px,2.8vh,32px); }
 .bundles-grid.is-tools { margin-top: clamp(32px,3.8vh,48px); }
@@ -1557,7 +1562,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 .matrix-sep, .matrix-qty + .matrix-qty { border-left: 1px solid var(--line-1); }
 .tools-title { font-size: var(--fs-small); font-weight: 400; line-height: 1.55; color: var(--text-3); padding-right: 16px; }
-.tools-list { grid-column: 2 / span 3; display: flex; flex-wrap: wrap; gap: clamp(24px,2.6vw,48px); padding: 0 clamp(12px,1.2vw,16px); }
+.tools-list { grid-column: 2 / -1; display: flex; flex-wrap: wrap; gap: clamp(24px,2.6vw,48px); padding: 0 clamp(12px,1.2vw,16px); }
 .tools-list > div { font-size: var(--fs-small); font-weight: 300; line-height: 1.55; color: var(--text-2); }
 .soft-link { color: var(--text-2); text-decoration: none; border-bottom: 1px solid var(--line-3); transition: border-color var(--dur-base) var(--ease); }
 .soft-link:hover { border-bottom-color: var(--text-3); }

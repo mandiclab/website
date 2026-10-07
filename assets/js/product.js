@@ -46,7 +46,13 @@
   // the panel changes with focus. Only the selected panel is shown.
 
   Array.prototype.forEach.call(document.querySelectorAll('[role="tablist"]'), function (list) {
-    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]'));
+    // A tab for unreleased content (data-draft) is hidden on the live site, so
+    // it is left out of the list entirely — otherwise the arrow keys would
+    // still walk onto it.
+    var showDrafts = document.documentElement.hasAttribute('data-show-drafts');
+    var tabs = Array.prototype.slice.call(list.querySelectorAll('[role="tab"]')).filter(function (tab) {
+      return showDrafts || !tab.closest('[data-draft]');
+    });
 
     function select(tab, moveFocus) {
       tabs.forEach(function (t) {

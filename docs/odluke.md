@@ -212,6 +212,28 @@ filteru. Same stranice neobjavljenih projekata i dalje postoje na svojoj
 adresi (i u javnom repozitorijumu), ali nisu u `sitemap.xml` i imaju
 `noindex`, pa ih pretraživači ne prikazuju.
 
+**easyrace ima odbrojavanje do izlaska** (`assets/js/countdown.js`, privremeno).
+Trenutak stoji u `window.ML_LAUNCH` u `<head>`-u obe stranice —
+`2026-10-28T18:00:00+01:00`, to je 18h po srpskom vremenu (28. oktobar je posle
+pomeranja časovnika, pa je CET). Dok ne prođe: kartica na Projects stranici je
+pokrivena staklenim slojem sa odbrojavanjem (dugme „Show more" je ispod njega,
+pa ne radi), a sama easyrace stranica je cela zamagljena, ne skroluje se i ima
+odbrojavanje na sredini sa linkom nazad.
+
+Sloj stoji u HTML-u i vidi se podrazumevano, a skript ga sklanja kad trenutak
+prođe — tako posetilac koji dođe ranije ne vidi stranicu kako sevne pre skripta.
+Mali skript u `<head>`-u odmah označi dokument kao objavljen ako je trenutak već
+prošao, pa ni posetilac posle izlaska ne vidi sloj kako sevne. Cifre su
+`aria-hidden`, a datum je ispod njih rečima — čitač ekrana ne treba da izgovara
+sekunde koje se menjaju. Sadržaj iza sloja dobija `inert` i `aria-hidden`.
+
+**To je zavesa, ne brava.** Stranica je i dalje u HTML-u i u javnom
+repozitorijumu; ko ugasi JavaScript, vidi je. Za odlaganje objave je dovoljno,
+za tajnu nije.
+
+Kad easyrace izađe: obriši oba `<script>` reda i oba `[data-gate]` bloka,
+`class="is-gated"` sa `<html>`, `noindex` sa stranice, i dodaj je u `sitemap.xml`.
+
 **Istom oznakom je na easyrace stranici zadržan deo ponude** (odluka vlasnika,
 oktobar 2026: prvo izlazi samo Core bundle, ostalo u decembru). `data-draft`
 nose: Pro bundle i njegova kolona u tabeli, redovi za sequential shifter i obe

@@ -203,6 +203,16 @@ na srednjim širinama ne prelaze u novi red pa poslednje ispadne van kolone, a
 ispod 640px se razvuku preko cele širine. Sada su uvek svoje prirodne širine i
 prelaze u sledeći red kada nema mesta.
 
+**Svaki tab ima svoj link.** `/projects/easyrace/#easysteer` otvara taj tab i
+spusti stranicu tako da traka sa tabovima stane tačno ispod header-a. Ime u
+linku je rep `id`-a dugmeta posle `-tab-`, malim slovima (`#overview`, `#faq`,
+`#easyshift`…), pa se ne vodi drugi spisak imena koji bi mogao da se razmimoiđe.
+Nijedan element na stranici nema goli `id` tog imena, pa browser sam ne skače
+nikuda. Biranje taba upisuje ime u adresu (`replaceState`, da dugme „nazad" i
+dalje vodi sa stranice, a ne kroz tabove), pa je link u adresnoj traci uvek onaj
+koji vredi podeliti. Ako posetilac sam izabere tab, kasna provera ga više ne
+vraća na onaj iz linka.
+
 **Odbrojavanje do izlaska easyrace-a je napravljeno pa privremeno sklonjeno**
 (oktobar 2026), da bi se stranica mirno dovršila. Stakleni sloj sa
 odbrojavanjem preko kartice na Projects stranici i preko cele easyrace

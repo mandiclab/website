@@ -99,8 +99,51 @@
       });
     }
 
+    // A tab can be linked to: /projects/easyrace/#easysteer opens that tab and
+    // lands on it. The name is the tail of the tab's id, after -tab-, so no
+    // second list of names has to be kept in step. Nothing on the page carries
+    // a bare id of that name, so the browser itself does not jump anywhere.
+
+    function nameOf(tab) {
+      var at = (tab.id || '').indexOf('-tab-');
+      return at < 0 ? '' : tab.id.slice(at + 5).toLowerCase();
+    }
+
+    function tabNamed(name) {
+      var found = null;
+      tabs.forEach(function (t) { if (!found && nameOf(t) === name) found = t; });
+      return found;
+    }
+
+    // Picking a tab writes it into the address bar, so the link sitting there
+    // is always the one worth sharing. replaceState, so the back button still
+    // leaves the page instead of walking back through the tabs.
+    function mark(tab) {
+      var name = nameOf(tab);
+      if (name && window.history && history.replaceState) history.replaceState(null, '', '#' + name);
+    }
+
+    // Set once the visitor picks a tab themselves, so the late check below
+    // cannot pull them back to the one in the link.
+    var touched = false;
+
+    function openFromHash(land) {
+      if (touched) return;
+      var tab = tabNamed(decodeURIComponent((location.hash || '').slice(1)).toLowerCase());
+      if (!tab) return;
+      select(tab, false);
+      if (!land) return;
+      // Land with the tab bar just under the header, so the tab and the start
+      // of its panel are both in view.
+      var bar = list.parentNode || list;
+      var header = document.querySelector('.header');
+      var top = bar.getBoundingClientRect().top + window.pageYOffset
+        - (header ? header.getBoundingClientRect().height : 0) - 12;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+    }
+
     tabs.forEach(function (tab, i) {
-      tab.addEventListener('click', function () { select(tab, false); });
+      tab.addEventListener('click', function () { touched = true; select(tab, false); mark(tab); });
       tab.addEventListener('keydown', function (e) {
         var n = -1;
         if (e.key === 'ArrowRight') n = (i + 1) % tabs.length;
@@ -109,9 +152,18 @@
         else if (e.key === 'End') n = tabs.length - 1;
         if (n < 0) return;
         e.preventDefault();
+        touched = true;
         select(tabs[n], true);
+        mark(tabs[n]);
       });
     });
+
+    // On arrival, again once everything has loaded in case the link arrived
+    // late, and whenever it changes under us. replaceState does not raise
+    // hashchange, so our own writing of the link never comes back around.
+    requestAnimationFrame(function () { openFromHash(true); });
+    window.addEventListener('load', function () { openFromHash(true); });
+    window.addEventListener('hashchange', function () { touched = false; openFromHash(true); });
   });
 
   updateFades();

@@ -212,19 +212,26 @@
       shell.appendChild(prevBtn);
       shell.appendChild(nextBtn);
 
+      // A slideshow that plays by itself carries a play/pause button, wherever
+      // its indicator ends up: in the dot bar, or beside the thumbnail row.
+      function makePlayBtn() {
+        var btn = el('button', 'slide-play', { type: 'button' });
+        btn.appendChild(el('span'));
+        btn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          setHold('paused', !state.paused);
+          // Restart the swap animation on every click.
+          btn.classList.remove('is-toggled');
+          void btn.offsetWidth;
+          btn.classList.add('is-toggled');
+        });
+        return btn;
+      }
+
       if (indicator === 'dots') {
         var bar = el('div', 'slide-dots');
         if (autoplay) {
-          playBtn = el('button', 'slide-play', { type: 'button' });
-          playBtn.appendChild(el('span'));
-          playBtn.addEventListener('click', function (e) {
-            e.stopPropagation();
-            setHold('paused', !state.paused);
-            // Restart the swap animation on every click.
-            playBtn.classList.remove('is-toggled');
-            void playBtn.offsetWidth;
-            playBtn.classList.add('is-toggled');
-          });
+          playBtn = makePlayBtn();
           bar.appendChild(playBtn);
         }
         slides.forEach(function (s, i) {
@@ -255,6 +262,10 @@
           thumbRow.appendChild(t);
           thumbs.push(t);
         });
+        if (autoplay) {
+          playBtn = makePlayBtn();
+          inner.appendChild(playBtn);
+        }
         inner.appendChild(thumbRow);
         outer.appendChild(inner);
         shell.parentNode.appendChild(outer);

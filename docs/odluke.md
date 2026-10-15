@@ -260,6 +260,19 @@ Visina hero-a je zato `100svh - var(--header-h)` — header i slika zajedno čin
 tačno jedan ekran, pa se slika i dalje proteže do dna, samo je više ne seče.
 `--header-h` je 56px, ista vrednost koju header i inače ima.
 
+**Svaki uređaj na easyrace stranici ima svoju galeriju i svoj video.**
+Galerija (`.er-shots`) stoji na vrhu odeljka, iznad naslova — isti slideshow
+kao hero, samo unutar širine stranice i u odnosu 16:9, kao i okvir za video
+niže u istom odeljku. Bez ograničenja visine: ograničenje bi seklo ono što
+odnos čuva. Slike idu u `assets/images/easyrace/<uređaj>/`, imenovane
+`000.webp`, `001.webp`… Video je `video-tabs` + `video-frame` kao na DJC-DIY,
+sa dugmićima Preview i Tutorial; dok nema snimka, `data-video` ne postoji i
+okvir stoji prazan.
+
+**Slideshow sa thumbnail-ovima sada može da ima dugme play/pause.** Ranije se
+pravilo samo uz tačkice, pa bi galerija koja se sama smenjuje ostala bez načina
+da se zaustavi. Stoji pored trake sa thumbnail-ovima, van nje, da ne odskroluje.
+
 **Okvir fotografije nikad nije uži od 3:2.** Slike su 5120×2160, a `cover` ih
 seče na oblik okvira: na 3:2 se još vidi sve bitno, ispod toga se seče u sam
 predmet — na telefonu je ostajala samo traka iz sredine. Zato i hero i

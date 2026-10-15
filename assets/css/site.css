@@ -432,6 +432,11 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 
 .slide-thumbs-outer { padding: 0 clamp(24px,4vw,64px); }
 .slide-thumbs-inner { max-width: var(--container); margin: 0 auto; }
+/* A slideshow that plays by itself needs a way to stop it. With thumbnails the
+   button stands beside the row, not inside it, so it does not scroll away. */
+.slide-thumbs-inner:has(> .slide-play) { display: flex; align-items: center; gap: 24px; }
+.slide-thumbs-inner > .slide-play { flex: 0 0 auto; }
+.slide-thumbs-inner > .slide-thumbs { flex: 1 1 auto; min-width: 0; }
 /* 2px of room around the row, pulled back by the margin, so the hover scale of
    a thumbnail is not clipped at the top. */
 .slide-thumbs { display: flex; gap: 12px; margin: 10px -2px 0; padding: 2px 2px 4px; overflow-x: auto; overflow-y: hidden; scrollbar-width: none; }
@@ -1572,6 +1577,14 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .er-panel { width: 100%; padding: clamp(64px,7vh,96px) 0 clamp(96px,12vh,128px); }
 .er-sections { display: flex; flex-direction: column; gap: clamp(96px,10vh,128px); }
 .er-divider { width: 100%; height: 0; border-top: 1px solid var(--line-1); margin-bottom: clamp(96px,10vh,128px); }
+/* A gallery for one device, at the top of its section — the same slideshow as
+   the page hero, only held inside the page width instead of running edge to
+   edge. 16:9, the shape of the video frame further down the same section, and
+   a shape a camera gives you, so a photo is shown whole rather than cropped to
+   a strip. No height cap on purpose: a cap would crop what the ratio protects. */
+.er-shots { margin-bottom: clamp(32px,3.6vw,48px); }
+.er-shots .slideshow { aspect-ratio: 16 / 9; height: auto; border-bottom: 0; }
+.er-shots .slide-thumbs-outer { padding: 0; }
 .er-title { margin: 0; font-size: var(--fs-display); font-weight: 200; line-height: 1.15; letter-spacing: -0.01em; text-transform: lowercase; }
 .er-block { display: flex; flex-wrap: wrap; align-items: flex-start; gap: clamp(32px,4vw,64px); margin-top: clamp(48px,4.4vw,64px); }
 .er-block-video { flex: 1 1 380px; min-width: 0; }

@@ -1608,20 +1608,19 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   align-items: center;
   justify-content: center;
   width: 180px;
-  padding: 12px 16px;
-  border: 1px solid rgba(232,145,137,0.35);
-  background: rgba(232,145,137,0.08);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  padding: 12px 24px;
+  border: 1px solid var(--line-2);
+  background: var(--surface-2);
+  backdrop-filter: blur(26px);
+  -webkit-backdrop-filter: blur(26px);
   font-size: var(--fs-label);
-  font-weight: 500;
+  font-weight: 400;
   letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--accent-rose);
+  color: var(--text-1);
   text-decoration: none;
-  transition: background var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
+  transition: background var(--dur-base) var(--ease), border-color var(--dur-base) var(--ease);
 }
-.er-buy:hover { background: rgba(232,145,137,0.08); border-color: rgba(232,145,137,0.28); box-shadow: 0 0 22px rgba(232,145,137,0.08); }
+.er-buy:hover { background: var(--line-2); border-color: var(--line-3); }
 
 /* ── About ─────────────────────────────────────────────────────────────── */
 

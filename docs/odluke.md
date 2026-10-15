@@ -70,7 +70,7 @@ ide do njih.
 
 
 **Ispod galerije stoji poziv da se pošalje svoja slika** (nije u konceptu, na
-zahtev vlasnika): slika se šalje u Discord zajednicu, u kanal `#🖼️lab-gallery`,
+zahtev vlasnika): slika se šalje u Discord zajednicu, u kanal `#lab-gallery`,
 uz opcione naloge na mrežama i poruku. Ispod toga, sitnijim slovima, stoje
 uslovi tog kanala (MandićLab sme slobodno da koristi poslate slike i snimke).
 Isti tekst stoji na DJC-DIY i na drivepad stranici.

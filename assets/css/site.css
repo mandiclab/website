@@ -596,7 +596,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
    ended up stranded, far from anything, whenever the photo was the taller
    side. It costs no height either. */
 .news-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; width: 100%; }
-.news-date { font-size: var(--fs-small); font-weight: 300; line-height: 1.55; color: var(--text-3); }
+/* margin-left keeps the date at the right edge even when it is alone on the
+   line, in an item with no link. */
+.news-date { margin-left: auto; font-size: var(--fs-small); font-weight: 300; line-height: 1.55; color: var(--text-3); }
 .news-title { margin: 0; font-size: 24px; font-weight: 300; letter-spacing: -0.01em; line-height: 1.15; }
 .news-text {
   margin: 0;

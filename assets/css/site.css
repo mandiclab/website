@@ -569,10 +569,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
    ltr so no text runs right-to-left. See docs/odluke.md. */
 .news-row {
   display: grid;
-  /* Two explicit columns, not auto-fit: the date below them spans the row, and
-     a spanning item would keep auto-fit's extra tracks from collapsing. One
-     column below 900px, further down this file. */
-  grid-template-columns: minmax(0,1fr) minmax(0,1fr);
+  grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
   gap: clamp(24px,3vw,54px);
   align-items: center;
   direction: ltr;
@@ -594,18 +591,12 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   gap: clamp(12px,1.4vw,16px);
   padding: clamp(4px,1vw,16px) 0;
 }
-/* The date closes the item, in the bottom right corner of the whole row —
-   the same place whichever side the photo is on. It spans both columns, so it
-   never crowds the text. */
-.news-date {
-  grid-column: 1 / -1;
-  direction: ltr;
-  text-align: right;
-  font-size: var(--fs-small);
-  font-weight: 300;
-  line-height: 1.55;
-  color: var(--text-3);
-}
+/* The item's last line: the link on one side, the date quietly on the other.
+   Keeping them on one line ties the date to the text — below the whole row it
+   ended up stranded, far from anything, whenever the photo was the taller
+   side. It costs no height either. */
+.news-foot { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; width: 100%; }
+.news-date { font-size: var(--fs-small); font-weight: 300; line-height: 1.55; color: var(--text-3); }
 .news-title { margin: 0; font-size: 24px; font-weight: 300; letter-spacing: -0.01em; line-height: 1.15; }
 .news-text {
   margin: 0;

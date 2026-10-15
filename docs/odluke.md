@@ -269,9 +269,10 @@ odnos čuva. Slike idu u `assets/images/easyrace/<uređaj>/`, imenovane
 sa dugmićima Preview i Tutorial; dok nema snimka, `data-video` ne postoji i
 okvir stoji prazan.
 
-**Slideshow sa thumbnail-ovima sada može da ima dugme play/pause.** Ranije se
-pravilo samo uz tačkice, pa bi galerija koja se sama smenjuje ostala bez načina
-da se zaustavi. Stoji pored trake sa thumbnail-ovima, van nje, da ne odskroluje.
+**Dugme play/pause postoji samo na hero-u na naslovnoj** (odluka vlasnika).
+Pravi se uz tačkice, a tačkice ima samo taj slideshow — svi ostali imaju
+thumbnail-ove ili ništa. Galerije uređaja se same smenjuju bez tog dugmeta;
+zaustavljaju se na prelazak mišem i na fokus, ali na dodir nemaju dugme.
 
 **Okvir fotografije nikad nije uži od 3:2.** Slike su 5120×2160, a `cover` ih
 seče na oblik okvira: na 3:2 se još vidi sve bitno, ispod toga se seče u sam

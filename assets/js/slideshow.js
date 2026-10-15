@@ -212,8 +212,8 @@
       shell.appendChild(prevBtn);
       shell.appendChild(nextBtn);
 
-      // A slideshow that plays by itself carries a play/pause button, wherever
-      // its indicator ends up: in the dot bar, or beside the thumbnail row.
+      // The play/pause button belongs to the dot bar, and so only to the home
+      // hero — no other slideshow on the site shows one (docs/odluke.md).
       function makePlayBtn() {
         var btn = el('button', 'slide-play', { type: 'button' });
         btn.appendChild(el('span'));
@@ -262,10 +262,6 @@
           thumbRow.appendChild(t);
           thumbs.push(t);
         });
-        if (autoplay) {
-          playBtn = makePlayBtn();
-          inner.appendChild(playBtn);
-        }
         inner.appendChild(thumbRow);
         outer.appendChild(inner);
         shell.parentNode.appendChild(outer);

@@ -221,7 +221,7 @@
           iframe.addEventListener('load', reveal, { once: true });
           // A button whose video isn't out yet (no data-video) shows an empty frame.
           var video = btn.getAttribute('data-video');
-          iframe.src = video ? 'https://www.youtube.com/embed/' + video : 'about:blank';
+          iframe.src = video ? 'https://www.youtube-nocookie.com/embed/' + video : 'about:blank';
           later(reveal, LOAD_TIMEOUT_MS);
         }, reducedMotion.matches ? 0 : FADE_OUT_MS);
       });

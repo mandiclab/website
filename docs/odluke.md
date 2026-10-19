@@ -149,6 +149,11 @@ inače zabranjuje mrežne pozive van našeg domena. Odluka vlasnika
 (2026-09-17): ugrađen plejer izgleda lepše od slike sa play dugmetom.
 Ne zamenjuj ga „fasadom" koja učitava YouTube tek na klik.
 
+Ide preko `youtube-nocookie.com`, a ne `youtube.com` (odluka vlasnika,
+oktobar 2026): isti plejer i ista brzina, ali ne ostavlja ništa na uređaju
+posetioca dok ne pritisne play. Adresa stoji na dva mesta — u `product.js`
+(prebacivač videa) i u prvom `<iframe src>` na stranici; menjaju se zajedno.
+
 **Prelaz između stranica je CSS view transition.** U konceptu stranica bledi
 pri promeni jer je sve jedna stranica; na statičkom sajtu isti efekat daje
 CSS `@view-transition`, bez JavaScript-a. Firefox ga ne podržava i tamo je

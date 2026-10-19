@@ -79,7 +79,17 @@
     // In the concept a panel is rebuilt each time its tab opens. Match that:
     // a hidden panel stops its video (so it doesn't keep playing unseen), and
     // a panel that opens again starts with its tables scrolled back.
+    // A slideshow cannot tell on its own that the tab it sits in has been
+    // opened or shut, so the panel tells it: shut, it stops counting; open, it
+    // starts its wait over, instead of changing the moment it appears.
+    function tellSlideshows(el, what) {
+      Array.prototype.forEach.call(el.querySelectorAll('[data-slideshow]'), function (s) {
+        s.dispatchEvent(new CustomEvent('ml:' + what));
+      });
+    }
+
     function panelHidden(el) {
+      tellSlideshows(el, 'hidden');
       Array.prototype.forEach.call(el.querySelectorAll('iframe'), function (f) {
         var src = f.getAttribute('src');
         if (src && src !== 'about:blank') {
@@ -90,6 +100,7 @@
     }
 
     function panelShown(el) {
+      tellSlideshows(el, 'shown');
       Array.prototype.forEach.call(el.querySelectorAll('iframe[data-src]'), function (f) {
         f.setAttribute('src', f.getAttribute('data-src'));
         f.removeAttribute('data-src');

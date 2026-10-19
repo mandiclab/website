@@ -108,6 +108,15 @@ ceo ekran, pa bi miš stalno stajao preko njega; ima svoje dugme za pauzu, a
 pauza na fokus i na neaktivan tab ostaje. Interval mu je 9s umesto 6s. Vesti
 na home stranici i dalje staju na hover, jer nemaju dugme za pauzu.
 
+**Galerija u zatvorenom tabu ne broji vreme.** Ranije je tajmer kretao čim se
+stranica otvori, pa bi se slika promenila istog trenutka kad se tab otvori —
+neprijatno brzo, umesto da sačeka. Sada slideshow u panelu kreće zadržan
+(`state.offscreen`, prema `offsetParent` pri pokretanju), a `product.js` mu na
+otvaranju i zatvaranju panela pošalje `ml:shown` odnosno `ml:hidden`. Otpuštanje
+zadrške kreće od punog intervala, pa prva promena dolazi 6s posle otvaranja taba.
+Nije rađeno preko `IntersectionObserver`-a namerno: on ne okida kad panel ne
+iscrtava, pa se ponašanje ne bi moglo proveriti.
+
 **Dugme play/pause nema okvir** — znak je viši od kvadratića (12px) i deblji
 (crte pauze 3px), da se jasno vidi preko slike. Na hover blago naraste, bez sjaja, na
 klik se stisne, a novi znak (play ili pause) naraste na mesto. Dodirna meta

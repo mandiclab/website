@@ -1452,6 +1452,11 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 /* The product names are the bold part; a [data-draft] wrapper around a line
    that is held back is not. */
 .er-intro p span:not([data-draft]) { font-weight: 500; color: var(--text-1); }
+/* Terms reuse the text column of a product block, standing on their own. */
+.er-terms { margin-top: clamp(32px,4.5vh,64px); }
+/* Under the tags: what the money actually buys, since nothing is shipped. */
+.er-buys { margin: clamp(16px,1.4vw,24px) 0 0; max-width: var(--measure); font-size: var(--fs-small); font-weight: 300; line-height: 1.65; color: var(--text-2); }
+.er-buys span { font-weight: 500; color: var(--text-1); }
 .er-video-col { flex: 1 1 380px; min-width: 0; margin-top: clamp(48px,4.4vw,64px); }
 /* Empty 16:9 frame reserved for a video. */
 .er-video {

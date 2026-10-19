@@ -215,6 +215,10 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   color: var(--text-3);
 }
 .footer-meta a { color: var(--text-3); }
+/* The copyright and the privacy link are one thing, so they sit closer to each
+   other than to the rest of the row — otherwise a fourth item makes the row
+   span nearly the whole width and crowd what is on either side of it. */
+.footer-legal { display: inline-flex; align-items: center; gap: 14px; }
 
 /* 24×24 touch target around a 16×16 icon; the negative margins keep the
    on-screen spacing unchanged. See docs/odluke.md. */

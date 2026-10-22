@@ -1465,18 +1465,18 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .er-terms { margin-top: clamp(32px,4.5vh,64px); }
 /* Under the tags: what the money actually buys, since nothing is shipped. */
 /* What the money actually buys, since nothing is shipped. Framed like the tag
-   above it — same border, same tint, same colour — only square, so the two
-   read as one statement rather than two unrelated things. */
+   above it — same border, same tint — only square and the full width of the
+   content column, so the two read as one statement. The text itself stays
+   white: in the accent colour a whole paragraph reads as a warning. */
 .er-buys {
   margin: clamp(16px,1.4vw,24px) 0 0;
-  max-width: var(--measure);
   padding: clamp(14px,1.2vw,18px) clamp(16px,1.4vw,20px);
   border: 1px solid rgba(232,145,137,0.28);
   background: rgba(232,145,137,0.08);
   font-size: var(--fs-small);
   font-weight: 300;
   line-height: 1.65;
-  color: var(--accent-rose);
+  color: var(--text-1);
   text-wrap: pretty;
 }
 .er-buys span { font-weight: 500; }

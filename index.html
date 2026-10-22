@@ -151,8 +151,10 @@
                on every other row automatically (see docs/odluke.md), so nothing
                needs changing when a row is added. The date sits on the last
                line beside the link: the datetime attribute is YYYY-MM-DD, the
-               text inside is what shows. -->
-          <div class="news-row">
+               text inside is what shows. A row written ahead of time can carry
+               data-publish with the moment it is due; it stays off the page
+               until then and appears by itself, with no push on the day. -->
+          <div class="news-row" data-publish="2026-10-25T00:00:00+02:00">
             <!-- No photos for this one yet: the empty frame holds its place.
                  Add a .slideshow with .slide images here, as in the row below. -->
             <div class="news-img"></div>

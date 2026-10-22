@@ -235,6 +235,13 @@ stranice, sa trenutkom `2026-10-28T18:00:00+01:00`. Stoji u commit-u
 tada opet treba skinuti `data-draft` sa easyrace kartice, što je deo istog
 commit-a. Dok ga nema, kartica je ponovo sakrivena oznakom `data-draft`.
 
+**Vest se može napisati unapred i zakazati** oznakom `data-publish` sa
+trenutkom objave (`data-publish="2026-10-25T00:00:00+02:00"`). Do tog trenutka
+je sakrivena CSS-om, dakle i bez JavaScript-a; kad trenutak prođe,
+`assets/js/site.js` skine oznaku i vest se pojavi sama, bez push-a tog dana.
+Lokalno se vidi odmah, kao i nacrti, pa može da se pregleda pre vremena.
+Mehanizam nije vezan za vesti — radi na bilo kom elementu.
+
 **Neobjavljeni projekti se skrivaju oznakom `data-draft`.** Sve što nosi
 `data-draft` (sada kartice easyrace i drivepad na Projects stranici) ne vidi
 se na pravom sajtu, a vidi se kada se sajt otvori lokalno (`localhost` ili

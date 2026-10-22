@@ -112,6 +112,11 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 /* Unreleased content (data-draft) is hidden unless the site is opened
    locally, where site.js shows it (docs/odluke.md). */
 :root:not([data-show-drafts]) [data-draft] { display: none !important; }
+/* Something written ahead of time carries the moment it is due in data-publish.
+   It is hidden until then — by CSS, so it stays hidden even without JavaScript —
+   and assets/js/site.js takes the attribute off once the moment has passed.
+   Opened locally it shows straight away, like a draft (docs/odluke.md). */
+:root:not([data-show-drafts]) [data-publish] { display: none !important; }
 
 .visually-hidden {
   position: absolute;

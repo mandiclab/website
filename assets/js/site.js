@@ -7,6 +7,14 @@ if (/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)) {
   document.documentElement.setAttribute('data-show-drafts', '');
 }
 
+// Anything written ahead of time carries its due moment in data-publish and is
+// hidden by CSS until then. Once the moment has passed the attribute comes off
+// and it appears on its own, with no push needed on the day (docs/odluke.md).
+document.querySelectorAll('[data-publish]').forEach(function (el) {
+  var due = Date.parse(el.getAttribute('data-publish'));
+  if (due && Date.now() >= due) el.removeAttribute('data-publish');
+});
+
 // Footer year follows the visitor's clock, as in the concept. The HTML keeps a
 // fallback year for visitors without JavaScript.
 document.querySelectorAll('[data-year]').forEach(function (el) {

@@ -44,6 +44,12 @@ Da bi se pročitao, mora se raspakovati — u privremeni folder, ne u repozitori
 Interni linkovi koriste apsolutne putanje sa kosom crtom na kraju:
 `/projects/djc-diy/`, ne `../projects/djc-diy/index.html`.
 
+Svaki projekat ima i **kratku adresu za deljenje** koja preusmerava na pravu:
+`/easyrace/`, `/djc-diy/` i `/drivepad/` su sićušne stranice koje odmah vode na
+`/projects/<ime>/`. Prava adresa ostaje ona pod `/projects/` — kratka nosi
+`noindex` i `canonical`, pa se u pretrazi pojavljuje samo prava. Interni linkovi
+na sajtu i dalje idu na `/projects/<ime>/`, nikad na kratku.
+
 U root-u idu i: `.nojekyll`, `CNAME` (sadržaj: `mandiclab.com`), `404.html`,
 `robots.txt`, `sitemap.xml`.
 

@@ -217,6 +217,19 @@ na srednjim širinama ne prelaze u novi red pa poslednje ispadne van kolone, a
 ispod 640px se razvuku preko cele širine. Sada su uvek svoje prirodne širine i
 prelaze u sledeći red kada nema mesta.
 
+**Kratke adrese preusmeravaju, stranice se ne sele u root** (odluka, oktobar
+2026). `/easyrace/`, `/djc-diy/` i `/drivepad/` su sićušne stranice koje vode
+na `/projects/<ime>/`. Razlog što se prave stranice nisu premestile: DJC-DIY
+se već bori da ga Google indeksira na svojoj adresi, a GitHub Pages ne ume
+pravi 301 — selidba bi značila promenu adrese uz slab signal preusmerenja, u
+najgorem trenutku. Ovako kratak link služi za deljenje, a prava adresa ostaje
+netaknuta.
+
+Kratka stranica nosi `noindex` i `canonical` ka pravoj, nije u `sitemap.xml`,
+ima crnu pozadinu (da ne sevne belo) i običan link kao rezervu ako je
+JavaScript ugašen. Prosleđuje i `#deo` adrese, pa `mandiclab.com/easyrace#easysteer`
+otvara taj tab — provereno.
+
 **Svaki tab ima svoj link.** `/projects/easyrace/#easysteer` otvara taj tab i
 spusti stranicu tako da traka sa tabovima stane tačno ispod header-a. Ime u
 linku je rep `id`-a dugmeta posle `-tab-`, malim slovima (`#overview`, `#faq`,

@@ -1658,6 +1658,59 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 .er-buy:hover { background: var(--line-2); border-color: var(--line-3); }
 
+/* ── Launch gate ───────────────────────────────────────────────────────── */
+/* Temporary, for a release with a date: see assets/js/countdown.js. The gate
+   shows by default and goes away once the moment has passed, so neither an
+   early nor a late visitor sees the wrong state flash by. */
+
+:root[data-launched] [data-gate] { display: none !important; }
+/* Nothing scrolls behind a full-page gate — on the root as well as the body,
+   since the root is what actually scrolls. */
+:root.is-gated:not([data-launched]), :root.is-gated:not([data-launched]) body { overflow: hidden; }
+
+.gate-card, .gate-page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: var(--overlay-header);
+}
+.gate-card {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  gap: clamp(16px,2vw,24px);
+  padding: 24px;
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+}
+.gate-page {
+  position: fixed;
+  inset: 0;
+  z-index: 80;
+  gap: clamp(24px,3vw,40px);
+  padding: var(--gutter);
+  backdrop-filter: blur(28px) saturate(120%);
+  -webkit-backdrop-filter: blur(28px) saturate(120%);
+}
+.gate-name { font-size: var(--fs-display); font-weight: 200; line-height: 1.15; letter-spacing: -0.01em; color: var(--text-1); }
+.gate-card .gate-name { font-size: var(--fs-h1); }
+.gate-when { margin: 0; font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); }
+.gate-card .gate-when { font-size: var(--fs-small); }
+
+/* The clock is for the eye only; the line under it carries the date in words,
+   which is what a screen reader reads instead of digits changing every second. */
+.gate-clock { display: flex; align-items: flex-start; gap: clamp(16px,2.4vw,40px); }
+.gate-unit { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.gate-num { font-size: var(--fs-display); font-weight: 200; line-height: 1; letter-spacing: -0.01em; color: var(--text-1); font-variant-numeric: tabular-nums; }
+.gate-card .gate-num { font-size: var(--fs-h2); }
+/* A clock standing in hero text, with no gate around it. */
+.hero-text .gate-clock { margin-top: 28px; }
+.hero-text .gate-num { font-size: var(--fs-h1); }
+.gate-label { font-size: var(--fs-label); font-weight: 400; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-3); }
+.gate-card .gate-label { font-size: 11px; }
+
 /* ── About ─────────────────────────────────────────────────────────────── */
 
 /* ── A page that is only text (privacy policy and anything like it) ────── */

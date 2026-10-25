@@ -110,10 +110,17 @@ na home stranici i dalje staju na hover, jer nemaju dugme za pauzu.
 
 **Galerija u zatvorenom tabu ne broji vreme.** Ranije je tajmer kretao čim se
 stranica otvori, pa bi se slika promenila istog trenutka kad se tab otvori —
-neprijatno brzo, umesto da sačeka. Sada slideshow u panelu kreće zadržan
-(`state.offscreen`, prema `offsetParent` pri pokretanju), a `product.js` mu na
-otvaranju i zatvaranju panela pošalje `ml:shown` odnosno `ml:hidden`. Otpuštanje
-zadrške kreće od punog intervala, pa prva promena dolazi 6s posle otvaranja taba.
+neprijatno brzo, umesto da sačeka. Sada, kad kucne tajmer, slideshow pogleda
+`offsetParent`: ako ga niko ne vidi, ne troši potez nego sačeka još jedan
+interval. `product.js` mu uz to na otvaranju panela pošalje `ml:shown`, čime
+odbrojavanje kreće iz početka, pa prva promena dolazi 6s posle otvaranja taba.
+
+**Čeka, a ne zadržava se — i to je važno.** Prva verzija je postavljala trajnu
+zadršku koju je otpuštao samo `ml:shown`. Slideshow koji iz bilo kog drugog
+razloga nije vidljiv pri pokretanju (vest zakazana `data-publish` oznakom, na
+primer) ostajao bi zamrznut zauvek, jer na naslovnoj nema ko da pošalje taj
+događaj. Ovako se sam pokrene čim postane vidljiv.
+
 Nije rađeno preko `IntersectionObserver`-a namerno: on ne okida kad panel ne
 iscrtava, pa se ponašanje ne bi moglo proveriti.
 

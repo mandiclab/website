@@ -29,12 +29,12 @@
     // `paused` is the visitor's standing choice from the button; hover, focus
     // and a hidden tab are temporary holds that release on their own.
     // Keep them separate (docs/odluke.md).
-    var state = { idx: 0, prev: null, paused: false, hover: false, focus: false, hidden: false, offscreen: false };
+    var state = { idx: 0, prev: null, paused: false, hover: false, focus: false, hidden: false };
     var timer = null, moveTimer = null;
     var moving = false;
     var dots = [], thumbs = [], playBtn = null;
 
-    function held() { return state.paused || state.hover || state.focus || state.hidden || state.offscreen; }
+    function held() { return state.paused || state.hover || state.focus || state.hidden; }
 
     // A manual change stretches the next interval once (2x), then the cycle
     // returns to the base interval.
@@ -43,9 +43,11 @@
       if (!autoplay || count < 2 || reducedMotion.matches || held()) return;
       timer = setTimeout(function () {
         if (moving) { schedule(600); return; }
-        // Out of sight after all (a shut tab panel): hold instead of spending
-        // the turn. The panel opening releases it.
-        if (!shell.offsetParent) { setHold('offscreen', true); return; }
+        // Nobody can see it (a shut tab panel, or anything else hiding it):
+        // wait again rather than spend the turn unseen. Waiting rather than
+        // holding means it picks itself up whenever it is shown again, even if
+        // nothing tells it (docs/odluke.md).
+        if (!shell.offsetParent) { schedule(base); return; }
         go((state.idx + 1) % count, false, 1);
       }, delay);
     }
@@ -300,18 +302,14 @@
 
     document.addEventListener('visibilitychange', function () { setHold('hidden', !!document.hidden); });
 
-    // A slideshow inside a tab panel waits while the panel is shut, and starts
-    // its wait over when the panel opens — product.js says when. Without this
-    // the timer runs unseen and the first change lands the moment the tab is
-    // opened, instead of a whole interval later (docs/odluke.md).
-    shell.addEventListener('ml:shown', function () { setHold('offscreen', false); });
-    shell.addEventListener('ml:hidden', function () { setHold('offscreen', true); });
+    // A tab panel opening tells its slideshow to start its wait over, so the
+    // first change comes a whole interval later rather than the moment the tab
+    // is opened. product.js sends it (docs/odluke.md).
+    shell.addEventListener('ml:shown', function () { schedule(base); });
 
     if (count) slides[0].style.transform = 'translateX(0%)';
     shell.setAttribute('data-ready', '');
     render();
-    // Panels start shut in the HTML, so a slideshow inside one starts held.
-    state.offscreen = !shell.offsetParent;
     schedule(base);
   }
 

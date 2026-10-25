@@ -498,6 +498,15 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   pointer-events: none;
   background: linear-gradient(to right, rgba(11,11,12,0.52) 0%, rgba(11,11,12,0.28) 40%, transparent 70%);
 }
+/* Same scrim, deeper, for a photo with bright spots where the text falls — a
+   lit workshop behind the subject, say. It holds its depth across the text
+   column and only then clears, so the right half of the photo, where the
+   subject is, stays untouched. Put is-deep on the gradient of that slide only:
+   darkening every slide would flatten the photos that are dark already, which
+   is the opposite of what was asked for (docs/odluke.md). */
+.hero-gradient.is-deep {
+  background: linear-gradient(to right, rgba(11,11,12,0.86) 0%, rgba(11,11,12,0.76) 45%, rgba(11,11,12,0.34) 64%, transparent 80%);
+}
 .hero-text {
   position: absolute;
   z-index: 4;
@@ -1861,6 +1870,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .news-row + .news-row { margin-top: 48px; }
   .news-title { font-size: 20px; }
   .hero-gradient { background: linear-gradient(to top, rgba(11,11,12,0.78) 0%, rgba(11,11,12,0.45) 45%, transparent 80%); }
+  .hero-gradient.is-deep { background: linear-gradient(to top, rgba(11,11,12,0.94) 0%, rgba(11,11,12,0.82) 42%, rgba(11,11,12,0.3) 68%, transparent 88%); }
   .hero-text { top: auto; bottom: 64px; transform: none; left: var(--gutter); right: var(--gutter); max-width: none; }
   .hero-title { font-size: clamp(26px,6vw,34px); }
   .hero-tagline { font-size: var(--fs-h2); }

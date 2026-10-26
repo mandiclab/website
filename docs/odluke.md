@@ -237,6 +237,18 @@ ima crnu pozadinu (da ne sevne belo) i običan link kao rezervu ako je
 JavaScript ugašen. Prosleđuje i `#deo` adrese, pa `mandiclab.com/easyrace#easysteer`
 otvara taj tab — provereno.
 
+**Društvene mreže imaju kratke adrese na domenu** (odluka, oktobar 2026):
+`/youtube/`, `/yt/`, `/instagram/`, `/ig/`, `/tiktok/`, `/discord/`, `/github/`,
+`/kofi/`, `/ko-fi/`. Razlog nije samo kraće kucanje nego kontrola: adresa koja
+se jednom izgovori u videu ili odštampa na vizitkarti ostaje tačna zauvek, jer
+ako se Discord pozivnica promeni ili se profil preseli, menja se jedno mesto
+ovde, a ne svuda gde je link već otišao u svet.
+
+Svaka je sićušna stranica sa `noindex`, `meta refresh` i `location.replace`,
+crnom pozadinom (da ne sevne belo) i običnim linkom kao rezervom bez
+JavaScript-a. Nisu u `sitemap.xml`. Ako se neka mreža ugasi ili nalog preseli,
+menja se samo adresa u tom jednom fajlu.
+
 **Svaki tab ima svoj link.** `/projects/easyrace/#easysteer` otvara taj tab i
 spusti stranicu tako da traka sa tabovima stane tačno ispod header-a. Ime u
 linku je rep `id`-a dugmeta posle `-tab-`, malim slovima (`#overview`, `#faq`,

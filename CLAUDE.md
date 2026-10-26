@@ -50,6 +50,12 @@ Svaki projekat ima i **kratku adresu za deljenje** koja preusmerava na pravu:
 `noindex` i `canonical`, pa se u pretrazi pojavljuje samo prava. Interni linkovi
 na sajtu i dalje idu na `/projects/<ime>/`, nikad na kratku.
 
+Iste takve kratke adrese vode i na društvene mreže: `/youtube/` i `/yt/`,
+`/instagram/` i `/ig/`, `/tiktok/`, `/discord/`, `/github/`, `/kofi/` i
+`/ko-fi/`. One nose `noindex` i nisu u `sitemap.xml`. Linkovi u futeru i u
+tekstu i dalje idu pravo na mrežu, ne preko ovih — kratke su za izgovaranje i
+štampanje, ne za navigaciju po sajtu.
+
 U root-u idu i: `.nojekyll`, `CNAME` (sadržaj: `mandiclab.com`), `404.html`,
 `robots.txt`, `sitemap.xml`.
 

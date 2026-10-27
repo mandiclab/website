@@ -270,6 +270,33 @@ ne prikazuju.
 Kad easyrace izađe: obriši `[data-gate]` blok i oba `<script>` reda sa Projects
 stranice, pa `noindex` sa easyrace stranice i dodaj je u `sitemap.xml`.
 
+**Prodaja ide preko Payhip-a, ne Lemon Squeezy-ja** (27. oktobra 2026).
+Lemon Squeezy je odbio nalog, pa gornji pasus o njihovom pregledu više ne važi
+— ostavljen je da se vidi zašto je sloj tako napravljen. Razlika nije samo u
+imenu i važna je za tekst na sajtu:
+
+- Lemon Squeezy je bio *merchant of record* — prodavao je u svoje ime, kupcu
+  je ugovor bio sa njima, i oni su vraćali novac. Payhip **nije** to. Novac
+  ide pravo na naš Stripe/PayPal nalog; Payhip sam piše da „ne drži sredstva i
+  ne može direktno da vrati novac". **Povraćaj novca radimo mi.**
+- Porez ipak ostaje njihov posao: za EU i UK Payhip nastupa kao naš
+  *reseller* i odgovara za digitalni PDV, a u SAD i Kanadi kao *marketplace
+  facilitator*, odnosno *digital platform operator*.
+- Kupac dobija fajlove preko linka iz računa koji stigne mejlom. Kad se fajl
+  u proizvodu zameni, **isti link daje novu verziju**, bez ponovne kupovine.
+  Ali kupci se **ne obaveštavaju automatski** — zato Terms upućuju na Discord
+  i YouTube.
+- Podrazumevano ograničenje je 5 preuzimanja po kupcu po proizvodu, i resetuje
+  se iz Payhip panela. Zato Terms kažu „piši nam ako link prestane da radi"
+  umesto da pominju broj koji može da se promeni.
+- Iz Payhip-a do nas stiže mejl, ime (ako ga checkout traži), šta je kupljeno,
+  koliko je plaćeno i zemlja po kojoj je obračunat porez. **Ne** stižu cifre
+  kartice ni poštanski broj — to je u Privacy stranici ispravljeno.
+
+Nerešeno, pitanje za vlasnika: Payhip traži Stripe ili PayPal, a Srbija nije
+na spisku zemalja koji Payhip objavljuje za Stripe. Treba proveriti u samom
+panelu koji je procesor dostupan.
+
 **Vest se može napisati unapred i zakazati** oznakom `data-publish` sa
 trenutkom objave (`data-publish="2026-10-25T00:00:00+02:00"`). Do tog trenutka
 je sakrivena CSS-om, dakle i bez JavaScript-a; kad trenutak prođe,

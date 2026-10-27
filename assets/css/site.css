@@ -1652,6 +1652,10 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  /* Set explicitly: these are links, and unlike a <button> a link does not get
+     border-box from the browser, so without this the padding and border would
+     be added outside the 180px and the control would come out wider. */
+  box-sizing: border-box;
   width: 180px;
   padding: 12px 24px;
   border: 1px solid var(--line-2);

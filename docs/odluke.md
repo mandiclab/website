@@ -500,3 +500,12 @@ Pred lansiranje easyrace-a:
 
 - Privacy Policy stranica. `Terms` tab za sam proizvod već postoji na
   easyrace stranici, ali Privacy Policy nema gde da stoji.
+
+Sa rokom:
+
+- **Zlatna kutija na easyrace stranici** (`.er-buys.is-gold`, odmah ispod
+  rozikaste) kaže da tutorijali izlaze do **5. novembra 2026**. Obriši ceo
+  taj pasus onog dana kad odu na YouTube, ili pomeri datum ako opet kasne.
+  Namerno nije napravljena da sama nestane: posle tog datuma obećanje je ili
+  ispunjeno ili probijeno, a u oba slučaja treba da ga vlasnik pogleda, ne da
+  tiho nestane sa sajta.

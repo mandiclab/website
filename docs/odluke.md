@@ -489,7 +489,7 @@ Sadržaj koji popunjava vlasnik projekta, ne ti:
 - opcioni `.md` fajlovi uz slike u galeriji (kredit i opis)
 - specifikacija hidrauličke ručne na easyrace-u (sada `Specification TBD`)
 - količine filamenta i žice na easyrace bundle-ovima (sada `X g`, `X m`)
-- **Parts i Assembly u panelima easyrace uređaja** (`data-draft`): količine
+- **Assembly tab na easyrace uređajima** (`data-draft`): količine
   (sada `xX`), vrednosti podešavanja (sada `X`) i materijal u uvodnoj rečenici.
   Imena fajlova su tačna i konačna. Dok se ne popuni, ceo blok je skriven —
   tabela delova bez količina bi naterala čoveka da odštampa pogrešan broj
@@ -516,23 +516,32 @@ Sa rokom:
   ispunjeno ili probijeno, a u oba slučaja treba da ga vlasnik pogleda, ne da
   tiho nestane sa sajta.
 
+
 ---
 
-## Parts i Assembly stoje u tabu svog uređaja
+## Assembly je druga strana istog taba, ne dodatak ispod njega
 
-Prvo su bili ispod `Buy` dugmeta, u nizu (28. oktobra 2026) — vlasniku je to
-bilo natrpano. Onda su premešteni u zaseban `Build` tab, sa biračem uređaja
-unutra (29. oktobra) — ni to nije bilo dobro: **uređaj i njegovo uputstvo ne
-smeju da budu razdvojeni.** Ko je u tabu `easysteer` tu treba i da nađe kako
-se easysteer sklapa, a ne da ide u treći tab i tamo opet bira uređaj.
+Tri pokušaja, i svaki je oboren iz istog razloga — **stranica ne sme da se
+produži.**
 
-Konačno (odluka vlasnika, 29. oktobra 2026): u panelu svakog uređaja, ispod
-cene i `Buy` dugmeta, stoji **tihi red od dva taba — `Parts` i `Assembly`**
-(`.subtabs`). Prodajni deo ostaje gore i uvek se vidi; ispod se pokaže samo
-jedno od to dvoje, pa ni tabela od dvadeset redova ni celo uputstvo ne
-zatrpavaju stranicu.
+1. Ispod `Buy` dugmeta, u nizu (28. oktobra 2026) — natrpano.
+2. Zaseban `Build` tab sa biračem uređaja unutra (29. oktobra) — razdvaja
+   uređaj od njegovog uputstva. Ko je u tabu `easysteer` tu treba i da nađe
+   kako se easysteer sklapa.
+3. `Parts` i `Assembly` kao dva taba ispod `Buy`-a (29. oktobra) — i dalje
+   ispod, i dalje previše sadržaja.
 
-`Build` taba više nema.
+Konačno (odluka vlasnika, 29. oktobra 2026): odmah **ispod naslova uređaja**
+stoji tihi red od dva taba — `Overview` i `Assembly` (`.subtabs`).
+
+`Overview` je ono što je stranica oduvek bila: video, opis, specifikacija,
+cena, `Buy`. `Assembly` je sve ostalo na jednom mestu: šta se štampa
+(tabela), šema veze, i koraci sklapanja. **Jedno ili drugo**, nikad oba
+odjednom — zato otvaranje uputstva stranicu ne produžava ni za piksel.
+
+Ceo drugi tab i sam red tabova su `data-draft`. Dok se ne popune količine i
+podešavanja, posetilac ne vidi ni red tabova: `Overview` panel je prosto
+sadržaj stranice, tačno kao i pre. Provereno sa ugašenim draftovima.
 
 **Jedna tabela, ne dve.** Podešavanja stoje kao kolone pored svakog dela, jer
 se stvarno razlikuju od dela do dela: štampana opruga ne traži isti infill ni
@@ -550,5 +559,5 @@ tabela u svom okviru; stranica se ne pomera.
 u `product.js` od sada traži taj atribut, koji nose samo tri glavna
 `.tabbar`-a (DJC-DIY, drivepad, easyrace). Bez toga bi oba spiska pisala u
 isti `#hash` i svaki bi čitao ime onog drugog, pa nijedan ne bi našao svoj
-tab. Ovako `#easysteer` i dalje otvara uređaj, a izbor `Parts`/`Assembly`
+tab. Ovako `#easysteer` i dalje otvara uređaj, a izbor `Overview`/`Assembly`
 ostaje van adrese.

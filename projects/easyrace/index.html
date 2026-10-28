@@ -332,7 +332,16 @@
                 </div>
               </div>
               <h2 class="er-title">steering wheel</h2>
-              <div class="er-block">
+              <!-- Two faces of the same tab: what it is, and how to build it.
+                   Side by side rather than stacked, so opening the instructions
+                   costs the page no extra length. Drafted, tabs and all, until
+                   the quantities and the settings are filled in — with drafts
+                   off the row disappears and Overview is simply the panel. -->
+              <div class="subtabs" data-draft role="tablist" aria-label="easysteer">
+                <button type="button" class="subtab" role="tab" id="erb-tab-easysteer-overview" aria-controls="erb-panel-easysteer-overview" aria-selected="true" tabindex="0">Overview</button>
+                <button type="button" class="subtab" role="tab" id="erb-tab-easysteer-assembly" aria-controls="erb-panel-easysteer-assembly" aria-selected="false" tabindex="-1">Assembly</button>
+              </div>
+              <div class="er-block" role="tabpanel" id="erb-panel-easysteer-overview" aria-labelledby="erb-tab-easysteer-overview">
                 <div class="er-block-video">
                   <div>
                     <div class="video-tabs">
@@ -402,18 +411,9 @@
                   </div>
                 </div>
               </div>
-
-              <!-- What to print and how, then how to put it together. Two sub-tabs
-                   because a twenty row table and a full assembly guide stacked
-                   under the price is more than anyone reads. Drafted until the
-                   quantities and the settings are filled in: a parts list with
-                   blanks would have someone print the wrong number of parts. -->
-              <div data-draft>
-                <div class="subtabs" role="tablist" aria-label="easysteer build">
-                  <button type="button" class="subtab" role="tab" id="erb-tab-easysteer-parts" aria-controls="erb-panel-easysteer-parts" aria-selected="true" tabindex="0">Parts</button>
-                  <button type="button" class="subtab" role="tab" id="erb-tab-easysteer-assembly" aria-controls="erb-panel-easysteer-assembly" aria-selected="false" tabindex="-1">Assembly</button>
-                </div>
-                <div class="parts-group" role="tabpanel" id="erb-panel-easysteer-parts" aria-labelledby="erb-tab-easysteer-parts">
+              <div data-draft role="tabpanel" id="erb-panel-easysteer-assembly" aria-labelledby="erb-tab-easysteer-assembly" hidden>
+                <div class="parts-group">
+                  <h3 class="label">What to print</h3>
                   <p class="text pretty">Every part is printed in X. What changes from one part to the next is in the table beside it.</p>
                   <div class="parts-scroll">
                     <div class="parts-table parts-build">
@@ -443,7 +443,12 @@
                     </div>
                   </div>
                 </div>
-                <div class="parts-group" role="tabpanel" id="erb-panel-easysteer-assembly" aria-labelledby="erb-tab-easysteer-assembly" hidden>
+                <div class="parts-group">
+                  <h3 class="label">Wiring</h3>
+                  <p class="text pretty">The wiring diagram goes here.</p>
+                </div>
+                <div class="parts-group">
+                  <h3 class="label">Putting it together</h3>
                   <p class="text pretty">The step by step assembly goes here once the tutorial is filmed.</p>
                 </div>
               </div>
@@ -463,7 +468,16 @@
                 </div>
               </div>
               <h2 class="er-title">pedals</h2>
-              <div class="er-block">
+              <!-- Two faces of the same tab: what it is, and how to build it.
+                   Side by side rather than stacked, so opening the instructions
+                   costs the page no extra length. Drafted, tabs and all, until
+                   the quantities and the settings are filled in — with drafts
+                   off the row disappears and Overview is simply the panel. -->
+              <div class="subtabs" data-draft role="tablist" aria-label="easydrive">
+                <button type="button" class="subtab" role="tab" id="erb-tab-easydrive-overview" aria-controls="erb-panel-easydrive-overview" aria-selected="true" tabindex="0">Overview</button>
+                <button type="button" class="subtab" role="tab" id="erb-tab-easydrive-assembly" aria-controls="erb-panel-easydrive-assembly" aria-selected="false" tabindex="-1">Assembly</button>
+              </div>
+              <div class="er-block" role="tabpanel" id="erb-panel-easydrive-overview" aria-labelledby="erb-tab-easydrive-overview">
                 <div class="er-block-video">
                   <div>
                     <div class="video-tabs">
@@ -528,14 +542,9 @@
                   </div>
                 </div>
               </div>
-
-              <!-- Build — see the note on easysteer. -->
-              <div data-draft>
-                <div class="subtabs" role="tablist" aria-label="easydrive build">
-                  <button type="button" class="subtab" role="tab" id="erb-tab-easydrive-parts" aria-controls="erb-panel-easydrive-parts" aria-selected="true" tabindex="0">Parts</button>
-                  <button type="button" class="subtab" role="tab" id="erb-tab-easydrive-assembly" aria-controls="erb-panel-easydrive-assembly" aria-selected="false" tabindex="-1">Assembly</button>
-                </div>
-                <div class="parts-group" role="tabpanel" id="erb-panel-easydrive-parts" aria-labelledby="erb-tab-easydrive-parts">
+              <div data-draft role="tabpanel" id="erb-panel-easydrive-assembly" aria-labelledby="erb-tab-easydrive-assembly" hidden>
+                <div class="parts-group">
+                  <h3 class="label">What to print</h3>
                   <p class="text pretty">Every part is printed in X. What changes from one part to the next is in the table beside it.</p>
                   <div class="parts-scroll">
                     <div class="parts-table parts-build">
@@ -561,7 +570,12 @@
                     </div>
                   </div>
                 </div>
-                <div class="parts-group" role="tabpanel" id="erb-panel-easydrive-assembly" aria-labelledby="erb-tab-easydrive-assembly" hidden>
+                <div class="parts-group">
+                  <h3 class="label">Wiring</h3>
+                  <p class="text pretty">The wiring diagram goes here.</p>
+                </div>
+                <div class="parts-group">
+                  <h3 class="label">Putting it together</h3>
                   <p class="text pretty">The step by step assembly goes here once the tutorial is filmed.</p>
                 </div>
               </div>
@@ -581,7 +595,16 @@
                 </div>
               </div>
               <h2 class="er-title">h-pattern shifter</h2>
-              <div class="er-block">
+              <!-- Two faces of the same tab: what it is, and how to build it.
+                   Side by side rather than stacked, so opening the instructions
+                   costs the page no extra length. Drafted, tabs and all, until
+                   the quantities and the settings are filled in — with drafts
+                   off the row disappears and Overview is simply the panel. -->
+              <div class="subtabs" data-draft role="tablist" aria-label="easyshift">
+                <button type="button" class="subtab" role="tab" id="erb-tab-easyshift-overview" aria-controls="erb-panel-easyshift-overview" aria-selected="true" tabindex="0">Overview</button>
+                <button type="button" class="subtab" role="tab" id="erb-tab-easyshift-assembly" aria-controls="erb-panel-easyshift-assembly" aria-selected="false" tabindex="-1">Assembly</button>
+              </div>
+              <div class="er-block" role="tabpanel" id="erb-panel-easyshift-overview" aria-labelledby="erb-tab-easyshift-overview">
                 <div class="er-block-video">
                   <div>
                     <div class="video-tabs">
@@ -646,14 +669,9 @@
                   </div>
                 </div>
               </div>
-
-              <!-- Build — see the note on easysteer. -->
-              <div data-draft>
-                <div class="subtabs" role="tablist" aria-label="easyshift build">
-                  <button type="button" class="subtab" role="tab" id="erb-tab-easyshift-parts" aria-controls="erb-panel-easyshift-parts" aria-selected="true" tabindex="0">Parts</button>
-                  <button type="button" class="subtab" role="tab" id="erb-tab-easyshift-assembly" aria-controls="erb-panel-easyshift-assembly" aria-selected="false" tabindex="-1">Assembly</button>
-                </div>
-                <div class="parts-group" role="tabpanel" id="erb-panel-easyshift-parts" aria-labelledby="erb-tab-easyshift-parts">
+              <div data-draft role="tabpanel" id="erb-panel-easyshift-assembly" aria-labelledby="erb-tab-easyshift-assembly" hidden>
+                <div class="parts-group">
+                  <h3 class="label">What to print</h3>
                   <p class="text pretty">Every part is printed in X. What changes from one part to the next is in the table beside it.</p>
                   <div class="parts-scroll">
                     <div class="parts-table parts-build">
@@ -680,7 +698,12 @@
                     </div>
                   </div>
                 </div>
-                <div class="parts-group" role="tabpanel" id="erb-panel-easyshift-assembly" aria-labelledby="erb-tab-easyshift-assembly" hidden>
+                <div class="parts-group">
+                  <h3 class="label">Wiring</h3>
+                  <p class="text pretty">The wiring diagram goes here.</p>
+                </div>
+                <div class="parts-group">
+                  <h3 class="label">Putting it together</h3>
                   <p class="text pretty">The step by step assembly goes here once the tutorial is filmed.</p>
                 </div>
               </div>

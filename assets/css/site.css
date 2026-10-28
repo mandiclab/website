@@ -1297,6 +1297,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .parts-table.parts-wide { min-width: 640px; }
 .parts-head, .parts-row { display: grid; grid-template-columns: 90px minmax(0,1fr) minmax(0,1fr); gap: 24px; }
 .parts-wide .parts-head, .parts-wide .parts-row { grid-template-columns: 90px minmax(0,0.8fr) minmax(0,1.6fr); }
+/* Two columns, for a settings list rather than a parts list. */
+.parts-table.parts-narrow { min-width: 320px; max-width: 460px; }
+.parts-narrow .parts-head, .parts-narrow .parts-row { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
 .parts-head {
   padding: 0 4px 12px;
   border-bottom: 1px solid var(--line-2);
@@ -1905,7 +1908,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .parts-head { display: none; }
   .parts-row, .parts-wide .parts-row { grid-template-columns: auto minmax(0,1fr); gap: 4px 16px; padding: 16px 4px; }
   .parts-row > div:nth-child(3) { grid-column: 1 / -1; font-size: 13px; color: var(--text-3); }
-  .parts-table, .parts-table.parts-wide { min-width: 0; }
+  .parts-table, .parts-table.parts-wide, .parts-table.parts-narrow { min-width: 0; }
   .info-grid { grid-template-columns: minmax(0,1fr); gap: 32px; }
   .lb-close { width: 44px; height: 44px; }
 }

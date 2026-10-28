@@ -489,6 +489,12 @@ Sadržaj koji popunjava vlasnik projekta, ne ti:
 - opcioni `.md` fajlovi uz slike u galeriji (kredit i opis)
 - specifikacija hidrauličke ručne na easyrace-u (sada `Specification TBD`)
 - količine filamenta i žice na easyrace bundle-ovima (sada `X g`, `X m`)
+- **Build sekcija na easyrace uređajima** (`data-draft`, ispod Buy dugmeta):
+  količine u tabeli delova (sada `xX`) i vrednosti u Print settings (sada `X`).
+  Imena fajlova su tačna i konačna. Dok se ne popuni, cela sekcija je skrivena
+  — tabela delova bez količina je gora nego da je nema. Fali i šema veze:
+  SVG po uređaju u `assets/images/easyrace/<uređaj>/`, pa ide `.figure` blok
+  kao na DJC-DIY stranici.
 - `FAQ` i `Terms` tabovi na easyrace stranici — postoje, kompletno su
   ožičeni, ali su prazni
 - sve slike i njihovi `alt` tekstovi (easyrace hero sada prima više slika, kao

@@ -489,12 +489,11 @@ Sadržaj koji popunjava vlasnik projekta, ne ti:
 - opcioni `.md` fajlovi uz slike u galeriji (kredit i opis)
 - specifikacija hidrauličke ručne na easyrace-u (sada `Specification TBD`)
 - količine filamenta i žice na easyrace bundle-ovima (sada `X g`, `X m`)
-- **Assembly tab na easyrace uređajima** (`data-draft`): količine
-  (sada `xX`), vrednosti podešavanja (sada `X`) i materijal u uvodnoj rečenici.
-  Imena fajlova su tačna i konačna. Dok se ne popuni, ceo blok je skriven —
-  tabela delova bez količina bi naterala čoveka da odštampa pogrešan broj
-  delova, što je gore nego da je nema. Fali i šema veze: SVG po uređaju u
-  `assets/images/easyrace/<uređaj>/`, pa ide `.figure` blok kao na DJC-DIY.
+- **Assembly na stranicama easyrace uređaja**: u tabeli su za sada svuda
+  vlasnikove polazne vrednosti (x1, 0.2 mm, 2, 15%, No); izuzetke po delu
+  javlja vlasnik. Imena fajlova su tačna i konačna. Fali šema veze — SVG po
+  uređaju u `assets/images/easyrace/<uređaj>/`, pa ide `.figure` blok kao na
+  DJC-DIY — i koraci posle prvog.
 - `FAQ` i `Terms` tabovi na easyrace stranici — postoje, kompletno su
   ožičeni, ali su prazni
 - sve slike i njihovi `alt` tekstovi (easyrace hero sada prima više slika, kao
@@ -519,45 +518,48 @@ Sa rokom:
 
 ---
 
-## Assembly je druga strana istog taba, ne dodatak ispod njega
+## Svaki easyrace uređaj dobija svoju stranicu (prototip: easysteer)
 
-Tri pokušaja, i svaki je oboren iz istog razloga — **stranica ne sme da se
-produži.**
+Uputstvo za sklapanje nije moglo da stane u tab uređaja na easyrace
+stranici. Četiri pokušaja (28–29. oktobra 2026) — ispod `Buy` dugmeta, u
+zasebnom `Build` tabu, kao `Parts`/`Assembly` ispod cene, kao `Overview`/
+`Assembly` ispod naslova — padala su iz istog razloga: **easyrace stranica
+nosi dve vrste navigacije u jednom redu tabova** — koji uređaj (`easysteer`,
+`easydrive`…) i koji deo stranice (`Bundles`, `FAQ`, `Terms`). Treći nivo,
+delovi jednog uređaja, nije imao gde da stane bez drugog reda tabova.
 
-1. Ispod `Buy` dugmeta, u nizu (28. oktobra 2026) — natrpano.
-2. Zaseban `Build` tab sa biračem uređaja unutra (29. oktobra) — razdvaja
-   uređaj od njegovog uputstva. Ko je u tabu `easysteer` tu treba i da nađe
-   kako se easysteer sklapa.
-3. `Parts` i `Assembly` kao dva taba ispod `Buy`-a (29. oktobra) — i dalje
-   ispod, i dalje previše sadržaja.
+Vlasnik je to sam primetio: svaki uređaj je zaseban projekat, a DJC-DIY ima
+sve posebno. Zato (odluka prepuštena meni, 29. oktobra 2026): **jedan
+uređaj — jedna stranica**, po istom šablonu kao DJC-DIY. Tako rade i
+proizvođači sim racing opreme: porodica ima svoju stranicu, svaki uređaj
+svoju.
 
-Konačno (odluka vlasnika, 29. oktobra 2026): odmah **ispod naslova uređaja**
-stoji tihi red od dva taba — `Overview` i `Assembly` (`.subtabs`).
+Prototip je `/projects/easyrace/easysteer/`:
 
-`Overview` je ono što je stranica oduvek bila: video, opis, specifikacija,
-cena, `Buy`. `Assembly` je sve ostalo na jednom mestu: šta se štampa
-(tabela), šema veze, i koraci sklapanja. **Jedno ili drugo**, nikad oba
-odjednom — zato otvaranje uputstva stranicu ne produžava ni za piksel.
+- gore **16:9 galerija** uređaja (`.er-shots`), ne široki hero kao na DJC-DIY:
+  fotografije uređaja su 16:9, a široki okvir na velikom ekranu ide do 2.5:1
+  i odseca vrh volana i postolje. Ako se po uređaju slika i širok kadar
+  5120×2160 kao za easyrace hero, može i široki hero.
+- `h1` je ime uređaja, ispod `Digital product` i uvodna rečenica po kućnoj
+  formuli („…that you can make at home without special tools, skill or
+  knowledge"), vlasnikovim rečima sa Payhip-a.
+- tabovi **`Overview` | `Assembly`**. `Overview` je sadržaj taba sa easyrace
+  stranice, bez natpisa „Overview" (bio bi dvaput). `Assembly` počinje kao
+  na DJC-DIY: korak `01` *Print the 3D printed parts* i tabela.
 
-Ceo drugi tab i sam red tabova su `data-draft`. Dok se ne popune količine i
-podešavanja, posetilac ne vidi ni red tabova: `Overview` panel je prosto
-sadržaj stranice, tačno kao i pre. Provereno sa ugašenim draftovima.
+Tabela: jedna po uređaju, podešavanja kao kolone pored svakog dela
+(`Quantity`, `Part`, `File Name`, `Layer`, `Walls`, `Infill`, `Supports`),
+jer se razlikuju od dela do dela. Za sada svuda **x1, 0.2 mm, 2, 15%, No** —
+vlasnikova polazna vrednost; izuzetke javlja kasnije. Na telefonu tabela
+klizi u stranu u svom okviru umesto da se prelama (`.parts-build`), da
+brojevi ne ostanu bez zaglavlja.
 
-**Jedna tabela, ne dve.** Podešavanja stoje kao kolone pored svakog dela, jer
-se stvarno razlikuju od dela do dela: štampana opruga ne traži isti infill ni
-isti broj zidova kao kućište. Kolone su `Quantity`, `Part`, `File Name`,
-`Layer`, `Walls`, `Infill`, `Supports`. Materijal je isti za sve, pa stoji u
-rečenici iznad.
+Kad vlasnik odobri, ostatak:
 
-**Na telefonu se tabela ne prelama, nego klizi u stranu** (`.parts-build` u
-`@media (max-width: 640px)`). Ostale `parts` tabele na uskom ekranu sklone
-zaglavlje i spuste treću kolonu u novi red — ovde to ne valja, jer bi četiri
-broja ostala jedan do drugog bez ičega što kaže koji je koji. Klizi samo
-tabela u svom okviru; stranica se ne pomera.
-
-**Ugnežđeni `role="tablist"` nema `data-deep-link`.** Logika dubinskih linkova
-u `product.js` od sada traži taj atribut, koji nose samo tri glavna
-`.tabbar`-a (DJC-DIY, drivepad, easyrace). Bez toga bi oba spiska pisala u
-isti `#hash` i svaki bi čitao ime onog drugog, pa nijedan ne bi našao svoj
-tab. Ovako `#easysteer` i dalje otvara uređaj, a izbor `Overview`/`Assembly`
-ostaje van adrese.
+1. stranice za `easydrive` i `easyshift` po istom šablonu;
+2. easyrace stranica gubi tabove uređaja i dobija kartice koje vode na
+   stranice uređaja; ostaju `Bundles`, `FAQ`, `Terms`;
+3. stari linkovi `/projects/easyrace/#easysteer` i slični preusmeravaju na
+   novu stranicu uređaja;
+4. nove adrese u `CLAUDE.md` (struktura URL-ova i tabela `h1`) i u
+   `sitemap.xml` kad se skine `noindex`.

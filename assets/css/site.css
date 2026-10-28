@@ -1039,30 +1039,6 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 .tab[aria-selected="true"] { color: var(--text-1); }
 
-/* A second, quieter row of tabs inside a panel — picking a device inside the
-   Build tab. Deliberately not the full-width bar of .tabbar: it sits under
-   the page's own tabs and must not compete with them. It wraps instead of
-   scrolling, so no fade machinery is needed. */
-.subtabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 clamp(16px,2.4vw,32px);
-  margin-top: clamp(32px,4vh,48px);
-  border-bottom: 1px solid var(--line-1);
-}
-.subtab {
-  flex: 0 0 auto;
-  padding: 12px 0;
-  cursor: pointer;
-  font-size: var(--fs-label);
-  font-weight: 400;
-  letter-spacing: 0.18em;
-  white-space: nowrap;
-  color: var(--text-3);
-  transition: color var(--dur-slow) var(--ease);
-}
-.subtab[aria-selected="true"] { color: var(--text-1); }
-
 .panel { max-width: var(--container); padding: clamp(64px,7vh,96px) 0 clamp(96px,12vh,128px); }
 
 /* Overview */
@@ -1659,8 +1635,17 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .er-shots { margin-bottom: clamp(32px,3.6vw,48px); }
 .er-shots .slideshow { aspect-ratio: 16 / 9; height: auto; border-bottom: 0; }
 .er-shots .slide-thumbs-outer { padding: 0; }
+/* At the top of a device's own page the gallery sits right under the header,
+   so it is given the page gutter above it to breathe. */
+.product-inner > .er-shots:first-child { padding-top: var(--gutter); }
+/* ...and it keeps its 16:9 on a phone, rather than taking the tall minimum
+   meant for the wide hero, which would crop the photo at the sides. */
+.product-inner > .er-shots:first-child .slideshow { min-height: 0; }
 .er-title { margin: 0; font-size: var(--fs-display); font-weight: 200; line-height: 1.15; letter-spacing: -0.01em; text-transform: lowercase; }
 .er-block { display: flex; flex-wrap: wrap; align-items: flex-start; gap: clamp(32px,4vw,64px); margin-top: clamp(48px,4.4vw,64px); }
+/* On a device's own page the block opens its tab, with no title above it to
+   keep clear of; the tab panel's own padding already sets the distance. */
+.er-panel > .er-block:first-child { margin-top: 0; }
 .er-block-video { flex: 1 1 380px; min-width: 0; }
 .er-block-text { flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: clamp(32px,3vw,48px); max-width: var(--measure); }
 .er-block-text p { margin: 12px 0 0; max-width: var(--measure); font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); text-wrap: pretty; }

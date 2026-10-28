@@ -543,3 +543,17 @@ dvadeset puta.
 sklone zaglavlje i spuste treću kolonu u novi red — ovde to ne valja, jer bi
 četiri broja ostala jedan do drugog bez ičega što kaže koji je koji. Klizi
 samo tabela u svom okviru; sama stranica se ne pomera u stranu.
+
+**Unutar Build taba, uređaj se bira — ne stoje svi jedan ispod drugog**
+(odluka vlasnika, 29. oktobra 2026). Tri tabele jedna za drugom izgledaju
+kao gomila, a kad se dodaju koraci sklapanja za šest uređaja postaje
+neupotrebljivo. Zato Build ima **drugi red tabova** (`.subtabs`), tiši od
+glavnog: bira se uređaj i vidi se samo njegov deo — `<ime> parts` i
+`<ime> assembly`.
+
+Taj ugnežđeni `role="tablist"` **namerno nema `data-deep-link`**. Logika
+dubinskih linkova u `product.js` sada traži taj atribut, koji nose samo tri
+glavna `.tabbar`-a (DJC-DIY, drivepad, easyrace). Bez toga bi oba spiska
+pisala u isti `#hash` i svaki bi čitao ime onog drugog, pa nijedan ne bi
+našao svoj tab. Ovako `#build` i dalje znači tab, a izbor uređaja unutra
+ostaje van adrese.

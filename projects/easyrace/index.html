@@ -100,7 +100,7 @@
           </div>
 
           <div class="tabbar-wrap" data-fade="0">
-            <div class="tabbar" role="tablist" aria-label="easyrace sections">
+            <div class="tabbar" data-deep-link role="tablist" aria-label="easyrace sections">
               <button type="button" class="tab" role="tab" id="er-tab-Bundles" aria-controls="er-panel-Bundles" aria-selected="true" tabindex="0">Bundles</button>
               <button type="button" class="tab" role="tab" id="er-tab-easysteer" aria-controls="er-panel-easysteer" aria-selected="false" tabindex="-1">easysteer</button>
               <button type="button" class="tab" role="tab" id="er-tab-easydrive" aria-controls="er-panel-easydrive" aria-selected="false" tabindex="-1">easydrive</button>
@@ -818,10 +818,20 @@
                names are already final. -->
           <div class="er-panel" data-draft role="tabpanel" id="er-panel-Build" aria-labelledby="er-tab-Build" hidden>
             <h2 class="label">Build</h2>
-            <p class="text pretty">Every part is printed in X. What changes from one part to the next is in the table beside it. Print each device from its own list, whether you bought it on its own or in a bundle. The step by step assembly follows here once the tutorials are up.</p>
+            <p class="text pretty">Every part is printed in X. What changes from one part to the next is in the table beside it. Pick a device below: each one has its own parts list and its own assembly, whether you bought it on its own or in a bundle.</p>
 
+            <!-- One device at a time. A second tablist, quieter than the page's
+                 own tabs and deliberately without data-deep-link, so it stays
+                 out of the address bar and leaves #build to mean the tab. -->
+            <div class="subtabs" role="tablist" aria-label="Build, by device">
+              <button type="button" class="subtab" role="tab" id="erb-tab-easysteer" aria-controls="erb-panel-easysteer" aria-selected="true" tabindex="0">easysteer</button>
+              <button type="button" class="subtab" role="tab" id="erb-tab-easydrive" aria-controls="erb-panel-easydrive" aria-selected="false" tabindex="-1">easydrive</button>
+              <button type="button" class="subtab" role="tab" id="erb-tab-easyshift" aria-controls="erb-panel-easyshift" aria-selected="false" tabindex="-1">easyshift</button>
+            </div>
+
+            <div role="tabpanel" id="erb-panel-easysteer" aria-labelledby="erb-tab-easysteer">
             <div class="parts-group">
-              <h3 class="label">easysteer — steering wheel</h3>
+              <h3 class="label">easysteer parts</h3>
               <div class="parts-scroll">
                 <div class="parts-table parts-build">
                   <div class="parts-head">
@@ -850,9 +860,15 @@
                 </div>
               </div>
             </div>
-
             <div class="parts-group">
-              <h3 class="label">easydrive — pedals</h3>
+              <h3 class="label">easysteer assembly</h3>
+              <p class="text pretty">The step by step assembly goes here once the tutorial is filmed.</p>
+            </div>
+            </div>
+
+            <div role="tabpanel" id="erb-panel-easydrive" aria-labelledby="erb-tab-easydrive" hidden>
+            <div class="parts-group">
+              <h3 class="label">easydrive parts</h3>
               <div class="parts-scroll">
                 <div class="parts-table parts-build">
                   <div class="parts-head">
@@ -877,9 +893,15 @@
                 </div>
               </div>
             </div>
-
             <div class="parts-group">
-              <h3 class="label">easyshift — H-pattern shifter</h3>
+              <h3 class="label">easydrive assembly</h3>
+              <p class="text pretty">The step by step assembly goes here once the tutorial is filmed.</p>
+            </div>
+            </div>
+
+            <div role="tabpanel" id="erb-panel-easyshift" aria-labelledby="erb-tab-easyshift" hidden>
+            <div class="parts-group">
+              <h3 class="label">easyshift parts</h3>
               <div class="parts-scroll">
                 <div class="parts-table parts-build">
                   <div class="parts-head">
@@ -904,6 +926,11 @@
                   <div class="parts-row"><div>xX</div><div>Clamp Screw</div><div>clamp-screw.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
                 </div>
               </div>
+            </div>
+            <div class="parts-group">
+              <h3 class="label">easyshift assembly</h3>
+              <p class="text pretty">The step by step assembly goes here once the tutorial is filmed.</p>
+            </div>
             </div>
           </div>
 

@@ -489,12 +489,12 @@ Sadržaj koji popunjava vlasnik projekta, ne ti:
 - opcioni `.md` fajlovi uz slike u galeriji (kredit i opis)
 - specifikacija hidrauličke ručne na easyrace-u (sada `Specification TBD`)
 - količine filamenta i žice na easyrace bundle-ovima (sada `X g`, `X m`)
-- **Build sekcija na easyrace uređajima** (`data-draft`, ispod Buy dugmeta):
-  količine u tabeli delova (sada `xX`) i vrednosti u Print settings (sada `X`).
-  Imena fajlova su tačna i konačna. Dok se ne popuni, cela sekcija je skrivena
-  — tabela delova bez količina je gora nego da je nema. Fali i šema veze:
-  SVG po uređaju u `assets/images/easyrace/<uređaj>/`, pa ide `.figure` blok
-  kao na DJC-DIY stranici.
+- **Build tab na easyrace stranici** (`data-draft`, i tab i panel): količine
+  (sada `xX`), vrednosti podešavanja (sada `X`) i materijal u uvodnoj rečenici.
+  Imena fajlova su tačna i konačna. Dok se ne popuni, ceo tab je skriven —
+  tabela delova bez količina bi naterala čoveka da odštampa pogrešan broj
+  delova, što je gore nego da je nema. Fali i šema veze: SVG po uređaju u
+  `assets/images/easyrace/<uređaj>/`, pa ide `.figure` blok kao na DJC-DIY.
 - `FAQ` i `Terms` tabovi na easyrace stranici — postoje, kompletno su
   ožičeni, ali su prazni
 - sve slike i njihovi `alt` tekstovi (easyrace hero sada prima više slika, kao
@@ -515,3 +515,31 @@ Sa rokom:
   Namerno nije napravljena da sama nestane: posle tog datuma obećanje je ili
   ispunjeno ili probijeno, a u oba slučaja treba da ga vlasnik pogleda, ne da
   tiho nestane sa sajta.
+
+---
+
+## Build je svoj tab, a ne deo svakog uređaja
+
+Prvo je bio ispod `Buy` dugmeta u svakom device panelu (28. oktobra 2026).
+Vlasnik je odmah video problem: panel uređaja služi da se čovek **odluči da
+kupi**, a tabela od dvadeset redova u sredini zatrpa cenu. A kod `easyshift`
+i `easydrift` u jednom panelu stoje **po dva uređaja**, pa bi to bilo
+četrdeset redova.
+
+Zato je sve premešteno u zaseban tab **Build**, između `easydrift` i `FAQ`.
+Tamo je sve što čoveku treba **posle** kupovine, uređaj po uređaj: šta da
+odštampa i kako, a kasnije i koraci sklapanja. Dubinski link radi kao i za
+ostale tabove — `/projects/easyrace/#build`.
+
+**Jedna tabela po uređaju, ne dve.** Podešavanja stoje kao kolone pored
+svakog dela, jer se stvarno razlikuju od dela do dela: štampana opruga ne
+traži isti infill ni isti broj zidova kao kućište. Kolone su `Quantity`,
+`Part`, `File Name`, `Layer`, `Walls`, `Infill`, `Supports`. Materijal je
+isti za sve, pa stoji u rečenici iznad, a ne kao kolona koja se ponavlja
+dvadeset puta.
+
+**Na telefonu se ne prelama, nego klizi u stranu** (`.parts-build` u
+`@media (max-width: 640px)`). Ostale `parts` tabele na sajtu na uskom ekranu
+sklone zaglavlje i spuste treću kolonu u novi red — ovde to ne valja, jer bi
+četiri broja ostala jedan do drugog bez ičega što kaže koji je koji. Klizi
+samo tabela u svom okviru; sama stranica se ne pomera u stranu.

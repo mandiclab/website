@@ -1297,9 +1297,12 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .parts-table.parts-wide { min-width: 640px; }
 .parts-head, .parts-row { display: grid; grid-template-columns: 90px minmax(0,1fr) minmax(0,1fr); gap: 24px; }
 .parts-wide .parts-head, .parts-wide .parts-row { grid-template-columns: 90px minmax(0,0.8fr) minmax(0,1.6fr); }
-/* Two columns, for a settings list rather than a parts list. */
-.parts-table.parts-narrow { min-width: 320px; max-width: 460px; }
-.parts-narrow .parts-head, .parts-narrow .parts-row { grid-template-columns: minmax(0,1fr) minmax(0,1fr); }
+/* Build table: the parts list with each part's own print settings beside it. */
+.parts-table.parts-build { min-width: 900px; }
+.parts-build .parts-head, .parts-build .parts-row {
+  grid-template-columns: 76px minmax(0,1.1fr) minmax(0,1.3fr) 72px 62px 62px 96px;
+  gap: 20px;
+}
 .parts-head {
   padding: 0 4px 12px;
   border-bottom: 1px solid var(--line-2);
@@ -1908,7 +1911,14 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .parts-head { display: none; }
   .parts-row, .parts-wide .parts-row { grid-template-columns: auto minmax(0,1fr); gap: 4px 16px; padding: 16px 4px; }
   .parts-row > div:nth-child(3) { grid-column: 1 / -1; font-size: 13px; color: var(--text-3); }
-  .parts-table, .parts-table.parts-wide, .parts-table.parts-narrow { min-width: 0; }
+  .parts-table, .parts-table.parts-wide { min-width: 0; }
+  /* The build table is the exception: it keeps every column and scrolls
+     sideways instead of folding. Fold it and the settings become bare numbers
+     under no heading, with nothing to say which one is walls and which infill. */
+  .parts-table.parts-build { min-width: 900px; }
+  .parts-build .parts-head { display: grid; }
+  .parts-build .parts-row { gap: 20px; }
+  .parts-build .parts-row > div:nth-child(3) { grid-column: auto; font-size: var(--fs-body); }
   .info-grid { grid-template-columns: minmax(0,1fr); gap: 32px; }
   .lb-close { width: 44px; height: 44px; }
 }

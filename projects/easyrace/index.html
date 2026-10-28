@@ -106,7 +106,6 @@
               <button type="button" class="tab" role="tab" id="er-tab-easydrive" aria-controls="er-panel-easydrive" aria-selected="false" tabindex="-1">easydrive</button>
               <button type="button" class="tab" role="tab" id="er-tab-easyshift" aria-controls="er-panel-easyshift" aria-selected="false" tabindex="-1">easyshift</button>
               <button type="button" class="tab" data-draft role="tab" id="er-tab-easydrift" aria-controls="er-panel-easydrift" aria-selected="false" tabindex="-1">easydrift</button>
-              <button type="button" class="tab" data-draft role="tab" id="er-tab-Build" aria-controls="er-panel-Build" aria-selected="false" tabindex="-1">Build</button>
               <button type="button" class="tab" role="tab" id="er-tab-FAQ" aria-controls="er-panel-FAQ" aria-selected="false" tabindex="-1">FAQ</button>
               <button type="button" class="tab" role="tab" id="er-tab-Terms" aria-controls="er-panel-Terms" aria-selected="false" tabindex="-1">Terms</button>
             </div>
@@ -403,6 +402,51 @@
                   </div>
                 </div>
               </div>
+
+              <!-- What to print and how, then how to put it together. Two sub-tabs
+                   because a twenty row table and a full assembly guide stacked
+                   under the price is more than anyone reads. Drafted until the
+                   quantities and the settings are filled in: a parts list with
+                   blanks would have someone print the wrong number of parts. -->
+              <div data-draft>
+                <div class="subtabs" role="tablist" aria-label="easysteer build">
+                  <button type="button" class="subtab" role="tab" id="erb-tab-easysteer-parts" aria-controls="erb-panel-easysteer-parts" aria-selected="true" tabindex="0">Parts</button>
+                  <button type="button" class="subtab" role="tab" id="erb-tab-easysteer-assembly" aria-controls="erb-panel-easysteer-assembly" aria-selected="false" tabindex="-1">Assembly</button>
+                </div>
+                <div class="parts-group" role="tabpanel" id="erb-panel-easysteer-parts" aria-labelledby="erb-tab-easysteer-parts">
+                  <p class="text pretty">Every part is printed in X. What changes from one part to the next is in the table beside it.</p>
+                  <div class="parts-scroll">
+                    <div class="parts-table parts-build">
+                      <div class="parts-head">
+                        <div>Quantity</div><div>Part</div><div>File Name</div><div>Layer</div><div>Walls</div><div>Infill</div><div>Supports</div>
+                      </div>
+                      <div class="parts-row"><div>xX</div><div>Case</div><div>case.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Arduino Spring</div><div>arduino-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Wheel Top</div><div>wheel-top.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Wheel Bottom</div><div>wheel-bottom.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Wheel Left</div><div>wheel-left.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Wheel Base</div><div>wheel-base.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Wheel Shaft</div><div>wheel-shaft.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Wheel Shaft Cover</div><div>wheel-shaft-cover.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Wheel Shaft Gear</div><div>wheel-schaft-gear.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Potentiometer Gear</div><div>potentiometer-gear.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Limiter</div><div>limiter.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Horn</div><div>horn.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Paddle</div><div>paddle.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Paddle Pin</div><div>paddle-pin.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Pin</div><div>pin.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Clamp</div><div>clamp.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Clamp Bottom</div><div>clamp-bottom.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Clamp Side</div><div>clamp-side.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Clamp Screw</div><div>clamp-screw.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Clamp Screw 2</div><div>clamp-screw-2.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="parts-group" role="tabpanel" id="erb-panel-easysteer-assembly" aria-labelledby="erb-tab-easysteer-assembly" hidden>
+                  <p class="text pretty">The step by step assembly goes here once the tutorial is filmed.</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -484,6 +528,43 @@
                   </div>
                 </div>
               </div>
+
+              <!-- Build — see the note on easysteer. -->
+              <div data-draft>
+                <div class="subtabs" role="tablist" aria-label="easydrive build">
+                  <button type="button" class="subtab" role="tab" id="erb-tab-easydrive-parts" aria-controls="erb-panel-easydrive-parts" aria-selected="true" tabindex="0">Parts</button>
+                  <button type="button" class="subtab" role="tab" id="erb-tab-easydrive-assembly" aria-controls="erb-panel-easydrive-assembly" aria-selected="false" tabindex="-1">Assembly</button>
+                </div>
+                <div class="parts-group" role="tabpanel" id="erb-panel-easydrive-parts" aria-labelledby="erb-tab-easydrive-parts">
+                  <p class="text pretty">Every part is printed in X. What changes from one part to the next is in the table beside it.</p>
+                  <div class="parts-scroll">
+                    <div class="parts-table parts-build">
+                      <div class="parts-head">
+                        <div>Quantity</div><div>Part</div><div>File Name</div><div>Layer</div><div>Walls</div><div>Infill</div><div>Supports</div>
+                      </div>
+                      <div class="parts-row"><div>xX</div><div>Right</div><div>right.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Right Arduino</div><div>right-arduino.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Arduino Spring</div><div>arduino-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Secure Plate</div><div>secure-plate.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Plate Long</div><div>plate-long.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Plate Short</div><div>plate-short.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Pedal</div><div>pedal.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Gas</div><div>gas.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Gas Spring</div><div>gas-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Brake</div><div>brake.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Brake Spring</div><div>brake-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Clutch</div><div>clutch.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Clutch Spring</div><div>clutch-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Foot Rest</div><div>foot-rest.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Foot Rest 2</div><div>foot-rest-2.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Connection Pin</div><div>connection-pin.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="parts-group" role="tabpanel" id="erb-panel-easydrive-assembly" aria-labelledby="erb-tab-easydrive-assembly" hidden>
+                  <p class="text pretty">The step by step assembly goes here once the tutorial is filmed.</p>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -563,6 +644,44 @@
                     <div class="er-price">$20</div>
                     <div class="er-buy-row"><a class="er-buy" href="https://payhip.com/b/YKuIl" target="_blank" rel="noopener noreferrer">Buy<span class="visually-hidden"> easyshift</span></a></div>
                   </div>
+                </div>
+              </div>
+
+              <!-- Build — see the note on easysteer. -->
+              <div data-draft>
+                <div class="subtabs" role="tablist" aria-label="easyshift build">
+                  <button type="button" class="subtab" role="tab" id="erb-tab-easyshift-parts" aria-controls="erb-panel-easyshift-parts" aria-selected="true" tabindex="0">Parts</button>
+                  <button type="button" class="subtab" role="tab" id="erb-tab-easyshift-assembly" aria-controls="erb-panel-easyshift-assembly" aria-selected="false" tabindex="-1">Assembly</button>
+                </div>
+                <div class="parts-group" role="tabpanel" id="erb-panel-easyshift-parts" aria-labelledby="erb-tab-easyshift-parts">
+                  <p class="text pretty">Every part is printed in X. What changes from one part to the next is in the table beside it.</p>
+                  <div class="parts-scroll">
+                    <div class="parts-table parts-build">
+                      <div class="parts-head">
+                        <div>Quantity</div><div>Part</div><div>File Name</div><div>Layer</div><div>Walls</div><div>Infill</div><div>Supports</div>
+                      </div>
+                      <div class="parts-row"><div>xX</div><div>Case</div><div>case.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Backplate</div><div>backplate.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Top Cover</div><div>top-cover.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Arduino Spring</div><div>arduino-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Shift Shaft</div><div>shift-shaft.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Shifter Knob</div><div>shifter-knob.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Joint</div><div>joint.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Joint Pin A</div><div>joint-pin-a.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Joint Pin B</div><div>joint-pin-b.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Joint Pin C</div><div>joint-pin-c.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Click Plate</div><div>click-plate.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Click Plate Cover</div><div>click-plate-cover.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Click Spring</div><div>click-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Centering Spring</div><div>centering-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Centering Spring Cover</div><div>centering-spring-cover.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Reverse Spring</div><div>reverse-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                      <div class="parts-row"><div>xX</div><div>Clamp Screw</div><div>clamp-screw.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
+                    </div>
+                  </div>
+                </div>
+                <div class="parts-group" role="tabpanel" id="erb-panel-easyshift-assembly" aria-labelledby="erb-tab-easyshift-assembly" hidden>
+                  <p class="text pretty">The step by step assembly goes here once the tutorial is filmed.</p>
                 </div>
               </div>
             </div>
@@ -804,136 +923,6 @@
               </div>
             </div>
           </div>
-
-          <!-- ── Build ─────────────────────────────────────────────────────
-               Everything you need after buying, in one place, device by
-               device: what to print and how, and later the assembly steps.
-               It is a tab of its own because the device tabs are for deciding
-               what to buy, and a twenty row table in the middle of that buries
-               the price.
-
-               Drafted until the quantities and the settings are filled in.
-               A parts list with blanks would have someone print the wrong
-               number of parts, which is worse than showing nothing. File
-               names are already final. -->
-          <div class="er-panel" data-draft role="tabpanel" id="er-panel-Build" aria-labelledby="er-tab-Build" hidden>
-            <h2 class="label">Build</h2>
-            <p class="text pretty">Every part is printed in X. What changes from one part to the next is in the table beside it. Pick a device below: each one has its own parts list and its own assembly, whether you bought it on its own or in a bundle.</p>
-
-            <!-- One device at a time. A second tablist, quieter than the page's
-                 own tabs and deliberately without data-deep-link, so it stays
-                 out of the address bar and leaves #build to mean the tab. -->
-            <div class="subtabs" role="tablist" aria-label="Build, by device">
-              <button type="button" class="subtab" role="tab" id="erb-tab-easysteer" aria-controls="erb-panel-easysteer" aria-selected="true" tabindex="0">easysteer</button>
-              <button type="button" class="subtab" role="tab" id="erb-tab-easydrive" aria-controls="erb-panel-easydrive" aria-selected="false" tabindex="-1">easydrive</button>
-              <button type="button" class="subtab" role="tab" id="erb-tab-easyshift" aria-controls="erb-panel-easyshift" aria-selected="false" tabindex="-1">easyshift</button>
-            </div>
-
-            <div role="tabpanel" id="erb-panel-easysteer" aria-labelledby="erb-tab-easysteer">
-            <div class="parts-group">
-              <h3 class="label">easysteer parts</h3>
-              <div class="parts-scroll">
-                <div class="parts-table parts-build">
-                  <div class="parts-head">
-                    <div>Quantity</div><div>Part</div><div>File Name</div><div>Layer</div><div>Walls</div><div>Infill</div><div>Supports</div>
-                  </div>
-                  <div class="parts-row"><div>xX</div><div>Case</div><div>case.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Arduino Spring</div><div>arduino-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Wheel Top</div><div>wheel-top.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Wheel Bottom</div><div>wheel-bottom.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Wheel Left</div><div>wheel-left.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Wheel Base</div><div>wheel-base.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Wheel Shaft</div><div>wheel-shaft.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Wheel Shaft Cover</div><div>wheel-shaft-cover.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Wheel Shaft Gear</div><div>wheel-schaft-gear.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Potentiometer Gear</div><div>potentiometer-gear.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Limiter</div><div>limiter.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Horn</div><div>horn.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Paddle</div><div>paddle.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Paddle Pin</div><div>paddle-pin.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Pin</div><div>pin.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Clamp</div><div>clamp.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Clamp Bottom</div><div>clamp-bottom.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Clamp Side</div><div>clamp-side.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Clamp Screw</div><div>clamp-screw.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Clamp Screw 2</div><div>clamp-screw-2.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                </div>
-              </div>
-            </div>
-            <div class="parts-group">
-              <h3 class="label">easysteer assembly</h3>
-              <p class="text pretty">The step by step assembly goes here once the tutorial is filmed.</p>
-            </div>
-            </div>
-
-            <div role="tabpanel" id="erb-panel-easydrive" aria-labelledby="erb-tab-easydrive" hidden>
-            <div class="parts-group">
-              <h3 class="label">easydrive parts</h3>
-              <div class="parts-scroll">
-                <div class="parts-table parts-build">
-                  <div class="parts-head">
-                    <div>Quantity</div><div>Part</div><div>File Name</div><div>Layer</div><div>Walls</div><div>Infill</div><div>Supports</div>
-                  </div>
-                  <div class="parts-row"><div>xX</div><div>Right</div><div>right.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Right Arduino</div><div>right-arduino.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Arduino Spring</div><div>arduino-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Secure Plate</div><div>secure-plate.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Plate Long</div><div>plate-long.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Plate Short</div><div>plate-short.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Pedal</div><div>pedal.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Gas</div><div>gas.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Gas Spring</div><div>gas-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Brake</div><div>brake.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Brake Spring</div><div>brake-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Clutch</div><div>clutch.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Clutch Spring</div><div>clutch-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Foot Rest</div><div>foot-rest.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Foot Rest 2</div><div>foot-rest-2.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Connection Pin</div><div>connection-pin.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                </div>
-              </div>
-            </div>
-            <div class="parts-group">
-              <h3 class="label">easydrive assembly</h3>
-              <p class="text pretty">The step by step assembly goes here once the tutorial is filmed.</p>
-            </div>
-            </div>
-
-            <div role="tabpanel" id="erb-panel-easyshift" aria-labelledby="erb-tab-easyshift" hidden>
-            <div class="parts-group">
-              <h3 class="label">easyshift parts</h3>
-              <div class="parts-scroll">
-                <div class="parts-table parts-build">
-                  <div class="parts-head">
-                    <div>Quantity</div><div>Part</div><div>File Name</div><div>Layer</div><div>Walls</div><div>Infill</div><div>Supports</div>
-                  </div>
-                  <div class="parts-row"><div>xX</div><div>Case</div><div>case.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Backplate</div><div>backplate.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Top Cover</div><div>top-cover.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Arduino Spring</div><div>arduino-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Shift Shaft</div><div>shift-shaft.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Shifter Knob</div><div>shifter-knob.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Joint</div><div>joint.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Joint Pin A</div><div>joint-pin-a.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Joint Pin B</div><div>joint-pin-b.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Joint Pin C</div><div>joint-pin-c.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Click Plate</div><div>click-plate.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Click Plate Cover</div><div>click-plate-cover.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Click Spring</div><div>click-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Centering Spring</div><div>centering-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Centering Spring Cover</div><div>centering-spring-cover.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Reverse Spring</div><div>reverse-spring.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                  <div class="parts-row"><div>xX</div><div>Clamp Screw</div><div>clamp-screw.stl</div><div>X</div><div>X</div><div>X</div><div>X</div></div>
-                </div>
-              </div>
-            </div>
-            <div class="parts-group">
-              <h3 class="label">easyshift assembly</h3>
-              <p class="text pretty">The step by step assembly goes here once the tutorial is filmed.</p>
-            </div>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>

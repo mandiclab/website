@@ -489,9 +489,9 @@ Sadržaj koji popunjava vlasnik projekta, ne ti:
 - opcioni `.md` fajlovi uz slike u galeriji (kredit i opis)
 - specifikacija hidrauličke ručne na easyrace-u (sada `Specification TBD`)
 - količine filamenta i žice na easyrace bundle-ovima (sada `X g`, `X m`)
-- **Build tab na easyrace stranici** (`data-draft`, i tab i panel): količine
+- **Parts i Assembly u panelima easyrace uređaja** (`data-draft`): količine
   (sada `xX`), vrednosti podešavanja (sada `X`) i materijal u uvodnoj rečenici.
-  Imena fajlova su tačna i konačna. Dok se ne popuni, ceo tab je skriven —
+  Imena fajlova su tačna i konačna. Dok se ne popuni, ceo blok je skriven —
   tabela delova bez količina bi naterala čoveka da odštampa pogrešan broj
   delova, što je gore nego da je nema. Fali i šema veze: SVG po uređaju u
   `assets/images/easyrace/<uređaj>/`, pa ide `.figure` blok kao na DJC-DIY.
@@ -518,42 +518,37 @@ Sa rokom:
 
 ---
 
-## Build je svoj tab, a ne deo svakog uređaja
+## Parts i Assembly stoje u tabu svog uređaja
 
-Prvo je bio ispod `Buy` dugmeta u svakom device panelu (28. oktobra 2026).
-Vlasnik je odmah video problem: panel uređaja služi da se čovek **odluči da
-kupi**, a tabela od dvadeset redova u sredini zatrpa cenu. A kod `easyshift`
-i `easydrift` u jednom panelu stoje **po dva uređaja**, pa bi to bilo
-četrdeset redova.
+Prvo su bili ispod `Buy` dugmeta, u nizu (28. oktobra 2026) — vlasniku je to
+bilo natrpano. Onda su premešteni u zaseban `Build` tab, sa biračem uređaja
+unutra (29. oktobra) — ni to nije bilo dobro: **uređaj i njegovo uputstvo ne
+smeju da budu razdvojeni.** Ko je u tabu `easysteer` tu treba i da nađe kako
+se easysteer sklapa, a ne da ide u treći tab i tamo opet bira uređaj.
 
-Zato je sve premešteno u zaseban tab **Build**, između `easydrift` i `FAQ`.
-Tamo je sve što čoveku treba **posle** kupovine, uređaj po uređaj: šta da
-odštampa i kako, a kasnije i koraci sklapanja. Dubinski link radi kao i za
-ostale tabove — `/projects/easyrace/#build`.
+Konačno (odluka vlasnika, 29. oktobra 2026): u panelu svakog uređaja, ispod
+cene i `Buy` dugmeta, stoji **tihi red od dva taba — `Parts` i `Assembly`**
+(`.subtabs`). Prodajni deo ostaje gore i uvek se vidi; ispod se pokaže samo
+jedno od to dvoje, pa ni tabela od dvadeset redova ni celo uputstvo ne
+zatrpavaju stranicu.
 
-**Jedna tabela po uređaju, ne dve.** Podešavanja stoje kao kolone pored
-svakog dela, jer se stvarno razlikuju od dela do dela: štampana opruga ne
-traži isti infill ni isti broj zidova kao kućište. Kolone su `Quantity`,
-`Part`, `File Name`, `Layer`, `Walls`, `Infill`, `Supports`. Materijal je
-isti za sve, pa stoji u rečenici iznad, a ne kao kolona koja se ponavlja
-dvadeset puta.
+`Build` taba više nema.
 
-**Na telefonu se ne prelama, nego klizi u stranu** (`.parts-build` u
-`@media (max-width: 640px)`). Ostale `parts` tabele na sajtu na uskom ekranu
-sklone zaglavlje i spuste treću kolonu u novi red — ovde to ne valja, jer bi
-četiri broja ostala jedan do drugog bez ičega što kaže koji je koji. Klizi
-samo tabela u svom okviru; sama stranica se ne pomera u stranu.
+**Jedna tabela, ne dve.** Podešavanja stoje kao kolone pored svakog dela, jer
+se stvarno razlikuju od dela do dela: štampana opruga ne traži isti infill ni
+isti broj zidova kao kućište. Kolone su `Quantity`, `Part`, `File Name`,
+`Layer`, `Walls`, `Infill`, `Supports`. Materijal je isti za sve, pa stoji u
+rečenici iznad.
 
-**Unutar Build taba, uređaj se bira — ne stoje svi jedan ispod drugog**
-(odluka vlasnika, 29. oktobra 2026). Tri tabele jedna za drugom izgledaju
-kao gomila, a kad se dodaju koraci sklapanja za šest uređaja postaje
-neupotrebljivo. Zato Build ima **drugi red tabova** (`.subtabs`), tiši od
-glavnog: bira se uređaj i vidi se samo njegov deo — `<ime> parts` i
-`<ime> assembly`.
+**Na telefonu se tabela ne prelama, nego klizi u stranu** (`.parts-build` u
+`@media (max-width: 640px)`). Ostale `parts` tabele na uskom ekranu sklone
+zaglavlje i spuste treću kolonu u novi red — ovde to ne valja, jer bi četiri
+broja ostala jedan do drugog bez ičega što kaže koji je koji. Klizi samo
+tabela u svom okviru; stranica se ne pomera.
 
-Taj ugnežđeni `role="tablist"` **namerno nema `data-deep-link`**. Logika
-dubinskih linkova u `product.js` sada traži taj atribut, koji nose samo tri
-glavna `.tabbar`-a (DJC-DIY, drivepad, easyrace). Bez toga bi oba spiska
-pisala u isti `#hash` i svaki bi čitao ime onog drugog, pa nijedan ne bi
-našao svoj tab. Ovako `#build` i dalje znači tab, a izbor uređaja unutra
+**Ugnežđeni `role="tablist"` nema `data-deep-link`.** Logika dubinskih linkova
+u `product.js` od sada traži taj atribut, koji nose samo tri glavna
+`.tabbar`-a (DJC-DIY, drivepad, easyrace). Bez toga bi oba spiska pisala u
+isti `#hash` i svaki bi čitao ime onog drugog, pa nijedan ne bi našao svoj
+tab. Ovako `#easysteer` i dalje otvara uređaj, a izbor `Parts`/`Assembly`
 ostaje van adrese.

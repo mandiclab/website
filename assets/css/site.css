@@ -1316,12 +1316,14 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   color: var(--text-2);
 }
 .parts-row > div:nth-child(odd) { color: var(--text-3); }
-/* A part that prints differently from the settings above its list says so
-   under its name, in gold, so it cannot be read past. */
-.part-note { margin-top: 4px; font-size: var(--fs-label); color: var(--accent-gold); }
-/* The print settings every part shares, said once above the list. */
-.print-defaults { display: flex; flex-wrap: wrap; gap: 8px clamp(24px,3vw,40px); margin-top: 24px; font-size: var(--fs-body); font-weight: 300; line-height: 1.55; color: var(--text-2); }
-.print-defaults .label { margin-right: 10px; }
+/* A part's own print settings, as columns beside it. They are all the same
+   quiet colour, so the one value that is not the usual stands out in gold. */
+.parts-table.parts-settings { grid-template-columns: repeat(7, max-content); }
+.parts-settings .parts-row > div:nth-child(n+4) { color: var(--text-3); }
+.parts-settings .parts-row > div.is-diff { color: var(--accent-gold); }
+/* Inside a step the title's rule already sits right above the table, so its
+   header row goes without one of its own. */
+.steps .parts-head { padding-bottom: 0; border-bottom: 0; }
 
 .promo {
   margin-top: clamp(48px,5vh,64px);
@@ -1652,7 +1654,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .er-lines { display: flex; flex-direction: column; gap: 4px; margin-top: 12px; max-width: var(--measure); font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); }
 .er-block-text .label.pad { padding-right: 16px; }
 .er-need { display: flex; flex-wrap: wrap; gap: clamp(24px,2.4vw,32px) 0; margin-top: 16px; }
-.er-need + p { margin-top: 24px; }
+/* "What you need", with the way to the full list right beside it. */
+.er-need-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; }
+.er-need-head p { margin: 0; font-size: var(--fs-small); color: var(--text-3); }
 .er-need-parts { flex: 0 1 calc(265px + clamp(24px,3vw,46px)); min-width: 200px; box-sizing: border-box; }
 .er-need-tools { flex: 1 1 150px; min-width: 150px; box-sizing: border-box; padding-left: clamp(24px,3vw,48px); border-left: 1px solid var(--line-1); }
 .er-need-title { font-size: var(--fs-small); font-weight: 400; line-height: 1.55; color: var(--text-3); }
@@ -1922,6 +1926,12 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .parts-table { display: block; width: auto; }
   .parts-row { grid-template-columns: auto minmax(0,1fr); gap: 4px 16px; padding: 16px 4px; }
   .parts-row > div:nth-child(3) { grid-column: 1 / -1; font-size: 13px; color: var(--text-3); }
+  /* The settings table keeps every column and its header, and scrolls
+     sideways in its own box: folded, the numbers would lose their labels. */
+  .parts-table.parts-settings { display: grid; width: max-content; }
+  .parts-settings .parts-head { display: grid; }
+  .parts-settings .parts-row { grid-template-columns: subgrid; gap: normal; }
+  .parts-settings .parts-row > div:nth-child(3) { grid-column: auto; font-size: var(--fs-body); }
   .info-grid { grid-template-columns: minmax(0,1fr); gap: 32px; }
   .lb-close { width: 44px; height: 44px; }
 }

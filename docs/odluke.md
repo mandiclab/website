@@ -536,12 +536,11 @@ Izgleda tačno kao `PREVIEW · TUTORIAL` ispod, jer deli isto CSS pravilo sa
 `.video-tab`. Na uskom ekranu spušta se ispod naslova.
 
 - `Overview` je ono što je tab oduvek bio. Natpis „Overview" iznad prvog
-  pasusa je kod ta tri uređaja sklonjen, da se reč ne vidi dvaput. Ispod
-  „What you need" stoji „More details in Assembly." sa linkom na Assembly.
+  pasusa je kod ta tri uređaja sklonjen, da se reč ne vidi dvaput. Odmah
+  pored natpisa „What you need" stoji „More details in Assembly" sa linkom.
 - `Assembly` je u stilu DJC-DIY uputstva, korak po korak, bez naslova
   „Assembly Guide" i bez uvodnih rečenica:
-  - `01` *Print the 3D printed parts*: traka sa zajedničkim podešavanjima,
-    pa spisak delova;
+  - `01` *Print the 3D printed parts*: delovi sa podešavanjima kao kolonama;
   - `02` *Acquire electronic components*: ista elektronika kao u „What you
     need", bez filamenta.
 - Oba prikaza počinju na istoj udaljenosti od naslova
@@ -551,21 +550,26 @@ Prekidač imaju `easysteer`, `easydrive` i `easyshift` (H-pattern). Uređaji
 u draftu (sekvencijalni menjač, obe ručne) dobijaju ga kad dobiju svoje
 fajlove.
 
-**Podešavanja se kažu jednom, izuzetak se vidi.** Skoro svaki deo se štampa
-isto, pa iznad spiska stoji traka `LAYER 0.2 mm · WALLS 2 · INFILL 15% ·
-SUPPORTS None` (`.print-defaults`), a ne kolona sa istim brojem dvadeset
-puta. Deo koji se štampa drugačije dobija **zlatnu liniju ispod imena**
-(`<div class="part-note">4 walls · 100% infill</div>`) — druga boja, da je
-niko ne preskoči. Navode se samo podešavanja koja se razlikuju, istim
-rečima kao u traci.
+**Podešavanja su kolone u tabeli, a izuzetak je zlatan** (odluka vlasnika,
+29. oktobra 2026). Tabela u koraku `01` ima kolone `Quantity`, `Part`,
+`File Name`, `Layer`, `Walls`, `Infill`, `Supports` (`.parts-settings`).
+Skoro svaki deo se štampa isto (0.2 mm, 2, 15%, No), pa su sve vrednosti
+podešavanja iste, tihe boje — a vrednost koja nije uobičajena dobija
+`class="is-diff"` i prikazuje se **zlatno**, da je niko ne preskoči.
+(Probana je i traka sa zajedničkim podešavanjima iznad tabele, sa zlatnom
+linijom ispod imena dela koji se razlikuje — vlasnik je hteo podešavanja u
+tabeli.) Na telefonu ova tabela zadržava zaglavlje i klizi u stranu u svom
+okviru, jer bi bez zaglavlja brojevi ostali bez natpisa.
+
+**Unutar koraka zaglavlje tabele nema svoju liniju** (`.steps .parts-head`):
+linija ispod naslova koraka stoji tik iznad, pa bi dve linije jedna za
+drugom ponavljale isto.
 
 **Tabele delova su široke koliko im je sadržaj, na celom sajtu** (DJC-DIY,
 drivepad, easyrace). Kolona je široka koliko najduže što je u njoj, a
 tabela koliko njene kolone (`max-content`), pa nema praznog prostora između.
 Redovi dele kolone tabele (`subgrid`), pa ostaju poravnati. Na telefonu
 ostaje staro prelamanje: zaglavlje se sklanja, ime fajla ide u novi red.
-Unutar koraka tabela nema zaglavlje — linija ispod naslova koraka je
-dovoljna, a „x1", ime i `.stl` govore sami za sebe.
 
 **Dubinski link za Assembly:** `/projects/easyrace/#easysteer-assembly`
 otvara easysteer i u njemu Assembly, i staje sa naslovom uređaja tik ispod

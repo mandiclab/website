@@ -336,13 +336,14 @@ Kad easyrace izađe: obriši oba `<script>` reda i oba `[data-gate]` bloka,
 `class="is-gated"` sa `<html>`, `noindex` sa stranice, i dodaj je u `sitemap.xml`.
 
 **easyrace je izašao: prvi slajd na naslovnoj je prepisan** (29. oktobra
-2026, po vlasnikovoj želji). Iznad naslova stoji roza oznaka „Just
-released" (`.pill.pill-rose`, ista kao „Digital product" na easyrace
-stranici), datum je izbačen iz teksta, a ispod su dva dugmeta jedno pored
+2026, po vlasnikovoj želji). Na kraju teksta, gde je stajalo „Coming 28
+October.", sada piše „Just released.", a ispod su dva dugmeta jedno pored
 drugog (`.hero-actions`): „See project" i „See teaser". Kad izađe preview,
-„See teaser" postaje „See preview". Sat i obe skripte za odbrojavanje
-(`window.ML_LAUNCH`, `countdown.js`) su skinuti sa naslovne; `h1` ostaje na
-ovom slajdu, jer je on i dalje prvi.
+„See teaser" postaje „See preview". Roza oznaka „Just released" iznad
+naslova bila je moja izmišljotina koju niko nije tražio — skinuta je, ne
+vraćati je. Sat i obe skripte za odbrojavanje (`window.ML_LAUNCH`,
+`countdown.js`) su skinuti sa naslovne; `h1` ostaje na ovom slajdu, jer je
+on i dalje prvi.
 
 Još nije urađeno (vlasnik nije tražio): sloj sa odbrojavanjem na kartici
 easyrace na Projects stranici (posle izlaska ga skript ionako sam skida),
@@ -615,7 +616,8 @@ svoj kosi rez, pa browser iskošava uspravna slova. Probana je i težina 400
 je 200), pa bi hijerarhija bila naopako.
 
 **Prekidač `Overview / Assembly` jasno kaže šta je otvoreno** (odluka
-vlasnika, 29. oktobra 2026). Otvoreni je malo veći (`scale(1.06)`), beo i
+vlasnika, 29. oktobra 2026). Stoji na sredini visine naslova (`align-items:
+center` u `.er-head`), ne na dnu slova. Otvoreni je malo veći (`scale(1.06)`), beo i
 blago osvetljen, a drugi malo manji (`scale(0.94)`) i siv. Između njih je
 kosa linija od 1px, visoka 18px (`.er-switch::before`, nagnuta 20°), koja prati kosi
 naslov pored. Prelaz traje `--dur-slow`. Prekidač više ne deli pravilo sa

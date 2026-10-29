@@ -541,8 +541,6 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   text-wrap: pretty;
 }
 .hero-text .btn { margin-top: 32px; white-space: nowrap; }
-/* A mark above a hero's title, for news such as a release. */
-.hero-text .pill { margin-bottom: 16px; }
 /* Two buttons side by side under a hero's text. */
 .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
 .hero-actions .btn { margin-top: 0; }
@@ -1656,9 +1654,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
    upright letters. */
 .er-title { margin: 0; font-size: var(--fs-display); font-weight: 300; font-style: italic; line-height: 1.15; letter-spacing: -0.01em; text-transform: lowercase; }
 /* A device's title shares its line with the Overview / Assembly switch, set to
-   the right the way a product name and its sections share one bar. On a
-   narrow screen it drops under the title. */
-.er-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px 32px; }
+   the right the way a product name and its sections share one bar, and centred
+   on the title's height. On a narrow screen it drops under the title. */
+.er-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 32px; }
 /* The open view is a touch larger and lit, the other a touch smaller and
    grey, with a slanted hairline between them that leans like the title. The
    hairline is the list's own ::before, ordered between the two tabs. The

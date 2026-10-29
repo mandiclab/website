@@ -489,11 +489,16 @@ Sadržaj koji popunjava vlasnik projekta, ne ti:
 - opcioni `.md` fajlovi uz slike u galeriji (kredit i opis)
 - specifikacija hidrauličke ručne na easyrace-u (sada `Specification TBD`)
 - količine filamenta i žice na easyrace bundle-ovima (sada `X g`, `X m`)
-- **Assembly kod easyrace uređaja**: u tabeli su za sada svuda
-  vlasnikove polazne vrednosti (x1, 0.2 mm, 2, 15%, No); izuzetke po delu
-  javlja vlasnik. Imena fajlova su tačna i konačna. Fali šema veze — SVG po
-  uređaju u `assets/images/easyrace/<uređaj>/`, pa ide `.figure` blok kao na
-  DJC-DIY — i koraci posle prvog.
+- **Assembly kod easyrace uređaja**: količine i podešavanja su upisani po
+  vlasnikovoj poruci od 29. oktobra 2026. Kod easysteer-a su `Case` i
+  `Arduino Spring` svrstani u `Base` po mojoj pretpostavci (Arduino stoji u
+  kućištu postolja) — vlasnik to nije rekao, treba potvrditi. Fali šema
+  veze — SVG po uređaju u `assets/images/easyrace/<uređaj>/`, pa ide
+  `.figure` blok kao na DJC-DIY — i koraci posle drugog.
+- **Uređaji sa dve varijante** (`easyshift`: H-pattern i sekvencijalni;
+  `easydrift`: klasična i hidraulična ručna): kad stignu, jedan ispod drugog
+  ne daje drugom dovoljno pažnje, jer do njega mora da se skroluje.
+  Vlasnik hoće da se smisli drugi raspored.
 - `FAQ` i `Terms` tabovi na easyrace stranici — postoje, kompletno su
   ožičeni, ali su prazni
 - sve slike i njihovi `alt` tekstovi (easyrace hero sada prima više slika, kao
@@ -506,14 +511,12 @@ Pred lansiranje easyrace-a:
 - Privacy Policy stranica. `Terms` tab za sam proizvod već postoji na
   easyrace stranici, ali Privacy Policy nema gde da stoji.
 
-Sa rokom:
+Privremeno:
 
 - **Zlatna kutija na easyrace stranici** (`.er-buys.is-gold`, odmah ispod
-  rozikaste) kaže da tutorijali izlaze do **5. novembra 2026**. Obriši ceo
-  taj pasus onog dana kad odu na YouTube, ili pomeri datum ako opet kasne.
-  Namerno nije napravljena da sama nestane: posle tog datuma obećanje je ili
-  ispunjeno ili probijeno, a u oba slučaja treba da ga vlasnik pogleda, ne da
-  tiho nestane sa sajta.
+  rozikaste): „Assembly tutorials are coming soon." Obriši ceo taj pasus
+  onog dana kad tutorijali odu na YouTube. Datum je namerno izbačen (do 29.
+  oktobra je stajao 5. novembar).
 
 
 ---
@@ -536,8 +539,9 @@ Izgleda tačno kao `PREVIEW · TUTORIAL` ispod, jer deli isto CSS pravilo sa
 `.video-tab`. Na uskom ekranu spušta se ispod naslova.
 
 - `Overview` je ono što je tab oduvek bio. Natpis „Overview" iznad prvog
-  pasusa je kod ta tri uređaja sklonjen, da se reč ne vidi dvaput. Odmah
-  pored natpisa „What you need" stoji „More details in Assembly" sa linkom.
+  pasusa je kod ta tri uređaja sklonjen, da se reč ne vidi dvaput. Na kraju
+  linije „What you need" stoji „Details in Assembly", istim stilom kao
+  prekidač u liniji naslova (`.er-need-more` deli pravilo sa `.video-tab`).
 - `Assembly` je u stilu DJC-DIY uputstva, korak po korak, bez naslova
   „Assembly Guide" i bez uvodnih rečenica:
   - `01` *Print the 3D printed parts*: delovi sa podešavanjima kao kolonama;
@@ -550,14 +554,21 @@ Prekidač imaju `easysteer`, `easydrive` i `easyshift` (H-pattern). Uređaji
 u draftu (sekvencijalni menjač, obe ručne) dobijaju ga kad dobiju svoje
 fajlove.
 
-**Podešavanja su kolone u tabeli, a izuzetak je zlatan** (odluka vlasnika,
-29. oktobra 2026). Tabela u koraku `01` ima kolone `Quantity`, `Part`,
-`File Name`, `Layer`, `Walls`, `Infill`, `Supports` (`.parts-settings`).
-Skoro svaki deo se štampa isto (0.2 mm, 2, 15%, No), pa su sve vrednosti
-podešavanja iste, tihe boje — a vrednost koja nije uobičajena dobija
-`class="is-diff"` i prikazuje se **zlatno**, da je niko ne preskoči.
-(Probana je i traka sa zajedničkim podešavanjima iznad tabele, sa zlatnom
-linijom ispod imena dela koji se razlikuje — vlasnik je hteo podešavanja u
+**Podešavanja su kolone u tabeli, a zajednička se kažu jednom po grupi**
+(odluke vlasnika, 29. oktobra 2026). Tabela u koraku `01` ima kolone
+`Quantity`, `Part`, `File Name`, `Layer`, `Walls`, `Infill`, `Supports`
+(`.parts-settings`). Delovi su podeljeni u grupe; red grupe (`.parts-set`)
+nosi ime grupe i, u kolonama podešavanja, vrednosti koje svi njeni delovi
+dele. Delovi ispod ostavljaju te kolone prazne i pokazuju samo ono što se
+razlikuje — **zlatno** (`class="is-diff"`), da ga niko ne preskoči.
+
+- easysteer ima tri grupe, kako ga je vlasnik opisao: `Wheel` (točak sa
+  pinovima i pedalama za menjanje), `Base` (od `Wheel Base` do `Limiter`)
+  i `Clamp`.
+- easydrive i easyshift imaju jednu grupu, `All parts`.
+
+(Probani i odbačeni: kolona sa istom vrednošću u svakom redu, i traka sa
+zajedničkim podešavanjima iznad tabele — vlasnik je hteo podešavanja u
 tabeli.) Na telefonu ova tabela zadržava zaglavlje i klizi u stranu u svom
 okviru, jer bi bez zaglavlja brojevi ostali bez natpisa.
 
@@ -579,3 +590,9 @@ unutrašnji svoj deo. `#easysteer` je i dalje samo uređaj, na Overview.
 Adresa uvek odgovara ekranu: kad se vratiš na easysteer dok mu je Assembly
 otvoren, piše `#easysteer-assembly`. Atribut `data-deep-link` više ne
 postoji — svi redovi tabova prave linkove, ugnežđeni kroz spoljni.
+
+**Naslov uređaja je 300 i kosi** (`.er-title`, odluka vlasnika, 29. oktobra
+2026). Na 200 je bio pretanak. Kosi rez ide uz trkačku opremu. Font nema
+svoj kosi rez, pa browser iskošava uspravna slova. Probana je i težina 400
+— jača je, ali bi naslov uređaja bio deblji od naslova stranice („easyrace"
+je 200), pa bi hijerarhija bila naopako.

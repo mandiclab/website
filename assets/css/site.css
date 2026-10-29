@@ -1047,7 +1047,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .overview-media { min-width: 0; display: flex; flex-direction: column; gap: clamp(64px,7vh,96px); }
 .overview-info { min-width: 0; }
 .video-tabs { display: flex; align-items: center; flex-wrap: wrap; gap: clamp(16px,2.2vw,32px); }
-.video-tab, .er-switch [role="tab"] {
+.video-tab, .er-switch [role="tab"], .er-need-more {
   cursor: pointer;
   font-size: var(--fs-label);
   font-weight: 500;
@@ -1058,7 +1058,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   transition: color var(--dur-slow) var(--ease), text-shadow var(--dur-base) var(--ease);
 }
 .video-tab.is-active, .er-switch [aria-selected="true"] { color: var(--text-1); }
-.video-tab:hover, .er-switch [role="tab"]:hover { text-shadow: 0 0 14px var(--text-disabled); }
+.video-tab:hover, .er-switch [role="tab"]:hover, .er-need-more:hover { text-shadow: 0 0 14px var(--text-disabled); }
 .video-frame {
   position: relative;
   width: 100%;
@@ -1321,6 +1321,22 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .parts-table.parts-settings { grid-template-columns: repeat(7, max-content); }
 .parts-settings .parts-row > div:nth-child(n+4) { color: var(--text-3); }
 .parts-settings .parts-row > div.is-diff { color: var(--accent-gold); }
+/* A set of parts that print the same: its name, and in the settings columns
+   the values all its parts share, said once. The parts below leave those
+   columns empty and only show what differs. */
+.parts-set {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  align-items: baseline;
+  padding: 32px 4px 12px;
+  font-size: var(--fs-body);
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--text-2);
+}
+.parts-set > div:first-child { grid-column: 1 / 4; font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-1); }
+.parts-head + .parts-set { padding-top: 16px; }
 /* Inside a step the title's rule already sits right above the table, so its
    header row goes without one of its own. */
 .steps .parts-head { padding-bottom: 0; border-bottom: 0; }
@@ -1638,7 +1654,10 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .er-shots { margin-bottom: clamp(32px,3.6vw,48px); }
 .er-shots .slideshow { aspect-ratio: 16 / 9; height: auto; border-bottom: 0; }
 .er-shots .slide-thumbs-outer { padding: 0; }
-.er-title { margin: 0; font-size: var(--fs-display); font-weight: 200; line-height: 1.15; letter-spacing: -0.01em; text-transform: lowercase; }
+/* A device's name: a step heavier than the page's own title and slanted, which
+   suits a racing set. The font ships no italic, so the browser slants the
+   upright letters. */
+.er-title { margin: 0; font-size: var(--fs-display); font-weight: 300; font-style: italic; line-height: 1.15; letter-spacing: -0.01em; text-transform: lowercase; }
 /* A device's title shares its line with the Overview / Assembly switch, set to
    the right the way a product name and its sections share one bar. The switch
    is the video picker's own style (.video-tab), and on a narrow screen it
@@ -1654,9 +1673,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .er-lines { display: flex; flex-direction: column; gap: 4px; margin-top: 12px; max-width: var(--measure); font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); }
 .er-block-text .label.pad { padding-right: 16px; }
 .er-need { display: flex; flex-wrap: wrap; gap: clamp(24px,2.4vw,32px) 0; margin-top: 16px; }
-/* "What you need", with the way to the full list right beside it. */
-.er-need-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; }
-.er-need-head p { margin: 0; font-size: var(--fs-small); color: var(--text-3); }
+/* "What you need" with its way to Assembly at the end of the same line, set
+   the way the title line sets its Overview · Assembly switch, in the same style. */
+.er-need-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
 .er-need-parts { flex: 0 1 calc(265px + clamp(24px,3vw,46px)); min-width: 200px; box-sizing: border-box; }
 .er-need-tools { flex: 1 1 150px; min-width: 150px; box-sizing: border-box; padding-left: clamp(24px,3vw,48px); border-left: 1px solid var(--line-1); }
 .er-need-title { font-size: var(--fs-small); font-weight: 400; line-height: 1.55; color: var(--text-3); }

@@ -1546,7 +1546,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 
 .bundles-grid {
   display: grid;
-  grid-template-columns: minmax(240px,1fr) repeat(3,minmax(150px,190px));
+  grid-template-columns: minmax(0,1fr) repeat(3,minmax(150px,190px));
   justify-content: center;
   column-gap: clamp(12px,1.6vw,24px);
   max-width: var(--container);
@@ -1554,7 +1554,11 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 /* A bundle held back (data-draft) takes its whole column with it, so the table
    is one column narrower while it is hidden. */
-:root:not([data-show-drafts]) .bundles-grid { grid-template-columns: minmax(240px,1fr) repeat(2,minmax(150px,190px)); }
+:root:not([data-show-drafts]) .bundles-grid { grid-template-columns: minmax(0,1fr) repeat(2,minmax(150px,190px)); }
+/* ...and the floor under the table's width goes with it. Two bundles come to
+   less than that floor, and the spare width would pile up in the first column,
+   between the labels and the first bundle. */
+:root:not([data-show-drafts]) .bundles-scroll > * { min-width: 0; }
 .bundles-grid.is-head { margin: clamp(32px,3.8vh,48px) auto 0; }
 .bundles-grid.is-matrix { margin-top: clamp(24px,2.8vh,32px); }
 .bundles-grid.is-tools { margin-top: clamp(32px,3.8vh,48px); }

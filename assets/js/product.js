@@ -89,6 +89,9 @@
     }
 
     function panelHidden(el) {
+      // Hidden mid-rise, it would keep the class and rise again inside the next
+      // panel to open around it.
+      el.classList.remove('is-entering');
       tellSlideshows(el, 'hidden');
       Array.prototype.forEach.call(el.querySelectorAll('iframe'), function (f) {
         var src = f.getAttribute('src');
@@ -100,6 +103,19 @@
     }
 
     function panelShown(el) {
+      // It comes in with a short rise (.is-entering in site.css). Only the panel
+      // that changed gets it: anything inside it still marked from a rise cut
+      // short (its tab was left halfway) is cleared first, or the two rises
+      // would stack into one too big. It is taken off when the rise ends.
+      Array.prototype.forEach.call(el.querySelectorAll('.is-entering'), function (n) {
+        n.classList.remove('is-entering');
+      });
+      el.classList.add('is-entering');
+      el.addEventListener('animationend', function done(e) {
+        if (e.target !== el) return;
+        el.classList.remove('is-entering');
+        el.removeEventListener('animationend', done);
+      });
       tellSlideshows(el, 'shown');
       Array.prototype.forEach.call(el.querySelectorAll('iframe[data-src]'), function (f) {
         f.setAttribute('src', f.getAttribute('data-src'));

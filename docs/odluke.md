@@ -613,3 +613,20 @@ postoji — svi redovi tabova prave linkove, ugnežđeni kroz spoljni.
 svoj kosi rez, pa browser iskošava uspravna slova. Probana je i težina 400
 — jača je, ali bi naslov uređaja bio deblji od naslova stranice („easyrace"
 je 200), pa bi hijerarhija bila naopako.
+
+**Prekidač `Overview / Assembly` jasno kaže šta je otvoreno** (odluka
+vlasnika, 29. oktobra 2026). Otvoreni je malo veći (`scale(1.06)`), beo i
+blago osvetljen, a drugi malo manji (`scale(0.94)`) i siv. Između njih je
+kosa linija od 1px (`.er-switch::before`, nagnuta 20°), koja prati kosi
+naslov pored. Prelaz traje `--dur-base`. Prekidač više ne deli pravilo sa
+`.video-tab`: `PREVIEW · TUTORIAL` ostaje kakav je bio.
+
+**Panel taba se pojavljuje blagim izranjanjem, na svim stranicama** (isto).
+Kad se otvori tab, njegov panel se za `--dur-slow` podigne 10px i pojavi
+(`@keyframes panel-in`, klasa `.is-entering`, koju `product.js` stavlja i
+skida). To važi i za glavne tabove i za `Overview / Assembly`, i na DJC-DIY i
+drivepad stranici, jer svi koriste isti kod za tabove. Pomera se samo panel
+koji se promenio: ako u njemu ostane oznaka od izranjanja koje je prekinuto
+(tab napušten na pola), ona se prvo skida, inače bi se dva izranjanja
+sabrala. Uz `prefers-reduced-motion` animacija traje 0.01ms, pa se ništa ne
+pomera.

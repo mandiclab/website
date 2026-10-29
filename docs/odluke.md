@@ -617,12 +617,12 @@ je 200), pa bi hijerarhija bila naopako.
 **Prekidač `Overview / Assembly` jasno kaže šta je otvoreno** (odluka
 vlasnika, 29. oktobra 2026). Otvoreni je malo veći (`scale(1.06)`), beo i
 blago osvetljen, a drugi malo manji (`scale(0.94)`) i siv. Između njih je
-kosa linija od 1px (`.er-switch::before`, nagnuta 20°), koja prati kosi
-naslov pored. Prelaz traje `--dur-base`. Prekidač više ne deli pravilo sa
+kosa linija od 1px, visoka 18px (`.er-switch::before`, nagnuta 20°), koja prati kosi
+naslov pored. Prelaz traje `--dur-slow`. Prekidač više ne deli pravilo sa
 `.video-tab`: `PREVIEW · TUTORIAL` ostaje kakav je bio.
 
 **Panel taba se pojavljuje blagim izranjanjem, na svim stranicama** (isto).
-Kad se otvori tab, njegov panel se za `--dur-slow` podigne 10px i pojavi
+Kad se otvori tab, njegov panel se za `--dur-slow` podigne 6px i pojavi
 (`@keyframes panel-in`, klasa `.is-entering`, koju `product.js` stavlja i
 skida). To važi i za glavne tabove i za `Overview / Assembly`, i na DJC-DIY i
 drivepad stranici, jer svi koriste isti kod za tabove. Pomera se samo panel

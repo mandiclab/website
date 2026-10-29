@@ -1043,9 +1043,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   scroll-snap-align: start;
 }
 .tab[aria-selected="true"] { color: var(--text-1); }
-/* A tab's panel as it opens, on every page: it rises a little into place
+/* A tab's panel as it opens, on every page: it rises a few pixels into place
    while it fades in. product.js puts the class on and takes it off. */
-@keyframes panel-in { from { opacity: 0; transform: translateY(10px); } }
+@keyframes panel-in { from { opacity: 0; transform: translateY(6px); } }
 .is-entering { animation: panel-in var(--dur-slow) var(--ease); }
 
 .panel { max-width: var(--container); padding: clamp(64px,7vh,96px) 0 clamp(96px,12vh,128px); }
@@ -1665,7 +1665,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
    negative margin takes back the tracking after each word's last letter, so
    the hairline sits in the true middle and the row ends flush right. */
 .er-switch { display: flex; align-items: center; gap: clamp(12px,1.4vw,18px); }
-.er-switch::before { content: ""; order: 1; width: 1px; height: 14px; background: var(--line-3); transform: rotate(20deg); }
+.er-switch::before { content: ""; order: 1; width: 1px; height: 18px; background: var(--line-3); transform: rotate(20deg); }
 .er-switch [role="tab"]:last-child { order: 2; }
 .er-switch [role="tab"] {
   margin-right: -0.18em;
@@ -1677,7 +1677,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   color: var(--text-3);
   transform: scale(0.94);
   text-shadow: 0 0 0 rgba(242,242,240,0);
-  transition: color var(--dur-base) var(--ease), transform var(--dur-base) var(--ease), text-shadow var(--dur-base) var(--ease);
+  transition: color var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease), text-shadow var(--dur-slow) var(--ease);
 }
 .er-switch [role="tab"]:hover { color: var(--text-2); }
 .er-switch [aria-selected="true"], .er-switch [aria-selected="true"]:hover { color: var(--text-1); transform: scale(1.06); text-shadow: 0 0 14px var(--text-disabled); }

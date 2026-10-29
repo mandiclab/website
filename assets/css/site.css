@@ -541,6 +541,11 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   text-wrap: pretty;
 }
 .hero-text .btn { margin-top: 32px; white-space: nowrap; }
+/* A mark above a hero's title, for news such as a release. */
+.hero-text .pill { margin-bottom: 16px; }
+/* Two buttons side by side under a hero's text. */
+.hero-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 32px; }
+.hero-actions .btn { margin-top: 0; }
 /* Someone else's handles under a hero description: icon plus handle, no
    underline, and the whole pair lights up on hover. */
 .hero-social { display: flex; flex-wrap: wrap; gap: 8px 24px; margin-top: 16px; }
@@ -627,7 +632,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   color: var(--text-2);
   text-wrap: pretty;
 }
-.news-cta {
+.news-cta, .er-need-more {
   display: inline-flex;
   align-items: center;
   gap: 12px;
@@ -641,7 +646,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   color: var(--text-1);
   transition: background var(--dur-slow) var(--ease), border-color var(--dur-slow) var(--ease);
 }
-.news-cta:hover { background: var(--line-2); border-color: var(--line-3); }
+.news-cta:hover, .er-need-more:hover { background: var(--line-2); border-color: var(--line-3); }
 
 /* ── Projects ──────────────────────────────────────────────────────────── */
 /* Everything on this page sits on a 46px grid (--g). The card column (--cw)
@@ -1047,7 +1052,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .overview-media { min-width: 0; display: flex; flex-direction: column; gap: clamp(64px,7vh,96px); }
 .overview-info { min-width: 0; }
 .video-tabs { display: flex; align-items: center; flex-wrap: wrap; gap: clamp(16px,2.2vw,32px); }
-.video-tab, .er-switch [role="tab"], .er-need-more {
+.video-tab, .er-switch [role="tab"] {
   cursor: pointer;
   font-size: var(--fs-label);
   font-weight: 500;
@@ -1058,7 +1063,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   transition: color var(--dur-slow) var(--ease), text-shadow var(--dur-base) var(--ease);
 }
 .video-tab.is-active, .er-switch [aria-selected="true"] { color: var(--text-1); }
-.video-tab:hover, .er-switch [role="tab"]:hover, .er-need-more:hover { text-shadow: 0 0 14px var(--text-disabled); }
+.video-tab:hover, .er-switch [role="tab"]:hover { text-shadow: 0 0 14px var(--text-disabled); }
 .video-frame {
   position: relative;
   width: 100%;
@@ -1321,21 +1326,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .parts-table.parts-settings { grid-template-columns: repeat(7, max-content); }
 .parts-settings .parts-row > div:nth-child(n+4) { color: var(--text-3); }
 .parts-settings .parts-row > div.is-diff { color: var(--accent-gold); }
-/* A set of parts that print the same: its name, and in the settings columns
-   the values all its parts share, said once. The parts below leave those
-   columns empty and only show what differs. */
-.parts-set {
-  display: grid;
-  grid-column: 1 / -1;
-  grid-template-columns: subgrid;
-  align-items: baseline;
-  padding: 32px 4px 12px;
-  font-size: var(--fs-body);
-  font-weight: 300;
-  line-height: 1.55;
-  color: var(--text-2);
-}
-.parts-set > div:first-child { grid-column: 1 / 4; font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-1); }
+/* A group of parts inside one list, named quietly the way "Parts" and "Tools"
+   are under "What you need": it divides the list without reading as a step. */
+.parts-set { grid-column: 1 / -1; padding: 28px 4px 4px; font-size: var(--fs-small); font-weight: 400; line-height: 1.55; color: var(--text-3); }
 .parts-head + .parts-set { padding-top: 16px; }
 /* Inside a step the title's rule already sits right above the table, so its
    header row goes without one of its own. */
@@ -1673,9 +1666,10 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .er-lines { display: flex; flex-direction: column; gap: 4px; margin-top: 12px; max-width: var(--measure); font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); }
 .er-block-text .label.pad { padding-right: 16px; }
 .er-need { display: flex; flex-wrap: wrap; gap: clamp(24px,2.4vw,32px) 0; margin-top: 16px; }
-/* "What you need" with its way to Assembly at the end of the same line, set
-   the way the title line sets its Overview · Assembly switch, in the same style. */
+/* "What you need" with its way to Assembly at the end of the same line: the
+   small button the news uses for "See project", so it reads as somewhere to go. */
 .er-need-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
+.er-need-more { margin-top: 0; }
 .er-need-parts { flex: 0 1 calc(265px + clamp(24px,3vw,46px)); min-width: 200px; box-sizing: border-box; }
 .er-need-tools { flex: 1 1 150px; min-width: 150px; box-sizing: border-box; padding-left: clamp(24px,3vw,48px); border-left: 1px solid var(--line-1); }
 .er-need-title { font-size: var(--fs-small); font-weight: 400; line-height: 1.55; color: var(--text-3); }

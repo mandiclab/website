@@ -83,7 +83,7 @@
           <p class="er-buys">You buy the <span>3D models</span> and the <span>firmware</span> from us. The filament and the electronics you buy yourself. The assembly tutorial is free for everyone on YouTube, and updates are free for life.</p>
           <!-- Temporary: delete this paragraph the day the tutorials go up.
                Nothing else depends on it. -->
-          <p class="er-buys is-gold"><span>Assembly tutorials are coming soon.</span> You can start today: each device’s Assembly lists the parts to print and the electronics to order.</p>
+          <p class="er-buys is-gold"><span>Assembly tutorials are coming soon.</span> You can start printing the 3D printed parts and acquiring the electronic components today. The parts list and the print settings are in Assembly.</p>
 
           <div class="er-lead">
             <div class="er-intro">
@@ -375,7 +375,7 @@
                   <div>
                     <div class="er-need-head">
                       <div class="label pad">What you need</div>
-                      <a class="er-need-more" href="#easysteer-assembly">Details in Assembly</a>
+                      <a class="er-need-more" href="#easysteer-assembly">See more details in Assembly</a>
                     </div>
                     <div class="er-need">
                       <div class="er-need-parts">
@@ -416,37 +416,37 @@
                       <span class="step-num">01</span>
                       <span class="step-title">Print the 3D printed parts</span>
                     </div>
-                    <!-- Each set of parts has one row carrying the settings its parts
-                         share. A part shows a setting only where it differs, in gold
-                         (class="is-diff"), so nobody prints past it. -->
+                    <!-- A value that is not the usual one (0.2 mm, 2, 15%, No) gets
+                         class="is-diff" and shows in gold, so nobody prints past it.
+                         A .parts-set row names the group of parts below it. -->
                     <div class="parts-scroll">
                       <div class="parts-table parts-settings">
                         <div class="parts-head">
                           <div>Quantity</div><div>Part</div><div>File Name</div><div>Layer</div><div>Walls</div><div>Infill</div><div>Supports</div>
                         </div>
-                        <div class="parts-set"><div>Wheel</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
-                        <div class="parts-row"><div>x1</div><div>Wheel Top</div><div>wheel-top.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Wheel Bottom</div><div>wheel-bottom.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x2</div><div>Wheel Left</div><div>wheel-left.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Horn</div><div>horn.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x2</div><div>Paddle</div><div>paddle.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x2</div><div>Paddle Pin</div><div>paddle-pin.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x4</div><div>Pin</div><div>pin.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-set"><div>Base</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
-                        <div class="parts-row"><div>x1</div><div>Wheel Base</div><div>wheel-base.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Wheel Shaft</div><div>wheel-shaft.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Wheel Shaft Cover</div><div>wheel-shaft-cover.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Wheel Shaft Gear</div><div>wheel-schaft-gear.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Potentiometer Gear</div><div>potentiometer-gear.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Limiter</div><div>limiter.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Case</div><div>case.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Arduino Spring</div><div>arduino-spring.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-set"><div>Clamp</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
-                        <div class="parts-row"><div>x1</div><div>Clamp</div><div>clamp.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Clamp Bottom</div><div>clamp-bottom.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x2</div><div>Clamp Side</div><div>clamp-side.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x2</div><div>Clamp Screw</div><div>clamp-screw.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x4</div><div>Clamp Screw 2</div><div>clamp-screw-2.stl</div><div></div><div></div><div></div><div></div></div>
+                        <div class="parts-set">Wheel</div>
+                        <div class="parts-row"><div>x1</div><div>Wheel Top</div><div>wheel-top.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Wheel Bottom</div><div>wheel-bottom.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x2</div><div>Wheel Left</div><div>wheel-left.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Horn</div><div>horn.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x2</div><div>Paddle</div><div>paddle.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x2</div><div>Paddle Pin</div><div>paddle-pin.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x4</div><div>Pin</div><div>pin.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-set">Base</div>
+                        <div class="parts-row"><div>x1</div><div>Wheel Base</div><div>wheel-base.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Wheel Shaft</div><div>wheel-shaft.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Wheel Shaft Cover</div><div>wheel-shaft-cover.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Wheel Shaft Gear</div><div>wheel-schaft-gear.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Potentiometer Gear</div><div>potentiometer-gear.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Limiter</div><div>limiter.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Case</div><div>case.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Arduino Spring</div><div>arduino-spring.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-set">Clamp</div>
+                        <div class="parts-row"><div>x1</div><div>Clamp</div><div>clamp.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Clamp Bottom</div><div>clamp-bottom.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x2</div><div>Clamp Side</div><div>clamp-side.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x2</div><div>Clamp Screw</div><div>clamp-screw.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x4</div><div>Clamp Screw 2</div><div>clamp-screw-2.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
                       </div>
                     </div>
                   </div>
@@ -525,7 +525,7 @@
                   <div>
                     <div class="er-need-head">
                       <div class="label pad">What you need</div>
-                      <a class="er-need-more" href="#easydrive-assembly">Details in Assembly</a>
+                      <a class="er-need-more" href="#easydrive-assembly">See more details in Assembly</a>
                     </div>
                     <div class="er-need">
                       <div class="er-need-parts">
@@ -570,23 +570,22 @@
                         <div class="parts-head">
                           <div>Quantity</div><div>Part</div><div>File Name</div><div>Layer</div><div>Walls</div><div>Infill</div><div>Supports</div>
                         </div>
-                        <div class="parts-set"><div>All parts</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
-                        <div class="parts-row"><div>x2</div><div>Right</div><div>right.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Right Arduino</div><div>right-arduino.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Arduino Spring</div><div>arduino-spring.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x3</div><div>Secure Plate</div><div>secure-plate.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Plate Long</div><div>plate-long.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x2</div><div>Plate Short</div><div>plate-short.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x3</div><div>Pedal</div><div>pedal.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Gas</div><div>gas.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Gas Spring</div><div>gas-spring.stl</div><div></div><div class="is-diff">10</div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Brake</div><div>brake.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Brake Spring</div><div>brake-spring.stl</div><div></div><div class="is-diff">10</div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Clutch</div><div>clutch.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Clutch Spring</div><div>clutch-spring.stl</div><div></div><div class="is-diff">10</div><div></div><div></div></div>
-                        <div class="parts-row"><div>x2</div><div>Foot Rest</div><div>foot-rest.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Foot Rest 2</div><div>foot-rest-2.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x4</div><div>Connection Pin</div><div>connection-pin.stl</div><div></div><div></div><div></div><div></div></div>
+                        <div class="parts-row"><div>x2</div><div>Right</div><div>right.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Right Arduino</div><div>right-arduino.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Arduino Spring</div><div>arduino-spring.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x3</div><div>Secure Plate</div><div>secure-plate.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Plate Long</div><div>plate-long.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x2</div><div>Plate Short</div><div>plate-short.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x3</div><div>Pedal</div><div>pedal.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Gas</div><div>gas.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Gas Spring</div><div>gas-spring.stl</div><div>0.2 mm</div><div class="is-diff">10</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Brake</div><div>brake.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Brake Spring</div><div>brake-spring.stl</div><div>0.2 mm</div><div class="is-diff">10</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Clutch</div><div>clutch.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Clutch Spring</div><div>clutch-spring.stl</div><div>0.2 mm</div><div class="is-diff">10</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x2</div><div>Foot Rest</div><div>foot-rest.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Foot Rest 2</div><div>foot-rest-2.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x4</div><div>Connection Pin</div><div>connection-pin.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
                       </div>
                     </div>
                   </div>
@@ -664,7 +663,7 @@
                   <div>
                     <div class="er-need-head">
                       <div class="label pad">What you need</div>
-                      <a class="er-need-more" href="#easyshift-assembly">Details in Assembly</a>
+                      <a class="er-need-more" href="#easyshift-assembly">See more details in Assembly</a>
                     </div>
                     <div class="er-need">
                       <div class="er-need-parts">
@@ -709,24 +708,23 @@
                         <div class="parts-head">
                           <div>Quantity</div><div>Part</div><div>File Name</div><div>Layer</div><div>Walls</div><div>Infill</div><div>Supports</div>
                         </div>
-                        <div class="parts-set"><div>All parts</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
-                        <div class="parts-row"><div>x1</div><div>Case</div><div>case.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Backplate</div><div>backplate.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Top Cover</div><div>top-cover.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Arduino Spring</div><div>arduino-spring.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Shift Shaft</div><div>shift-shaft.stl</div><div></div><div></div><div class="is-diff">100%</div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Shifter Knob</div><div>shifter-knob.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Joint</div><div>joint.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Joint Pin A</div><div>joint-pin-a.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Joint Pin B</div><div>joint-pin-b.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Joint Pin C</div><div>joint-pin-c.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Click Plate</div><div>click-plate.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Click Plate Cover</div><div>click-plate-cover.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Click Spring</div><div>click-spring.stl</div><div></div><div class="is-diff">10</div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Centering Spring</div><div>centering-spring.stl</div><div></div><div class="is-diff">10</div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Centering Spring Cover</div><div>centering-spring-cover.stl</div><div></div><div></div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Reverse Spring</div><div>reverse-spring.stl</div><div></div><div class="is-diff">10</div><div></div><div></div></div>
-                        <div class="parts-row"><div>x1</div><div>Clamp Screw</div><div>clamp-screw.stl</div><div></div><div></div><div></div><div></div></div>
+                        <div class="parts-row"><div>x1</div><div>Case</div><div>case.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Backplate</div><div>backplate.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Top Cover</div><div>top-cover.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Arduino Spring</div><div>arduino-spring.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Shift Shaft</div><div>shift-shaft.stl</div><div>0.2 mm</div><div>2</div><div class="is-diff">100%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Shifter Knob</div><div>shifter-knob.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Joint</div><div>joint.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Joint Pin A</div><div>joint-pin-a.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Joint Pin B</div><div>joint-pin-b.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Joint Pin C</div><div>joint-pin-c.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Click Plate</div><div>click-plate.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Click Plate Cover</div><div>click-plate-cover.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Click Spring</div><div>click-spring.stl</div><div>0.2 mm</div><div class="is-diff">10</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Centering Spring</div><div>centering-spring.stl</div><div>0.2 mm</div><div class="is-diff">10</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Centering Spring Cover</div><div>centering-spring-cover.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Reverse Spring</div><div>reverse-spring.stl</div><div>0.2 mm</div><div class="is-diff">10</div><div>15%</div><div>No</div></div>
+                        <div class="parts-row"><div>x1</div><div>Clamp Screw</div><div>clamp-screw.stl</div><div>0.2 mm</div><div>2</div><div>15%</div><div>No</div></div>
                       </div>
                     </div>
                   </div>

@@ -335,6 +335,19 @@ za tajnu nije.
 Kad easyrace izađe: obriši oba `<script>` reda i oba `[data-gate]` bloka,
 `class="is-gated"` sa `<html>`, `noindex` sa stranice, i dodaj je u `sitemap.xml`.
 
+**easyrace je izašao: prvi slajd na naslovnoj je prepisan** (29. oktobra
+2026, po vlasnikovoj želji). Iznad naslova stoji roza oznaka „Just
+released" (`.pill.pill-rose`, ista kao „Digital product" na easyrace
+stranici), datum je izbačen iz teksta, a ispod su dva dugmeta jedno pored
+drugog (`.hero-actions`): „See project" i „See teaser". Kad izađe preview,
+„See teaser" postaje „See preview". Sat i obe skripte za odbrojavanje
+(`window.ML_LAUNCH`, `countdown.js`) su skinuti sa naslovne; `h1` ostaje na
+ovom slajdu, jer je on i dalje prvi.
+
+Još nije urađeno (vlasnik nije tražio): sloj sa odbrojavanjem na kartici
+easyrace na Projects stranici (posle izlaska ga skript ionako sam skida),
+`noindex` sa easyrace stranice i easyrace u `sitemap.xml`.
+
 **Istom oznakom je na easyrace stranici zadržan deo ponude** (odluka vlasnika,
 oktobar 2026: prvo izlazi samo Core bundle, ostalo u decembru). `data-draft`
 nose: Pro bundle i njegova kolona u tabeli, redovi za sequential shifter i obe
@@ -514,7 +527,8 @@ Pred lansiranje easyrace-a:
 Privremeno:
 
 - **Zlatna kutija na easyrace stranici** (`.er-buys.is-gold`, odmah ispod
-  rozikaste): „Assembly tutorials are coming soon." Obriši ceo taj pasus
+  rozikaste): „Assembly tutorials are coming soon.", pa da se može odmah
+  početi i da su spisak delova i podešavanja u Assembly. Obriši ceo taj pasus
   onog dana kad tutorijali odu na YouTube. Datum je namerno izbačen (do 29.
   oktobra je stajao 5. novembar).
 
@@ -540,8 +554,9 @@ Izgleda tačno kao `PREVIEW · TUTORIAL` ispod, jer deli isto CSS pravilo sa
 
 - `Overview` je ono što je tab oduvek bio. Natpis „Overview" iznad prvog
   pasusa je kod ta tri uređaja sklonjen, da se reč ne vidi dvaput. Na kraju
-  linije „What you need" stoji „Details in Assembly", istim stilom kao
-  prekidač u liniji naslova (`.er-need-more` deli pravilo sa `.video-tab`).
+  linije „What you need" stoji dugme „See more details in Assembly", isto
+  malo dugme kao „See project" u vestima (`.er-need-more` deli pravilo sa
+  `.news-cta`), da se vidi da vodi u Assembly.
 - `Assembly` je u stilu DJC-DIY uputstva, korak po korak, bez naslova
   „Assembly Guide" i bez uvodnih rečenica:
   - `01` *Print the 3D printed parts*: delovi sa podešavanjima kao kolonama;
@@ -554,23 +569,24 @@ Prekidač imaju `easysteer`, `easydrive` i `easyshift` (H-pattern). Uređaji
 u draftu (sekvencijalni menjač, obe ručne) dobijaju ga kad dobiju svoje
 fajlove.
 
-**Podešavanja su kolone u tabeli, a zajednička se kažu jednom po grupi**
-(odluke vlasnika, 29. oktobra 2026). Tabela u koraku `01` ima kolone
-`Quantity`, `Part`, `File Name`, `Layer`, `Walls`, `Infill`, `Supports`
-(`.parts-settings`). Delovi su podeljeni u grupe; red grupe (`.parts-set`)
-nosi ime grupe i, u kolonama podešavanja, vrednosti koje svi njeni delovi
-dele. Delovi ispod ostavljaju te kolone prazne i pokazuju samo ono što se
-razlikuje — **zlatno** (`class="is-diff"`), da ga niko ne preskoči.
+**Svaki deo ima sva podešavanja, a izuzetak je zlatan** (odluke vlasnika,
+29. oktobra 2026). Tabela u koraku `01` ima kolone `Quantity`, `Part`,
+`File Name`, `Layer`, `Walls`, `Infill`, `Supports` (`.parts-settings`), i
+svaki red ih ima sve. Uobičajene vrednosti (0.2 mm, 2, 15%, No) su tihe
+boje, a vrednost koja nije uobičajena dobija `class="is-diff"` i prikazuje
+se **zlatno**, da je niko ne preskoči.
 
-- easysteer ima tri grupe, kako ga je vlasnik opisao: `Wheel` (točak sa
-  pinovima i pedalama za menjanje), `Base` (od `Wheel Base` do `Limiter`)
-  i `Clamp`.
-- easydrive i easyshift imaju jednu grupu, `All parts`.
+easysteer je podeljen na grupe kako ga je vlasnik opisao — `Wheel` (točak sa
+pinovima i pedalama za menjanje), `Base` (od `Wheel Base` do `Limiter`) i
+`Clamp`. Ime grupe (`.parts-set`) je tih podnaslov, istog stila kao „Parts"
+i „Tools" pod „What you need", da deli listu, a da ne liči na korak.
+easydrive i easyshift nemaju grupe.
 
-(Probani i odbačeni: kolona sa istom vrednošću u svakom redu, i traka sa
-zajedničkim podešavanjima iznad tabele — vlasnik je hteo podešavanja u
-tabeli.) Na telefonu ova tabela zadržava zaglavlje i klizi u stranu u svom
-okviru, jer bi bez zaglavlja brojevi ostali bez natpisa.
+(Probani i odbačeni: traka sa zajedničkim podešavanjima iznad tabele; red
+grupe koji nosi podešavanja jednom za sve njene delove, sa belim imenom
+grupe — belo je iskakalo kao naslov koraka, a vlasnik hoće puna podešavanja
+uz svaki deo.) Na telefonu ova tabela zadržava zaglavlje i klizi u stranu u
+svom okviru, jer bi bez zaglavlja brojevi ostali bez natpisa.
 
 **Unutar koraka zaglavlje tabele nema svoju liniju** (`.steps .parts-head`):
 linija ispod naslova koraka stoji tik iznad, pa bi dve linije jedna za

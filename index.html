@@ -57,11 +57,6 @@
 <link rel="stylesheet" href="/assets/css/site.css">
 <script src="/assets/js/site.js" defer></script>
 <script src="/assets/js/slideshow.js" defer></script>
-<!-- The launch clock on the first hero slide counts down to this moment and
-     takes itself off the page once it passes. Delete this, countdown.js and the
-     clock in the slide once easyrace is out. -->
-<script>window.ML_LAUNCH='2026-10-28T18:00:00+01:00';if(Date.now()>=Date.parse(window.ML_LAUNCH))document.documentElement.setAttribute('data-launched','');</script>
-<script src="/assets/js/countdown.js" defer></script>
 </head>
 <body>
 <div class="page">
@@ -88,23 +83,20 @@
                  A slide can carry its own text: put a .hero-gradient and a .hero-text after the image,
                  as in the slides below, or leave just the image. Only the first slide's heading is
                  the page's <h1>; headings on the other slides are <h2>. -->
-            <!-- Launch slide. The clock counts down to the moment in the head and
-                 takes itself off the page once it passes (assets/js/countdown.js).
-                 When easyrace is out, rewrite this slide and move the h1 back. -->
+            <!-- easyrace, just released. When the preview video is up, the
+                 second button becomes "See preview" and points at it. -->
             <div class="slide">
               <img src="/assets/images/easyrace/hero-000.webp" alt="The easyrace set on a desk: the printed steering wheel, the three pedals on their base plate and the H-pattern shifter" width="5120" height="2160" loading="eager" fetchpriority="high" decoding="async">
               <!-- is-deep: this photo is light where the text falls. -->
               <div class="hero-gradient is-deep"></div>
               <div class="hero-text">
+                <span class="pill pill-rose">Just released</span>
                 <h1 class="hero-title">easyrace<span class="visually-hidden"> — </span><span class="hero-tagline">a fully 3D printed sim racing setup</span></h1>
-                <p class="hero-sub">Steering wheel, pedals and shifter, printed at home. It goes together without a single screw, nut, bearing or spring. Coming 28 October.</p>
-                <div class="gate-clock" data-gate="hero" aria-hidden="true">
-                  <div class="gate-unit"><span class="gate-num" data-days>00</span><span class="gate-label">days</span></div>
-                  <div class="gate-unit"><span class="gate-num" data-hours>00</span><span class="gate-label">hrs</span></div>
-                  <div class="gate-unit"><span class="gate-num" data-minutes>00</span><span class="gate-label">min</span></div>
-                  <div class="gate-unit"><span class="gate-num" data-seconds>00</span><span class="gate-label">sec</span></div>
+                <p class="hero-sub">Steering wheel, pedals and shifter, printed at home. It goes together without a single screw, nut, bearing or spring.</p>
+                <div class="hero-actions">
+                  <a class="btn" href="/projects/easyrace/">See project</a>
+                  <a class="btn" href="https://www.youtube.com/watch?v=Hx4Bw1wFTqc" target="_blank" rel="noopener noreferrer">See teaser</a>
                 </div>
-                <a class="btn" href="https://www.youtube.com/watch?v=Hx4Bw1wFTqc" target="_blank" rel="noopener noreferrer">See teaser</a>
               </div>
             </div>
             <div class="slide">

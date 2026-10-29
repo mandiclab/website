@@ -553,8 +553,9 @@ Izgleda tačno kao `PREVIEW · TUTORIAL` ispod, jer deli isto CSS pravilo sa
 `.video-tab`. Na uskom ekranu spušta se ispod naslova.
 
 - `Overview` je ono što je tab oduvek bio. Natpis „Overview" iznad prvog
-  pasusa je kod ta tri uređaja sklonjen, da se reč ne vidi dvaput. Na kraju
-  linije „What you need" stoji dugme „See more details in Assembly", isto
+  pasusa je kod ta tri uređaja sklonjen, da se reč ne vidi dvaput. Ispod
+  celog bloka „What you need", levo poravnato, stoji dugme „See more details
+  in Assembly", isto
   malo dugme kao „See project" u vestima (`.er-need-more` deli pravilo sa
   `.news-cta`), da se vidi da vodi u Assembly.
 - `Assembly` je u stilu DJC-DIY uputstva, korak po korak, bez naslova

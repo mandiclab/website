@@ -1666,15 +1666,14 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .er-lines { display: flex; flex-direction: column; gap: 4px; margin-top: 12px; max-width: var(--measure); font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); }
 .er-block-text .label.pad { padding-right: 16px; }
 .er-need { display: flex; flex-wrap: wrap; gap: clamp(24px,2.4vw,32px) 0; margin-top: 16px; }
-/* "What you need" with its way to Assembly at the end of the same line: the
-   small button the news uses for "See project", so it reads as somewhere to go. */
-.er-need-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 24px; }
-.er-need-more { margin-top: 0; }
 .er-need-parts { flex: 0 1 calc(265px + clamp(24px,3vw,46px)); min-width: 200px; box-sizing: border-box; }
 .er-need-tools { flex: 1 1 150px; min-width: 150px; box-sizing: border-box; padding-left: clamp(24px,3vw,48px); border-left: 1px solid var(--line-1); }
 .er-need-title { font-size: var(--fs-small); font-weight: 400; line-height: 1.55; color: var(--text-3); }
 .er-need-tools .er-need-title { padding-right: 16px; }
 .er-need-list { display: flex; flex-direction: column; gap: 16px; margin-top: 12px; }
+/* The way to Assembly, under the whole of "What you need": the small button
+   the news uses for "See project", so it reads as somewhere to go. */
+.er-need-more { margin-top: 24px; }
 .er-part { display: flex; align-items: center; justify-content: space-between; gap: 16px; max-width: min(265px, calc(100% - clamp(24px,3vw,46px))); }
 .er-part-name { min-width: 0; font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); }
 .er-part-qty { flex: 0 0 auto; font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-3); }

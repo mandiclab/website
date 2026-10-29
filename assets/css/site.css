@@ -1293,16 +1293,11 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .parts-group { margin-top: clamp(48px,5vh,64px); }
 .parts-group.is-last { margin-top: clamp(64px,7vh,96px); }
 .parts-scroll { margin-top: 24px; overflow-x: auto; }
-.parts-table { min-width: 520px; }
-.parts-table.parts-wide { min-width: 640px; }
-.parts-head, .parts-row { display: grid; grid-template-columns: 90px minmax(0,1fr) minmax(0,1fr); gap: 24px; }
-.parts-wide .parts-head, .parts-wide .parts-row { grid-template-columns: 90px minmax(0,0.8fr) minmax(0,1.6fr); }
-/* Build table: the parts list with each part's own print settings beside it. */
-.parts-table.parts-build { min-width: 900px; }
-.parts-build .parts-head, .parts-build .parts-row {
-  grid-template-columns: 76px minmax(0,1.1fr) minmax(0,1.3fr) 72px 62px 62px 96px;
-  gap: 20px;
-}
+/* Each column is as wide as what is in it, and the table only as wide as its
+   columns, so a list never spreads across the page with empty space between.
+   The rows share the table's columns (subgrid), so they still line up. */
+.parts-table { display: grid; grid-template-columns: repeat(3, max-content); column-gap: clamp(24px,3vw,40px); width: max-content; }
+.parts-head, .parts-row { display: grid; grid-column: 1 / -1; grid-template-columns: subgrid; }
 .parts-head {
   padding: 0 4px 12px;
   border-bottom: 1px solid var(--line-2);
@@ -1321,6 +1316,12 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   color: var(--text-2);
 }
 .parts-row > div:nth-child(odd) { color: var(--text-3); }
+/* A part that prints differently from the settings above its list says so
+   under its name, in gold, so it cannot be read past. */
+.part-note { margin-top: 4px; font-size: var(--fs-label); color: var(--accent-gold); }
+/* The print settings every part shares, said once above the list. */
+.print-defaults { display: flex; flex-wrap: wrap; gap: 8px clamp(24px,3vw,40px); margin-top: 24px; font-size: var(--fs-body); font-weight: 300; line-height: 1.55; color: var(--text-2); }
+.print-defaults .label { margin-right: 10px; }
 
 .promo {
   margin-top: clamp(48px,5vh,64px);
@@ -1651,6 +1652,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .er-lines { display: flex; flex-direction: column; gap: 4px; margin-top: 12px; max-width: var(--measure); font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); }
 .er-block-text .label.pad { padding-right: 16px; }
 .er-need { display: flex; flex-wrap: wrap; gap: clamp(24px,2.4vw,32px) 0; margin-top: 16px; }
+.er-need + p { margin-top: 24px; }
 .er-need-parts { flex: 0 1 calc(265px + clamp(24px,3vw,46px)); min-width: 200px; box-sizing: border-box; }
 .er-need-tools { flex: 1 1 150px; min-width: 150px; box-sizing: border-box; padding-left: clamp(24px,3vw,48px); border-left: 1px solid var(--line-1); }
 .er-need-title { font-size: var(--fs-small); font-weight: 400; line-height: 1.55; color: var(--text-3); }
@@ -1917,16 +1919,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .contact .statement, .notfound .statement { font-size: clamp(20px,5vw,26px); }
   .tab { padding: 16px 12px; }
   .parts-head { display: none; }
-  .parts-row, .parts-wide .parts-row { grid-template-columns: auto minmax(0,1fr); gap: 4px 16px; padding: 16px 4px; }
+  .parts-table { display: block; width: auto; }
+  .parts-row { grid-template-columns: auto minmax(0,1fr); gap: 4px 16px; padding: 16px 4px; }
   .parts-row > div:nth-child(3) { grid-column: 1 / -1; font-size: 13px; color: var(--text-3); }
-  .parts-table, .parts-table.parts-wide { min-width: 0; }
-  /* The build table is the exception: it keeps every column and scrolls
-     sideways instead of folding. Fold it and the settings become bare numbers
-     under no heading, with nothing to say which one is walls and which infill. */
-  .parts-table.parts-build { min-width: 900px; }
-  .parts-build .parts-head { display: grid; }
-  .parts-build .parts-row { gap: 20px; }
-  .parts-build .parts-row > div:nth-child(3) { grid-column: auto; font-size: var(--fs-body); }
   .info-grid { grid-template-columns: minmax(0,1fr); gap: 32px; }
   .lb-close { width: 44px; height: 44px; }
 }

@@ -536,10 +536,14 @@ Izgleda tačno kao `PREVIEW · TUTORIAL` ispod, jer deli isto CSS pravilo sa
 `.video-tab`. Na uskom ekranu spušta se ispod naslova.
 
 - `Overview` je ono što je tab oduvek bio. Natpis „Overview" iznad prvog
-  pasusa je kod ta tri uređaja sklonjen, da se reč ne vidi dvaput.
-- `Assembly` počinje kao na DJC-DIY: korak `01` *Print the 3D printed
-  parts* i tabela — bez naslova „Assembly Guide" i bez uvodne rečenice,
-  jer prekidač i naslov već kažu šta je to.
+  pasusa je kod ta tri uređaja sklonjen, da se reč ne vidi dvaput. Ispod
+  „What you need" stoji „More details in Assembly." sa linkom na Assembly.
+- `Assembly` je u stilu DJC-DIY uputstva, korak po korak, bez naslova
+  „Assembly Guide" i bez uvodnih rečenica:
+  - `01` *Print the 3D printed parts*: traka sa zajedničkim podešavanjima,
+    pa spisak delova;
+  - `02` *Acquire electronic components*: ista elektronika kao u „What you
+    need", bez filamenta.
 - Oba prikaza počinju na istoj udaljenosti od naslova
   (`.er-assembly > .steps`), pa se pri prebacivanju ništa ne pomera.
 
@@ -547,14 +551,27 @@ Prekidač imaju `easysteer`, `easydrive` i `easyshift` (H-pattern). Uređaji
 u draftu (sekvencijalni menjač, obe ručne) dobijaju ga kad dobiju svoje
 fajlove.
 
-**Tabela:** jedna po uređaju, podešavanja kao kolone pored svakog dela
-(`Quantity`, `Part`, `File Name`, `Layer`, `Walls`, `Infill`, `Supports`).
-Za sada svuda **x1, 0.2 mm, 2, 15%, No** — vlasnikova polazna vrednost;
-izuzetke javlja kasnije. Na telefonu tabela klizi u stranu u svom okviru
-umesto da se prelama (`.parts-build`), da brojevi ne ostanu bez zaglavlja.
+**Podešavanja se kažu jednom, izuzetak se vidi.** Skoro svaki deo se štampa
+isto, pa iznad spiska stoji traka `LAYER 0.2 mm · WALLS 2 · INFILL 15% ·
+SUPPORTS None` (`.print-defaults`), a ne kolona sa istim brojem dvadeset
+puta. Deo koji se štampa drugačije dobija **zlatnu liniju ispod imena**
+(`<div class="part-note">4 walls · 100% infill</div>`) — druga boja, da je
+niko ne preskoči. Navode se samo podešavanja koja se razlikuju, istim
+rečima kao u traci.
 
-**Ugnežđeni `role="tablist"` nema `data-deep-link`.** Dubinske linkove u
-`product.js` pravi samo red koji ima taj atribut — tri glavna `.tabbar`-a
-(DJC-DIY, drivepad, easyrace). Bez toga bi oba reda pisala u isti `#hash`
-i svaki bi čitao ime onog drugog. Ovako `#easysteer` i dalje otvara
-uređaj, a izbor `Overview`/`Assembly` ostaje van adrese.
+**Tabele delova su široke koliko im je sadržaj, na celom sajtu** (DJC-DIY,
+drivepad, easyrace). Kolona je široka koliko najduže što je u njoj, a
+tabela koliko njene kolone (`max-content`), pa nema praznog prostora između.
+Redovi dele kolone tabele (`subgrid`), pa ostaju poravnati. Na telefonu
+ostaje staro prelamanje: zaglavlje se sklanja, ime fajla ide u novi red.
+Unutar koraka tabela nema zaglavlje — linija ispod naslova koraka je
+dovoljna, a „x1", ime i `.stl` govore sami za sebe.
+
+**Dubinski link za Assembly:** `/projects/easyrace/#easysteer-assembly`
+otvara easysteer i u njemu Assembly, i staje sa naslovom uređaja tik ispod
+zaglavlja. Tabovi ugnežđenog reda imaju imena `<uređaj>-<deo>`
+(`er-tab-easysteer-assembly`); spoljni red na takav link otvara uređaj,
+unutrašnji svoj deo. `#easysteer` je i dalje samo uređaj, na Overview.
+Adresa uvek odgovara ekranu: kad se vratiš na easysteer dok mu je Assembly
+otvoren, piše `#easysteer-assembly`. Atribut `data-deep-link` više ne
+postoji — svi redovi tabova prave linkove, ugnežđeni kroz spoljni.

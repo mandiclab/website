@@ -115,12 +115,12 @@
     // second list of names has to be kept in step. Nothing on the page carries
     // a bare id of that name, so the browser itself does not jump anywhere.
     //
-    // Only the bar that stands for the page's own sections asks for this, with
-    // data-deep-link. A tablist nested inside a panel (a device's Overview /
-    // Assembly switch) must stay out of the address bar: two lists writing
-    // to the same hash would each keep reading the other's name and neither
-    // would find it.
-    var deepLink = list.hasAttribute('data-deep-link');
+    // A list nested in another one's panel (a device's Overview · Assembly) is
+    // linked through it. Its tabs are named <outer>-<inner>, so
+    // #easysteer-assembly opens easysteer in the outer list and Assembly in
+    // this one, and its first tab stands for the outer name alone, so
+    // #easysteer is still simply the device.
+    var nested = !!list.closest('[role="tabpanel"]');
 
     function nameOf(tab) {
       var at = (tab.id || '').indexOf('-tab-');
@@ -133,12 +133,22 @@
       return found;
     }
 
+    // The link a tab stands for. A nested list's first tab is just the outer
+    // name; an outer tab whose panel has its nested list open further along
+    // links straight there, so the address always matches what is on screen.
+    function linkOf(tab) {
+      if (nested) return tab === tabs[0] ? nameOf(tab).split('-')[0] : nameOf(tab);
+      var panel = document.getElementById(tab.getAttribute('aria-controls'));
+      var inner = panel && panel.querySelector('[role="tablist"] [aria-selected="true"]');
+      var first = inner && inner.parentNode.querySelector('[role="tab"]');
+      return inner && inner !== first ? nameOf(inner) : nameOf(tab);
+    }
+
     // Picking a tab writes it into the address bar, so the link sitting there
     // is always the one worth sharing. replaceState, so the back button still
     // leaves the page instead of walking back through the tabs.
     function mark(tab) {
-      if (!deepLink) return;
-      var name = nameOf(tab);
+      var name = linkOf(tab);
       if (name && window.history && history.replaceState) history.replaceState(null, '', '#' + name);
     }
 
@@ -147,8 +157,16 @@
     var touched = false;
 
     function openFromHash(land) {
-      if (!deepLink || touched) return;
-      var tab = tabNamed(decodeURIComponent((location.hash || '').slice(1)).toLowerCase());
+      if (touched) return;
+      var name = decodeURIComponent((location.hash || '').slice(1)).toLowerCase();
+      var tab = tabNamed(name);
+      if (!tab && name) {
+        var outer = name.split('-')[0];
+        if (!nested) tab = tabNamed(outer);
+        // #easysteer puts the device's own list back on its first tab, without
+        // moving the page: the outer list does the landing.
+        else if (outer === name && tabs[0] && nameOf(tabs[0]).split('-')[0] === name) { tab = tabs[0]; land = false; }
+      }
       if (!tab) return;
       select(tab, false);
       if (!land) return;

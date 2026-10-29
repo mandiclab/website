@@ -1047,7 +1047,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .overview-media { min-width: 0; display: flex; flex-direction: column; gap: clamp(64px,7vh,96px); }
 .overview-info { min-width: 0; }
 .video-tabs { display: flex; align-items: center; flex-wrap: wrap; gap: clamp(16px,2.2vw,32px); }
-.video-tab {
+.video-tab, .er-switch [role="tab"] {
   cursor: pointer;
   font-size: var(--fs-label);
   font-weight: 500;
@@ -1057,8 +1057,8 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   text-shadow: 0 0 0 rgba(242,242,240,0);
   transition: color var(--dur-slow) var(--ease), text-shadow var(--dur-base) var(--ease);
 }
-.video-tab.is-active { color: var(--text-1); }
-.video-tab:hover { text-shadow: 0 0 14px var(--text-disabled); }
+.video-tab.is-active, .er-switch [aria-selected="true"] { color: var(--text-1); }
+.video-tab:hover, .er-switch [role="tab"]:hover { text-shadow: 0 0 14px var(--text-disabled); }
 .video-frame {
   position: relative;
   width: 100%;
@@ -1635,17 +1635,16 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .er-shots { margin-bottom: clamp(32px,3.6vw,48px); }
 .er-shots .slideshow { aspect-ratio: 16 / 9; height: auto; border-bottom: 0; }
 .er-shots .slide-thumbs-outer { padding: 0; }
-/* At the top of a device's own page the gallery sits right under the header,
-   so it is given the page gutter above it to breathe. */
-.product-inner > .er-shots:first-child { padding-top: var(--gutter); }
-/* ...and it keeps its 16:9 on a phone, rather than taking the tall minimum
-   meant for the wide hero, which would crop the photo at the sides. */
-.product-inner > .er-shots:first-child .slideshow { min-height: 0; }
 .er-title { margin: 0; font-size: var(--fs-display); font-weight: 200; line-height: 1.15; letter-spacing: -0.01em; text-transform: lowercase; }
+/* A device's title shares its line with the Overview / Assembly switch, set to
+   the right the way a product name and its sections share one bar. The switch
+   is the video picker's own style (.video-tab), and on a narrow screen it
+   drops under the title. */
+.er-head { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 16px 32px; }
+.er-switch { display: flex; gap: clamp(16px,2.2vw,32px); }
+/* Assembly starts exactly where Overview does, so switching moves nothing. */
+.er-assembly > .steps { margin-top: clamp(48px,4.4vw,64px); }
 .er-block { display: flex; flex-wrap: wrap; align-items: flex-start; gap: clamp(32px,4vw,64px); margin-top: clamp(48px,4.4vw,64px); }
-/* On a device's own page the block opens its tab, with no title above it to
-   keep clear of; the tab panel's own padding already sets the distance. */
-.er-panel > .er-block:first-child { margin-top: 0; }
 .er-block-video { flex: 1 1 380px; min-width: 0; }
 .er-block-text { flex: 1 1 440px; min-width: 0; display: flex; flex-direction: column; gap: clamp(32px,3vw,48px); max-width: var(--measure); }
 .er-block-text p { margin: 12px 0 0; max-width: var(--measure); font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); text-wrap: pretty; }

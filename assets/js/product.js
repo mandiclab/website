@@ -114,6 +114,13 @@
     // lands on it. The name is the tail of the tab's id, after -tab-, so no
     // second list of names has to be kept in step. Nothing on the page carries
     // a bare id of that name, so the browser itself does not jump anywhere.
+    //
+    // Only the bar that stands for the page's own sections asks for this, with
+    // data-deep-link. A tablist nested inside a panel (a device's Overview /
+    // Assembly switch) must stay out of the address bar: two lists writing
+    // to the same hash would each keep reading the other's name and neither
+    // would find it.
+    var deepLink = list.hasAttribute('data-deep-link');
 
     function nameOf(tab) {
       var at = (tab.id || '').indexOf('-tab-');
@@ -130,6 +137,7 @@
     // is always the one worth sharing. replaceState, so the back button still
     // leaves the page instead of walking back through the tabs.
     function mark(tab) {
+      if (!deepLink) return;
       var name = nameOf(tab);
       if (name && window.history && history.replaceState) history.replaceState(null, '', '#' + name);
     }
@@ -139,7 +147,7 @@
     var touched = false;
 
     function openFromHash(land) {
-      if (touched) return;
+      if (!deepLink || touched) return;
       var tab = tabNamed(decodeURIComponent((location.hash || '').slice(1)).toLowerCase());
       if (!tab) return;
       select(tab, false);

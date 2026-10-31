@@ -632,3 +632,33 @@ koji se promenio: ako u njemu ostane oznaka od izranjanja koje je prekinuto
 (tab napušten na pola), ona se prvo skida, inače bi se dva izranjanja
 sabrala. Uz `prefers-reduced-motion` animacija traje 0.01ms, pa se ništa ne
 pomera.
+
+---
+
+## Projects stranica: podrazumevano sortiranje je Recommended
+
+**Redosled projekata bira vlasnik** (odluka vlasnika, 31. oktobra 2026), da
+mali projekti ne zatrpaju one koji se prodaju. U `Sort` meniju je prvi
+`Recommended`, i on je izabran kad se uđe na stranicu. To je redosled iz
+`data-order` na karticama, a kartice u HTML-u stoje tim redom, jer skript pri
+učitavanju ne preslaže ništa. Redosled: easyrace, drivepad, minishift,
+DJC-DIY, pa ostali (njihov red nije bitan). `Newest` i `Oldest` i dalje rade
+po `data-date`; za projekat koji još nije izašao to je planirani dan izlaska,
+gde dan `01` znači početak, a `15` sredinu meseca.
+
+**Planirani izlasci** — sve su kartice `data-draft` i vide se samo lokalno.
+Javno su za sada samo easyrace i DJC-DIY.
+
+- **minishift** — početak decembra 2026. Mali menjač, sedam brzina i rikverc,
+  kao privezak za ključeve; nastao od drivepad-a, jer je njegov mali menjač
+  bio previše dobar za korišćenje. Digital product: ko hoće da podrži
+  drivepad, koji je open source, kupi minishift.
+- **GitHub tile** (radno ime, pravo čeka vlasnika) — sredina decembra 2026.
+  GitHub commit-ovi u stvarnom životu, da se prati produktivnost. Open source.
+- **drivepad** — januar 2027. Open source.
+- **love loop** — 10. februar 2027. Poklon za Dan zaljubljenih. Open source.
+- **at work** — početak marta 2027. Igra. Digital product.
+
+Kartice novih projekata nemaju sliku ni dugme „Show more" dok ne dobiju svoju
+stranicu. Opisi su samo ono što je vlasnik rekao; kod love loop i at work je
+to jedna rečenica i čeka njegov tekst.

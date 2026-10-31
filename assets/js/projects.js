@@ -14,7 +14,7 @@
   var filterDot = section.querySelector('.filter-dot');
   var reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 
-  var state = { query: '', sort: 'Newest', filter: 'All', menu: null, menuOut: null };
+  var state = { query: '', sort: 'Recommended', filter: 'All', menu: null, menuOut: null };
 
   // Card data is read from the HTML, so the markup stays the single source.
   // Unreleased projects (data-draft) are left out of search, sort and filter
@@ -46,7 +46,7 @@
     });
     if (st.sort === 'Name') {
       list.sort(function (a, b) { return a.title.toLowerCase().localeCompare(b.title.toLowerCase()); });
-    } else {
+    } else if (st.sort !== 'Recommended') {
       // Dated projects are sorted among the positions they occupy; undated
       // ones keep their place.
       var slots = [];
@@ -56,6 +56,8 @@
       });
       slots.forEach(function (pos, n) { list[pos] = dated[n]; });
     }
+    // Recommended is the order the owner set, in data-order, which is the order
+    // the cards are already in.
     return list.map(function (p) { return p.key; });
   }
 

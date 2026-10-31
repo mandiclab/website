@@ -70,7 +70,8 @@
                   <span class="caret"></span>
                 </button>
                 <div class="menu-panel" role="menu" aria-label="Sort projects" hidden>
-                  <button type="button" role="menuitem" class="sort-opt is-selected" data-value="Newest">Newest</button>
+                  <button type="button" role="menuitem" class="sort-opt is-selected" data-value="Recommended">Recommended</button>
+                  <button type="button" role="menuitem" class="sort-opt" data-value="Newest">Newest</button>
                   <button type="button" role="menuitem" class="sort-opt" data-value="Oldest">Oldest</button>
                   <button type="button" role="menuitem" class="sort-opt" data-value="Name">Name</button>
                 </div>
@@ -92,12 +93,16 @@
           </div>
         </div>
 
-        <!-- Cards are listed in "Newest" order. data-order is the base order the
-             sort works from; data-date drives Newest/Oldest (no date keeps its place). -->
+        <!-- Cards are listed in the "Recommended" order, the page's default:
+             data-order is that order, set by hand so the projects on sale come
+             first and small ones cannot bury them. data-date drives Newest and
+             Oldest; for a project not out yet it is the planned release, where
+             a day of 01 or 15 stands for early or mid month. -->
         <!-- data-draft hides a card on the live site until the project is released;
              it still shows when the site is opened locally. To release, delete
-             data-draft (steps in docs/odluke.md). -->
-        <div class="pcard-wrap" data-key="easyrace" data-order="1" data-date="2026-10-28">
+             data-draft (steps in docs/odluke.md). A draft card with no page yet
+             has no Show more button; add it with the page. -->
+        <div class="pcard-wrap" data-key="easyrace" data-order="0" data-date="2026-10-28">
           <div class="pcard">
             <!-- Launch gate, until the moment set in the head. Delete this block
                  once easyrace is out (assets/js/countdown.js). -->
@@ -130,7 +135,48 @@
           </div>
         </div>
 
-        <div class="pcard-wrap" data-key="djc" data-order="0" data-date="2025-08-01">
+        <div class="pcard-wrap" data-key="drivepad" data-order="1" data-date="2027-01-01" data-draft>
+          <div class="pcard">
+            <div class="pcard-grid">
+              <div class="pcard-img"></div>
+              <div class="pcard-body">
+                <div>
+                  <h2 class="pcard-title">drivepad</h2>
+                  <p class="pcard-desc">The world’s first handheld sim racing device.</p>
+                </div>
+                <div class="pcard-foot">
+                  <div class="pcard-tags">
+                    <span class="pill pill-green">Open source</span>
+                    <span class="pill pill-gold">In development</span>
+                  </div>
+                  <a class="btn" href="/projects/drivepad/">Show more</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pcard-wrap" data-key="minishift" data-order="2" data-date="2026-12-01" data-draft>
+          <div class="pcard">
+            <div class="pcard-grid">
+              <div class="pcard-img"></div>
+              <div class="pcard-body">
+                <div>
+                  <h2 class="pcard-title">minishift</h2>
+                  <p class="pcard-desc">A small shifter with seven gears and reverse, made to hang from your keys. It grew out of drivepad, and buying it is a way to support drivepad, which is open source.</p>
+                </div>
+                <div class="pcard-foot">
+                  <div class="pcard-tags">
+                    <span class="pill pill-rose">Digital product</span>
+                    <span class="pill pill-gold">In development</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pcard-wrap" data-key="djc" data-order="3" data-date="2025-08-01">
           <div class="pcard">
             <div class="pcard-grid">
               <!-- Card photo, 16:9 (1920×1080), in the project's own image folder. -->
@@ -151,21 +197,60 @@
           </div>
         </div>
 
-        <div class="pcard-wrap" data-key="drivepad" data-order="2" data-draft>
+        <div class="pcard-wrap" data-key="github-tile" data-order="4" data-date="2026-12-15" data-draft>
           <div class="pcard">
             <div class="pcard-grid">
               <div class="pcard-img"></div>
               <div class="pcard-body">
                 <div>
-                  <h2 class="pcard-title">drivepad</h2>
-                  <p class="pcard-desc">The world’s first handheld sim racing device.</p>
+                  <h2 class="pcard-title">GitHub tile</h2>
+                  <p class="pcard-desc">A tile that shows your GitHub commits in real life, so you can keep track of your productivity.</p>
                 </div>
                 <div class="pcard-foot">
                   <div class="pcard-tags">
                     <span class="pill pill-green">Open source</span>
                     <span class="pill pill-gold">In development</span>
                   </div>
-                  <a class="btn" href="/projects/drivepad/">Show more</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pcard-wrap" data-key="love-loop" data-order="5" data-date="2027-02-10" data-draft>
+          <div class="pcard">
+            <div class="pcard-grid">
+              <div class="pcard-img"></div>
+              <div class="pcard-body">
+                <div>
+                  <h2 class="pcard-title">love loop</h2>
+                  <p class="pcard-desc">A Valentine’s Day gift.</p>
+                </div>
+                <div class="pcard-foot">
+                  <div class="pcard-tags">
+                    <span class="pill pill-green">Open source</span>
+                    <span class="pill pill-gold">In development</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="pcard-wrap" data-key="at-work" data-order="6" data-date="2027-03-01" data-draft>
+          <div class="pcard">
+            <div class="pcard-grid">
+              <div class="pcard-img"></div>
+              <div class="pcard-body">
+                <div>
+                  <h2 class="pcard-title">at work</h2>
+                  <p class="pcard-desc">A game.</p>
+                </div>
+                <div class="pcard-foot">
+                  <div class="pcard-tags">
+                    <span class="pill pill-rose">Digital product</span>
+                    <span class="pill pill-gold">In development</span>
+                  </div>
                 </div>
               </div>
             </div>

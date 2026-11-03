@@ -345,9 +345,10 @@ vraćati je. Sat i obe skripte za odbrojavanje (`window.ML_LAUNCH`,
 `countdown.js`) su skinuti sa naslovne; `h1` ostaje na ovom slajdu, jer je
 on i dalje prvi.
 
+`noindex` je skinut sa easyrace stranice i ona je dodata u `sitemap.xml` 3.
+novembra 2026, kad je Google Search Console prijavio da ne može da je indeksira.
 Još nije urađeno (vlasnik nije tražio): sloj sa odbrojavanjem na kartici
-easyrace na Projects stranici (posle izlaska ga skript ionako sam skida),
-`noindex` sa easyrace stranice i easyrace u `sitemap.xml`.
+easyrace na Projects stranici (posle izlaska ga skript ionako sam skida).
 
 **Istom oznakom je na easyrace stranici zadržan deo ponude** (odluka vlasnika,
 oktobar 2026: prvo izlazi samo Core bundle, ostalo u decembru). `data-draft`

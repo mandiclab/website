@@ -1078,7 +1078,8 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 /* Switching videos: the frame stays, the old video fades out, and the new one
    fades in only once YouTube has loaded it (docs/odluke.md). */
-.video-frame iframe {
+.video-frame iframe,
+.er-video iframe {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -1513,8 +1514,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 /* Same box in gold, for a notice rather than a fact about the purchase. */
 .er-buys.is-gold { border-color: rgba(232,201,140,0.28); background: rgba(232,201,140,0.08); }
 .er-video-col { flex: 1 1 380px; min-width: 0; margin-top: clamp(48px,4.4vw,64px); }
-/* Empty 16:9 frame reserved for a video. */
+/* 16:9 frame for the video next to the intro. */
 .er-video {
+  position: relative;
   aspect-ratio: 16 / 9;
   width: 100%;
   border: 1px solid var(--line-1);

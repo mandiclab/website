@@ -338,12 +338,23 @@ Kad easyrace izađe: obriši oba `<script>` reda i oba `[data-gate]` bloka,
 **easyrace je izašao: prvi slajd na naslovnoj je prepisan** (29. oktobra
 2026, po vlasnikovoj želji). Na kraju teksta, gde je stajalo „Coming 28
 October.", sada piše „Just released.", a ispod su dva dugmeta jedno pored
-drugog (`.hero-actions`): „See project" i „See teaser". Kad izađe preview,
-„See teaser" postaje „See preview". Roza oznaka „Just released" iznad
+drugog (`.hero-actions`): „See project" i „See teaser" (od 3. novembra
+„See review", vidi niže). Roza oznaka „Just released" iznad
 naslova bila je moja izmišljotina koju niko nije tražio — skinuta je, ne
 vraćati je. Sat i obe skripte za odbrojavanje (`window.ML_LAUNCH`,
 `countdown.js`) su skinuti sa naslovne; `h1` ostaje na ovom slajdu, jer je
 on i dalje prvi.
+
+**Video snimci za easyrace** (3. novembra 2026, po vlasnikovoj želji). Review
+(`pydNVNhz_7Q`) je u okviru pored uvoda na easyrace stranici i iza dugmeta
+„See review" na prvom slajdu naslovne, umesto „See teaser". Tutorijal za
+easyshift (`2ed6LvOu5wo`) je na njegovom tabu Tutorial i linkovan je iz zlatne
+napomene, koja sada kaže da su još samo easysteer i easydrive u pripremi.
+Preview za easyshift ne postoji, pa njegov video okvir dotle otvara Tutorial,
+da se prvo ne vidi prazan okvir: kad izađe, `is-active` i video u okviru se
+vraćaju na Preview. Tutorijal stoji u `data-src` umesto u `src`, jer tab pri
+učitavanju stranice nije otvoren, pa YouTube ne treba da se učitava dok neko
+ne otvori easyshift.
 
 `noindex` je skinut sa easyrace stranice i ona je dodata u `sitemap.xml` 3.
 novembra 2026, kad je Google Search Console prijavio da ne može da je indeksira.

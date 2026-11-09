@@ -348,9 +348,10 @@ on i dalje prvi.
 **Video snimci za easyrace** (3. novembra 2026, po vlasnikovoj želji). Review
 (`pydNVNhz_7Q`) je u okviru pored uvoda na easyrace stranici i iza dugmeta
 „See review" na prvom slajdu naslovne, umesto „See teaser". Tutorijali za
-easyshift (`2ed6LvOu5wo`) i, od 5. novembra, easydrive (`QrLbx1Yl8Hg`) su na
-tabovima Tutorial tih uređaja i linkovani su iz zlatne napomene, koja sada kaže
-da je još samo easysteer u pripremi. Preview za njih ne postoji, pa njihovi
+easyshift (`2ed6LvOu5wo`), easydrive (`QrLbx1Yl8Hg`, od 5. novembra) i
+easysteer (`2rWfGGEFdmc`, od 9. novembra) su na tabovima Tutorial tih uređaja.
+Kad je izašao poslednji, obrisana je zlatna napomena da tutorijali kasne, kako
+je i bilo dogovoreno. Preview za njih ne postoji, pa njihovi
 video okviri dotle otvaraju Tutorial, da se prvo ne vidi prazan okvir: kad
 izađe, `is-active` i video u okviru se vraćaju na Preview. Tutorijali stoje u
 `data-src` umesto u `src`, jer tabovi pri učitavanju stranice nisu otvoreni, pa
@@ -536,15 +537,6 @@ Pred lansiranje easyrace-a:
 
 - Privacy Policy stranica. `Terms` tab za sam proizvod već postoji na
   easyrace stranici, ali Privacy Policy nema gde da stoji.
-
-Privremeno:
-
-- **Zlatna kutija na easyrace stranici** (`.er-buys.is-gold`, odmah ispod
-  rozikaste): „Assembly tutorials are coming soon.", pa da se može odmah
-  početi i da su spisak delova i podešavanja u Assembly. Obriši ceo taj pasus
-  onog dana kad tutorijali odu na YouTube. Datum je namerno izbačen (do 29.
-  oktobra je stajao 5. novembar).
-
 
 ---
 

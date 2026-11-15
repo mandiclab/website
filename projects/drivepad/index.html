@@ -17,8 +17,6 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="MandićLab logo">
 <meta name="twitter:card" content="summary_large_image">
-<!-- Unreleased: keeps search engines from listing this page. Delete this comment and the line below on release (docs/odluke.md). -->
-<meta name="robots" content="noindex">
 <!-- Structured data: the page's place in the site, shown by search engines as a breadcrumb. -->
 <script type="application/ld+json">
 {
@@ -58,9 +56,9 @@
 
   <main>
 
-    <!-- Same structure as the DJC-DIY page. Still to add: hero and gallery images,
-         the YouTube videos, the Download link, the 3D printed parts list, the
-         model of the eight new buttons and the assembly steps. Each spot has a note. -->
+    <!-- Same structure as the DJC-DIY page. Still to add: gallery images, the
+         Download link, the 3D printed parts list, the model of the eight new
+         buttons and the assembly steps. Each spot has a note. -->
 
     <section class="product">
       <div class="product-slideshow">
@@ -70,7 +68,7 @@
                  <div class="slide"><img src="/assets/images/drivepad/hero-1.webp" alt="…" width="5120" height="2160" loading="eager" fetchpriority="high" decoding="async"></div>
                  The first slide loads eagerly; the others use loading="lazy".
                  Thumbnails below are made from these images automatically. -->
-            <div class="slide-empty"></div>
+            <div class="slide"><img src="/assets/images/home/drivepad-hero.webp" alt="Hand-drawn sketch of drivepad, a gamepad with a small steering wheel on the left, a handbrake on the right, a d-pad and an H-pattern shifter below them, and the clutch, brake and gas pedals and paddle shifters along the top edge, each one labelled" width="5120" height="2160" loading="eager" fetchpriority="high" decoding="async"></div>
           </div>
         </div>
       </div>
@@ -138,17 +136,17 @@
             <div class="overview-grid">
               <div class="overview-media">
                 <div>
-                  <!-- The videos aren't out yet, so the frame is empty. When they are, put
-                       each video's YouTube ID (the part after watch?v=) on its button as
-                       data-video="…", and add src="https://www.youtube-nocookie.com/embed/…" with
-                       the Preview ID to the iframe. -->
-                  <div class="video-tabs">
-                    <button type="button" class="video-tab is-active">Preview</button>
-                    <button type="button" class="video-tab">Demo</button>
-                    <button type="button" class="video-tab">Tutorial</button>
-                  </div>
-                  <div class="video-frame">
-                    <iframe title="drivepad video" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                  <!-- Project Journey: one .journey-item per clip, oldest first, so a new
+                       clip goes at the bottom. The clip's YouTube ID (the part after
+                       watch?v=) goes in the iframe src, and its short note beside it. -->
+                  <h2 class="label">Project Journey</h2>
+                  <div class="journey">
+                    <div class="journey-item">
+                      <div class="video-frame">
+                        <iframe src="https://www.youtube-nocookie.com/embed/K48VoluMiA8" title="drivepad Project Journey, episode 1" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+                      <p class="journey-text">Drivepad development has started. This clip explains what drivepad is and what it consists of, and shows the d-pad and the buttons being 3D modeled.</p>
+                    </div>
                   </div>
                 </div>
               </div>

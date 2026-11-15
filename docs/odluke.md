@@ -143,9 +143,16 @@ nema (`page: null`) — dodata na zahtev vlasnika. Strukturno je identična
 DJC-DIY stranici (slideshow, Ko-fi obaveštenje, isti tabovi, galerija,
 lightbox); tekst je drivepad-ov. „Show more" na drivepad kartici vodi na nju.
 Dok linkovi ne budu spremni, dugmad za video nemaju `data-video` (okvir je
-prazan), a GitHub Repo, Download i PCBWay dugmad su `<a>` bez `href` —
-izgledaju isto, ali ne vode nigde i ne dobijaju fokus. Tabela 3D štampanih
-delova i koraci sklapanja su namerno prazni.
+prazan), a Download je `<a>` bez `href` — izgleda isto, ali ne vodi nigde i
+ne dobija fokus. Tabela 3D štampanih delova i koraci sklapanja su namerno
+prazni.
+
+Od 15. novembra 2026 (vlasnikova odluka) GitHub Repo vodi na
+`github.com/mandiclab/dp-diy`, a sa drivepad stranice su skinuti rečenica o
+videima na YouTube-u i sve o PCBWay-u (rečenica u Info delu i PCBWay kutija u
+Parts tabu). Drivepad kartica na Projects stranici ima sličicu (vlasnikova
+skica). U tabeli elektronike su 2 dugmeta B3F-4055 i 8 novih dugmadi čiji
+model još nije izabran, pa im je opis prazan.
 
 ---
 
@@ -530,8 +537,8 @@ Sadržaj koji popunjava vlasnik projekta, ne ti:
   ožičeni, ali su prazni
 - sve slike i njihovi `alt` tekstovi (easyrace hero sada prima više slika, kao
   DJC-DIY)
-- drivepad stranica: YouTube video snimci i linkovi ka njima, GitHub/Download
-  i PCBWay linkovi, tabela 3D štampanih delova i koraci sklapanja
+- drivepad stranica: hero i galerija, YouTube video snimci, Download link,
+  model 8 novih dugmadi, tabela 3D štampanih delova i koraci sklapanja
 
 Pred lansiranje easyrace-a:
 

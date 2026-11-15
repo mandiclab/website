@@ -160,8 +160,10 @@ sa kartice i `noindex` sa stranice, a adresa je dodata u `sitemap.xml`. Hero
 slika (`assets/images/home/drivepad-hero.webp`, vlasnikova skica) je na vrhu
 drivepad stranice i na drugom slajdu naslovne, sa „See project" i „See video".
 Slajd ima običnu senku, ne `is-deep`: pozadina skice je cela bela, pa je i
-blaga senka dovoljna za tekst, a jaka ostaje samo na easyrace slajdu (vlasnik,
-15. novembra). Na naslovnoj
+blaga senka dovoljna za tekst, a jača ostaje samo na easyrace slajdu (vlasnik,
+15. novembra). Istog dana je i ta jača senka (`is-deep`) ublažena otprilike
+na pola puta do obične: tekst se i dalje čita, a fotografija se vidi više.
+Na naslovnoj
 je i vest od 15. novembra, sa slikom isečenom iz hero-a na 16:9.
 
 **Project Journey na drivepad stranici** stoji tamo gde su bili Preview, Demo

@@ -346,6 +346,8 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .slide-empty { background: var(--surface-1); }
 .slide ~ .slide-empty { display: none; }
 
+/* The arrows are always there, on the header's glass, so they show on any
+   photo, light or dark (docs/odluke.md). */
 .slide-arrow {
   position: absolute;
   z-index: 6;
@@ -357,42 +359,66 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   width: 44px;
   height: 44px;
   box-sizing: border-box;
-  color: var(--text-2);
+  border: 1px solid var(--line-2);
+  background: var(--overlay-header);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
+  color: var(--text-1);
   cursor: pointer;
-  opacity: 0;
-  transition: opacity var(--dur-fast) var(--ease);
+  transition: border-color var(--dur-slow) var(--ease);
 }
 .slide-arrow.is-prev { left: clamp(16px,1.6vw,24px); }
 .slide-arrow.is-next { right: clamp(16px,1.6vw,24px); }
-.slide-arrow:hover { color: var(--text-1); }
+.slide-arrow:hover { border-color: var(--line-3); }
 .slide-arrow span { display: block; width: 11px; height: 11px; transform: rotate(45deg); }
 .slide-arrow.is-prev span { border-left: 1px solid currentColor; border-bottom: 1px solid currentColor; margin-left: 4px; }
 .slide-arrow.is-next span { border-right: 1px solid currentColor; border-top: 1px solid currentColor; margin-right: 4px; }
-@media (hover: hover) { .slideshow:hover .slide-arrow { opacity: 1; } }
-/* On touch there is no hover, so the arrows stay visible — the bare arrow,
-   with no plate behind it (the concept had one). */
-@media (hover: none) { .slide-arrow { opacity: 1; } }
-.slide-arrow:focus-visible { opacity: 1; outline: 2px solid var(--accent-blue); outline-offset: 2px; }
-.slideshow:focus-visible .slide-arrow { opacity: 1; }
+.slide-arrow:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
 
+/* The home hero's bar: the arrows at its two ends, then the play button and
+   the dots, all on the arrows' glass. On the photo's sides the arrows would
+   land on the slide's text (docs/odluke.md). */
 .slide-dots {
   position: absolute;
   z-index: 6;
   left: 0;
   right: 0;
   bottom: clamp(24px,3vh,32px);
+  width: max-content;
+  max-width: calc(100% - 32px);
+  margin: 0 auto;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 8px;
-  padding: 0 16px;
+  padding: 10px 16px;
   box-sizing: border-box;
+  border: 1px solid var(--line-2);
+  background: var(--overlay-header);
+  backdrop-filter: blur(18px) saturate(120%);
+  -webkit-backdrop-filter: blur(18px) saturate(120%);
 }
 /* The dots are centred on the frame, not on the row: the play button stands to
    their left, and an empty counterweight of the same width on the right keeps
-   it from pushing them off centre. See docs/odluke.md. */
-.slide-dots:has(.slide-play)::after { content: ""; width: 8px; height: 0; }
+   it from pushing them off centre. See docs/odluke.md. The arrows go outside
+   both, one at each end. */
+.slide-dots:has(.slide-play)::after { content: ""; order: 1; width: 8px; height: 0; }
+.slide-dots .slide-arrow {
+  position: static;
+  width: 24px;
+  height: 24px;
+  margin: -8px;
+  border: 0;
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  color: var(--text-2);
+  transition: color var(--dur-base) var(--ease);
+}
+.slide-dots .slide-arrow:hover { color: var(--text-1); }
+.slide-dots .slide-arrow.is-prev { order: -1; margin-right: 0; }
+.slide-dots .slide-arrow.is-next { order: 2; margin-left: 0; }
 /* 24×24 touch target around an 8×8 dot; the negative margin keeps the
    on-screen gap at 8px. See docs/odluke.md. */
 .slide-dot, .slide-play {
@@ -1944,7 +1970,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .news-title { font-size: 20px; }
   .hero-gradient { background: linear-gradient(to top, rgba(11,11,12,0.78) 0%, rgba(11,11,12,0.45) 45%, transparent 80%); }
   .hero-gradient.is-deep { background: linear-gradient(to top, rgba(11,11,12,0.86) 0%, rgba(11,11,12,0.64) 42%, rgba(11,11,12,0.2) 66%, transparent 84%); }
-  .hero-text { top: auto; bottom: 64px; transform: none; left: var(--gutter); right: var(--gutter); max-width: none; }
+  .hero-text { top: auto; bottom: 84px; transform: none; left: var(--gutter); right: var(--gutter); max-width: none; }
   .hero-title { font-size: clamp(26px,6vw,34px); }
   .hero-tagline { font-size: var(--fs-h2); }
   .header { display: flex; align-items: center; justify-content: center; gap: 0; }
@@ -1993,14 +2019,15 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 
 @media (max-width: 640px) and (max-aspect-ratio: 3/2) {
   /* The hero is only as tall as it needs to be — photo, a breath, the text,
-     and room for the dots. --hero-text is the tallest text any slide carries,
-     measured by site.js so the dots stay put as the slides change; the value
-     here is the fallback used until it does (and without JavaScript). */
+     and room for the bar of arrows and dots. --hero-text is the tallest text
+     any slide carries, measured by site.js so the bar stays put as the slides
+     change; the value here is the fallback used until it does (and without
+     JavaScript). */
   .hero {
     --band: 66.667vw;
     --hero-gap: 24px;
     --hero-text: 420px;
-    height: calc(var(--band) + var(--hero-gap) + var(--hero-text) + 56px);
+    height: calc(var(--band) + var(--hero-gap) + var(--hero-text) + 76px);
     min-height: 0;
     max-height: none;
   }
@@ -2018,12 +2045,10 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
      their spare room at the bottom instead of floating in the middle. */
   .hero-text {
     top: calc(var(--band) + var(--hero-gap));
-    bottom: 56px;
+    bottom: 76px;
     justify-content: flex-start;
   }
   .hero-text > * { flex: 0 0 auto; }
-  /* The arrows belong to the photo, so they sit on its middle, not the hero's. */
-  .hero .slide-arrow { top: calc(var(--band) / 2); }
 }
 
 /* ── Reduced motion ────────────────────────────────────────────────────── */

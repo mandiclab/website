@@ -246,6 +246,10 @@
           bar.appendChild(d);
           dots.push(d);
         });
+        // The arrows move into the bar, one at each end: on the photo's sides
+        // they would land on the slide's text (docs/odluke.md).
+        bar.insertBefore(prevBtn, bar.firstChild);
+        bar.appendChild(nextBtn);
         shell.appendChild(bar);
       }
 

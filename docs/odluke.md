@@ -83,9 +83,15 @@ profil, pa se bez adrese prikaže samo ikonica i ime, bez linka. Sve ostalo
 postaje pasusi, prazan red razdvaja pasuse. Nema fajla ili je prazan — slika
 se otvara sama, po sredini. Tekst se ubacuje kao čist tekst, ne kao HTML.
 
-**Strelice nemaju podlogu ni na dodirnim ekranima.** Koncept im na telefonu
-daje tamni kvadratić (`background: rgba(11,11,12,0.38)`); sada je samo
-strelica, na svim uređajima. Na dodiru ostaju stalno vidljive, jer nema hover-a.
+**Strelice slideshow-a su uvek vidljive, na staklenoj podlozi** (vlasnik,
+15. novembra 2026: jedva su se videle, a na desktopu tek na hover). Podloga je
+ista kao kod header-a (`--overlay-header` uz blur, okvir `--line-2`), pa se
+vide i na beloj drivepad skici. Na stranicama projekata i u vestima stoje sa
+strane fotografije, kao i ranije. Na naslovnoj su u traci sa dugmetom za pauzu
+i tačkicama, po jedna na svakom kraju, jer bi sa strane pale preko teksta
+slajda; cela traka stoji na istoj podlozi. Do tada strelice nisu imale podlogu
+(koncept im je na telefonu davao tamni kvadratić) i na desktopu su se
+pojavljivale tek na hover.
 
 **Pauza slideshow-a ima dva odvojena mehanizma.** `paused` je trajna odluka
 korisnika preko dugmeta. `hover`, `focus` i `hidden` su privremene pauze koje

@@ -159,14 +159,16 @@ izašao prvi Project Journey klip (vlasnikova odluka). Skinut je `data-draft`
 sa kartice i `noindex` sa stranice, a adresa je dodata u `sitemap.xml`. Hero
 slika (`assets/images/home/drivepad-hero.webp`, vlasnikova skica) je na vrhu
 drivepad stranice i na drugom slajdu naslovne, sa „See project" i „See video".
-Na slajdu je `is-deep`, jer je skica bela tamo gde stoji tekst. Na naslovnoj
+Slajd ima običnu senku, ne `is-deep`: pozadina skice je cela bela, pa je i
+blaga senka dovoljna za tekst, a jaka ostaje samo na easyrace slajdu (vlasnik,
+15. novembra). Na naslovnoj
 je i vest od 15. novembra, sa slikom isečenom iz hero-a na 16:9.
 
 **Project Journey na drivepad stranici** stoji tamo gde su bili Preview, Demo
-i Tutorial, kojih još nema: klipovi jedan ispod drugog, najstariji prvi, a
-kratak opis desno od svakog. Opis prelazi ispod klipa kad kolona postane uža
-od 440px (`@container`), pa se na telefonu i na srednjim ekranima ne gura.
-Novi klip izlazi svake nedelje u 18:00 po srpskom vremenu, pa se dodaje novi
+i Tutorial, kojih još nema: klipovi jedan ispod drugog, najstariji prvi.
+Ispod svakog je „Episode N", malo podebljano, pa kratak opis, složeni kao
+program i njegov opis u Software tabu. Opis je prvo stajao desno od klipa, ali
+je tako sve delovalo sitno (vlasnik, 15. novembra). Novi klip izlazi svake nedelje u 18:00 po srpskom vremenu, pa se dodaje novi
 `.journey-item` na dno liste.
 
 ---

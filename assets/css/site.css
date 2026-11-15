@@ -1091,15 +1091,12 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 .video-frame.is-switching iframe { opacity: 0; transition-duration: var(--dur-base); }
 /* Project Journey (drivepad): the clips one under another, oldest first, each
-   with a short note beside it. Side by side only while the column has room
-   for both; narrower, the note goes under its clip. */
-.journey { container-type: inline-size; display: flex; flex-direction: column; gap: clamp(24px,3vh,32px); margin-top: 24px; }
-.journey-item { display: grid; grid-template-columns: minmax(0,1fr); gap: 16px; align-items: start; }
+   with its episode and a short note under it, set like a program and its
+   description in the Software tab. */
+.journey { display: flex; flex-direction: column; gap: clamp(32px,4vh,48px); margin-top: 24px; }
 .journey-item .video-frame { margin-top: 0; }
-.journey-text { margin: 0; font-size: var(--fs-small); font-weight: 300; line-height: 1.65; color: var(--text-2); text-wrap: pretty; }
-@container (min-width: 440px) {
-  .journey-item { grid-template-columns: minmax(0,3fr) minmax(0,2fr); gap: 24px; }
-}
+.journey-title { margin: 16px 0 0; font-size: var(--fs-body); font-weight: 400; line-height: 1.55; color: var(--text-1); }
+.journey-text { margin: 12px 0 0; font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); text-wrap: pretty; }
 
 .info-intro { margin: 24px 0 0; font-size: var(--fs-body); font-weight: 300; line-height: 1.65; color: var(--text-2); text-wrap: pretty; }
 .info-grid {

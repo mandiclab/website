@@ -712,7 +712,7 @@ izabrao (Cyber Monday), vlasnik ga nije rekao.
   „Up to 33% off easyrace" i odbrojavanje. Pre akcije broji do početka, tokom
   akcije do kraja, posle nestaje. Ceo okvir vodi na easyrace stranicu.
 - **Cene (vlasnikova tabela):** uređaj $20 → $16 (−20%); Starter pojedinačno
-  $40, redovno $35, BF $28 (−30%); Core pojedinačno $60, redovno $50, BF $40
+  $40, redovno $35, BF $30 (−25%; prvo je bilo $28); Core pojedinačno $60, redovno $50, BF $40
   (−33%). Popust kod kompleta se računa od zbira pojedinačnih cena. Uređaji i
   Pro u draftu nemaju BF cenu.
 - Redovna cena nosi `.reg-price`, akcijska `.sale-price`; `<html data-sale>`

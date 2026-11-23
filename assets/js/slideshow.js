@@ -4,7 +4,8 @@
 //   data-indicator="dots"  play/pause button and dots over the image (default)
 //   data-indicator="thumbs" thumbnail strip below the slideshow
 //   data-indicator="none"  no dots or thumbnails, arrows only (news images)
-//   data-interval="6000"   milliseconds between slides
+//   data-interval="6000"   milliseconds between slides; a .slide can carry its
+//                          own data-interval to stay up longer than the rest
 //   data-hover-pause="off" keep playing while the pointer is over it (the hero
 //                          fills the screen, and it has its own pause button)
 // Ported from the concept's HeroSlideshow component.
@@ -34,6 +35,13 @@
     var moving = false;
     var dots = [], thumbs = [], playBtn = null;
 
+    // How long the slide now on screen stays up: its own data-interval if it
+    // has one, otherwise the slideshow's.
+    function pace(times) {
+      var own = Number(slides[state.idx] && slides[state.idx].getAttribute('data-interval'));
+      return (own || base) * (times || 1);
+    }
+
     function held() { return state.paused || state.hover || state.focus || state.hidden; }
 
     // A manual change stretches the next interval once (2x), then the cycle
@@ -47,7 +55,7 @@
         // wait again rather than spend the turn unseen. Waiting rather than
         // holding means it picks itself up whenever it is shown again, even if
         // nothing tells it (docs/odluke.md).
-        if (!shell.offsetParent) { schedule(base); return; }
+        if (!shell.offsetParent) { schedule(pace()); return; }
         go((state.idx + 1) % count, false, 1);
       }, delay);
     }
@@ -116,7 +124,7 @@
     }
 
     function go(n, manual, dir) {
-      if (count < 2 || n === state.idx) { if (manual) schedule(base * 2); return; }
+      if (count < 2 || n === state.idx) { if (manual) schedule(pace(2)); return; }
       if (!dir) {
         var ahead = (n - state.idx + count) % count;
         dir = ahead <= count - ahead ? 1 : -1;
@@ -163,7 +171,7 @@
         });
         render();
       }, ms + 60);
-      schedule(manual ? base * 2 : base);
+      schedule(pace(manual ? 2 : 1));
     }
 
     function step(dir) {
@@ -176,7 +184,7 @@
       state[key] = val;
       if (key === 'paused') render();
       if (held()) clearTimeout(timer);
-      else schedule(base);
+      else schedule(pace());
     }
 
     function render() {
@@ -309,12 +317,12 @@
     // A tab panel opening tells its slideshow to start its wait over, so the
     // first change comes a whole interval later rather than the moment the tab
     // is opened. product.js sends it (docs/odluke.md).
-    shell.addEventListener('ml:shown', function () { schedule(base); });
+    shell.addEventListener('ml:shown', function () { schedule(pace()); });
 
     if (count) slides[0].style.transform = 'translateX(0%)';
     shell.setAttribute('data-ready', '');
     render();
-    schedule(base);
+    schedule(pace());
   }
 
   Array.prototype.forEach.call(document.querySelectorAll('[data-slideshow]'), init);

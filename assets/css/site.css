@@ -2080,11 +2080,13 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
    over the whole screen, matching the site without being held to it — so it
    bends the scale on purpose: the title and the Core price are sized to the
    screen, not to the type scale, and the rose glows harder than anywhere else.
-   Colours are still only the site's own. While it shows, the easyrace text
+   Colours are still only the site's own. Nothing in it blurs what is behind
+   it and the only thing that moves is one opacity, so it costs the graphics
+   card next to nothing. While it shows, the easyrace text
    under it steps aside; its h1 stays for screen readers. When the sale is
    over (or without JavaScript, where it could never go away) it is gone and
    the slide is as it was. */
-:root:not([data-sale="soon"]):not([data-sale="on"]) .bf { display: none; }
+:root:not([data-sale="soon"]):not([data-sale="on"]) :is(.bf, .bf-strip) { display: none; }
 :root[data-sale="soon"] .hero-text.has-sale, :root[data-sale="on"] .hero-text.has-sale {
   position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
 }
@@ -2098,34 +2100,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   flex-direction: column;
   background:
     radial-gradient(ellipse 70% 60% at 50% 58%, rgba(232,145,137,0.30) 0%, rgba(232,145,137,0.08) 45%, transparent 70%),
-    linear-gradient(180deg, rgba(11,11,12,0.72) 0%, rgba(11,11,12,0.86) 100%);
-  backdrop-filter: blur(6px) saturate(130%);
-  -webkit-backdrop-filter: blur(6px) saturate(130%);
+    linear-gradient(180deg, rgba(11,11,12,0.8) 0%, rgba(11,11,12,0.9) 100%);
   overflow: hidden;
 }
-
-/* A rose band running across the top, like a race-day banner. */
-.bf-ticker {
-  flex: 0 0 auto;
-  overflow: hidden;
-  border-top: 1px solid rgba(232,145,137,0.5);
-  border-bottom: 1px solid rgba(232,145,137,0.5);
-  background: rgba(232,145,137,0.14);
-  box-shadow: 0 0 40px rgba(232,145,137,0.25);
-}
-.bf-ticker-track { display: flex; width: max-content; animation: bf-ticker 40s linear infinite; }
-.bf-ticker-track > div { display: flex; align-items: center; }
-.bf-ticker span {
-  padding: 12px 24px;
-  font-size: var(--fs-label);
-  font-weight: 500;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  white-space: nowrap;
-  color: var(--accent-rose);
-}
-.bf-ticker i { width: 6px; height: 6px; background: var(--accent-rose); box-shadow: 0 0 10px var(--accent-rose); transform: rotate(45deg); }
-@keyframes bf-ticker { to { transform: translateX(-50%); } }
 
 .bf-body {
   flex: 1 1 auto;
@@ -2135,7 +2112,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   align-items: center;
   justify-content: center;
   gap: clamp(16px,2.6vh,32px);
-  padding: 16px var(--gutter) 72px;
+  padding: 24px var(--gutter) 72px;
   text-align: center;
 }
 .bf-kicker {
@@ -2164,12 +2141,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
-  filter: drop-shadow(0 0 24px rgba(232,145,137,0.6));
-  animation: bf-glow 2.4s ease-in-out infinite alternate;
-}
-@keyframes bf-glow {
-  from { filter: drop-shadow(0 0 12px rgba(232,145,137,0.35)); }
-  to { filter: drop-shadow(0 0 32px rgba(232,145,137,0.8)); }
+  filter: drop-shadow(0 0 24px rgba(232,145,137,0.5));
 }
 
 .bf-deals { display: flex; align-items: stretch; justify-content: center; gap: clamp(12px,1.6vw,24px); }
@@ -2182,9 +2154,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   min-width: clamp(160px,15vw,220px);
   padding: clamp(16px,2vh,24px) clamp(16px,2vw,32px);
   border: 1px solid rgba(232,145,137,0.35);
-  background: rgba(11,11,12,0.5);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: rgba(11,11,12,0.6);
 }
 .bf-deal-name { font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-2); }
 .bf-deal-prices { display: flex; align-items: baseline; gap: 12px; white-space: nowrap; }
@@ -2194,21 +2164,33 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .bf-deal.is-core {
   min-width: clamp(220px,22vw,340px);
   border-color: var(--accent-rose);
+  position: relative;
   background: rgba(232,145,137,0.16);
+  box-shadow: 0 0 24px rgba(232,145,137,0.25), inset 0 0 24px rgba(232,145,137,0.08);
+}
+/* The pulse is a stronger glow on its own layer that fades in and out. Only
+   its opacity moves, which the graphics card does for free; animating the
+   glow itself (or a blur behind the slide) redraws it on every frame and ran
+   a desktop GPU at full load. */
+.bf-deal.is-core::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  box-shadow: 0 0 72px rgba(232,145,137,0.5), inset 0 0 32px rgba(232,145,137,0.16);
+  opacity: 0;
+  will-change: opacity;
   animation: bf-pulse 2.4s ease-in-out infinite alternate;
 }
 .bf-deal.is-core .bf-deal-name { color: var(--accent-rose); }
 .bf-deal.is-core s { font-size: var(--fs-h1); }
 .bf-deal.is-core b { font-size: min(7vw, 11vh); text-shadow: 0 0 40px rgba(232,145,137,0.5); }
 .bf-deal.is-core .bf-deal-save { padding: 4px 12px; background: var(--accent-rose); color: var(--bg); text-shadow: none; }
-@keyframes bf-pulse {
-  from { box-shadow: 0 0 24px rgba(232,145,137,0.25), inset 0 0 24px rgba(232,145,137,0.08); }
-  to { box-shadow: 0 0 72px rgba(232,145,137,0.5), inset 0 0 32px rgba(232,145,137,0.16); }
-}
+@keyframes bf-pulse { to { opacity: 1; } }
 
 .bf-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px clamp(24px,3vw,48px); }
 .bf-clock { display: flex; align-items: flex-start; gap: clamp(12px,1.6vw,24px); }
-.bf-clock-label { align-self: center; font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-2); }
+.bf-clock-label { align-self: center; white-space: nowrap; font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-2); }
 .bf-clock .gate-num { font-size: var(--fs-display); color: var(--accent-rose); text-shadow: 0 0 26px rgba(232,145,137,0.45); }
 .bf-cta {
   display: inline-flex;
@@ -2226,6 +2208,39 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 .bf-cta:hover { color: var(--bg); box-shadow: 0 0 64px rgba(232,145,137,0.75); transform: translateY(-2px); }
 .bf-cta:focus-visible { outline-color: var(--text-1); }
+
+/* The easyrace page gets a smaller cousin of it, a band above the tabs (as
+   the Ko-fi note sits on DJC-DIY): the same look, but only as tall as it
+   needs, so the page itself stays in view. */
+.bf-strip {
+  display: grid;
+  grid-template-columns: minmax(0,1fr) auto;
+  grid-template-areas: "head side" "deals deals";
+  align-items: center;
+  gap: clamp(24px,2.6vw,32px) clamp(24px,3vw,48px);
+  margin-top: clamp(32px,3.6vw,56px);
+  padding: clamp(24px,2.6vw,40px);
+  border: 1px solid rgba(232,145,137,0.4);
+  background:
+    radial-gradient(ellipse 60% 120% at 50% 50%, rgba(232,145,137,0.22) 0%, rgba(232,145,137,0.06) 50%, transparent 75%),
+    rgba(11,11,12,0.6);
+  box-shadow: 0 0 40px rgba(232,145,137,0.12);
+}
+.bf-strip-head { grid-area: head; display: flex; flex-direction: column; gap: 8px; text-align: left; }
+.bf-strip .bf-deals { grid-area: deals; }
+.bf-strip .bf-deal { flex: 1 1 0; }
+.bf-strip .bf-kicker { letter-spacing: 0.18em; }
+.bf-strip .bf-title { font-size: clamp(36px,4.4vw,64px); line-height: 0.95; }
+.bf-strip .bf-deal { min-width: 0; padding: 16px; }
+.bf-strip .bf-deal.is-core { min-width: 0; padding: 16px 24px; }
+.bf-strip .bf-deal.is-core b { font-size: var(--fs-display); }
+.bf-strip-side { grid-area: side; display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px clamp(24px,3vw,40px); }
+.bf-strip .bf-clock .gate-num { font-size: var(--fs-h1); }
+@media (max-width: 900px) {
+  .bf-strip { grid-template-columns: minmax(0,1fr); grid-template-areas: "head" "deals" "side"; justify-items: center; }
+  .bf-strip .bf-deals { justify-self: stretch; }
+  .bf-strip-head { align-items: center; text-align: center; }
+}
 
 @media (max-width: 900px) {
   .bf-deal { min-width: 0; padding: 12px 16px; }
@@ -2248,6 +2263,10 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .bf-deal-save { flex: 0 0 auto; min-width: 48px; text-align: right; }
   .bf-deal.is-core .bf-deal-save { text-align: center; }
   .bf-clock .gate-num { font-size: var(--fs-h2); }
+  .bf-strip { padding: 24px 16px; }
+  .bf-strip .bf-deal, .bf-strip .bf-deal.is-core { padding: 8px 12px; }
+  .bf-strip .bf-deal.is-core b { font-size: var(--fs-h1); }
+  .bf-deal-prices { gap: 8px; }
 }
 
 .sale-on { display: none; }

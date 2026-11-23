@@ -710,14 +710,28 @@ izabrao (Cyber Monday), vlasnik ga nije rekao.
 
 - **Naslovna:** ceo prvi slajd preuzima Black Friday reklama (`.bf`), preko
   fotografije, od ivice do ivice (vlasnik: „mega giga ultra", „ne striktno u
-  stilu sajta nego da se slaže uz sajt"). Roza traka koja klizi na vrhu,
-  ogroman naslov BLACK FRIDAY (FRIDAY u prelivu roza u zlatnu, puni, jer
+  stilu sajta nego da se slaže uz sajt"). Ogroman naslov BLACK FRIDAY (FRIDAY u prelivu roza u zlatnu, puni, jer
   obris pokazuje šavove unutar slova), tri ponude sa precrtanom cenom, Core
   najveći i pulsira, odbrojavanje i roza dugme „Shop the sale" ka Bundles.
   Naslov i Core cena su namerno van skale, po veličini ekrana. Easyrace tekst
   slajda se za to vreme sklanja, a njegov `h1` ostaje za čitače ekrana. Pre
   akcije broji do početka, tokom akcije do kraja, posle nestaje i slajd je
   kao ranije. Na telefonu su ponude jedna ispod druge, Core prvi.
+  Traka koja je klizila na vrhu je skinuta (vlasnik).
+- **Reklama ne sme da opterećuje grafičku.** Prva verzija je držala RX 6600
+  na 100%: zamućenje cele fotografije iza reklame (`backdrop-filter`) i
+  animirani sjaj (`filter`, `box-shadow`) iscrtavali su se ponovo u svakom
+  kadru. Sada nema zamućenja iza nje, sjaj naslova stoji, a puls Core ponude
+  je poseban sloj kome se menja samo providnost. Ne vraćati animirani
+  `filter`, `box-shadow` ni `backdrop-filter` na reklamu.
+- **Slajd sa reklamom traje 30s umesto 9s** dok akcija traje (vlasnik:
+  „tri ili pet puta duže"). Slajd nosi `data-sale-interval`, `sale.js` ga
+  pretvara u `data-interval` dok je akcija najavljena ili u toku, a
+  `slideshow.js` sada poštuje `data-interval` pojedinačnog slajda. Posle
+  akcije slajd se vraća na 9s.
+- **easyrace stranica** ima manju verziju (`.bf-strip`) između uvoda i
+  tabova: naslov i tajmer sa dugmetom u prvom redu, tri ponude ispod. Visoka
+  je koliko treba, da se stranica i dalje vidi.
 - **Cene (vlasnikova tabela):** uređaj $20 → $16 (−20%); Starter pojedinačno
   $40, redovno $35, BF $30 (−25%; prvo je bilo $28); Core pojedinačno $60, redovno $50, BF $40
   (−33%). Popust kod kompleta se računa od zbira pojedinačnih cena. Uređaji i
@@ -728,5 +742,5 @@ izabrao (Cyber Monday), vlasnik ga nije rekao.
 - Naplata je u Payhip-u: iste cene vlasnik mora da postavi i tamo.
 
 Posle akcije: obriši `assets/js/sale.js`, oba `ML_SALE` bloka u `<head>`-u,
-`.bf` blok i klasu `has-sale` sa naslovne, `.sale-price` delove (i `.reg-price` omotače) na
+`.bf` blok, `data-sale-interval` i klasu `has-sale` sa naslovne, `.bf-strip` sa easyrace stranice, `.sale-price` delove (i `.reg-price` omotače) na
 easyrace stranici i blok „Black Friday sale" na dnu `site.css`.

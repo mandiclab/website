@@ -25,10 +25,19 @@
 
   function phase(now) { return now < start ? 'soon' : now < end ? 'on' : 'over'; }
 
+  // A slide carrying data-sale-interval stays up that long while the sale is
+  // announced or running, and goes back to the slideshow's pace after it.
+  function pace(p) {
+    document.querySelectorAll('[data-sale-interval]').forEach(function (slide) {
+      if (p === 'over') slide.removeAttribute('data-interval');
+      else slide.setAttribute('data-interval', slide.getAttribute('data-sale-interval'));
+    });
+  }
+
   function tick() {
     var now = Date.now();
     var p = phase(now);
-    if (root.getAttribute('data-sale') !== p) root.setAttribute('data-sale', p);
+    if (root.getAttribute('data-sale') !== p) { root.setAttribute('data-sale', p); pace(p); }
     if (p === 'over') { clearInterval(timer); return; }
     var parts = split((p === 'soon' ? start : end) - now);
     UNITS.forEach(function (unit, i) {
@@ -38,6 +47,7 @@
     });
   }
 
+  pace(phase(Date.now()));
   tick();
   timer = setInterval(tick, 1000);
 })();

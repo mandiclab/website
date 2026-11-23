@@ -2430,6 +2430,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 /* Here the band stands apart from the project, so it names it first. */
 .bf-strip-for { margin: 0 0 4px; font-size: var(--fs-h1); font-weight: 300; line-height: 1.1; color: var(--text-1); }
 .bf-strip-for span { font-size: var(--fs-body); font-weight: 300; color: var(--text-2); }
+.bf-strip-for i { font-style: normal; }
+.bf-body > .bf-strip-for { margin: 0 0 -8px; font-size: var(--fs-display); font-weight: 200; }
+.bf-body > .bf-strip-for span { font-size: var(--fs-h3); }
 
 /* easyrace hero: a quiet badge in the corner of the first photo only, so the
    photo still leads. */
@@ -2472,6 +2475,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .bf-body { gap: 16px; padding: 12px var(--gutter) 64px; }
   .bf-title { font-size: 12vw; }
   .bf-kicker { letter-spacing: 0.1em; }
+  .bf-body > .bf-strip-for { font-size: var(--fs-h1); margin: 0; }
+  .bf-body > .bf-strip-for span { display: block; font-size: var(--fs-small); }
+  .bf-strip-for i { display: none; }
   .bf-deals { flex-direction: column; align-self: stretch; gap: 8px; }
   .bf-deal { flex-direction: row; justify-content: space-between; padding: 8px 16px; }
   .bf-deal.is-core { order: -1; padding: 12px 16px; }

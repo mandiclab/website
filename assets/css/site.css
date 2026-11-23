@@ -2172,6 +2172,11 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   border-color: rgba(232,145,137,0.5);
   box-shadow: 0 0 24px rgba(232,145,137,0.12);
 }
+/* Before the sale, Buy (at today's price) comes before the sale price that
+   is not here yet. */
+:root[data-sale="soon"] .bundle.is-bf { display: flex; flex-direction: column; }
+:root[data-sale="soon"] .bundle.is-bf > .bundle-bf-status { align-self: center; }
+:root[data-sale="soon"] .bundle.is-bf > :is(.bundle-abs, .bf-tag) { order: 1; }
 :root[data-sale="soon"] .bundle.is-bf .bundle-abs {
   margin-top: 16px;
   padding-top: 16px;

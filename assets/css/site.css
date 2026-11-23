@@ -2065,16 +2065,50 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 
 /* ── Black Friday sale ─────────────────────────────────────────────────── */
 /* Temporary (assets/js/sale.js, docs/odluke.md). <html data-sale> is soon, on
-   or over. Sale prices show only while it is on — and always when the site is
-   opened locally, like drafts, so they can be checked before the day. */
+   or over; opened locally, ?sale=on (or soon, over) previews a phase. Sale
+   prices show only while it is on. Before that, each price carries a rose tag
+   counting down to its sale price; during it, the tag counts down to the end. */
 
 .sale-price { display: none; }
-:root[data-sale="on"] .reg-price, :root[data-show-drafts] .reg-price { display: none; }
-:root[data-sale="on"] .sale-price, :root[data-show-drafts] .sale-price { display: inline; }
+:root[data-sale="on"] .reg-price { display: none; }
+:root[data-sale="on"] .sale-price { display: inline; }
+:root:not([data-sale="soon"]):not([data-sale="on"]) .bf-tag { display: none; }
 
-.er-was { margin-right: 12px; font-size: var(--fs-body); font-weight: 300; color: var(--text-3); text-decoration: line-through; }
-.er-save { display: block; margin-top: 8px; font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.18em; color: var(--accent-rose); text-shadow: 0 0 12px rgba(232,145,137,0.25); }
-.bundle-save .sale-price { line-height: 1.6; text-align: center; }
+.er-was { margin-right: 12px; font-size: var(--fs-h3); font-weight: 300; color: var(--text-3); text-decoration: line-through; text-decoration-color: var(--accent-rose); text-decoration-thickness: 2px; }
+/* The sale badge: rose, filled, the way the Core deal wears it in the ads. */
+.er-save, :root .bundle .bundle-save span.sale-price {
+  padding: 4px 10px;
+  background: var(--accent-rose);
+  color: var(--bg);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-shadow: none;
+  white-space: nowrap;
+}
+.er-save { display: table; margin-top: 12px; }
+:root:not([data-sale="on"]) .bundle .bundle-save span.sale-price { display: none; }
+:root[data-sale="on"] .er-price, :root[data-sale="on"] .bundle-price { text-shadow: 0 0 24px rgba(232,145,137,0.55); }
+:root[data-sale="on"] .bundle-was { text-decoration-color: var(--accent-rose); text-decoration-thickness: 2px; }
+.bf-tag {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0 6px;
+  margin-top: 12px;
+  padding: 6px 10px;
+  border: 1px solid rgba(232,145,137,0.4);
+  background: rgba(232,145,137,0.1);
+  font-size: var(--fs-label);
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--text-2);
+  box-shadow: 0 0 16px rgba(232,145,137,0.12);
+}
+.bf-tag b { font-weight: 500; color: var(--accent-rose); }
+.bf-tag-clock { font-weight: 500; color: var(--accent-rose); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.bundle .bf-tag { display: flex; }
 
 /* The takeover on the first home slide. The owner asked for it big and loud,
    over the whole screen, matching the site without being held to it — so it
@@ -2086,7 +2120,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
    under it steps aside; its h1 stays for screen readers. When the sale is
    over (or without JavaScript, where it could never go away) it is gone and
    the slide is as it was. */
-:root:not([data-sale="soon"]):not([data-sale="on"]) :is(.bf, .bf-strip) { display: none; }
+:root:not([data-sale="soon"]):not([data-sale="on"]) :is(.bf, .bf-strip, .bf-badge:not(.is-news)) { display: none; }
 :root[data-sale="soon"] .hero-text.has-sale, :root[data-sale="on"] .hero-text.has-sale {
   position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
 }
@@ -2142,6 +2176,10 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   background-clip: text;
   -webkit-text-fill-color: transparent;
   filter: drop-shadow(0 0 24px rgba(232,145,137,0.5));
+  /* Room for the Y's arm: the tight tracking pulls the box in past the last
+     letter, and the gradient is only painted inside the box. */
+  padding-right: 0.06em;
+  margin-right: -0.06em;
 }
 
 .bf-deals { display: flex; align-items: stretch; justify-content: center; gap: clamp(12px,1.6vw,24px); }
@@ -2209,6 +2247,21 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .bf-cta:hover { color: var(--bg); box-shadow: 0 0 64px rgba(232,145,137,0.75); transform: translateY(-2px); }
 .bf-cta:focus-visible { outline-color: var(--text-1); }
 
+/* "Lifetime free updates" rides along in every ad: it matters to buyers. */
+.bf-perk {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-1);
+}
+.bf-perk::before, .bf-perk::after { content: ""; width: 6px; height: 6px; background: var(--accent-rose); transform: rotate(45deg); box-shadow: 0 0 10px rgba(232,145,137,0.6); }
+.bf-strip-head .bf-perk { margin-top: 4px; }
+
 /* The easyrace page gets a smaller cousin of it, a band above the tabs (as
    the Ko-fi note sits on DJC-DIY): the same look, but only as tall as it
    needs, so the page itself stays in view. */
@@ -2242,6 +2295,35 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .bf-strip-head { align-items: center; text-align: center; }
 }
 
+/* Projects page: the same band, at the top above the search. */
+.bf-strip.is-projects { margin: 0 0 clamp(32px,3.6vw,48px); }
+
+/* easyrace hero: a quiet badge in the corner of the first photo only, so the
+   photo still leads. */
+.bf-badge {
+  position: absolute;
+  left: var(--gutter);
+  bottom: clamp(16px,2.4vw,32px);
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  padding: 16px 20px;
+  border: 1px solid rgba(232,145,137,0.45);
+  background: rgba(11,11,12,0.72);
+  box-shadow: 0 0 32px rgba(232,145,137,0.2);
+  color: var(--text-1);
+  text-decoration: none;
+  transition: border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
+}
+/* In the news it is a mark, not a link, and stays after the sale with the news. */
+.bf-badge.is-news { left: 16px; bottom: 16px; pointer-events: none; }
+.bf-badge:hover { color: var(--text-1); border-color: var(--accent-rose); box-shadow: 0 0 48px rgba(232,145,137,0.35); }
+.bf-badge-title { font-size: var(--fs-h1); line-height: 1; letter-spacing: -0.01em; text-transform: uppercase; white-space: nowrap; }
+.bf-badge-line { font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-1); }
+.bf-badge-clock { font-size: var(--fs-label); font-weight: 400; letter-spacing: 0.08em; color: var(--text-2); }
+
 @media (max-width: 900px) {
   .bf-deal { min-width: 0; padding: 12px 16px; }
   .bf-deal.is-core { min-width: 0; }
@@ -2267,6 +2349,11 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .bf-strip .bf-deal, .bf-strip .bf-deal.is-core { padding: 8px 12px; }
   .bf-strip .bf-deal.is-core b { font-size: var(--fs-h1); }
   .bf-deal-prices { gap: 8px; }
+  .bf-perk { letter-spacing: 0.12em; }
+  .bf-badge { left: 12px; bottom: 12px; padding: 8px 12px; gap: 2px; }
+  .bf-badge-title { font-size: var(--fs-h3); }
+  .bf-badge-line { letter-spacing: 0.06em; }
+  .bf-badge-clock { display: none; }
 }
 
 .sale-on { display: none; }

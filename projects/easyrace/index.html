@@ -34,8 +34,8 @@
 <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
-<!-- Black Friday sale, temporary (docs/odluke.md). Times are Serbian time. -->
-<script>window.ML_SALE={start:'2026-11-27T00:00:00+01:00',end:'2026-12-01T00:00:00+01:00'};(function(s,n){n=Date.now();document.documentElement.setAttribute('data-sale',n<Date.parse(s.start)?'soon':n<Date.parse(s.end)?'on':'over');})(window.ML_SALE);</script>
+<!-- Black Friday sale, temporary (docs/odluke.md). Times are Serbian time. Opened locally, ?sale=soon, ?sale=on or ?sale=over shows that phase. -->
+<script>window.ML_SALE={start:'2026-11-27T00:00:00+01:00',end:'2026-12-01T00:00:00+01:00'};(function(s,h,f,n){if(/^(localhost|127\.0\.0\.1|\[::1\])$/.test(location.hostname)&&(f=/[?&]sale=(soon|on|over)(?:&|$)/.exec(location.search)))s.force=f[1];n=Date.now();h.setAttribute('data-sale',s.force||(n<Date.parse(s.start)?'soon':n<Date.parse(s.end)?'on':'over'));})(window.ML_SALE,document.documentElement);</script>
 <script src="/assets/js/sale.js" defer></script>
 <script src="/assets/js/site.js" defer></script>
 <script src="/assets/js/slideshow.js" defer></script>
@@ -66,7 +66,15 @@
             <!-- One .slide per image (5120×2160). The first loads eagerly, the
                  others use loading="lazy". Thumbnails below are made from these
                  images automatically. -->
-            <div class="slide"><img src="/assets/images/easyrace/hero-000.webp" alt="The easyrace set on a desk: the printed steering wheel on the left, the three pedals on their base plate in the middle and the H-pattern shifter on the right, with workshop drawers and a pegboard behind them" width="5120" height="2160" loading="eager" fetchpriority="high" decoding="async"></div>
+            <div class="slide">
+              <img src="/assets/images/easyrace/hero-000.webp" alt="The easyrace set on a desk: the printed steering wheel on the left, the three pedals on their base plate in the middle and the H-pattern shifter on the right, with workshop drawers and a pegboard behind them" width="5120" height="2160" loading="eager" fetchpriority="high" decoding="async">
+              <!-- Black Friday badge, temporary: first photo only, gone after the sale (assets/js/sale.js). -->
+              <a class="bf-badge" href="#bundles">
+                <span class="bf-badge-title"><span class="bf-black">Black</span> <span class="bf-friday">Friday</span></span>
+                <span class="bf-badge-line">Up to 33% off · Lifetime free updates</span>
+                <span class="bf-badge-clock" aria-hidden="true"><span class="sale-soon">Starts in</span><span class="sale-on">Ends in</span> <span class="bf-tag-clock"><span data-sale-days>00</span>d <span data-sale-hours>00</span>h <span data-sale-minutes>00</span>m <span data-sale-seconds>00</span>s</span></span>
+              </a>
+            </div>
             <div class="slide"><img src="/assets/images/easyrace/hero-001.webp" alt="Close-up of the printed steering wheel with the MandićLab logo on its hub, the pedals standing behind it" width="5120" height="2160" loading="lazy" decoding="async"></div>
             <div class="slide"><img src="/assets/images/easyrace/hero-002.webp" alt="The three pedals seen from the side, with the green, red and blue printed springs behind them and the wiring running along the frame" width="5120" height="2160" loading="lazy" decoding="async"></div>
             <div class="slide"><img src="/assets/images/easyrace/hero-003.webp" alt="Close-up of the H-pattern shifter: the silver knob in its printed gate, with the pedal plate beside it on the desk" width="5120" height="2160" loading="lazy" decoding="async"></div>
@@ -103,6 +111,7 @@
             <div class="bf-strip-head">
               <p class="bf-kicker"><span class="sale-soon">Starts Friday, 27 November</span><span class="sale-on">Until Monday, 30 November</span></p>
               <p class="bf-title"><span class="bf-black">Black</span> <span class="bf-friday">Friday</span></p>
+              <p class="bf-perk">Lifetime free updates</p>
             </div>
             <div class="bf-deals">
               <div class="bf-deal">
@@ -156,14 +165,16 @@
                       <div class="bundle-name">Starter</div>
                       <div class="bundle-was">$40</div>
                       <div class="bundle-price"><span class="reg-price">$35</span><span class="sale-price"><span class="visually-hidden">Black Friday price </span>$30</span></div>
-                      <div class="bundle-save"><span class="reg-price">SAVE 13%</span><span class="sale-price">BLACK FRIDAY<br>SAVE 25%</span></div>
+                      <div class="bundle-save"><span class="reg-price">SAVE 13%</span><span class="sale-price">BLACK FRIDAY −25%</span></div>
+                      <div class="bf-tag"><span class="sale-soon">Black Friday <b>$30</b> <span aria-hidden="true">in</span><span class="visually-hidden">from Friday, 27 November</span></span><span class="sale-on">Black Friday <span aria-hidden="true">ends in</span><span class="visually-hidden">until Monday, 30 November</span></span> <span class="bf-tag-clock" aria-hidden="true"><span data-sale-days>00</span>d <span data-sale-hours>00</span>h <span data-sale-minutes>00</span>m <span data-sale-seconds>00</span>s</span></div>
                       <a class="bundle-buy" href="https://payhip.com/b/t64HF" target="_blank" rel="noopener noreferrer">BUY<span class="visually-hidden"> the Starter bundle</span></a>
                     </div>
                     <div class="bundle is-blue">
                       <div class="bundle-name">Core</div>
                       <div class="bundle-was">$60</div>
                       <div class="bundle-price"><span class="reg-price">$50</span><span class="sale-price"><span class="visually-hidden">Black Friday price </span>$40</span></div>
-                      <div class="bundle-save"><span class="reg-price">SAVE 17%</span><span class="sale-price">BLACK FRIDAY<br>SAVE 33%</span></div>
+                      <div class="bundle-save"><span class="reg-price">SAVE 17%</span><span class="sale-price">BLACK FRIDAY −33%</span></div>
+                      <div class="bf-tag"><span class="sale-soon">Black Friday <b>$40</b> <span aria-hidden="true">in</span><span class="visually-hidden">from Friday, 27 November</span></span><span class="sale-on">Black Friday <span aria-hidden="true">ends in</span><span class="visually-hidden">until Monday, 30 November</span></span> <span class="bf-tag-clock" aria-hidden="true"><span data-sale-days>00</span>d <span data-sale-hours>00</span>h <span data-sale-minutes>00</span>m <span data-sale-seconds>00</span>s</span></div>
                       <a class="bundle-buy" href="https://payhip.com/b/rG0Ky" target="_blank" rel="noopener noreferrer">BUY<span class="visually-hidden"> the Core bundle</span></a>
                     </div>
                     <div class="bundle is-rose" data-draft>
@@ -439,7 +450,8 @@
                     <p>Works with most racing games.</p>
                   </div>
                   <div>
-                    <div class="er-price"><span class="reg-price">$20</span><span class="sale-price"><span class="er-was"><span class="visually-hidden">Was </span>$20</span><span class="visually-hidden">, Black Friday price </span>$16<span class="er-save">BLACK FRIDAY · SAVE 20%</span></span></div>
+                    <div class="er-price"><span class="reg-price">$20</span><span class="sale-price"><span class="er-was"><span class="visually-hidden">Was </span>$20</span><span class="visually-hidden">, Black Friday price </span>$16<span class="er-save">BLACK FRIDAY −20%</span></span></div>
+                    <div class="bf-tag"><span class="sale-soon">Black Friday <b>$16</b> <span aria-hidden="true">in</span><span class="visually-hidden">from Friday, 27 November</span></span><span class="sale-on">Black Friday <span aria-hidden="true">ends in</span><span class="visually-hidden">until Monday, 30 November</span></span> <span class="bf-tag-clock" aria-hidden="true"><span data-sale-days>00</span>d <span data-sale-hours>00</span>h <span data-sale-minutes>00</span>m <span data-sale-seconds>00</span>s</span></div>
                     <div class="er-buy-row"><a class="er-buy" href="https://payhip.com/b/970Du" target="_blank" rel="noopener noreferrer">Buy<span class="visually-hidden"> easysteer</span></a></div>
                   </div>
                 </div>
@@ -588,7 +600,8 @@
                     <p>Works with most racing games.</p>
                   </div>
                   <div>
-                    <div class="er-price"><span class="reg-price">$20</span><span class="sale-price"><span class="er-was"><span class="visually-hidden">Was </span>$20</span><span class="visually-hidden">, Black Friday price </span>$16<span class="er-save">BLACK FRIDAY · SAVE 20%</span></span></div>
+                    <div class="er-price"><span class="reg-price">$20</span><span class="sale-price"><span class="er-was"><span class="visually-hidden">Was </span>$20</span><span class="visually-hidden">, Black Friday price </span>$16<span class="er-save">BLACK FRIDAY −20%</span></span></div>
+                    <div class="bf-tag"><span class="sale-soon">Black Friday <b>$16</b> <span aria-hidden="true">in</span><span class="visually-hidden">from Friday, 27 November</span></span><span class="sale-on">Black Friday <span aria-hidden="true">ends in</span><span class="visually-hidden">until Monday, 30 November</span></span> <span class="bf-tag-clock" aria-hidden="true"><span data-sale-days>00</span>d <span data-sale-hours>00</span>h <span data-sale-minutes>00</span>m <span data-sale-seconds>00</span>s</span></div>
                     <div class="er-buy-row"><a class="er-buy" href="https://payhip.com/b/ZR1SD" target="_blank" rel="noopener noreferrer">Buy<span class="visually-hidden"> easydrive</span></a></div>
                   </div>
                 </div>
@@ -726,7 +739,8 @@
                     <p>Works with most racing games.</p>
                   </div>
                   <div>
-                    <div class="er-price"><span class="reg-price">$20</span><span class="sale-price"><span class="er-was"><span class="visually-hidden">Was </span>$20</span><span class="visually-hidden">, Black Friday price </span>$16<span class="er-save">BLACK FRIDAY · SAVE 20%</span></span></div>
+                    <div class="er-price"><span class="reg-price">$20</span><span class="sale-price"><span class="er-was"><span class="visually-hidden">Was </span>$20</span><span class="visually-hidden">, Black Friday price </span>$16<span class="er-save">BLACK FRIDAY −20%</span></span></div>
+                    <div class="bf-tag"><span class="sale-soon">Black Friday <b>$16</b> <span aria-hidden="true">in</span><span class="visually-hidden">from Friday, 27 November</span></span><span class="sale-on">Black Friday <span aria-hidden="true">ends in</span><span class="visually-hidden">until Monday, 30 November</span></span> <span class="bf-tag-clock" aria-hidden="true"><span data-sale-days>00</span>d <span data-sale-hours>00</span>h <span data-sale-minutes>00</span>m <span data-sale-seconds>00</span>s</span></div>
                     <div class="er-buy-row"><a class="er-buy" href="https://payhip.com/b/YKuIl" target="_blank" rel="noopener noreferrer">Buy<span class="visually-hidden"> easyshift</span></a></div>
                   </div>
                 </div>

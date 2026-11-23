@@ -23,7 +23,8 @@
     return [Math.floor(s / 86400), Math.floor(s / 3600) % 24, Math.floor(s / 60) % 60, s % 60];
   }
 
-  function phase(now) { return now < start ? 'soon' : now < end ? 'on' : 'over'; }
+  // A local preview can force a phase (?sale=on), set in the head.
+  function phase(now) { return sale.force || (now < start ? 'soon' : now < end ? 'on' : 'over'); }
 
   // A slide carrying data-sale-interval stays up that long while the sale is
   // announced or running, and goes back to the slideshow's pace after it.
@@ -39,7 +40,7 @@
     var p = phase(now);
     if (root.getAttribute('data-sale') !== p) { root.setAttribute('data-sale', p); pace(p); }
     if (p === 'over') { clearInterval(timer); return; }
-    var parts = split((p === 'soon' ? start : end) - now);
+    var parts = split((now < start ? start : end) - now);
     UNITS.forEach(function (unit, i) {
       document.querySelectorAll('[data-sale-' + unit + ']').forEach(function (cell) {
         cell.textContent = pad(parts[i]);

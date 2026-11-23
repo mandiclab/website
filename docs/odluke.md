@@ -761,3 +761,11 @@ izabrao (Cyber Monday), vlasnik ga nije rekao.
 Posle akcije: obriši `assets/js/sale.js`, oba `ML_SALE` bloka u `<head>`-u,
 `.bf` blok, `data-sale-interval` i klasu `has-sale` sa naslovne, `.bf-strip` sa easyrace i Projects stranice, `.bf-badge` sa easyrace hero-a, `.bf-tag` oznake, `.sale-price` delove (i `.reg-price` omotače) na
 easyrace stranici i blok „Black Friday sale" na dnu `site.css`.
+
+**Bundle kartice Starter i Core u Black Friday ruhu** (vlasnik, 23. novembra):
+dok je akcija najavljena ili traje, cela kartica dobija roza okvir i sjaj,
+BLACK FRIDAY u prelivu na vrhu, roza dugme Buy, a Core pulsira kao u
+reklamama. Ušteda se piše u dolarima, u odnosu na cenu pojedinačnih uređaja:
+pre akcije „Save $10 on Black Friday", tokom nje „YOU SAVE $10" zlatno, uz
+veliku novu cenu i „−25%". Klase `is-bf` / `is-core` na kartici,
+`.bundle-bf-head` i `.bundle-abs` u njoj; posle akcije se brišu.

@@ -2108,6 +2108,65 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .bf-tag-clock { font-weight: 500; color: var(--accent-rose); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .bundle .bf-tag { display: block; }
 
+/* The Starter and Core cards dress up for the sale, before it starts and
+   while it runs (the owner: the whole card in the ad style, with the saving
+   in dollars). Rose frame and glow, the gradient BLACK FRIDAY on top, a rose
+   Buy button; Core pulses like its deal in the ads. Gone after the sale. */
+.bundle-bf-head, .bundle-abs { display: none; }
+:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf {
+  position: relative;
+  border-color: var(--accent-rose);
+  background:
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(232,145,137,0.30) 0%, rgba(232,145,137,0.06) 60%, transparent 85%),
+    rgba(11,11,12,0.82);
+  box-shadow: 0 0 40px rgba(232,145,137,0.25), inset 0 0 24px rgba(232,145,137,0.08);
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-bf-head {
+  display: block;
+  margin: -4px 0 16px;
+  font-size: var(--fs-h3);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-name { color: var(--text-1); }
+:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-was { text-decoration-color: var(--accent-rose); text-decoration-thickness: 2px; }
+:root[data-sale="on"] .bundle.is-bf .bundle-price { font-size: calc(var(--fs-h1) * 1.4); }
+:root[data-sale="soon"] .bundle.is-bf .bundle-save span { color: var(--text-2); }
+:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-abs {
+  display: block;
+  margin-top: 12px;
+  font-size: var(--fs-h3);
+  font-weight: 500;
+  line-height: 1.3;
+  color: var(--accent-gold);
+  text-shadow: 0 0 16px rgba(232,201,140,0.45);
+}
+:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bf-tag { padding: 6px 4px; font-size: var(--fs-small); }
+:root[data-sale="on"] .bundle.is-bf .bundle-save span.sale-price { padding: 4px 14px; font-size: var(--fs-h3); letter-spacing: 0.06em; box-shadow: 0 0 20px rgba(232,145,137,0.45); }
+:root[data-sale="on"] .bundle.is-bf .bundle-abs { font-size: var(--fs-h2); text-transform: uppercase; letter-spacing: 0.04em; }
+:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-buy,
+:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-buy:hover {
+  border-color: var(--accent-rose);
+  background: var(--accent-rose);
+  color: var(--bg);
+  box-shadow: 0 0 24px rgba(232,145,137,0.4);
+}
+:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-buy:hover { box-shadow: 0 0 48px rgba(232,145,137,0.7); }
+:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf.is-core::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  pointer-events: none;
+  box-shadow: 0 0 72px rgba(232,145,137,0.55), inset 0 0 32px rgba(232,145,137,0.16);
+  opacity: 0;
+  will-change: opacity;
+  animation: bf-pulse 2.4s ease-in-out infinite alternate;
+}
+
 /* The takeover on the first home slide. The owner asked for it big and loud,
    over the whole screen, matching the site without being held to it — so it
    bends the scale on purpose: the title and the Core price are sized to the

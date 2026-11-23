@@ -2379,7 +2379,6 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   text-transform: uppercase;
   color: var(--text-1);
 }
-.bf-perk::before, .bf-perk::after { content: ""; width: 6px; height: 6px; background: var(--accent-rose); transform: rotate(45deg); box-shadow: 0 0 10px rgba(232,145,137,0.6); }
 .bf-strip-head .bf-perk { margin-top: 4px; }
 /* On the home takeover it is a headline of its own (the owner: make it stand out). */
 .bf > .bf-body > .bf-perk {
@@ -2392,7 +2391,6 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   letter-spacing: 0.16em;
   text-shadow: 0 0 20px rgba(242,242,240,0.35);
 }
-.bf > .bf-body > .bf-perk::before, .bf > .bf-body > .bf-perk::after { width: 8px; height: 8px; }
 
 /* The easyrace page gets a smaller cousin of it, a band above the tabs (as
    the Ko-fi note sits on DJC-DIY): the same look, but only as tall as it

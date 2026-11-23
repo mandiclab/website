@@ -780,3 +780,5 @@ deo obična kartica sa današnjom cenom i Buy dugmetom, a akcijska cena je u roz
 panelu duž dna kartice (BLACK FRIDAY, $30 sa oznakom −25%, Save $10, Starts
 in…), bez tačke između uštede i procenta. Tokom akcije na vrhu su BLACK FRIDAY
 i „● Live now" kao običan roza tekst, a odbrojavanje je sitno ispod Buy.
+
+Rombovi levo i desno od „Lifetime free updates" su skinuti (vlasnik, 23. novembra).

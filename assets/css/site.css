@@ -2427,6 +2427,9 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 
 /* Projects page: the same band, at the top above the search. */
 .bf-strip.is-projects { margin: 0 0 clamp(32px,3.6vw,48px); }
+/* Here the band stands apart from the project, so it names it first. */
+.bf-strip-for { margin: 0 0 4px; font-size: var(--fs-h1); font-weight: 300; line-height: 1.1; color: var(--text-1); }
+.bf-strip-for span { font-size: var(--fs-body); font-weight: 300; color: var(--text-2); }
 
 /* easyrace hero: a quiet badge in the corner of the first photo only, so the
    photo still leads. */

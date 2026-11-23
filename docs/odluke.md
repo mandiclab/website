@@ -782,3 +782,4 @@ in…), bez tačke između uštede i procenta. Tokom akcije na vrhu su BLACK FRI
 i „● Live now" kao običan roza tekst, a odbrojavanje je sitno ispod Buy.
 
 Rombovi levo i desno od „Lifetime free updates" su skinuti (vlasnik, 23. novembra).
+Traka na Projects stranici prvo imenuje projekat: veliko „easyrace · fully 3D printed sim racing setup" iznad naslova, a dugme kaže „Shop easyrace" (vlasnik: nije se znalo na šta se reklama odnosi).

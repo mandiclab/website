@@ -2279,7 +2279,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 .bf-title {
   margin: 0;
-  font-size: min(13vw, 19vh);
+  font-size: min(13vw, 17vh);
   line-height: 0.9;
   letter-spacing: -0.02em;
   text-transform: uppercase;
@@ -2427,12 +2427,38 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 
 /* Projects page: the same band, at the top above the search. */
 .bf-strip.is-projects { margin: 0 0 clamp(32px,3.6vw,48px); }
-/* Here the band stands apart from the project, so it names it first. */
-.bf-strip-for { margin: 0 0 4px; font-size: var(--fs-h1); font-weight: 300; line-height: 1.1; color: var(--text-1); }
-.bf-strip-for span { font-size: var(--fs-body); font-weight: 300; color: var(--text-2); }
-.bf-strip-for i { font-style: normal; }
-.bf-body > .bf-strip-for { margin: 0 0 -8px; font-size: var(--fs-display); font-weight: 200; }
-.bf-body > .bf-strip-for span { font-size: var(--fs-h3); }
+/* Where the ad stands apart from the project (home, Projects) it names it
+   first: EASYRACE on a slanted rose plate, like a team name on a race car,
+   slanted the way the device titles on the easyrace page are. */
+/* The fade at the top of the hero would dim the plate; it is not needed
+   over the takeover, which is dark already. */
+.hero-fade { transition: opacity var(--dur-base) var(--ease); }
+.hero:has(.slide.is-active .bf) .hero-fade { opacity: 0; }
+.bf-for { display: flex; flex-direction: column; align-items: center; gap: 12px; margin: 0; }
+.bf-for-name {
+  display: inline-block;
+  padding: 6px 32px 6px 36px;
+  background: var(--accent-rose);
+  color: var(--bg);
+  font-size: var(--fs-h1);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  transform: skewX(-14deg);
+  box-shadow: 0 0 40px rgba(232,145,137,0.5), 8px 8px 0 rgba(232,201,140,0.55);
+}
+.bf-for-tag { font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.3em; text-transform: uppercase; color: var(--text-2); }
+.bf-strip .bf-for { align-items: flex-start; margin-bottom: 8px; }
+.bf-strip .bf-for-name { font-size: var(--fs-h2); padding: 4px 24px 4px 28px; box-shadow: 0 0 28px rgba(232,145,137,0.45), 6px 6px 0 rgba(232,201,140,0.55); }
+@media (max-width: 900px) { .bf-strip .bf-for { align-items: center; } }
+/* A short laptop screen: pull the takeover together so it clears the dots. */
+@media (min-width: 641px) and (max-height: 780px) {
+  .bf-body { gap: 12px; padding-top: 12px; }
+  .bf .bf-for { gap: 8px; }
+  .bf > .bf-body > .bf-perk { padding: 8px 24px; font-size: var(--fs-h3); }
+  .bf-clock .gate-num { font-size: var(--fs-h1); }
+}
 
 /* easyrace hero: a quiet badge in the corner of the first photo only, so the
    photo still leads. */
@@ -2475,9 +2501,8 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .bf-body { gap: 16px; padding: 12px var(--gutter) 64px; }
   .bf-title { font-size: 12vw; }
   .bf-kicker { letter-spacing: 0.1em; }
-  .bf-body > .bf-strip-for { font-size: var(--fs-h1); margin: 0; }
-  .bf-body > .bf-strip-for span { display: block; font-size: var(--fs-small); }
-  .bf-strip-for i { display: none; }
+  .bf-for-name { font-size: var(--fs-h2); padding: 4px 22px 4px 26px; }
+  .bf-for-tag { letter-spacing: 0.14em; }
   .bf-deals { flex-direction: column; align-self: stretch; gap: 8px; }
   .bf-deal { flex-direction: row; justify-content: space-between; padding: 8px 16px; }
   .bf-deal.is-core { order: -1; padding: 12px 16px; }

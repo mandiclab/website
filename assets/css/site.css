@@ -2076,84 +2076,180 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .er-save { display: block; margin-top: 8px; font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.18em; color: var(--accent-rose); text-shadow: 0 0 12px rgba(232,145,137,0.25); }
 .bundle-save .sale-price { line-height: 1.6; text-align: center; }
 
-/* The ad on the first home slide (the owner asked for it big): a rose glass
-   panel to the right of the easyrace text, with the Core bundle's full price
-   struck through, the sale price huge, and the clock. The price is the one
-   size off the scale, twice the display size, on the owner's say-so. Gone
-   once the sale is over, and without JavaScript, where it could never go
-   away; the easyrace text then stands alone as before. */
-:root:not([data-sale="soon"]):not([data-sale="on"]) .sale-ad { display: none; }
-.hero-text.has-sale {
-  max-width: none;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  gap: clamp(32px,4vw,64px);
+/* The takeover on the first home slide. The owner asked for it big and loud,
+   over the whole screen, matching the site without being held to it — so it
+   bends the scale on purpose: the title and the Core price are sized to the
+   screen, not to the type scale, and the rose glows harder than anywhere else.
+   Colours are still only the site's own. While it shows, the easyrace text
+   under it steps aside; its h1 stays for screen readers. When the sale is
+   over (or without JavaScript, where it could never go away) it is gone and
+   the slide is as it was. */
+:root:not([data-sale="soon"]):not([data-sale="on"]) .bf { display: none; }
+:root[data-sale="soon"] .hero-text.has-sale, :root[data-sale="on"] .hero-text.has-sale {
+  position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap;
 }
-.hero-main { display: flex; flex-direction: column; align-items: flex-start; max-width: 50%; }
-.sale-ad {
+:root[data-sale="soon"] .hero-text.has-sale > :not(h1), :root[data-sale="on"] .hero-text.has-sale > :not(h1) { display: none; }
+
+.bf {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(ellipse 70% 60% at 50% 58%, rgba(232,145,137,0.30) 0%, rgba(232,145,137,0.08) 45%, transparent 70%),
+    linear-gradient(180deg, rgba(11,11,12,0.72) 0%, rgba(11,11,12,0.86) 100%);
+  backdrop-filter: blur(6px) saturate(130%);
+  -webkit-backdrop-filter: blur(6px) saturate(130%);
+  overflow: hidden;
+}
+
+/* A rose band running across the top, like a race-day banner. */
+.bf-ticker {
   flex: 0 0 auto;
+  overflow: hidden;
+  border-top: 1px solid rgba(232,145,137,0.5);
+  border-bottom: 1px solid rgba(232,145,137,0.5);
+  background: rgba(232,145,137,0.14);
+  box-shadow: 0 0 40px rgba(232,145,137,0.25);
+}
+.bf-ticker-track { display: flex; width: max-content; animation: bf-ticker 40s linear infinite; }
+.bf-ticker-track > div { display: flex; align-items: center; }
+.bf-ticker span {
+  padding: 12px 24px;
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--accent-rose);
+}
+.bf-ticker i { width: 6px; height: 6px; background: var(--accent-rose); box-shadow: 0 0 10px var(--accent-rose); transform: rotate(45deg); }
+@keyframes bf-ticker { to { transform: translateX(-50%); } }
+
+.bf-body {
+  flex: 1 1 auto;
+  min-height: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
+  gap: clamp(16px,2.6vh,32px);
+  padding: 16px var(--gutter) 72px;
   text-align: center;
-  padding: clamp(24px,3vw,48px) clamp(24px,3.4vw,56px);
-  border: 1px solid rgba(232,145,137,0.5);
-  background: rgba(11,11,12,0.55) linear-gradient(rgba(232,145,137,0.12), rgba(232,145,137,0.04));
-  box-shadow: 0 0 64px rgba(232,145,137,0.22), inset 0 0 32px rgba(232,145,137,0.08);
-  backdrop-filter: blur(26px);
-  -webkit-backdrop-filter: blur(26px);
-  color: var(--text-1);
-  text-decoration: none;
-  transition: box-shadow var(--dur-slow) var(--ease), border-color var(--dur-slow) var(--ease), transform var(--dur-slow) var(--ease);
 }
-.sale-ad:hover { color: var(--text-1); border-color: var(--accent-rose); box-shadow: 0 0 96px rgba(232,145,137,0.34), inset 0 0 32px rgba(232,145,137,0.12); transform: translateY(-2px); }
-.sale-ad-kicker {
-  font-size: var(--fs-h1);
+.bf-kicker {
+  margin: 0;
+  font-size: var(--fs-label);
   font-weight: 500;
-  line-height: 1.15;
-  letter-spacing: 0.18em;
-  margin-right: -0.18em; /* the tracking after the last letter would push it off centre */
+  letter-spacing: 0.3em;
   text-transform: uppercase;
-  color: var(--accent-rose);
-  text-shadow: 0 0 26px rgba(232,145,137,0.45);
+  color: var(--text-2);
 }
-.sale-ad-name { margin-top: 12px; font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-2); }
-.sale-ad-prices { display: flex; align-items: center; gap: clamp(16px,1.6vw,24px); margin-top: 16px; }
-.sale-ad-was { font-size: var(--fs-display); font-weight: 200; line-height: 1; color: var(--text-3); text-decoration: line-through; text-decoration-thickness: 2px; text-decoration-color: var(--accent-rose); }
-.sale-ad-now { font-size: calc(var(--fs-display) * 2); font-weight: 200; line-height: 1; letter-spacing: -0.02em; color: var(--text-1); text-shadow: 0 0 40px rgba(232,145,137,0.4); }
-.sale-ad-save {
-  margin-top: 16px;
-  padding: 8px 16px;
-  border: 1px solid rgba(232,145,137,0.5);
+.bf-title {
+  margin: 0;
+  font-size: min(13vw, 19vh);
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.bf-black { font-weight: 200; color: var(--text-1); text-shadow: 0 0 60px rgba(242,242,240,0.25); }
+/* Filled, not outlined: the font's letters are built from overlapping
+   shapes, and an outline shows the seams inside R, D and A. */
+.bf-friday {
+  font-weight: 500;
+  color: var(--accent-rose);
+  background: linear-gradient(90deg, var(--accent-rose) 0%, var(--accent-gold) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 24px rgba(232,145,137,0.6));
+  animation: bf-glow 2.4s ease-in-out infinite alternate;
+}
+@keyframes bf-glow {
+  from { filter: drop-shadow(0 0 12px rgba(232,145,137,0.35)); }
+  to { filter: drop-shadow(0 0 32px rgba(232,145,137,0.8)); }
+}
+
+.bf-deals { display: flex; align-items: stretch; justify-content: center; gap: clamp(12px,1.6vw,24px); }
+.bf-deal {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-width: clamp(160px,15vw,220px);
+  padding: clamp(16px,2vh,24px) clamp(16px,2vw,32px);
+  border: 1px solid rgba(232,145,137,0.35);
+  background: rgba(11,11,12,0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+.bf-deal-name { font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-2); }
+.bf-deal-prices { display: flex; align-items: baseline; gap: 12px; white-space: nowrap; }
+.bf-deal s { font-size: var(--fs-h2); font-weight: 300; color: var(--text-3); text-decoration-color: var(--accent-rose); text-decoration-thickness: 2px; }
+.bf-deal b { font-size: var(--fs-h1); font-weight: 200; line-height: 1; color: var(--text-1); }
+.bf-deal-save { font-size: var(--fs-h3); font-weight: 500; letter-spacing: 0.1em; color: var(--accent-rose); text-shadow: 0 0 16px rgba(232,145,137,0.5); }
+.bf-deal.is-core {
+  min-width: clamp(220px,22vw,340px);
+  border-color: var(--accent-rose);
   background: rgba(232,145,137,0.16);
-  font-size: var(--fs-h3);
+  animation: bf-pulse 2.4s ease-in-out infinite alternate;
+}
+.bf-deal.is-core .bf-deal-name { color: var(--accent-rose); }
+.bf-deal.is-core s { font-size: var(--fs-h1); }
+.bf-deal.is-core b { font-size: min(7vw, 11vh); text-shadow: 0 0 40px rgba(232,145,137,0.5); }
+.bf-deal.is-core .bf-deal-save { padding: 4px 12px; background: var(--accent-rose); color: var(--bg); text-shadow: none; }
+@keyframes bf-pulse {
+  from { box-shadow: 0 0 24px rgba(232,145,137,0.25), inset 0 0 24px rgba(232,145,137,0.08); }
+  to { box-shadow: 0 0 72px rgba(232,145,137,0.5), inset 0 0 32px rgba(232,145,137,0.16); }
+}
+
+.bf-foot { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 16px clamp(24px,3vw,48px); }
+.bf-clock { display: flex; align-items: flex-start; gap: clamp(12px,1.6vw,24px); }
+.bf-clock-label { align-self: center; font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-2); }
+.bf-clock .gate-num { font-size: var(--fs-display); color: var(--accent-rose); text-shadow: 0 0 26px rgba(232,145,137,0.45); }
+.bf-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 32px;
+  background: var(--accent-rose);
+  color: var(--bg);
+  font-size: var(--fs-label);
   font-weight: 500;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--accent-rose);
+  text-decoration: none;
+  box-shadow: 0 0 32px rgba(232,145,137,0.45);
+  transition: box-shadow var(--dur-base) var(--ease), transform var(--dur-base) var(--ease);
 }
-.hero-text .sale-ad .gate-clock { margin-top: clamp(24px,2.4vw,32px); padding-top: clamp(24px,2.4vw,32px); border-top: 1px solid rgba(232,145,137,0.24); }
-.hero-text .sale-ad .gate-num { font-size: var(--fs-h1); color: var(--accent-rose); text-shadow: 0 0 26px rgba(232,145,137,0.35); }
-.sale-ad-when { margin-top: 16px; font-size: var(--fs-small); font-weight: 300; color: var(--text-2); }
+.bf-cta:hover { color: var(--bg); box-shadow: 0 0 64px rgba(232,145,137,0.75); transform: translateY(-2px); }
+.bf-cta:focus-visible { outline-color: var(--text-1); }
+
 @media (max-width: 900px) {
-  /* The text sits at the bottom of the photo here, so the ad stays beside it,
-     smaller, instead of stacking on top and climbing under the header. */
-  .hero-text.has-sale { align-items: flex-end; gap: 24px; }
-  .hero-main { flex: 1 1 auto; min-width: 0; max-width: none; }
-  .sale-ad { padding: 24px; }
-  .sale-ad-kicker { font-size: var(--fs-h2); }
-  .sale-ad-was { font-size: var(--fs-h1); }
-  .sale-ad-now { font-size: var(--fs-display); }
-  .sale-ad-save { font-size: var(--fs-label); }
-  .hero-text .sale-ad .gate-clock { margin-top: 16px; padding-top: 16px; }
-  .hero-text .sale-ad .gate-num { font-size: var(--fs-h2); }
+  .bf-deal { min-width: 0; padding: 12px 16px; }
+  .bf-deal.is-core { min-width: 0; }
+  .bf-deal s, .bf-deal.is-core s { font-size: var(--fs-h3); }
+  .bf-deal b { font-size: var(--fs-h2); }
+  .bf-deal.is-core b { font-size: var(--fs-display); }
+  .bf-clock .gate-num { font-size: var(--fs-h1); }
 }
-/* On a phone the ad goes under the text, full width. */
+/* On a phone the deals stack, Core first. */
 @media (max-width: 640px) {
-  .hero-text.has-sale { flex-direction: column; align-items: flex-start; }
-  .sale-ad { align-self: stretch; }
+  .bf-body { gap: 16px; padding: 12px var(--gutter) 64px; }
+  .bf-title { font-size: 12vw; }
+  .bf-kicker { letter-spacing: 0.1em; }
+  .bf-deals { flex-direction: column; align-self: stretch; gap: 8px; }
+  .bf-deal { flex-direction: row; justify-content: space-between; padding: 8px 16px; }
+  .bf-deal.is-core { order: -1; padding: 12px 16px; }
+  .bf-deal-name { flex: 1 1 0; text-align: left; }
+  .bf-deal.is-core b { font-size: var(--fs-h1); }
+  .bf-deal-save { flex: 0 0 auto; min-width: 48px; text-align: right; }
+  .bf-deal.is-core .bf-deal-save { text-align: center; }
+  .bf-clock .gate-num { font-size: var(--fs-h2); }
 }
+
 .sale-on { display: none; }
 :root[data-sale="on"] .sale-soon { display: none; }
 :root[data-sale="on"] .sale-on { display: inline; }

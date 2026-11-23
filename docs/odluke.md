@@ -708,12 +708,16 @@ Po vlasnikovoj želji (23. novembra 2026). Akcija traje od petka 27. novembra
 `window.ML_SALE` u `<head>`-u naslovne i easyrace stranice. Kraj akcije sam
 izabrao (Cyber Monday), vlasnik ga nije rekao.
 
-- **Naslovna:** na prvom slajdu, desno od easyrace teksta, velika roza
-  reklama: „Black Friday", Core bundle $60 precrtano pa $40, „Save 33%" i
-  odbrojavanje (vlasnik je tražio „mega" reklamu; cena je jedina veličina van
-  skale, duplo od `--fs-display`). Na tabletu stoji pored teksta, manja; na
-  telefonu ispod teksta. Pre akcije broji do početka, tokom akcije do kraja,
-  posle nestaje. Klik vodi na Bundles na easyrace stranici.
+- **Naslovna:** ceo prvi slajd preuzima Black Friday reklama (`.bf`), preko
+  fotografije, od ivice do ivice (vlasnik: „mega giga ultra", „ne striktno u
+  stilu sajta nego da se slaže uz sajt"). Roza traka koja klizi na vrhu,
+  ogroman naslov BLACK FRIDAY (FRIDAY u prelivu roza u zlatnu, puni, jer
+  obris pokazuje šavove unutar slova), tri ponude sa precrtanom cenom, Core
+  najveći i pulsira, odbrojavanje i roza dugme „Shop the sale" ka Bundles.
+  Naslov i Core cena su namerno van skale, po veličini ekrana. Easyrace tekst
+  slajda se za to vreme sklanja, a njegov `h1` ostaje za čitače ekrana. Pre
+  akcije broji do početka, tokom akcije do kraja, posle nestaje i slajd je
+  kao ranije. Na telefonu su ponude jedna ispod druge, Core prvi.
 - **Cene (vlasnikova tabela):** uređaj $20 → $16 (−20%); Starter pojedinačno
   $40, redovno $35, BF $30 (−25%; prvo je bilo $28); Core pojedinačno $60, redovno $50, BF $40
   (−33%). Popust kod kompleta se računa od zbira pojedinačnih cena. Uređaji i
@@ -724,5 +728,5 @@ izabrao (Cyber Monday), vlasnik ga nije rekao.
 - Naplata je u Payhip-u: iste cene vlasnik mora da postavi i tamo.
 
 Posle akcije: obriši `assets/js/sale.js`, oba `ML_SALE` bloka u `<head>`-u,
-`.sale-ad`, omotač `.hero-main` i klasu `has-sale` sa naslovne, `.sale-price` delove (i `.reg-price` omotače) na
+`.bf` blok i klasu `has-sale` sa naslovne, `.sale-price` delove (i `.reg-price` omotače) na
 easyrace stranici i blok „Black Friday sale" na dnu `site.css`.

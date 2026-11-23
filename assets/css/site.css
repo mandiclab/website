@@ -2077,10 +2077,10 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .er-was { margin-right: 12px; font-size: var(--fs-h3); font-weight: 300; color: var(--text-3); text-decoration: line-through; text-decoration-color: var(--accent-rose); text-decoration-thickness: 2px; }
 /* The sale badge: rose, filled, the way the Core deal wears it in the ads. */
 .er-save, :root .bundle .bundle-save span.sale-price {
-  padding: 4px 10px;
+  padding: 6px 12px;
   background: var(--accent-rose);
   color: var(--bg);
-  font-size: var(--fs-label);
+  font-size: var(--fs-small);
   font-weight: 500;
   letter-spacing: 0.14em;
   line-height: 1.4;
@@ -2092,15 +2092,13 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 :root[data-sale="on"] .er-price, :root[data-sale="on"] .bundle-price { text-shadow: 0 0 24px rgba(232,145,137,0.55); }
 :root[data-sale="on"] .bundle-was { text-decoration-color: var(--accent-rose); text-decoration-thickness: 2px; }
 .bf-tag {
-  display: inline-flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0 6px;
+  display: inline-block;
+  text-align: center;
   margin-top: 12px;
-  padding: 6px 10px;
-  border: 1px solid rgba(232,145,137,0.4);
-  background: rgba(232,145,137,0.1);
-  font-size: var(--fs-label);
+  padding: 8px 14px;
+  border: 1px solid rgba(232,145,137,0.5);
+  background: rgba(232,145,137,0.12);
+  font-size: var(--fs-body);
   font-weight: 400;
   line-height: 1.5;
   color: var(--text-2);
@@ -2108,7 +2106,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 .bf-tag b { font-weight: 500; color: var(--accent-rose); }
 .bf-tag-clock { font-weight: 500; color: var(--accent-rose); font-variant-numeric: tabular-nums; white-space: nowrap; }
-.bundle .bf-tag { display: flex; }
+.bundle .bf-tag { display: block; }
 
 /* The takeover on the first home slide. The owner asked for it big and loud,
    over the whole screen, matching the site without being held to it — so it
@@ -2261,6 +2259,18 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 .bf-perk::before, .bf-perk::after { content: ""; width: 6px; height: 6px; background: var(--accent-rose); transform: rotate(45deg); box-shadow: 0 0 10px rgba(232,145,137,0.6); }
 .bf-strip-head .bf-perk { margin-top: 4px; }
+/* On the home takeover it is a headline of its own (the owner: make it stand out). */
+.bf > .bf-body > .bf-perk {
+  gap: 16px;
+  padding: 12px 28px;
+  border: 1px solid var(--accent-rose);
+  background: rgba(232,145,137,0.14);
+  box-shadow: 0 0 32px rgba(232,145,137,0.3);
+  font-size: var(--fs-h2);
+  letter-spacing: 0.16em;
+  text-shadow: 0 0 20px rgba(242,242,240,0.35);
+}
+.bf > .bf-body > .bf-perk::before, .bf > .bf-body > .bf-perk::after { width: 8px; height: 8px; }
 
 /* The easyrace page gets a smaller cousin of it, a band above the tabs (as
    the Ko-fi note sits on DJC-DIY): the same look, but only as tall as it
@@ -2308,8 +2318,8 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 6px;
-  padding: 16px 20px;
+  gap: 10px;
+  padding: clamp(20px,2vw,28px) clamp(24px,2.4vw,36px);
   border: 1px solid rgba(232,145,137,0.45);
   background: rgba(11,11,12,0.72);
   box-shadow: 0 0 32px rgba(232,145,137,0.2);
@@ -2318,11 +2328,13 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   transition: border-color var(--dur-base) var(--ease), box-shadow var(--dur-base) var(--ease);
 }
 /* In the news it is a mark, not a link, and stays after the sale with the news. */
-.bf-badge.is-news { left: 16px; bottom: 16px; pointer-events: none; }
+.bf-badge.is-news { left: 16px; bottom: 16px; gap: 6px; padding: 16px 20px; pointer-events: none; }
+.bf-badge.is-news .bf-badge-title { font-size: var(--fs-h1); }
+.bf-badge.is-news .bf-badge-line { font-size: var(--fs-label); letter-spacing: 0.14em; }
 .bf-badge:hover { color: var(--text-1); border-color: var(--accent-rose); box-shadow: 0 0 48px rgba(232,145,137,0.35); }
-.bf-badge-title { font-size: var(--fs-h1); line-height: 1; letter-spacing: -0.01em; text-transform: uppercase; white-space: nowrap; }
-.bf-badge-line { font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-1); }
-.bf-badge-clock { font-size: var(--fs-label); font-weight: 400; letter-spacing: 0.08em; color: var(--text-2); }
+.bf-badge-title { font-size: var(--fs-display); line-height: 1; letter-spacing: -0.01em; text-transform: uppercase; white-space: nowrap; }
+.bf-badge-line { font-size: var(--fs-h3); font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--text-1); }
+.bf-badge-clock { font-size: var(--fs-body); font-weight: 400; letter-spacing: 0.06em; color: var(--text-2); }
 
 @media (max-width: 900px) {
   .bf-deal { min-width: 0; padding: 12px 16px; }
@@ -2350,9 +2362,10 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
   .bf-strip .bf-deal.is-core b { font-size: var(--fs-h1); }
   .bf-deal-prices { gap: 8px; }
   .bf-perk { letter-spacing: 0.12em; }
-  .bf-badge { left: 12px; bottom: 12px; padding: 8px 12px; gap: 2px; }
-  .bf-badge-title { font-size: var(--fs-h3); }
-  .bf-badge-line { letter-spacing: 0.06em; }
+  .bf-badge { left: 12px; bottom: 12px; padding: 10px 14px; gap: 4px; }
+  .bf-badge-title { font-size: var(--fs-h2); }
+  .bf-badge-line { font-size: var(--fs-label); letter-spacing: 0.06em; }
+  .bf > .bf-body > .bf-perk { gap: 10px; padding: 8px 14px; font-size: var(--fs-small); letter-spacing: 0.12em; }
   .bf-badge-clock { display: none; }
 }
 

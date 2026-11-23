@@ -2108,87 +2108,109 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 .bf-tag-clock { font-weight: 500; color: var(--accent-rose); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .bundle .bf-tag { display: block; }
 
-/* The Starter and Core cards dress up for the sale, before it starts and
-   while it runs (the owner: the whole card in the ad style, with the saving
-   in dollars). Rose frame and glow, the gradient BLACK FRIDAY on top, a rose
-   Buy button; Core pulses like its deal in the ads. Gone after the sale. */
+/* The Starter and Core cards dress up for the sale (the owner: the whole
+   card in the ad style, the saving in dollars, and plain to see whether the
+   sale has started). Gone after the sale.
+   Before it: the card is today's card in a rose frame, Buy at today's price,
+   and the coming sale price sits in a rose panel along the bottom: BLACK
+   FRIDAY, the price with its discount, the saving, and when it starts.
+   During it: BLACK FRIDAY and a "Live now" mark on top, the sale price big,
+   YOU SAVE in gold, a rose Buy, and how long is left under it; Core pulses. */
 .bundle-bf-head, .bundle-abs, .bundle-bf-status { display: none; }
 :root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf {
   position: relative;
+  display: flex;
+  flex-direction: column;
   border-color: var(--accent-rose);
   background:
-    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(232,145,137,0.30) 0%, rgba(232,145,137,0.06) 60%, transparent 85%),
+    radial-gradient(ellipse 90% 60% at 50% 0%, rgba(232,145,137,0.24) 0%, rgba(232,145,137,0.05) 60%, transparent 85%),
     rgba(11,11,12,0.82);
   box-shadow: 0 0 40px rgba(232,145,137,0.25), inset 0 0 24px rgba(232,145,137,0.08);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
 }
-:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-bf-head {
+:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-name { color: var(--text-1); }
+:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-was { text-decoration-color: var(--accent-rose); text-decoration-thickness: 2px; }
+
+/* Before */
+:root[data-sale="soon"] .bundle.is-bf {
+  padding-bottom: 0;
+  overflow: hidden;
+  border-color: rgba(232,145,137,0.55);
+  box-shadow: 0 0 24px rgba(232,145,137,0.14);
+}
+:root[data-sale="soon"] .bundle.is-bf .bundle-save span { color: var(--text-2); }
+:root[data-sale="soon"] .bundle.is-bf > :is(.bundle-abs, .bf-tag) { order: 1; }
+:root[data-sale="soon"] .bundle.is-bf .bundle-abs {
   display: block;
-  margin: -4px 0 16px;
+  margin: clamp(24px,2.2vw,32px) -16px 0;
+  padding: 20px 16px 0;
+  border-top: 1px solid rgba(232,145,137,0.45);
+  background: rgba(232,145,137,0.12);
+}
+.bundle-abs > .sale-soon { display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.bundle-abs-title { font-size: var(--fs-h3); line-height: 1; text-transform: uppercase; white-space: nowrap; }
+.bundle-abs-row { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.bundle-abs b { font-size: var(--fs-h1); font-weight: 200; line-height: 1; color: var(--accent-rose); text-shadow: 0 0 20px rgba(232,145,137,0.45); }
+.bundle-abs-pill { padding: 4px 8px; background: var(--accent-rose); color: var(--bg); font-size: var(--fs-small); font-weight: 500; line-height: 1.2; }
+.bundle-abs-save { font-size: var(--fs-body); font-weight: 500; color: var(--accent-gold); text-shadow: 0 0 12px rgba(232,201,140,0.35); }
+:root[data-sale="soon"] .bundle.is-bf .bf-tag {
+  display: block;
+  margin: 0 -16px;
+  padding: 8px 16px 20px;
+  border: 0;
+  background: rgba(232,145,137,0.12);
+  box-shadow: none;
+  font-size: var(--fs-label);
+  color: var(--text-2);
+}
+
+/* During */
+:root[data-sale="on"] .bundle.is-bf .bundle-bf-head {
+  display: block;
+  margin: -4px 0 8px;
   font-size: var(--fs-h3);
   line-height: 1;
-  letter-spacing: 0.02em;
   text-transform: uppercase;
   white-space: nowrap;
 }
-:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-name { color: var(--text-1); }
-:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-was { text-decoration-color: var(--accent-rose); text-decoration-thickness: 2px; }
-:root[data-sale="on"] .bundle.is-bf .bundle-price { font-size: calc(var(--fs-h1) * 1.4); }
-:root[data-sale="soon"] .bundle.is-bf .bundle-save span { color: var(--text-2); }
-:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-abs {
-  display: block;
-  margin-top: 12px;
-  font-size: var(--fs-h3);
-  font-weight: 500;
-  line-height: 1.3;
-  color: var(--accent-gold);
-  text-shadow: 0 0 16px rgba(232,201,140,0.45);
-}
-:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bf-tag { padding: 6px 4px; font-size: var(--fs-small); }
-:root[data-sale="on"] .bundle.is-bf .bundle-save span.sale-price { padding: 4px 14px; font-size: var(--fs-h3); letter-spacing: 0.06em; box-shadow: 0 0 20px rgba(232,145,137,0.45); }
-/* Before the sale the card says plainly that it has not started: a "Starts
-   Friday" outline tag up top, a calmer frame, the usual Buy button, and the
-   sale price set apart below a dashed line as what is coming. Once it is on,
-   the tag turns solid "Live now", and the frame, button and Core pulse go
-   full rose. */
-:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-bf-status {
+:root[data-sale="on"] .bundle.is-bf .bundle-bf-status {
   display: inline-flex;
+  align-self: center;
   align-items: center;
   gap: 8px;
   margin-bottom: 16px;
-  padding: 4px 12px;
-  border: 1px solid var(--accent-rose);
   font-size: var(--fs-label);
   font-weight: 500;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
-  white-space: nowrap;
   color: var(--accent-rose);
 }
-:root[data-sale="on"] .bundle.is-bf .bundle-bf-status { background: var(--accent-rose); color: var(--bg); box-shadow: 0 0 20px rgba(232,145,137,0.5); }
-:root[data-sale="on"] .bundle.is-bf .bundle-bf-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--bg); }
-:root[data-sale="soon"] .bundle.is-bf {
-  border-color: rgba(232,145,137,0.5);
-  box-shadow: 0 0 24px rgba(232,145,137,0.12);
+:root[data-sale="on"] .bundle.is-bf .bundle-bf-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--accent-rose); box-shadow: 0 0 10px var(--accent-rose); }
+:root[data-sale="on"] .bundle.is-bf .bundle-price { font-size: calc(var(--fs-h1) * 1.4); }
+:root[data-sale="on"] .bundle.is-bf .bundle-save span.sale-price { padding: 4px 14px; font-size: var(--fs-h3); letter-spacing: 0.06em; box-shadow: 0 0 20px rgba(232,145,137,0.45); }
+:root[data-sale="on"] .bundle.is-bf .bundle-abs {
+  display: block;
+  margin-top: 12px;
+  font-size: var(--fs-h2);
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent-gold);
+  text-shadow: 0 0 16px rgba(232,201,140,0.45);
 }
-/* Before the sale, Buy (at today's price) comes before the sale price that
-   is not here yet. */
-:root[data-sale="soon"] .bundle.is-bf { display: flex; flex-direction: column; }
-:root[data-sale="soon"] .bundle.is-bf > .bundle-bf-status { align-self: center; }
-:root[data-sale="soon"] .bundle.is-bf > :is(.bundle-abs, .bf-tag) { order: 1; }
-:root[data-sale="soon"] .bundle.is-bf .bundle-abs {
-  margin-top: 16px;
-  padding-top: 16px;
-  border-top: 1px dashed rgba(232,145,137,0.5);
-  color: var(--text-1);
-  text-shadow: none;
+:root[data-sale="on"] .bundle.is-bf > .bf-tag {
+  order: 1;
+  display: block;
+  margin-top: 12px;
+  padding: 0;
+  border: 0;
+  background: none;
+  box-shadow: none;
+  font-size: var(--fs-label);
+  color: var(--text-2);
 }
-.bundle-abs-label { display: block; font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-2); }
-.bundle-abs b { display: block; margin-top: 4px; font-size: var(--fs-h1); font-weight: 200; color: var(--accent-rose); text-shadow: 0 0 20px rgba(232,145,137,0.45); }
-.bundle-abs-save { display: block; margin-top: 2px; font-size: var(--fs-body); font-weight: 500; color: var(--accent-gold); }
-:root[data-sale="soon"] .bundle.is-bf .bf-tag { margin-top: 8px; border: 0; background: none; box-shadow: none; padding: 0; color: var(--text-2); }
-:root[data-sale="on"] .bundle.is-bf .bundle-abs { font-size: var(--fs-h2); text-transform: uppercase; letter-spacing: 0.04em; }
 :root[data-sale="on"] .bundle.is-bf .bundle-buy,
 :root[data-sale="on"] .bundle.is-bf .bundle-buy:hover {
   border-color: var(--accent-rose);

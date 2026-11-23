@@ -775,3 +775,8 @@ mirniji, dugme Buy je obično, a akcijska cena stoji odvojeno ispod isprekidane
 linije kao „Black Friday price $30 · Save $10 · Starts in…". Kad akcija počne,
 oznaka postaje puna roza „● Live now", a okvir, dugme i puls Core kartice
 prelaze u punu roza.
+Kartice su zatim proređene (vlasnik: „prenatrpane"): pre akcije je gornji
+deo obična kartica sa današnjom cenom i Buy dugmetom, a akcijska cena je u roza
+panelu duž dna kartice (BLACK FRIDAY, $30 sa oznakom −25%, Save $10, Starts
+in…), bez tačke između uštede i procenta. Tokom akcije na vrhu su BLACK FRIDAY
+i „● Live now" kao običan roza tekst, a odbrojavanje je sitno ispod Buy.

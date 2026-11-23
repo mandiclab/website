@@ -2112,7 +2112,7 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
    while it runs (the owner: the whole card in the ad style, with the saving
    in dollars). Rose frame and glow, the gradient BLACK FRIDAY on top, a rose
    Buy button; Core pulses like its deal in the ads. Gone after the sale. */
-.bundle-bf-head, .bundle-abs { display: none; }
+.bundle-bf-head, .bundle-abs, .bundle-bf-status { display: none; }
 :root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf {
   position: relative;
   border-color: var(--accent-rose);
@@ -2147,16 +2147,52 @@ input:focus-visible, textarea:focus-visible { outline: none; border-color: var(-
 }
 :root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bf-tag { padding: 6px 4px; font-size: var(--fs-small); }
 :root[data-sale="on"] .bundle.is-bf .bundle-save span.sale-price { padding: 4px 14px; font-size: var(--fs-h3); letter-spacing: 0.06em; box-shadow: 0 0 20px rgba(232,145,137,0.45); }
+/* Before the sale the card says plainly that it has not started: a "Starts
+   Friday" outline tag up top, a calmer frame, the usual Buy button, and the
+   sale price set apart below a dashed line as what is coming. Once it is on,
+   the tag turns solid "Live now", and the frame, button and Core pulse go
+   full rose. */
+:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-bf-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 16px;
+  padding: 4px 12px;
+  border: 1px solid var(--accent-rose);
+  font-size: var(--fs-label);
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  color: var(--accent-rose);
+}
+:root[data-sale="on"] .bundle.is-bf .bundle-bf-status { background: var(--accent-rose); color: var(--bg); box-shadow: 0 0 20px rgba(232,145,137,0.5); }
+:root[data-sale="on"] .bundle.is-bf .bundle-bf-status::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--bg); }
+:root[data-sale="soon"] .bundle.is-bf {
+  border-color: rgba(232,145,137,0.5);
+  box-shadow: 0 0 24px rgba(232,145,137,0.12);
+}
+:root[data-sale="soon"] .bundle.is-bf .bundle-abs {
+  margin-top: 16px;
+  padding-top: 16px;
+  border-top: 1px dashed rgba(232,145,137,0.5);
+  color: var(--text-1);
+  text-shadow: none;
+}
+.bundle-abs-label { display: block; font-size: var(--fs-label); font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-2); }
+.bundle-abs b { display: block; margin-top: 4px; font-size: var(--fs-h1); font-weight: 200; color: var(--accent-rose); text-shadow: 0 0 20px rgba(232,145,137,0.45); }
+.bundle-abs-save { display: block; margin-top: 2px; font-size: var(--fs-body); font-weight: 500; color: var(--accent-gold); }
+:root[data-sale="soon"] .bundle.is-bf .bf-tag { margin-top: 8px; border: 0; background: none; box-shadow: none; padding: 0; color: var(--text-2); }
 :root[data-sale="on"] .bundle.is-bf .bundle-abs { font-size: var(--fs-h2); text-transform: uppercase; letter-spacing: 0.04em; }
-:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-buy,
-:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-buy:hover {
+:root[data-sale="on"] .bundle.is-bf .bundle-buy,
+:root[data-sale="on"] .bundle.is-bf .bundle-buy:hover {
   border-color: var(--accent-rose);
   background: var(--accent-rose);
   color: var(--bg);
   box-shadow: 0 0 24px rgba(232,145,137,0.4);
 }
-:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf .bundle-buy:hover { box-shadow: 0 0 48px rgba(232,145,137,0.7); }
-:root:is([data-sale="soon"],[data-sale="on"]) .bundle.is-bf.is-core::before {
+:root[data-sale="on"] .bundle.is-bf .bundle-buy:hover { box-shadow: 0 0 48px rgba(232,145,137,0.7); }
+:root[data-sale="on"] .bundle.is-bf.is-core::before {
   content: "";
   position: absolute;
   inset: -1px;

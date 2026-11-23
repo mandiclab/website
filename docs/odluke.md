@@ -769,3 +769,9 @@ reklamama. Ušteda se piše u dolarima, u odnosu na cenu pojedinačnih uređaja:
 pre akcije „Save $10 on Black Friday", tokom nje „YOU SAVE $10" zlatno, uz
 veliku novu cenu i „−25%". Klase `is-bf` / `is-core` na kartici,
 `.bundle-bf-head` i `.bundle-abs` u njoj; posle akcije se brišu.
+Pre akcije kartica mora jasno da kaže da akcija još nije počela (vlasnik:
+„sve izgleda pomešano"): na vrhu je obrisna oznaka „Starts Friday", okvir je
+mirniji, dugme Buy je obično, a akcijska cena stoji odvojeno ispod isprekidane
+linije kao „Black Friday price $30 · Save $10 · Starts in…". Kad akcija počne,
+oznaka postaje puna roza „● Live now", a okvir, dugme i puls Core kartice
+prelaze u punu roza.

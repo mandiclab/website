@@ -698,3 +698,28 @@ Javno su za sada samo easyrace i DJC-DIY.
 Kartice novih projekata nemaju sliku ni dugme „Show more" dok ne dobiju svoju
 stranicu. Opisi su samo ono što je vlasnik rekao; kod love loop i at work je
 to jedna rečenica i čeka njegov tekst.
+
+---
+
+## Black Friday 2026 (privremeno)
+
+Po vlasnikovoj želji (23. novembra 2026). Akcija traje od petka 27. novembra
+00:00 do kraja ponedeljka 30. novembra (srpsko vreme); datumi stoje u
+`window.ML_SALE` u `<head>`-u naslovne i easyrace stranice. Kraj akcije sam
+izabrao (Cyber Monday), vlasnik ga nije rekao.
+
+- **Naslovna:** na prvom slajdu, iznad naslova, roza okvir „Black Friday sale",
+  „Up to 33% off easyrace" i odbrojavanje. Pre akcije broji do početka, tokom
+  akcije do kraja, posle nestaje. Ceo okvir vodi na easyrace stranicu.
+- **Cene (vlasnikova tabela):** uređaj $20 → $16 (−20%); Starter pojedinačno
+  $40, redovno $35, BF $28 (−30%); Core pojedinačno $60, redovno $50, BF $40
+  (−33%). Popust kod kompleta se računa od zbira pojedinačnih cena. Uređaji i
+  Pro u draftu nemaju BF cenu.
+- Redovna cena nosi `.reg-price`, akcijska `.sale-price`; `<html data-sale>`
+  (`soon` / `on` / `over`) bira koja se vidi. Lokalno se akcijske cene vide
+  uvek, kao nacrti, da mogu da se provere unapred.
+- Naplata je u Payhip-u: iste cene vlasnik mora da postavi i tamo.
+
+Posle akcije: obriši `assets/js/sale.js`, oba `ML_SALE` bloka u `<head>`-u,
+`.sale-note` sa naslovne, `.sale-price` delove (i `.reg-price` omotače) na
+easyrace stranici i blok „Black Friday sale" na dnu `site.css`.

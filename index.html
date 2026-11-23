@@ -55,6 +55,9 @@
 <link rel="apple-touch-icon" href="/assets/favicon/apple-touch-icon.png">
 <link rel="preload" href="/assets/fonts/montserrat-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
+<!-- Black Friday sale, temporary (docs/odluke.md). Times are Serbian time. -->
+<script>window.ML_SALE={start:'2026-11-27T00:00:00+01:00',end:'2026-12-01T00:00:00+01:00'};(function(s,n){n=Date.now();document.documentElement.setAttribute('data-sale',n<Date.parse(s.start)?'soon':n<Date.parse(s.end)?'on':'over');})(window.ML_SALE);</script>
+<script src="/assets/js/sale.js" defer></script>
 <script src="/assets/js/site.js" defer></script>
 <script src="/assets/js/slideshow.js" defer></script>
 </head>
@@ -89,6 +92,18 @@
               <!-- is-deep: this photo is light where the text falls. -->
               <div class="hero-gradient is-deep"></div>
               <div class="hero-text">
+                <!-- Black Friday notice, temporary: shows before and during the sale, gone after (assets/js/sale.js). -->
+                <a class="sale-note" href="/projects/easyrace/">
+                  <span class="sale-note-title">Black Friday sale</span>
+                  <span class="sale-note-big">Up to 33% off easyrace</span>
+                  <span class="gate-clock" aria-hidden="true">
+                    <span class="gate-unit"><span class="gate-num" data-sale-days>00</span><span class="gate-label">days</span></span>
+                    <span class="gate-unit"><span class="gate-num" data-sale-hours>00</span><span class="gate-label">hrs</span></span>
+                    <span class="gate-unit"><span class="gate-num" data-sale-minutes>00</span><span class="gate-label">min</span></span>
+                    <span class="gate-unit"><span class="gate-num" data-sale-seconds>00</span><span class="gate-label">sec</span></span>
+                  </span>
+                  <span class="sale-note-when"><span class="sale-soon">Starts Friday, 27 November.</span><span class="sale-on">Ends Monday, 30 November, at midnight.</span></span>
+                </a>
                 <h1 class="hero-title">easyrace<span class="visually-hidden"> — </span><span class="hero-tagline">a fully 3D printed sim racing setup</span></h1>
                 <p class="hero-sub">Steering wheel, pedals and shifter, printed at home. It goes together without a single screw, nut, bearing or spring. Just released.</p>
                 <div class="hero-actions">

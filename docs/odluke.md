@@ -784,7 +784,7 @@ i „● Live now" kao običan roza tekst, a odbrojavanje je sitno ispod Buy.
 Rombovi levo i desno od „Lifetime free updates" su skinuti (vlasnik, 23. novembra).
 Reklame na naslovnoj i Projects stranici prvo imenuju projekat (vlasnik: nije se znalo na šta se odnose): EASYRACE na iskošenoj roza pločici, kao ime tima na trkačkom autu i iskošeno kao naslovi uređaja, sa „Fully 3D printed sim racing setup" ispod; dugme kaže „Shop easyrace". Gornje zatamnjenje hero-a se gasi dok je reklama na ekranu, da ne zamuti pločicu.
 
-**Promene 26. novembra (vlasnik):** akcija počinje u četvrtak 26. novembra u
+**Promene 26. novembra (vlasnik):** akcija počinje u četvrtak 26. novembra (Payhip je uključen u 19:28, pa je početak na sajtu 19:00; prvobitno je bilo
 20:00, ne u petak u ponoć, i kraj ostaje ponedeljak 30. novembra u ponoć. U
 Payhip-u je svuda popust od 20% sa krajem 1. decembra, pa je Starter $28
 (−30%, ušteda $12), a ne $30; Core $40 i uređaji $16 su isti. Na sajtu je

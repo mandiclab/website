@@ -40,7 +40,7 @@
     var p = phase(now);
     if (root.getAttribute('data-sale') !== p) { root.setAttribute('data-sale', p); pace(p); }
     if (p === 'over') { clearInterval(timer); return; }
-    var parts = split((now < start ? start : end) - now);
+    var parts = split((p === 'soon' ? start : end) - now);
     UNITS.forEach(function (unit, i) {
       document.querySelectorAll('[data-sale-' + unit + ']').forEach(function (cell) {
         cell.textContent = pad(parts[i]);
